@@ -1,9 +1,38 @@
-﻿<Application x:Class="MonopolyEntity.App"
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<Application x:Class="MonopolyEntity.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MonopolyEntity"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Color x:Key="FirstColor">#84a5c8</Color>
+            <SolidColorBrush x:Key="FirstGlobalColor" Color="{StaticResource FirstColor}"/>
+
+            <Color x:Key="SecondColor">#a3bcdc</Color>
+            <SolidColorBrush x:Key="SecondGlobalColor" Color="{StaticResource SecondColor}"/>
+
+            <Color x:Key="ThirdColor">#304c65</Color>
+            <SolidColorBrush x:Key="ThirdGlobalColor" Color="{StaticResource ThirdColor}"/>
+
+            <Color x:Key="FourthColor">#9c6272</Color>
+            <SolidColorBrush x:Key="FourthGlobalColor" Color="{StaticResource FourthColor}"/>
+
+            <Color x:Key="FifthColor">#aebed4</Color>
+            <SolidColorBrush x:Key="FifthGlobalColor" Color="{StaticResource FifthColor}"/>
+
+            <Color x:Key="SixColor">#4c393d</Color>
+            <SolidColorBrush x:Key="SixGlobalColor" Color="{StaticResource SixColor}"/>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

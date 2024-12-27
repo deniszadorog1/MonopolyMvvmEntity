@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyEntity.Windows.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,17 @@ namespace MonopolyEntity
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void LoginBut_Click(object sender, RoutedEventArgs e)
+        {
+            CaseCard newCard = new CaseCard("Calivan")
+            {
+                Width = 200,
+                Height = 200
+            };
+
+            FillBoxes.Children.Add(newCard);
         }
     }
 }

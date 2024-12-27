@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\MonopolyEntity\obj\Debug\
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\
 MonopolyEntity
 none
 false
 DEBUG;TRACE
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\MonopolyEntity\App.xaml
-1219584333
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\App.xaml
+3-1590598436
 
-6-793535042
-13-38814620
-MainWindow.xaml;
+81627015315
+22-1413450778
+MainWindow.xaml;Windows\Pages\OpenCase.xaml;Windows\UserControls\CaseCard.xaml;
 
 True
 

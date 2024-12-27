@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.CaseCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="200"
+             
+             >
+    <Grid>
+        <Border CornerRadius="10" Background="#ffffff" ClipToBounds="True">
+            <!-- <Border.Clip>
+                <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,200,200"/>
+            </Border.Clip> -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Name="UpperRow" Height="2.5*"/>
+                    <RowDefinition Name="DownRow" Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Canvas Grid.Row="0" Name="UpPart">
+                    <Image Name="CardImage"          
+                           Stretch="Fill"
+                           Width="{Binding ActualWidth, ElementName=UpPart}" 
+                           Height="{Binding ActualHeight, ElementName=UpPart}"/>
+                </Canvas>
+
+                <Canvas Grid.Row="1" Name="DownPart" Background="Pink">
+
+                    <TextBlock Name ="CardName"
+                               Loaded="CardName_Loaded"
+                               Padding="0"
+                               Width="{Binding ActualWidth, ElementName=DownPart}"
+                               Height="{Binding ActualHeight, ElementName=DownPart}"
+                               Text="TestText"
+                               TextAlignment="Center"
+                               FontSize="16"/>
+
+                </Canvas>
+            </Grid>
+
+        </Border>
+    </Grid>
+</UserControl>
