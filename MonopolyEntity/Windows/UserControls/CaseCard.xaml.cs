@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 using Path = System.IO.Path;
@@ -18,6 +19,30 @@ namespace MonopolyEntity.Windows.UserControls
             InitializeComponent();
 
             SetCardImage(name);
+            SetBorderClip();
+        }
+
+        public CaseCard()
+        {
+            InitializeComponent();
+
+            SetBorderClip();
+            //SetCardImage(string.Empty);
+        }
+
+        public void SetBorderClip()
+        {
+            if (ActualHeight == 0 || ActualWidth == 0) return; 
+
+            Console.WriteLine(ActualWidth + ActualHeight);
+
+            return;
+            BorderBase.Clip = new RectangleGeometry()
+            {
+                RadiusX = 10,
+                RadiusY = 10,
+                Rect = new Rect(0, 0, ActualWidth, ActualHeight)
+            };
         }
 
         public void SetCardImage(string picName)
@@ -66,6 +91,9 @@ namespace MonopolyEntity.Windows.UserControls
 
         private void CardName_Loaded(object sender, RoutedEventArgs e)
         {
+            double upperPadding = DownRow.ActualHeight / 2 - CardName.FontSize / 2;
+            if (upperPadding < 0) return;
+
             CardName.Padding = new Thickness(0, DownRow.ActualHeight / 2 - CardName.FontSize / 2, 0, 0);
         }
 

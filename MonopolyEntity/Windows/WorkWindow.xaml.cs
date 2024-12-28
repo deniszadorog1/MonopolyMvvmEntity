@@ -1,5 +1,4 @@
-﻿using MonopolyEntity.Windows.UserControls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,28 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using MonopolyEntity.Windows;
+using MonopolyEntity.Windows.Pages;
 
-namespace MonopolyEntity
+namespace MonopolyEntity.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для WorkWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WorkWindow : Window
     {
-        public MainWindow()
+        public WorkWindow()
         {
             InitializeComponent();
+
+            SetStartPage();
         }
 
-        private void LoginBut_Click(object sender, RoutedEventArgs e)
+        public void SetStartPage()
         {
-            WorkWindow window = new WorkWindow();
-            window.ShowDialog();
-
+            WorkFrame.Content = new OpenCase();
         }
+
     }
 }

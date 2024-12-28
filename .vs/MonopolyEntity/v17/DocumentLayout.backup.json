@@ -3,44 +3,76 @@
   "WorkspaceRootPath": "B:\\GitHub\\MonopolyMvvmEntity\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\opencase.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\opencase.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\pages\\opencase.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\opencase.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\casecard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\casecard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\thingfortest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\thingfortest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\casecard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\casecard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\casecard.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\casecard.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\mainwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\workwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\workwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\casecard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\casecard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\visuals\\images\\calivan.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\visuals\\images\\calivan.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\pages\\opencase.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\opencase.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\opencase.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\caseopening\\casetoopen.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\caseopening\\casetoopen.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\caseopening\\casetoopen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\caseopening\\casetoopen.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\caseopening\\casetoopen.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\caseopening\\casetoopen.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\workwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\workwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\workwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\workwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\visuals\\images\\calivan.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\visuals\\images\\calivan.jpg||{177559E0-D141-11D0-92DF-00A0C9138C45}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +82,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,15 +90,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs*",
-              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-23T01:46:48.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OpenCase.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\OpenCase.xaml.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\OpenCase.xaml.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\OpenCase.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\OpenCase.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T19:25:01.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ThingForTest.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\ThingForTest.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\ThingForTest.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\ThingForTest.cs",
+              "RelativeToolTip": "MonopolyEntity\\ThingForTest.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAD4vzIAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T22:29:29.32Z",
               "EditorCaption": ""
             },
             {
@@ -83,51 +141,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
-              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-23T01:46:48.845Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Calivan.jpg -  [\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (\u0420\u043E\u0441\u0441\u0438\u044F)] - Bitmap [539x539, 24-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, JPG]",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Visuals\\Images\\Calivan.jpg",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Visuals\\Images\\Calivan.jpg",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Visuals\\Images\\Calivan.jpg -  [\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (\u0420\u043E\u0441\u0441\u0438\u044F)] - Bitmap [539x539, 24-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, JPG]",
-              "RelativeToolTip": "MonopolyEntity\\Visuals\\Images\\Calivan.jpg -  [\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (\u0420\u043E\u0441\u0441\u0438\u044F)] - Bitmap [539x539, 24-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, JPG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2024-12-27T00:36:02.484Z",
-              "EditorCaption": " -  [\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (\u0420\u043E\u0441\u0441\u0438\u044F)] - Bitmap [539x539, 24-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, JPG]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "App.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\App.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.xaml",
-              "RelativeToolTip": "MonopolyEntity\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-24T14:27:38.781Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "App.config",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.config",
-              "RelativeDocumentMoniker": "MonopolyEntity\\App.config",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.config",
-              "RelativeToolTip": "MonopolyEntity\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-12-24T14:27:35.957Z",
+              "Title": "WorkWindow.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\WorkWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\WorkWindow.xaml.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\WorkWindow.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\WorkWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T19:59:58.551Z",
               "EditorCaption": ""
             },
             {
@@ -141,6 +163,105 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2024-12-27T00:00:41.759Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CaseToOpen.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-27T19:19:33.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CaseToOpen.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-27T15:26:59.223Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "WorkWindow.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\WorkWindow.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\WorkWindow.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\WorkWindow.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\WorkWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-27T19:55:50.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "packages.config",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\packages.config",
+              "RelativeDocumentMoniker": "MonopolyEntity\\packages.config",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\packages.config",
+              "RelativeToolTip": "MonopolyEntity\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-12-27T19:53:31.094Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "App.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\App.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.xaml",
+              "RelativeToolTip": "MonopolyEntity\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-24T14:27:38.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "App.config",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.config",
+              "RelativeDocumentMoniker": "MonopolyEntity\\App.config",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.config",
+              "RelativeToolTip": "MonopolyEntity\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-12-24T14:27:35.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
+              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-23T01:46:48.845Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Calivan.jpg -  [\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (\u0420\u043E\u0441\u0441\u0438\u044F)] - Bitmap [539x539, 24-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, JPG]",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Visuals\\Images\\Calivan.jpg",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Visuals\\Images\\Calivan.jpg",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Visuals\\Images\\Calivan.jpg -  [\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (\u0420\u043E\u0441\u0441\u0438\u044F)] - Bitmap [539x539, 24-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, JPG]",
+              "RelativeToolTip": "MonopolyEntity\\Visuals\\Images\\Calivan.jpg -  [\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (\u0420\u043E\u0441\u0441\u0438\u044F)] - Bitmap [539x539, 24-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, JPG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2024-12-27T00:36:02.484Z",
+              "EditorCaption": " -  [\u0420\u0443\u0441\u0441\u043A\u0438\u0439 (\u0420\u043E\u0441\u0441\u0438\u044F)] - Bitmap [539x539, 24-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, JPG]"
             }
           ]
         }
@@ -150,10 +271,10 @@
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
-        "Id": "8ce9d553-5627-43d4-bac4-ba3fb5887a46",
+        "Id": "d472ed73-d4cb-4a6c-9f45-732daf92f203",
         "Display": 0,
-        "X": 1611,
-        "Y": 183,
+        "X": 919,
+        "Y": 435,
         "Width": 800,
         "Height": 600,
         "WindowState": 0
@@ -161,45 +282,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Windows\\UserControls\\CaseCard.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseCard.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\CaseCard.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseCard.xaml.cs*",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\CaseCard.xaml.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-27T00:24:40.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "CaseCard.xaml",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseCard.xaml",
               "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\CaseCard.xaml",
               "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseCard.xaml",
               "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\CaseCard.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-27T00:18:40.654Z",
+              "WhenOpened": "2024-12-27T22:19:06.115Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
-              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAhwDQAAAArAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "CaseToOpen.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\CaseOpening\\CaseToOpen.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-25T12:13:41.234Z",
+              "WhenOpened": "2024-12-27T15:27:03.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "WorkWindow.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\WorkWindow.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\WorkWindow.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\WorkWindow.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\WorkWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-27T19:59:34.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OpenCase.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\OpenCase.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\OpenCase.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\OpenCase.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\OpenCase.xaml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-12-27T15:23:07.709Z",
               "EditorCaption": ""
             }
           ]

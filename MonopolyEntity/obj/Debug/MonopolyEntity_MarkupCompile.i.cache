@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\App.xaml
-3-1590598436
+5-306166313
 
-81627015315
+11-682305257
 22-1413450778
-MainWindow.xaml;Windows\Pages\OpenCase.xaml;Windows\UserControls\CaseCard.xaml;
+MainWindow.xaml;Windows\Pages\OpenCase.xaml;Windows\UserControls\CaseCard.xaml;Windows\UserControls\CaseOpening\CaseToOpen.xaml;Windows\WorkWindow.xaml;
 
 True
 

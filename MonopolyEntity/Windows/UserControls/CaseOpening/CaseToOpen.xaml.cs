@@ -1,5 +1,4 @@
-﻿using MonopolyEntity.Windows.UserControls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,25 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using MonopolyEntity.Windows;
-
-namespace MonopolyEntity
+namespace MonopolyEntity.Windows.UserControls.CaseOpening
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для CaseToOpen.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CaseToOpen : UserControl
     {
-        public MainWindow()
+        public CaseToOpen()
         {
             InitializeComponent();
+
+            SetArrowMargin();
         }
 
-        private void LoginBut_Click(object sender, RoutedEventArgs e)
+        public void SetArrowMargin()
         {
-            WorkWindow window = new WorkWindow();
-            window.ShowDialog();
-
+            return;
+            Arrow.Margin = new Thickness(Arrow.Margin.Left,
+                Height / 2 - Arrow.Height/ 2, Arrow.Margin.Right, 0);
         }
     }
 }

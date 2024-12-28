@@ -83,11 +83,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ThingForTest.cs" />
     <Compile Include="Windows\Pages\OpenCase.xaml.cs">
       <DependentUpon>OpenCase.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UserControls\CaseCard.xaml.cs">
       <DependentUpon>CaseCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\CaseOpening\CaseToOpen.xaml.cs">
+      <DependentUpon>CaseToOpen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WorkWindow.xaml.cs">
+      <DependentUpon>WorkWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -106,6 +113,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserControls\CaseCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\CaseOpening\CaseToOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WorkWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
