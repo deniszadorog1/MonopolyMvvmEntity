@@ -1,0 +1,156 @@
+﻿<Page x:Class="MonopolyEntity.Windows.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MonopolyEntity.Windows.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="800"
+      Title="MainPage"
+      
+      xmlns:WhyLikeCard="clr-namespace:MonopolyEntity.Windows.UserControls.MainPage"
+      xmlns:UserIconAnim ="clr-namespace:MonopolyEntity.Windows.UserControls.MainPage"
+      xmlns:UpperThing ="clr-namespace:MonopolyEntity.Windows.UserControls"
+      
+      
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal"
+      TextOptions.TextRenderingMode="Auto"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Name ="EmptyUpperBorder" Height="10"/>
+                <RowDefinition Name ="ButMenuRow" Height="50"/>
+                <RowDefinition Name ="StartGameRow" Height="500"/>
+                <RowDefinition Name="InfoRow"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" Background="{StaticResource MainGlobalColor}" Panel.ZIndex="100">
+                <UpperThing:UpperMenu x:Name="UpperMenuu" Width="750" Panel.ZIndex="100"/>
+            </Grid>
+            
+            <!-- 
+            <Canvas Grid.Row="1" Background="{StaticResource MainGlobalColor}" Panel.ZIndex="100">
+
+                
+                <WrapPanel Name="UpperPanelButtons" Orientation="Horizontal"
+                           VerticalAlignment="Top" Width="800" Panel.ZIndex="100">
+                    <Button Name="MainLogoBut" VerticalAlignment="Top"
+                                  BorderBrush="{StaticResource FifthGlobalColor}"
+                                  BorderThickness="0"
+                                  Background="Transparent"
+                                  Width="175" Height="40" FontSize="18"
+                                  HorizontalAlignment="Center" Margin="10 5 0 0"
+                                  Content="Denys Monopoly" 
+                                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                  ToolTip="Click to open case"/>
+
+                    <Button Name="StartGameBut" VerticalAlignment="Top"
+                                  Foreground="{StaticResource MainGlobalColor}"
+                                  Background="#E1F5F0"
+                                  BorderThickness="0"
+                                  Width="130" Height="40" FontSize="18"
+                                  HorizontalAlignment="Left" Margin="10 5 0 0"
+                                  Content="Start Game" 
+                                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                  ToolTip="Click to open case"/>
+
+                    <Button Name="InventoryBut" VerticalAlignment="Top"
+                                  BorderBrush="{StaticResource FifthGlobalColor}"
+                                  Background="Transparent"
+                                  BorderThickness="0"
+                                  Width="110" Height="40" FontSize="18"
+                                  HorizontalAlignment="Left" Margin="10 5 0 0"
+                                  Content="Inventory" 
+                                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                  ToolTip="Click to open case"/>
+
+                    <Grid Width="300" Height="150"  >
+                        <UserIconAnim:UserAnimated x:Name="UserAnim" Panel.ZIndex="100" 
+                                                   Margin="100 5 0 0" MouseLeave="UserIcon_MouseLeave"/>
+                    </Grid>
+                </WrapPanel>
+            </Canvas>
+-->
+            <Grid Grid.Row="2" ClipToBounds="False">
+                <StackPanel Height="450" VerticalAlignment="Top" 
+                Orientation="Vertical" Background="{StaticResource MainGlobalColor}"
+                ClipToBounds="False">
+                    <TextBlock Text="I invite you to play monopoly." Width="500"
+                   FontSize="36" Foreground="#E1F5F0" Margin="0 35 0 0"/>
+
+                    <TextBlock Text="This is a great place to play the legendary board game with friends." 
+                   FontSize="24" Width="750" Foreground="#E1F5F0" Margin="0 20 0 0"/>
+
+                    <Button Name="StartGameButSecRow"
+                                  Foreground="{StaticResource MainGlobalColor}"
+                                  Background="#E1F5F0"
+                                  HorizontalAlignment="Center"
+                                  BorderThickness="0"
+                                  
+                                  Width="130" Height="40" FontSize="18"
+                                  Margin="10 35 0 0"
+                                  Content="Start Game" 
+                                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                  Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                                  ToolTip="Click to open case"/>
+                </StackPanel>
+            </Grid>
+
+            <Canvas Grid.Row="2" ClipToBounds="False" HorizontalAlignment="Center" 
+                    Margin="0 100 650 0" Panel.ZIndex="100">
+                <Image Name="GameWindowImg" Margin="0 140 0 0" 
+               Height="400" Width="650" Stretch="Fill"/>
+            </Canvas>
+
+            <Grid Grid.Row="3"  Background="White">
+
+                <StackPanel Margin="0 150 0 0"  HorizontalAlignment="Center">
+                    <TextBlock Text="Why do you like it?" TextAlignment="Center"
+                               FontSize="48"/>
+
+                    <Grid Name ="WhyLikeGrid" Margin="40 0 0 0" Width="600">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200"/>
+                            <RowDefinition Height="200"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <WhyLikeCard:DescribeBox Grid.Column="0" x:Name ="OneDesc"/>
+                            <WhyLikeCard:DescribeBox Grid.Column="1" x:Name ="TwoDesc"/>
+                            <WhyLikeCard:DescribeBox Grid.Column="2" x:Name ="ThreeDesc"/>
+                        </Grid>
+
+                        <Grid Grid.Row="1" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <WhyLikeCard:DescribeBox Grid.Column="0" x:Name ="FourDesc"/>
+                            <WhyLikeCard:DescribeBox Grid.Column="1" x:Name ="FiveDesc"/>
+                            <WhyLikeCard:DescribeBox Grid.Column="2" x:Name ="SixDesc"/>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

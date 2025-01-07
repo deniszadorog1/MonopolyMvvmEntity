@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonopolyEntity", "MonopolyEntity\MonopolyEntity.csproj", "{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonopolyDLL", "MonopolyDLL\MonopolyDLL.csproj", "{89B589B4-51C0-4856-AACF-61957F75CCD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89B589B4-51C0-4856-AACF-61957F75CCD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89B589B4-51C0-4856-AACF-61957F75CCD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89B589B4-51C0-4856-AACF-61957F75CCD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89B589B4-51C0-4856-AACF-61957F75CCD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -84,14 +84,58 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ThingForTest.cs" />
+    <Compile Include="VisualHelper\BoardHelper.cs" />
+    <Compile Include="VisualHelper\Helper.cs" />
+    <Compile Include="Windows\Pages\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Pages\InventoryPage.xaml.cs">
+      <DependentUpon>InventoryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Pages\MainPageWind.xaml.cs">
+      <DependentUpon>MainPageWind.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Pages\OpenCase.xaml.cs">
       <DependentUpon>OpenCase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Pages\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UserControls\CaseCard.xaml.cs">
       <DependentUpon>CaseCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UserControls\CaseOpening\CaseToOpen.xaml.cs">
       <DependentUpon>CaseToOpen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\GameCell\BottomCell.xaml.cs">
+      <DependentUpon>BottomCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\GameCell\LeftPart.xaml.cs">
+      <DependentUpon>LeftPart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\GameCell\PrisonCell.xaml.cs">
+      <DependentUpon>PrisonCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\GameCell\RightCell.xaml.cs">
+      <DependentUpon>RightCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\GameCell\SquareCell.xaml.cs">
+      <DependentUpon>SquareCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\GameCell\UpperCell.xaml.cs">
+      <DependentUpon>UpperCell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\GameField.xaml.cs">
+      <DependentUpon>GameField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\MainPageWindow\DescribeBox.xaml.cs">
+      <DependentUpon>DescribeBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\MainPageWindow\UserAnimated.xaml.cs">
+      <DependentUpon>UserAnimated.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\UpperMenu.xaml.cs">
+      <DependentUpon>UpperMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\WorkWindow.xaml.cs">
       <DependentUpon>WorkWindow.xaml</DependentUpon>
@@ -108,7 +152,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\Pages\GamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Pages\InventoryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Pages\MainPageWind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Pages\OpenCase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Pages\UserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,6 +177,46 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserControls\CaseOpening\CaseToOpen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\GameCell\BottomCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\GameCell\LeftPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\GameCell\PrisonCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\GameCell\RightCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\GameCell\SquareCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\GameCell\UpperCell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\GameField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\MainPageWindow\DescribeBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\MainPageWindow\UserAnimated.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\UpperMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -157,6 +257,138 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Gifs\Dude.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\Other\tradeMoney.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Perfume\chanel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Perfume\hugo_boss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Clothes\adidas.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Clothes\lacoste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Clothes\puma.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Cars\audi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Cars\ford.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Cars\mercedes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Cars\land_rover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\goToJail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\jackpot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\jail-visiting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\jail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Messagers\vk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Messagers\twitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Messagers\facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Games\rockstar_games.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Games\rovio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Drinkings\pepsi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Drinkings\fanta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Drinkings\coca_cola.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Planes\american_airlines.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Planes\british_airways.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Planes\lufthansa.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Food\burger_king.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Food\kfc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Food\max_burgers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Hotels\radisson_blu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Hotels\novotel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Hotels\holiday_inn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Phones\apple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Phones\nokia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Chance\chance_rotated.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Chance\chance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Tax\tax_income.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Tax\tax_luxury.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\Chips\chipBlue.png" />
+    <Resource Include="Visuals\Images\BoardImages\Chips\chipGreen.png" />
+    <Resource Include="Visuals\Images\BoardImages\Chips\chipOrange.png" />
+    <Resource Include="Visuals\Images\BoardImages\Chips\chipPurple.png" />
+    <Resource Include="Visuals\Images\BoardImages\Chips\chipRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\Other\whiteLock.png" />
+    <Resource Include="Visuals\Images\BoardImages\Other\whiteStar.png" />
+    <Resource Include="Visuals\Images\BoardImages\Other\yellowStar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\Other\skull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\Other\blackLock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />

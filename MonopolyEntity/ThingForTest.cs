@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -14,7 +15,6 @@ namespace MonopolyEntity
 {
     public static class ThingForTest
     {
-
         public static Image GetCalivanImage()
         {
             DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
@@ -62,6 +62,31 @@ namespace MonopolyEntity
 
             return res;
         }
+
+        public static Image GetCalivanBigCircleImage(int imgWidth, int imgHeight)
+        {
+            Image img = GetCalivanImage();
+
+            img.Width = imgWidth;
+            img.Height = imgHeight;
+
+            return GetCircleImage(img);
+        }
       
+        public static Image GetCircleImage(Image image)
+        {
+
+            EllipseGeometry clip = new EllipseGeometry
+            {
+                Center = new Point(image.Width / 2, image.Height / 2),
+                RadiusX = image.Width / 2,
+                RadiusY = image.Height / 2
+            };
+
+            image.Clip = clip;
+
+            return image;
+        }
+
     }
 }

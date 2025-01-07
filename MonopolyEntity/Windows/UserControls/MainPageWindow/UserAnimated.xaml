@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.MainPage.UserAnimated"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.MainPage"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="200"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"      
+             >
+    <Border Name="ElemBorder" CornerRadius="5" Background="Transparent">
+        <Canvas>
+            <materialDesign:PackIcon 
+                Visibility="Visible"
+                Name="UserIcon" Kind="Account"                           
+                Height="45" Width="45" 
+                Foreground="AliceBlue"
+                Canvas.Left="150" Canvas.Top="0"
+                MouseEnter="UserIcon_MouseEnter"
+                              />
+
+            <Grid Name ="UserMenu"  Height="150" Width="200" 
+                  Visibility="Hidden" Panel.ZIndex="100" 
+                  MouseLeave="UserIcon_MouseLeave" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Name="UpperRowUserName">
+                    <materialDesign:PackIcon Visibility="Visible"
+                              Name="UserMenuIcon" Kind="Account"
+                              Height="40" Width="40" 
+                              Foreground="Gray" />
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" Foreground="Black" Text="There can be your login"/>
+                        <TextBlock Grid.Row="1" Foreground="Gray" Text="There can be your money"/>
+                    </Grid>
+                </StackPanel>
+                <Line X1="0" Y1="40" X2="200" Y2="40" Stroke="Black" StrokeThickness="1"/>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+                    <Button Grid.Row="0" Name="FirstBut"
+                      Foreground="Gray"
+                      Background="White"
+                      Margin="2"
+                      HorizontalAlignment="Center"
+                      BorderThickness="0"
+                      HorizontalContentAlignment="Left"
+                      Padding="10 0 0 0"
+                      Width="198" Height="20" FontSize="12"
+                      Content="First Button" 
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                      Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                      ToolTip="FirstBut"
+                     
+                      MouseEnter="Button_MouseEnter"
+                      MouseLeave="Button_MouseLeave"/>
+
+                    <Button Grid.Row="1" Name="SecondBut"
+                      Foreground="Gray"
+                      Background="White"
+                      Margin="2"
+                      BorderThickness="0"
+                      HorizontalAlignment="Center"
+                      HorizontalContentAlignment="Left"
+                      Padding="10 0 0 0"
+                      Width="198" Height="20" FontSize="12"
+                      Content="Second Button" 
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                      Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                      ToolTip="SecondBut"           
+                            
+                      MouseEnter="Button_MouseEnter"
+                      MouseLeave="Button_MouseLeave"/>
+
+                    <Button Grid.Row="2" Name="SettingsBut"
+                      Foreground="Gray"
+                      Background="White"
+                      Margin="2"
+                      BorderThickness="0"
+                      HorizontalAlignment="Center"
+                      HorizontalContentAlignment="Left"
+                      Padding="10 0 0 0"
+                      Width="198" Height="20" FontSize="12"
+                      Content="Settings" 
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                      Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                      ToolTip="Open user settings"
+                                                 
+                      MouseEnter="Button_MouseEnter"
+                      MouseLeave="Button_MouseLeave"/>
+
+                    <Line Grid.Row="2" X1="0" Y1="27" X2="200" Y2="27" Stroke="Gray" StrokeThickness="2"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Button Grid.Row="2" Name="ExitBut"
+                      Foreground="Gray"
+                      Background="White"
+                      Margin="2"
+                      BorderThickness="0"      
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Top"
+                      HorizontalContentAlignment="Left"
+                      Padding="10 0 0 0"
+                      Width="198" Height="20" FontSize="12"
+                      Content="Exit " 
+                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                      Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                      ToolTip="Exit from user account"
+                                                 
+                      MouseEnter="Button_MouseEnter"
+                      MouseLeave="Button_MouseLeave"/>
+
+                </Grid>
+
+
+            </Grid>
+        </Canvas>
+
+    </Border>
+</UserControl>

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.GameControls.GameCell.PrisonCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.GameCell"
+             mc:Ignorable="d" 
+             d:DesignHeight="125" d:DesignWidth="125">
+    <Grid Background="White">
+
+        <Line X1="0" Y1="0" X2="125" Y2="125" Stroke="Gray" StrokeThickness="1"></Line>
+        
+        
+        
+    </Grid>
+</UserControl>

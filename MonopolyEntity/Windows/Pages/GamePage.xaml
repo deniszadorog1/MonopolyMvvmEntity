@@ -1,0 +1,20 @@
+﻿<Page x:Class="MonopolyEntity.Windows.Pages.GamePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MonopolyEntity.Windows.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1000" d:DesignWidth="1000"
+      Title="GamePage"   
+      Background="#262C2F"
+      
+      xmlns:GameBoard ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls" 
+      >
+
+    <Grid>
+
+        <GameBoard:GameField Height="950" Width="950"/>
+
+    </Grid>
+</Page>

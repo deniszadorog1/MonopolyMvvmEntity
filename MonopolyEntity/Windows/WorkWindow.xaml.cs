@@ -30,7 +30,27 @@ namespace MonopolyEntity.Windows
 
         public void SetStartPage()
         {
-            WorkFrame.Content = new OpenCase();
+            //WorkFrame.Content = new OpenCase();
+
+            MainPage mainPage = new MainPage(WorkFrame);
+            SetEventsForMainPage(mainPage);
+
+            WorkFrame.Content = mainPage;   
+        }
+
+        public void SetEventsForMainPage(MainPage page)
+        {
+            page.UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
+            {
+                SetUserPage();
+            };
+        }
+
+        public void SetUserPage()
+        {
+            UserPage page = new UserPage(WorkFrame);
+
+            WorkFrame.Content = page;
         }
 
     }

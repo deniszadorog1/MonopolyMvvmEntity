@@ -1,0 +1,6 @@
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\MonopolyDLL.dll
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\MonopolyDLL.pdb
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.csproj.AssemblyReference.cache
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.csproj.CoreCompileInputs.cache
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.dll
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.pdb

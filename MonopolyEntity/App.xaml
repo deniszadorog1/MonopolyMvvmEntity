@@ -33,6 +33,9 @@
             <Color x:Key="SixColor">#4c393d</Color>
             <SolidColorBrush x:Key="SixGlobalColor" Color="{StaticResource SixColor}"/>
 
+            <Color x:Key="MainColor">#37BC9D</Color>
+            <SolidColorBrush x:Key="MainGlobalColor" Color="{StaticResource MainColor}"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
