@@ -8,7 +8,18 @@
         Title="WorkWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
         >
-    <Frame Name="WorkFrame">
+    <Grid>
+        <Frame Name="WorkFrame" >
+
+        </Frame>
+
+        <Canvas x:Name="VisiableItems" >
+            
+        </Canvas>
+
+        <Frame Name ="CaseFrame" Background="Transparent" Visibility="Hidden">
+            
+        </Frame>
         
-    </Frame>
+    </Grid>
 </Window>

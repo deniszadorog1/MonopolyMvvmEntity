@@ -19,45 +19,60 @@
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}"
-      Background="AliceBlue"
+      Background="Transparent"
       
       
       >
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="700"/> 
+                <ColumnDefinition Width="700"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column = "1" Orientation="Vertical" Background="Gray">
-        
-                <Card:CaseToOpen  Width="500" VerticalAlignment="Top" Margin="0 10 0 0"
-                                  HorizontalAlignment="Center"/>
+            <Grid Grid.Column="2">
+                <materialDesign:PackIcon Kind="CloseCircleOutline" 
+                                         Name="ExitBut"
+                                         Width="50" Height="50" 
+                                         MouseEnter="ExitBut_MouseEnter"
+                                         MouseLeave="ExitBut_MouseLeave"
+                                         Foreground="Gray"
+                                         MouseDown="ExitBut_MouseDown"/>
+            </Grid>
 
-                <Button Name="OpenCaseBut"
+            <Grid Grid.Column = "1" Background="Transparent">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" Name="OpenGrid" Background="Transparent">
+                    <Card:CaseToOpen  x:Name="CheckToOpen" Width="500" VerticalAlignment="Top" 
+                                  Margin="0 10 0 0" HorizontalAlignment="Center"/>
+                </Grid>
+
+                <Button Name="OpenCaseBut" Grid.Row="1"
                             BorderBrush="{StaticResource FifthGlobalColor}"
                               Background="{StaticResource FirstGlobalColor}"
                               Width="175" Height="40" FontSize="18"
                               HorizontalAlignment="Left" Margin="110 10 0 0"
                               Content="Open Case"
-                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                              IsEnabled="{Binding DataContext.ControlsEnabled, 
+                    RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                               Style="{StaticResource MaterialDesignRaisedDarkButton}"
                               ToolTip="Click to open case"
+                        Click="OpenCaseBut_Click"
                 />
-                <TextBlock Text="Can be droped:" FontSize="28" Margin="50 20 0 0"/>
+                <TextBlock Grid.Row="2" Text="Can be droped:" FontSize="28" Margin="50 20 0 0"/>
 
-
-
-
-                <WrapPanel Name="CanBeDropedPanel" Width="675" Height="750" Orientation="Horizontal">
+                <WrapPanel Grid.Row="3" Name="CanBeDropedPanel" Width="675" Height="750" Orientation="Horizontal">
 
                 </WrapPanel>
-
-            </StackPanel>
-        
+            </Grid>
         </Grid>
     </ScrollViewer>
 

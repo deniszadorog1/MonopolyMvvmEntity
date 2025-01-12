@@ -23,15 +23,6 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         public CaseToOpen()
         {
             InitializeComponent();
-
-            SetArrowMargin();
-        }
-
-        public void SetArrowMargin()
-        {
-            return;
-            Arrow.Margin = new Thickness(Arrow.Margin.Left,
-                Height / 2 - Arrow.Height/ 2, Arrow.Margin.Right, 0);
-        }
+        }       
     }
 }

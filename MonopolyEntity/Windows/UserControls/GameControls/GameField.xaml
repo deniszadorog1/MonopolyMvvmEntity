@@ -9,6 +9,16 @@
              
              
              xmlns:CellTypeControl ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.GameCell" 
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             
+             KeyDown="UserControl_KeyDown"
              >
 
     <!-- Width  835  Height 835 -->
@@ -44,7 +54,7 @@
                 <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="LittleTax"/>
                 <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="UpCar"/>
                 <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ClothesFirstBus"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ChaneTow"/>
+                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ChanceTwo"/>
                 <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ClothesSeconBus"/>
                 <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ClothesThirdBus"/>
 
@@ -64,14 +74,21 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Visible">
-                    <StackPanel x:Name="GameChat">
+                <Grid Grid.Row="0" >
+                    <ScrollViewer VerticalScrollBarVisibility="Visible">
+                        <ListBox x:Name="GameChat" 
+                            Height="{Binding ActualHeight, ElementName=GameChatPanel}"/>
 
-                    </StackPanel>
-                </ScrollViewer>
+
+                    </ScrollViewer>
+                </Grid>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
-                    <TextBox Margin="60 10 0 10" Width="350"/>
+
+                    <Button Name="UserMessage" Content="User Login" Background="LightGreen" Margin="10 0 0 0"/>
+                    <TextBox Margin="10 10 0 10" Width="300" Name ="MessageWriter"/>
+                    <materialDesign:PackIcon Kind="ImageMultipleOutline" Margin="15 0 0 0" 
+                                             Height="40" Width="40"/>
                 </StackPanel>
             </Grid>
 
@@ -99,15 +116,15 @@
 
             <StackPanel Grid.Row="2" Grid.Column="1" Name="ThirdLinePanel" Orientation="Horizontal">
 
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesFirstBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="ChanceFour"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesSecondBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesThirdBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="DownCars"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="FoodFirstBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="FoodSecondBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="GamesSecondBus"/>
                 <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="FoodThirdBus"/>
+                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="GamesSecondBus"/>
+                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="FoodSecondBus"/>
+                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="FoodFirstBus"/>
+                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="DownCars"/>
+                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesThirdBus"/>
+                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesSecondBus"/>
+                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="ChanceFour"/>
+                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesFirstBus"/>
 
             </StackPanel>
 
@@ -122,15 +139,15 @@
             <StackPanel Grid.Row="1" Grid.Column="0" Name ="FourthLinePanel" 
                         HorizontalAlignment="Right" Orientation="Vertical">
 
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelFirstBus"/>
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="ChanceFive"/>
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelSecondBus"/>
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelThirdBus"/>
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="LeftCar"/>
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="BigTax"/>
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="PhonesFirstBus"/>
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="ChanceSix"/>
-                <CellTypeControl:LeftPart  Width="150" Height="65" Margin="0 1 0 0" x:Name="PhonesSecondBus"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="PhonesSecondBus"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="ChanceSix"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="PhonesFirstBus"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="BigTax"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="LeftCar"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelThirdBus"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="ChanceFive"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelSecondBus"/>
+                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelFirstBus"/>
 
             </StackPanel>
 

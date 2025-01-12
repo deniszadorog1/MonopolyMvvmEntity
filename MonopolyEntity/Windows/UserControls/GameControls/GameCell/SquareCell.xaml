@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="125" d:DesignWidth="125">
     <Grid Background="White">
-        <Canvas x:Name="ChipsPlacer"/>
+        <Canvas x:Name="ChipsPlacer" Panel.ZIndex="100"/>
         <Canvas x:Name="ImagesPlacer"/>
     </Grid>
 </UserControl>

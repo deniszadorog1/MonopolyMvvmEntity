@@ -8,7 +8,7 @@
       d:DesignHeight="700" d:DesignWidth="1000"
       Title="InventoryPage"
       
-      xmlns:UpperThing ="clr-namespace:MonopolyEntity.Windows.UserControls"
+      xmlns:AddedControls ="clr-namespace:MonopolyEntity.Windows.UserControls"
 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -17,6 +17,8 @@
       TextOptions.TextFormattingMode="Ideal"
       TextOptions.TextRenderingMode="Auto"
       FontFamily="{DynamicResource MaterialDesignFont}"
+      
+      PreviewMouseDown="Page_PreviewMouseDown"
       >
 
     <Grid Background="#F4F4F5">
@@ -35,7 +37,7 @@
 
         <Grid Grid.Row="0" Grid.Column="1" Name="UpperPart"
               Background="White" Panel.ZIndex="100">
-            <UpperThing:UpperMenu x:Name="UpperMenuu" Width="1000" Panel.ZIndex="100"/>
+            <AddedControls:UpperMenu x:Name="UpperMenuu" Width="1000" Panel.ZIndex="100"/>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="0" Background="White"/>
@@ -120,8 +122,7 @@
             </WrapPanel>
 
             <ScrollViewer  Grid.Row="2" VerticalScrollBarVisibility="Auto">
-                <WrapPanel Background="White" Margin="10">
-
+                <WrapPanel Background="White" Margin="10" Name="ItemsPanel">
 
 
                 </WrapPanel>

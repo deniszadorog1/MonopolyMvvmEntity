@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MonopolyEntity.VisualHelper
 {
@@ -27,5 +28,26 @@ namespace MonopolyEntity.VisualHelper
             return null;
         }
 
+        public static Point GetElementLocation(UIElement element, WrapPanel wrapPanel)
+        {
+            if (!wrapPanel.Children.Contains(element))
+                throw new ArgumentException("cant find the elems location in WrapPanel.");
+
+            GeneralTransform transform = element.TransformToAncestor(wrapPanel);
+            Point location = transform.Transform(new Point(0, 0));
+
+            return location; 
+        }
+
+        public static Point GetElementLocationRelativeToPage(UIElement element, Page page)
+        {
+            if (element == null || page == null)
+                throw new ArgumentNullException("Smth wrong with given page");
+
+            GeneralTransform transform = element.TransformToAncestor(page);
+            Point location = transform.Transform(new Point(0, 0));
+
+            return location; 
+        }
     }
 }

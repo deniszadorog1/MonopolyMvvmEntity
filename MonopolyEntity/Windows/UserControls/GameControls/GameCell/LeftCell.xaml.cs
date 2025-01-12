@@ -18,9 +18,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.GameCell
     /// <summary>
     /// Логика взаимодействия для LeftPart.xaml
     /// </summary>
-    public partial class LeftPart : UserControl
+    public partial class LeftCell : UserControl
     {
-        public LeftPart()
+        public LeftCell()
         {
             InitializeComponent();
         }

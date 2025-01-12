@@ -24,11 +24,32 @@ namespace MonopolyEntity.Windows.Pages
             SetUpperLineSettings();
         }
 
+        public void SetUserImageEvent()
+        {
+            UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
+            {
+                _frame.Content = new UserPage(_frame);
+            };
+        }
+
+        public void OpenMainPage()
+        {
+            MainPage page = new MainPage(_frame);
+            _frame.Content = page;
+        }
+
         public void OpenInventoryPage()
         {
             InventoryPage page = new InventoryPage(_frame);
             _frame.Content = page;
         }
+
+        public void OpenGameField()
+        {
+            GamePage page = new GamePage(_frame);
+            _frame.Content = page;
+        }
+
 
         public void SetUpperLineSettings()
         {

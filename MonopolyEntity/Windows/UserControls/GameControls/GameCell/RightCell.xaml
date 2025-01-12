@@ -11,14 +11,18 @@
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-
-        <Canvas Grid.Column="0" Name ="BodyPart" Background="White">
-            
-        </Canvas>
-
-        <Canvas Grid.Column="1" Name="HeadPart" Background="Gray">
-            
-        </Canvas>
         
+        <Canvas Grid.Column="1" x:Name="MoneyPlacer" Background="Gray">
+
+        </Canvas>
+
+        <Grid Grid.Column="0" Name="ImagePlacer" Background="White">
+
+        </Grid>
+
+        <Canvas Grid.Column="0" Name="ChipsPlacer">
+
+        </Canvas>
+
     </Grid>
 </UserControl>

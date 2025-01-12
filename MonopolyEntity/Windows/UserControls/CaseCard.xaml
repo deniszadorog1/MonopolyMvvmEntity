@@ -18,16 +18,17 @@
                     <RowDefinition Name="DownRow" Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Canvas Grid.Row="0" Name="UpPart">
+                <Grid Grid.Row="0" Name="UpPart">
                     <Image Name="CardImage"          
                            Stretch="Fill"
                            Width="{Binding ActualWidth, ElementName=UpPart}" 
                            Height="{Binding ActualHeight, ElementName=UpPart}"/>
-                </Canvas>
+                </Grid>
 
-                <Canvas Grid.Row="1" Name="DownPart" Background="Pink">
+                <Border Grid.Row="1" Name="BorderBgColor" Background="Pink"  CornerRadius="0, 0, 10, 10">
+                    <Canvas  Name="DownPart"  Margin="5, 0, 5, 5">
 
-                    <TextBlock Name ="CardName"
+                        <TextBlock Name ="CardName"
                                Loaded="CardName_Loaded"
                                Width="{Binding ActualWidth, ElementName=DownPart}"
                                Height="{Binding ActualHeight, ElementName=DownPart}"
@@ -35,7 +36,9 @@
                                TextAlignment="Center"
                                FontSize="16"/>
 
-                </Canvas>
+                    </Canvas>
+                </Border>
+
             </Grid>
 
         </Border>

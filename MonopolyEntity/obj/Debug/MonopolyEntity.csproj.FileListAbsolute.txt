@@ -28,7 +28,6 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\UserPage.g.c
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseCard.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\CaseToOpen.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\BottomCell.g.cs
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\LeftPart.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\PrisonCell.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\RightCell.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\SquareCell.g.cs
@@ -52,7 +51,6 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\UserPage.bam
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseCard.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\CaseToOpen.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\BottomCell.baml
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\LeftPart.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\PrisonCell.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\RightCell.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\SquareCell.baml
@@ -69,3 +67,21 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.csproj.Core
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Monopoly.4743857C.Up2Date
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.exe
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.pdb
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\UserCard.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\UserCard.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\CaseRoulette.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\CaseRoulette.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\ShowGotPrize.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\ShowGotPrize.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BoxDescription.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BoxDescription.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BussinessDescription.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BussinessDescription.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\CustomMessageBoxWonPrize.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\CustomMessageBoxWonPrize.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\Other\Dice.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\Other\Dice.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\LeftCell.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\LeftCell.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\MonopolyDLL.dll
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\MonopolyDLL.pdb

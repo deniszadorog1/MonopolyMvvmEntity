@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.GameControls.UserCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="250">
+    <Grid>
+
+        <Grid Height="165" Width="220" Name="UserCardGrid" Background="#161A1B" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Canvas Grid.Row="0" Name ="UserImageCanvas">
+                
+            </Canvas>
+
+            <Canvas Grid.Row="1" Name ="UserLoginCanvas">
+                
+            </Canvas>
+
+            <Canvas Grid.Row="2" Name="UserMoneyAmountCanvas">
+
+            </Canvas>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

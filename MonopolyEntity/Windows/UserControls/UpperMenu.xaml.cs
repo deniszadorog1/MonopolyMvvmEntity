@@ -56,8 +56,7 @@ namespace MonopolyEntity.Windows.UserControls
                 page.OpenInventoryPage();
                 return;
             }
-           
-            if(_page is MonopolyEntity.Windows.Pages.MainPage mainPage)
+            else if(_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenInventoryPage();
             }
@@ -65,7 +64,21 @@ namespace MonopolyEntity.Windows.UserControls
 
         private void MainLogoBut_Click(object sender, RoutedEventArgs e)
         {
+            _page = _page = Helper.FindParent<Page>(this);
+            if (_page is null) return;
 
+            if(_page is Pages.MainPage mainPage)
+            {
+                mainPage.OpenMainPage();
+            }
+            else if(_page is InventoryPage invPage)
+            {
+                invPage.OpenMainPage();
+            }
+            else if(_page is UserPage userPage)
+            {
+                userPage.OpenMainPage();
+            } 
         }
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
@@ -73,11 +86,18 @@ namespace MonopolyEntity.Windows.UserControls
             _page = _page = Helper.FindParent<Page>(this);
             if (_page is null) return;
 
-            if(_page is MonopolyEntity.Windows.Pages.MainPage mainPage)
+            if(_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenGameField();
             }
-
+            else if(_page is InventoryPage invPage)
+            {
+                invPage.OpenGameField();
+            }
+            else if(_page is UserPage userPage)
+            {
+                userPage.OpenGameField();
+            }
         }
     }
 }

@@ -21,9 +21,18 @@ namespace MonopolyEntity.Windows.Pages
 
             SetGameWindowImg();
             SetDescRibeCards();
+
+            SetUserImageEvent();
         }
 
-       
+        public void SetUserImageEvent()
+        {
+            UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
+            {
+                _frame.Content = new UserPage(_frame);
+            };
+        }
+
         public void SetDescRibeCards()
         {
             //return;
@@ -44,7 +53,6 @@ namespace MonopolyEntity.Windows.Pages
             box.DescribeText.Text = descText;
         }
 
-
         public void SetGameWindowImg()
         {
             GameWindowImg.Source = ThingForTest.GetCalivanImage().Source;
@@ -52,6 +60,10 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenInventoryPage()
         {
+/*            OpenCase open = new OpenCase();
+            _frame.Content = open;
+
+            return;*/
             InventoryPage page = new InventoryPage(_frame);
             _frame.Content = page;
         }
@@ -62,5 +74,10 @@ namespace MonopolyEntity.Windows.Pages
             _frame.Content = page;
         }
 
+        public void OpenMainPage()
+        {
+            MainPage page = new MainPage(_frame);
+            _frame.Content = page;
+        }
     }
 }
