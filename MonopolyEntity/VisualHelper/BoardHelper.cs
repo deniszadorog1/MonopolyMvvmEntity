@@ -1,9 +1,11 @@
-﻿using System;
+﻿using MonopolyEntity.Windows.UserControls.GameControls.GameCell;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -121,7 +123,7 @@ namespace MonopolyEntity.VisualHelper
 
             res.Add(GetChipImageByName("chipRed.png"));
             res.Add(GetChipImageByName("chipBlue.png"));
-            res.Add(GetChipImageByName("chipGreen.png"));      
+            res.Add(GetChipImageByName("chipGreen.png"));
             res.Add(GetChipImageByName("chipPurple.png"));
             res.Add(GetChipImageByName("chipOrange.png"));
 
@@ -196,6 +198,75 @@ namespace MonopolyEntity.VisualHelper
 
             return res;
         }
+
+        public static List<Point> GetPointsForChips(Size cellSize, int amountOfChipsInCell)
+        {
+            List<List<Point>> allPoints = GetChipsPoints(cellSize);
+
+            return allPoints[amountOfChipsInCell];
+        }
+
+        public static Size GetSizeOfCell(UIElement cell)
+        {
+            if (cell is UpperCell up)
+            {
+                return new Size(up.ChipsPlacer.ActualWidth, up.ChipsPlacer.ActualHeight);
+            }
+            else if (cell is RightCell right)
+            {
+                return new Size(right.ChipsPlacer.ActualWidth, right.ChipsPlacer.ActualHeight);
+            }
+            else if (cell is BottomCell bot)
+            {
+                return new Size(bot.ChipsPlacer.ActualWidth, bot.ChipsPlacer.ActualHeight);
+            }
+            else if (cell is LeftCell left)
+            {
+                return new Size(left.ChipsPlacer.ActualWidth, left.ChipsPlacer.ActualHeight);
+            }
+            else if (cell is SquareCell square)
+            {
+                return new Size(square.ChipsPlacer.ActualWidth, square.ChipsPlacer.ActualHeight);
+            }
+            return new Size();
+        }
+
+        public static int GetAmountOfItemsInCell(UIElement cell)
+        {
+            if (cell is UpperCell up)
+            {
+                return up.ChipsPlacer.Children.Count;
+            }
+            else if (cell is RightCell right)
+            {
+                return right.ChipsPlacer.Children.Count;
+            }
+            else if (cell is BottomCell bot)
+            {
+                return bot.ChipsPlacer.Children.Count;
+            }
+            else if (cell is LeftCell left)
+            {
+                return left.ChipsPlacer.Children.Count;
+            }
+            else if (cell is SquareCell square)
+            {
+                return square.ChipsPlacer.Children.Count;
+            }
+            return 0;
+        }
+
+        public static Canvas GetChipCanvas(UIElement el)
+        {
+            var chipsPlacerField = el.GetType().GetField(
+                "ChipsPlacer",
+                BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+            if (chipsPlacerField is null) throw new Exception("Cell doesnt have chips placer");
+            return chipsPlacerField.GetValue(el) as Canvas;
+        }
+
+
 
 
 

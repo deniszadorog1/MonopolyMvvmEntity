@@ -25,6 +25,9 @@ namespace MonopolyEntity.Windows.Pages
         {
             _frame = workFrame;
             InitializeComponent();
+          
         }
+
+
     }
 }

@@ -49,5 +49,15 @@ namespace MonopolyEntity.VisualHelper
 
             return location; 
         }
+
+        public  static DependencyObject GetRootParent(DependencyObject element)
+        {
+            if (element == null)
+                return null;
+
+            DependencyObject parent = VisualTreeHelper.GetParent(element);
+            return parent == null ? element : GetRootParent(parent);
+        }
+
     }
 }

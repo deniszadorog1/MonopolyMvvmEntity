@@ -137,6 +137,9 @@
     <Compile Include="Windows\UserControls\GameControls\GameField.xaml.cs">
       <DependentUpon>GameField.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\UserControls\GameControls\GameFIeldd.xaml.cs">
+      <DependentUpon>GameFIeldd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UserControls\GameControls\Other\Dice.xaml.cs">
       <DependentUpon>Dice.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserControls\GameControls\GameField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\GameFIeldd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,11 +16,12 @@
 
         </Canvas>
 
-        <Grid Grid.Column="0" Name="ImagePlacer" Background="White">
+        <Grid Grid.Column="0" Name="ImagePlacer" 
+              Background="White">
 
         </Grid>
 
-        <Canvas Grid.Column="0" Name="ChipsPlacer">
+        <Canvas Grid.Column="0" Name="ChipsPlacer" Panel.ZIndex="100">
 
         </Canvas>
 

@@ -16,7 +16,7 @@
 
         </Grid>
 
-        <Canvas Grid.Row="0" Name="ChipsPlacer">
+        <Canvas Grid.Row="0" Name="ChipsPlacer" Panel.ZIndex="100">
 
         </Canvas>
         

@@ -85,3 +85,4 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameC
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameCell\LeftCell.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\MonopolyDLL.dll
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\MonopolyDLL.pdb
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\GameFIeldd.g.cs
