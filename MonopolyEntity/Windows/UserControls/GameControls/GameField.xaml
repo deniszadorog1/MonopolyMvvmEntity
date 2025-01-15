@@ -20,17 +20,18 @@
              
              KeyDown="UserControl_KeyDown"
              LayoutUpdated="UserControl_LayoutUpdated"
+             
              >
 
     <!-- Width  835  Height 835 -->
 
-    <Grid ClipToBounds="False">
+    <Grid >
 
-        <Canvas x:Name="ChipMovePanel" Panel.ZIndex="50">
-
+        <Canvas Name="ChipMovePanel" Panel.ZIndex="100">
+            
         </Canvas>
         
-        <Grid ClipToBounds="False">
+        <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
                 <RowDefinition Height="595"/>
@@ -44,9 +45,9 @@
             </Grid.ColumnDefinitions>
 
 
-            <Grid Grid.Row="0" Grid.Column="0" Name="StartCellCanvas" ClipToBounds="False">
+            <Grid Grid.Row="0" Grid.Column="0" Name="StartCellCanvas">
 
-                <CellTypeControl:SquareCell x:Name ="StartCell" Width="125" Height="125" ClipToBounds="False" Panel.ZIndex="200"
+                <CellTypeControl:SquareCell x:Name ="StartCell" Width="125" Height="125"
                                             VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
 
             </Grid>

@@ -4,3 +4,18 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.csproj.AssemblyRe
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.csproj.CoreCompileInputs.cache
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.dll
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.pdb
+C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyDLL\bin\Debug\MonopolyDLL.dll
+C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyDLL\bin\Debug\MonopolyDLL.pdb
+C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyDLL\obj\Debug\MonopolyDLL.csproj.AssemblyReference.cache
+C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyDLL\obj\Debug\MonopolyDLL.csproj.CoreCompileInputs.cache
+C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyDLL\obj\Debug\MonopolyDLL.dll
+C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyDLL\obj\Debug\MonopolyDLL.pdb
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\MonopolyDLL.dll.config
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\WpfAnimatedGif.dll
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\WpfAnimatedGif.pdb
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\WpfAnimatedGif.xml
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\Monopoly.0804DE45.Up2Date
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\EntityFramework.dll
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\EntityFramework.SqlServer.dll
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\EntityFramework.xml
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\EntityFramework.SqlServer.xml

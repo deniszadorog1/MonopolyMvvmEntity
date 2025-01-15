@@ -9,7 +9,7 @@
     <Grid Background="White">
         <Line X1="0" Y1="0" X2="125" Y2="125" Stroke="Gray" StrokeThickness="1"></Line>
         
-        <Canvas x:Name="ChipsPlacer"/>
+        <Canvas x:Name="ChipsPlacer" Panel.ZIndex="100"/>
         <Canvas x:Name="ImagesPlacer"/>
     </Grid>
 </UserControl>

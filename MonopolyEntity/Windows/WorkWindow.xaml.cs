@@ -25,11 +25,7 @@ namespace MonopolyEntity.Windows
         {
             InitializeComponent();
 
-            Application.Current.MainWindow = this;
-
             SetStartPage();
-
-
         }
 
         public void SetStartPage()

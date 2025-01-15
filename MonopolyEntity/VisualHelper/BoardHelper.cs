@@ -6,6 +6,7 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -123,19 +124,20 @@ namespace MonopolyEntity.VisualHelper
 
             res.Add(GetChipImageByName("chipRed.png"));
             res.Add(GetChipImageByName("chipBlue.png"));
-            res.Add(GetChipImageByName("chipGreen.png"));
+            res.Add(GetChipImageByName("chipGreen.png"));      
             res.Add(GetChipImageByName("chipPurple.png"));
             res.Add(GetChipImageByName("chipOrange.png"));
 
             return res;
         }
 
+        private const int _maxPlayers = 5;
+
         public static List<List<Point>> GetChipsPoints(Size squareSize)
         {
             List<List<Point>> res = new List<List<Point>>();
 
             const int distFromBorder = 5;
-            int maxPlayers = 5;
 
             double chipRadius = _chipSize / 2;
 
@@ -150,7 +152,7 @@ namespace MonopolyEntity.VisualHelper
             Point upCenter = new Point(center.X, leftUp.Y);
             Point downCenter = new Point(center.X, leftDown.Y);
 
-            for (int i = 1; i <= maxPlayers; i++)
+            for (int i = 1; i <= _maxPlayers; i++)
             {
                 List<Point> temp = new List<Point>();
                 switch (i)
@@ -203,7 +205,8 @@ namespace MonopolyEntity.VisualHelper
         {
             List<List<Point>> allPoints = GetChipsPoints(cellSize);
 
-            return allPoints[amountOfChipsInCell];
+            if (amountOfChipsInCell == 0) return allPoints.First();
+            return allPoints[amountOfChipsInCell - 1];
         }
 
         public static Size GetSizeOfCell(UIElement cell)
@@ -228,7 +231,11 @@ namespace MonopolyEntity.VisualHelper
             {
                 return new Size(square.ChipsPlacer.ActualWidth, square.ChipsPlacer.ActualHeight);
             }
-            return new Size();
+            else if (cell is PrisonCell prison)
+            {
+                return new Size(prison.ChipsPlacer.ActualWidth, prison.ChipsPlacer.ActualHeight);
+            }
+            throw new Exception("No such type of cell");
         }
 
         public static int GetAmountOfItemsInCell(UIElement cell)
@@ -266,10 +273,96 @@ namespace MonopolyEntity.VisualHelper
             return chipsPlacerField.GetValue(el) as Canvas;
         }
 
+        public static List<List<Point>> GetPointsToStandForPrisonCell(Size squareSize)
+        {
+            //Ponints for up Right (Donat), if for prison, need to change x and y in cords
 
+            List<List<Point>> res = new List<List<Point>>();
+            const int distFromBorder = 5;
+            const int distBetweenChips = 5;
 
+            double chipRadius = _chipSize / 2;
 
+            Point rightCorner = new Point(squareSize.Width - distFromBorder - _chipSize , distFromBorder);
 
+            Point cornerRightOne = new Point(rightCorner.X - distBetweenChips - _chipSize, distFromBorder);
+            Point cornerRightTwo = new Point(cornerRightOne.X - distBetweenChips - _chipSize, distFromBorder);
 
+            Point cornerDownOne = new Point(rightCorner.X, rightCorner.Y  + distBetweenChips + _chipSize);
+            Point cornerDownTwo = new Point(rightCorner.X, cornerDownOne.Y + distBetweenChips + _chipSize);
+
+            for (int i = 1; i <= _maxPlayers; i++)
+            {
+                List<Point> temp = new List<Point>();
+                switch (i)
+                {
+                    case 1:
+                        {
+                            temp.Add(rightCorner);
+                            break;
+                        }
+                    case 2:
+                        {
+                            temp.Add(cornerRightOne);
+                            temp.Add(cornerDownOne);
+                            break;
+                        }
+                    case 3:
+                        {
+                            temp.Add(rightCorner);
+                            temp.Add(cornerRightOne);
+                            temp.Add(cornerDownOne);
+                            break;
+                        }
+                    case 4:
+                        {
+                            temp.Add(cornerRightOne);
+                            temp.Add(cornerDownOne);
+                            temp.Add(cornerRightTwo);
+                            temp.Add(cornerDownTwo);
+                            break;
+                        }
+                    case 5:
+                        {
+                            temp.Add(rightCorner);
+                            temp.Add(cornerRightOne);
+                            temp.Add(cornerDownOne);
+                            temp.Add(cornerRightTwo);
+                            temp.Add(cornerDownTwo);
+                            break;
+                        }
+                }
+
+                res.Add(temp);
+            }
+
+            return res;
+        }
+
+        public static List<Point> GetPointsForPrisonCellExcurs(int amountOfChips, Size cellSize)
+        {
+            List<List<Point>> points = GetPointsToStandForPrisonCell(cellSize);
+
+            if (amountOfChips == 0) return points.First();
+            return points[amountOfChips - 1];
+        }
+
+        public static List<Point> GetPointsForPrisonCellSitter(int amountOfChips, Size cellSize)
+        {
+            List<List<Point>> points = GetPointsToStandForPrisonCell(cellSize);
+
+            if (amountOfChips == 0) return SwapPointsForPrisonCell(points.First());
+            return SwapPointsForPrisonCell(points[amountOfChips - 1]);
+        }
+
+        private static List<Point> SwapPointsForPrisonCell(List<Point> points)
+        {
+            List<Point> res = new List<Point>();
+            for(int i = 0; i < points.Count; i++)
+            {
+                res.Add(new Point(points[i].Y, points[i].X));
+            }
+            return res;
+        }
     }
 }

@@ -25,9 +25,11 @@ namespace MonopolyEntity.Windows.Pages
         {
             _frame = workFrame;
             InitializeComponent();
-          
         }
 
+        private void Page_LayoutUpdated(object sender, EventArgs e)
+        {
 
+        }
     }
 }

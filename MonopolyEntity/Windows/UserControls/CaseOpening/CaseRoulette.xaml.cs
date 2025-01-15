@@ -155,6 +155,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             return null;
         }
 
+
         private const int _cardWidth = 130;
         private const int _cardHeight = 150;
         private const int _distBetweenCards = 10;
