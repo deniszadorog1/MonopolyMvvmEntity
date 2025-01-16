@@ -27,9 +27,9 @@ namespace MonopolyEntity.Windows.Pages
             InitializeComponent();
         }
 
-        private void Page_LayoutUpdated(object sender, EventArgs e)
+        private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            GameField.BussinessInfo.Children.Clear();
         }
     }
 }

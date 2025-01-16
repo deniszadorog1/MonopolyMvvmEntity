@@ -116,6 +116,15 @@
     <Compile Include="Windows\UserControls\CaseOpening\ShowGotPrize.xaml.cs">
       <DependentUpon>ShowGotPrize.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\UserControls\GameControls\BussinessInfo\CarBusInfo.xaml.cs">
+      <DependentUpon>CarBusInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\BussinessInfo\GameBusInfo.xaml.cs">
+      <DependentUpon>GameBusInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\BussinessInfo\UsualBusInfo.xaml.cs">
+      <DependentUpon>UsualBusInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UserControls\GameControls\GameCell\BottomCell.xaml.cs">
       <DependentUpon>BottomCell.xaml</DependentUpon>
     </Compile>
@@ -136,6 +145,21 @@
     </Compile>
     <Compile Include="Windows\UserControls\GameControls\GameField.xaml.cs">
       <DependentUpon>GameField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\OnChatMessages\AuctionBid.xaml.cs">
+      <DependentUpon>AuctionBid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\OnChatMessages\BuyBusiness.xaml.cs">
+      <DependentUpon>BuyBusiness.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\OnChatMessages\JackpotElem.xaml.cs">
+      <DependentUpon>JackpotElem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\OnChatMessages\PayMoney.xaml.cs">
+      <DependentUpon>PayMoney.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\GameControls\OnChatMessages\ThroughCubes.xaml.cs">
+      <DependentUpon>ThroughCubes.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UserControls\GameControls\Other\Dice.xaml.cs">
       <DependentUpon>Dice.xaml</DependentUpon>
@@ -213,6 +237,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\UserControls\GameControls\BussinessInfo\CarBusInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\BussinessInfo\GameBusInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\BussinessInfo\UsualBusInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\UserControls\GameControls\GameCell\BottomCell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -238,6 +274,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserControls\GameControls\GameField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\OnChatMessages\AuctionBid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\OnChatMessages\BuyBusiness.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\OnChatMessages\JackpotElem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\OnChatMessages\PayMoney.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\OnChatMessages\ThroughCubes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -457,6 +513,7 @@
       <Name>MonopolyDLL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

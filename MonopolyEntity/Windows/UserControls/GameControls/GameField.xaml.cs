@@ -25,6 +25,12 @@ using MonopolyDLL;
 using System.Windows.Media.Animation;
 using System.Runtime.InteropServices.ComTypes;
 using System.Diagnostics;
+using System.Security.AccessControl;
+using MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo;
+using System.Windows.Media.TextFormatting;
+using System.Data.SqlTypes;
+
+using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -45,8 +51,156 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             HideHeadersInCells();
 
             SetChipPositionsInStartSquare();
+
+            SetClickEventForBusCells();
+
+            SetStartPricesForBusses();
+
+            SetTestJacPotClick();
         }
 
+        private void SetTestJacPotClick()
+        {
+            JackpotElem jackpot = new JackpotElem();
+
+            JackPotCell.PreviewMouseDown += (sender, e) =>
+            {
+                ChatMessages.Children.Add(jackpot);
+            };
+        }
+
+
+        private void SetStartPricesForBusses()
+        {
+            const string testString = "55555";
+            List<string> prices = new List<string>();
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                prices.Add(testString);
+            }
+
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                SetPriceInCell(prices[i], _cells[i]);
+            }
+        }
+
+        private void SetPriceInCell(string price, UIElement cell)
+        {
+            if (cell is UpperCell up &&
+                up.MoneyPlacer.Visibility == Visibility.Visible)
+            {
+                up.Money.Text = price;
+
+            }
+            else if (cell is RightCell right &&
+                right.MoneyPlacer.Visibility == Visibility.Visible)
+            {
+                right.Money.Text = price;
+                RotateTextBlock(right.Money, 90);
+            }
+            else if (cell is BottomCell bot &&
+                bot.MoneyPlacer.Visibility == Visibility.Visible)
+            {
+                bot.Money.Text = price;
+            }
+            else if (cell is LeftCell left &&
+                left.MoneyPlacer.Visibility == Visibility.Visible)
+            {
+                left.Money.Text = price;
+                RotateTextBlock(left.Money, -90);
+            }
+        }
+
+        private void RotateTextBlock(TextBlock block, int angle)
+        {
+            block.RenderTransformOrigin = new Point(0.5, 0.5);
+
+            RotateTransform transform = new RotateTransform()
+            {
+                Angle = angle,
+            };
+
+            block.LayoutTransform = transform;
+        }
+
+
+        private void SetClickEventForBusCells()
+        {
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                SetClickEventForCell(_cells[i]);
+            }
+        }
+
+        private void SetClickEventForCell(UIElement element)
+        {
+            if (element is UpperCell upper)
+                upper.PreviewMouseDown += Bussiness_PreviewMouseDown;
+
+            if (element is RightCell right)
+                right.PreviewMouseDown += Bussiness_PreviewMouseDown;
+
+            if (element is BottomCell bottom)
+                bottom.PreviewMouseDown += Bussiness_PreviewMouseDown;
+
+            if (element is LeftCell left)
+                left.PreviewMouseDown += Bussiness_PreviewMouseDown;
+        }
+
+        private void Bussiness_PreviewMouseDown(object sender, MouseEventArgs e)
+        {
+            BussinessInfo.Children.Clear();
+
+            //Add info about business
+            GameBusInfo info = new GameBusInfo();
+            BussinessInfo.Children.Add(info);
+
+            info.UpdateLayout();
+            SetLocForInfoBox(info, (UIElement)sender);
+        }
+
+        private void SetLocForInfoBox(GameBusInfo info, UIElement cell)
+        {
+            const int distToCell = 5;
+            Point fieldPoint = this.PointToScreen(new Point(0, 0));
+            Point cellPoint = cell.PointToScreen(new Point(0, 0));
+
+            Point cellLocalPoint = new Point(cellPoint.X - fieldPoint.X, cellPoint.Y - fieldPoint.Y);
+
+            Point infoLoc = new Point(0, 0);
+            if (cell is UpperCell up)
+            {
+                infoLoc = new Point(cellLocalPoint.X + up.Width / 2 - info.ActualWidth / 2, up.Height + distToCell);
+            }
+            else if (cell is RightCell right)
+            {
+                double jacPotYLoc = JackPotCell.PointToScreen(new Point(0, 0)).Y - fieldPoint.Y;
+
+                double yLoc = cellLocalPoint.Y + info.ActualHeight > jacPotYLoc ?
+                    jacPotYLoc - info.ActualHeight : cellLocalPoint.Y;
+
+                infoLoc = new Point(cellLocalPoint.X - info.ActualWidth - distToCell, yLoc);
+            }
+            else if (cell is BottomCell bot)
+            {
+                infoLoc = new Point(cellLocalPoint.X + bot.Width / 2 - info.ActualWidth / 2, cellLocalPoint.Y - info.ActualHeight - distToCell);
+            }
+            else if (cell is LeftCell left)
+            {
+                double jacPotYLoc = JackPotCell.PointToScreen(new Point(0, 0)).Y - fieldPoint.Y;
+
+                double yLoc = cellLocalPoint.Y + info.ActualHeight > jacPotYLoc ?
+                    jacPotYLoc - info.ActualHeight : cellLocalPoint.Y;
+
+                infoLoc = new Point(cellLocalPoint.X + left.Width + distToCell, yLoc);
+            }
+
+
+            Canvas.SetLeft(info, infoLoc.X);
+            Canvas.SetTop(info, infoLoc.Y);
+
+        }
 
 
         //BREAKETS, mb need to move it into anouther file
@@ -58,61 +212,67 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private int counter = 0;
         private void UserControl_LayoutUpdated(object sender, EventArgs e)
         {
-            return;
+            //return;
             if (counter >= 1) return;
             //MakeCheckThere
             Point globalPosition = StartCell.PointToScreen(new Point(0, 0));
 
+            const int startCellIndex = 0;
+            const int cellIndexToMoveOn = 10;
+
             //make movement action
-            MakeChipsMovementAction();
+            MoveToPrisonCell(startCellIndex, cellIndexToMoveOn, _imgs[0]);
+
+            //MakeChipsMovementAction(startCellIndex, cellIndexToMoveOn, _imgs[0]);
             counter++;
         }
 
         private void SetPrisonCellPositions()
         {
             // excursion
-            
-            
+
+
 
             // sitting in prison
 
         }
 
-        private void MoveToPrisonCell()
+        private void MoveToPrisonCell(int startCellIndex, int cellIndexToMoveOn, Image img)
         {
+            MakeChipsMovementAction(startCellIndex, cellIndexToMoveOn, img);
 
         }
 
         private List<(Image, int)> chipAndCord = new List<(Image, int)>();
 
-        private void MakeChipsMovementAction()
+        private void MakeChipsMovementAction(int startCellIndex, int cellIndexToMoveOn, Image chipImage)
         {
             if (_ifChipMoves) return;
 
-            const int moveDist = 10;
-            Image tempChipImg = _imgs[0];
+            //const int moveDist = 10;
+            //Image tempChipImg = _imgs[0];
 
-            Point startChipPoint = tempChipImg.PointToScreen(new Point(0, 0));
+            Point startChipPoint = chipImage.PointToScreen(new Point(0, 0));
             Point fieldPoint = this.PointToScreen(new Point(0, 0));
 
-            Point insidePointStartCell = new Point(Canvas.GetLeft(tempChipImg), Canvas.GetTop(tempChipImg));
-            Point newInsideChipPoint = GetInsidePointToStepOn(_cells[moveDist]);
+            Point insidePointStartCell = new Point(Canvas.GetLeft(chipImage), Canvas.GetTop(chipImage));
+            Point newInsideChipPoint = GetInsidePointToStepOn(_cells[cellIndexToMoveOn]);
 
 
             //Remove from cell
-            ((Canvas)tempChipImg.Parent).Children.Remove(tempChipImg);
+            ((Canvas)chipImage.Parent).Children.Remove(chipImage);
 
             //Add chip tom chipMove canvas
-            AddChipToChipMovePanel(tempChipImg, new Point(startChipPoint.X - fieldPoint.X, startChipPoint.Y - fieldPoint.Y));
+            AddChipToChipMovePanel(chipImage, new Point(startChipPoint.X - fieldPoint.X, startChipPoint.Y - fieldPoint.Y));
 
             //make move action
-            MakeChipMoveToAnoutherCell(moveDist, tempChipImg, insidePointStartCell, newInsideChipPoint);
+            MakeChipMoveToAnoutherCell(startCellIndex, cellIndexToMoveOn, chipImage, insidePointStartCell, newInsideChipPoint);
 
             //Reassign chip image to new cell (ON ANIMATION COMPLETE EVENT)
             //ReassignChipImageInNewCell(moveDist, tempChipImg, newInsideChipPoint);
 
             //Change Chips In cell
-            SetNewPositionsToChipsInCell(0);
+            SetNewPositionsToChipsInCell(startCellIndex);
         }
 
         private void SetNewPositionsToChipsInCell(int cellIndex)
@@ -155,7 +315,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 if (chips[i] is Image img)
                 {
-                    Point chipPointDiffer = new Point(points[i].X - chipsStartPoints[i].X, points[i].Y - chipsStartPoints[i].Y);                    
+                    Point chipPointDiffer = new Point(points[i].X - chipsStartPoints[i].X, points[i].Y - chipsStartPoints[i].Y);
                     SetChipToMoveAnimation(img, chipPointDiffer, cellIndex, points[i]);
                 }
             }
@@ -177,7 +337,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         }
 
 
-        private void MakeChipMoveToAnoutherCell(int movePoint, Image chip,
+        private void MakeChipMoveToAnoutherCell(int startCellIndex, int movePoint, Image chip,
             Point prevCellInsideChipPoint, Point newCellInsideChipPoint)
         {
             //Get cell to move on
@@ -192,7 +352,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             //Last point - for chips which we are moving
             Point newCellPoint = BoardHelper.GetChipCanvas(cellToMoveOn).PointToScreen(new Point(0, 0));
-            Point startcCell = BoardHelper.GetChipCanvas(StartCell).PointToScreen(new Point(0, 0));
+            Point startcCell = BoardHelper.GetChipCanvas(_cells[startCellIndex]).PointToScreen(new Point(0, 0));
 
             Point pointToStepOn = new Point(newCellPoint.X - startcCell.X + newCellInsideChipPoint.X - prevCellInsideChipPoint.X,
                 newCellPoint.Y - startcCell.Y + newCellInsideChipPoint.Y - prevCellInsideChipPoint.Y);
@@ -275,14 +435,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             List<Point> pointsForChips = points[_imgs.Count - 1];
 
 
-            pointsForChips = BoardHelper.GetPointsForPrisonCellExcurs(5, new Size(PrisonCell.Width, PrisonCell.Height));
+            //pointsForChips = BoardHelper.GetPointsForPrisonCellExcurs(5, new Size(PrisonCell.Width, PrisonCell.Height));
 
             for (int i = 0; i < _imgs.Count; i++)
             {
                 Canvas.SetLeft(_imgs[i], pointsForChips[i].X);
                 Canvas.SetTop(_imgs[i], pointsForChips[i].Y);
 
-                PrisonCell.ChipsPlacer.Children.Add(_imgs[i]);
+                StartCell.ChipsPlacer.Children.Add(_imgs[i]);
             }
         }
 
@@ -309,7 +469,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetSquareCells();
 
             SetTaxesImages();
-            SetChancees();
+            SetChances();
 
             SetBasicBusinessesImages();
         }
@@ -351,8 +511,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetBasicPhoneImages()
         {
-            SetLeftCellImage(BoardHelper.GetImageFromFolder("apple.png", "Phones"), PhonesFirstBus, new Size(45, 45));
-            SetLeftCellImage(BoardHelper.GetImageFromFolder("nokia.png", "Phones"), PhonesSecondBus, new Size(100, 25));
+            SetLeftCellImage(BoardHelper.GetImageFromFolder("apple.png", "Phones"), PhonesFirstBus, new Size(40, 45));
+            SetLeftCellImage(BoardHelper.GetImageFromFolder("nokia.png", "Phones"), PhonesSecondBus, new Size(100, 20));
         }
 
         private void SetBasicHotelImages()
@@ -370,8 +530,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetBasicFoodImages()
         {
-            SetBottomCellImage(BoardHelper.GetImageFromFolder("max_burgers.png", "Food"), FoodFirstBus, new Size(65, 45));
-            SetBottomCellImage(BoardHelper.GetImageFromFolder("burger_king.png", "Food"), FoodSecondBus, new Size(65, 45));
+            SetBottomCellImage(BoardHelper.GetImageFromFolder("max_burgers.png", "Food"), FoodFirstBus, new Size(55, 45));
+            SetBottomCellImage(BoardHelper.GetImageFromFolder("burger_king.png", "Food"), FoodSecondBus, new Size(55, 45));
             SetBottomCellImage(BoardHelper.GetImageFromFolder("kfc.png", "Food"), FoodThirdBus, new Size(55, 45));
         }
 
@@ -390,9 +550,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetBasicDrinkingsImages()
         {
-            SetRightCellImage(BoardHelper.GetImageFromFolder("coca_cola.png", "Drinkings"), DrinkFirstBus, new Size(100, 45));
-            SetRightCellImage(BoardHelper.GetImageFromFolder("fanta.png", "Drinkings"), DrinkSecondBus, new Size(75, 45));
-            SetRightCellImage(BoardHelper.GetImageFromFolder("pepsi.png", "Drinkings"), DrinkThirdBus, new Size(75, 45));
+            SetRightCellImage(BoardHelper.GetImageFromFolder("coca_cola.png", "Drinkings"), DrinkFirstBus, new Size(100, 35));
+            SetRightCellImage(BoardHelper.GetImageFromFolder("fanta.png", "Drinkings"), DrinkSecondBus, new Size(65, 45));
+            SetRightCellImage(BoardHelper.GetImageFromFolder("pepsi.png", "Drinkings"), DrinkThirdBus, new Size(100, 35));
         }
 
         private void SetBasicMessagerImages()
@@ -427,7 +587,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         public void SetBasicPerfumeImages()
         {
             SetUpperCellImage(BoardHelper.GetImageFromFolder("chanel.png", "Perfume"), PerfumeFirstBus, new Size(75, 45));
-            SetUpperCellImage(BoardHelper.GetImageFromFolder("hugo_boss.png", "Perfume"), PerfumeSecondBus, new Size(100, 45));
+            SetUpperCellImage(BoardHelper.GetImageFromFolder("hugo_boss.png", "Perfume"), PerfumeSecondBus, new Size(100, 40));
         }
 
         private void SetUpperCellImage(Image img, UpperCell cell, Size imageSize)
@@ -458,8 +618,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             img.LayoutTransform = transform;
         }
 
-
-        private void SetChancees()
+        private Size _chanseSize = new Size(55, 80);
+        private void SetChances()
         {
             SetUpDownChances();
             SetRightChances();
@@ -476,7 +636,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             Image img = BoardHelper.GetImageFromOtherFolder("chance_rotated.png");
 
-            img.Width = this.Width;
+            img.Width = _chanseSize.Height;
             img.Height = ChanceFive.ImagePlacer.Height;
 
             return img;
@@ -496,7 +656,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             Image img = BoardHelper.GetImageFromOtherFolder("chance.png");
 
-            img.Width = this.Width;
+            img.Width = _chanseSize.Height;
             img.Height = ChanceThree.ImagePlacer.Height;
 
             ChanceThree.ImagePlacer.Children.Add(img);
@@ -514,7 +674,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             Image img = BoardHelper.GetImageFromOtherFolder("chanceUp.png");
 
-            img.Width = this.Width;
+            img.Width = _chanseSize.Width;
             img.Height = ChanceOne.ImagePlacer.Height;
 
             return img;

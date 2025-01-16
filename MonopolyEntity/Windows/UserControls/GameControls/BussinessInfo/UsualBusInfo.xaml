@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo.UsualBusInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="260"
+             
+             >
+    <Border Background="White" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Name ="NameBusBorder" CornerRadius="10 10 0 0" Background="Gray">
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <TextBlock Name="BusName" Text="Busness name place" 
+                               FontSize="22" Foreground="White"/>
+
+                    <TextBlock Name= "BusType" Text="Busness type" 
+                               FontSize="18" Foreground="White"/>
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Row="1" Name="BusDescGrid" Margin="20 5 20 0">
+                <TextBlock FontSize="14" TextWrapping="Wrap" 
+                           Text="There some text about bus type"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Name ="BusLevelsGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock Name="BaseRentText" Text="Base rent" Margin="20 0 0 0"
+                               VerticalAlignment="Center" FontSize="16"/>
+
+                    <TextBlock Name="BaseRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="20 0 0 0">
+                    <Image  Name ="OneStarRentImage" Width="25" Height="25" 
+                            HorizontalAlignment="Left" 
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+
+                    <TextBlock Name="OneStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <WrapPanel Name="WrapPanelTwoStars" Margin="20 0 0 0">
+                        <Image  Name ="TwoStarRentImmgeOne" Width="25" Height="25" 
+                            HorizontalAlignment="Left" 
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+
+                        <Image  Name ="TwoStarRentImmgeTwo" Width="25" Height="25" 
+                            HorizontalAlignment="Left" Margin="5 0 0 0"
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                    </WrapPanel>
+
+                    <TextBlock Name="TwoStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <WrapPanel Name="WrapPanelThreeStars" Margin="20 0 0 0">
+                        <Image  Name ="ThreeStarRentImmgeOne" Width="25" Height="25" 
+                            HorizontalAlignment="Left" 
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+
+                        <Image  Name ="ThreeStarRentImmgeTwo" Width="25" Height="25" 
+                            HorizontalAlignment="Left" Margin="5 0 0 0"
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+
+                        <Image  Name ="ThreeStarRentImmgeThree" Width="25" Height="25" 
+                            HorizontalAlignment="Left" Margin="5 0 0 0"
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                    </WrapPanel>
+
+                    <TextBlock Name="ThreeStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <WrapPanel Name="WrapPanelFourStars" Margin="20 0 0 0">
+                        <Image  Name ="FourStarRentImmgeOne" Width="25" Height="25" 
+                            HorizontalAlignment="Left" 
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+
+                        <Image  Name ="FourStarRentImmgeTwo" Width="25" Height="25" 
+                            HorizontalAlignment="Left" Margin="5 0 0 0"
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+
+                        <Image  Name ="FourStarRentImmgeThree" Width="25" Height="25" 
+                            HorizontalAlignment="Left" Margin="5 0 0 0"
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+
+                        <Image  Name ="FourStarRentImmgeFor" Width="25" Height="25" 
+                            HorizontalAlignment="Left" Margin="5 0 0 0"
+                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                    </WrapPanel>
+
+                    <TextBlock Name="FourStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+                <Grid Grid.Row="5" Margin="20 0 0 0">
+                    <Image  Name ="YellowStarRentImage" Width="25" Height="25" 
+                            HorizontalAlignment="Left" 
+                            Source="/Visuals/Images/BoardImages/Other/yellowStar.png"/>
+
+                    <TextBlock Name="YellowStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock Name="BusPrice" Text="Bussiness price" Margin="20 0 0 0"
+                               VerticalAlignment="Center" FontSize="16"/>
+
+                    <TextBlock Name="BusPriceMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <TextBlock Name="DepositPrice" Text="Deposit price" Margin="20 0 0 0"
+                               VerticalAlignment="Center" FontSize="16"/>
+
+                    <TextBlock Name="DepositPriceMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <TextBlock Name= "RebuyPrice" Text="Rebuy price" Margin="20 0 0 0"
+                               VerticalAlignment="Center" FontSize="16"/>
+
+                    <TextBlock Name="RebuyPriceMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <TextBlock Name= "HousePrice" Text="House price" Margin="20 0 0 0"
+                               VerticalAlignment="Center" FontSize="16"/>
+
+                    <TextBlock Name="HousePriceMoney" Text="xxxxK" HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

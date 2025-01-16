@@ -12,9 +12,10 @@
             <RowDefinition Height="5*" Name="ActionRow"/>
         </Grid.RowDefinitions>
 
-        <Canvas Grid.Row="0" x:Name="MoneyPlacer" Background="Gray"> 
-            
-        </Canvas>
+        <Grid Grid.Row="0" x:Name="MoneyPlacer" Background="Gray">
+            <TextBlock Name="Money" FontSize="15" Foreground="White" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
 
         <Grid Grid.Row="1" Name="ImagePlacer" Background="White">
 

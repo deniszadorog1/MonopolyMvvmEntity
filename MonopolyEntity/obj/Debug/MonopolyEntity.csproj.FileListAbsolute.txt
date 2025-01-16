@@ -173,3 +173,17 @@ C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f59
 C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyEntity\obj\Debug\MonopolyEntity.exe
 C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyEntity\obj\Debug\MonopolyEntity.pdb
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\MonopolyDLL.dll.config
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\BussinessInfo\UsualBusInfo.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\BussinessInfo\UsualBusInfo.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\BussinessInfo\CarBusInfo.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\BussinessInfo\GameBusInfo.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\BussinessInfo\CarBusInfo.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\BussinessInfo\GameBusInfo.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\ThroughCubes.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\AuctionBid.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\BuyBusiness.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\AuctionBid.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\BuyBusiness.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\ThroughCubes.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\JackpotElem.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\JackpotElem.baml
