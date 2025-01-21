@@ -23,14 +23,21 @@ FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\G
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\GameField.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\AuctionBid.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\BuyBusiness.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\DicesDrop.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\JackpotElem.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\PayMoney.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\ThroughCubes.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\TradeControls\AddMoneyElem.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\TradeControls\TradeItem.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\TradeControls\TradeOfferEl.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\Other\DepositCounter.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\Other\Dice.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\UserCard.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\InventoryControls\BoxDescription.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\InventoryControls\BussinessDescription.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\MainPageWindow\ChoosePlayersForGame.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\MainPageWindow\DescribeBox.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\MainPageWindow\UserAnimated.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\UpperMenu.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\WorkWindow.xaml;;
-FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\OnChatMessages\JackpotElem.xaml;;
 

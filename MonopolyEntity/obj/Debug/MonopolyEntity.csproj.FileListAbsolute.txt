@@ -187,3 +187,17 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameC
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\ThroughCubes.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\JackpotElem.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\JackpotElem.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\PayMoney.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\TradeControls\TradeItem.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\TradeControls\TradeOfferEl.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\PayMoney.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\TradeControls\TradeItem.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\TradeControls\TradeOfferEl.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\TradeControls\AddMoneyElem.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\TradeControls\AddMoneyElem.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\Other\DepositCounter.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\Other\DepositCounter.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\DicesDrop.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\OnChatMessages\DicesDrop.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\MainPageWindow\ChoosePlayersForGame.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\MainPageWindow\ChoosePlayersForGame.baml

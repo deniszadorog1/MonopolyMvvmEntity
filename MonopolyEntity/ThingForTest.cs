@@ -85,7 +85,6 @@ namespace MonopolyEntity
 
         public static Image GetCircleImage(Image image)
         {
-
             EllipseGeometry clip = new EllipseGeometry
             {
                 Center = new Point(image.Width / 2, image.Height / 2),

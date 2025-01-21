@@ -16,17 +16,22 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Canvas Grid.Row="0" Name ="UserImageCanvas">
-                
-            </Canvas>
+            <Grid Grid.Row="0" Name ="UserImageGrid">
 
-            <Canvas Grid.Row="1" Name ="UserLoginCanvas">
-                
-            </Canvas>
 
-            <Canvas Grid.Row="2" Name="UserMoneyAmountCanvas">
+            </Grid>
 
-            </Canvas>
+            <Grid Grid.Row="1" Name ="UserLoginCanvas">
+
+                <TextBlock Text="TestUserName" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Foreground="White" Name="UserLogin"/>
+
+            </Grid>
+
+            <Grid Grid.Row="2" Name="UserMoneyAmountCanvas">
+                <TextBlock Text="TestUserMoney" HorizontalAlignment="Center" VerticalAlignment="Center"
+                      Foreground="White" Name="UserMoney"/>
+            </Grid>
 
         </Grid>
 

@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.DicesDrop"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600"
+             
+             xmlns:DicePath ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
+             
+             >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <DicePath:Dice Width="175" Height="175" 
+                           HorizontalAlignment="Right" Margin="0 -20 0 0"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <DicePath:Dice Width="175" Height="175" HorizontalAlignment="Left" Margin="0 20 0 0"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

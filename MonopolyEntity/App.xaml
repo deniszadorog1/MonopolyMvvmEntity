@@ -15,26 +15,25 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <Color x:Key="FirstColor">#84a5c8</Color>
-            <SolidColorBrush x:Key="FirstGlobalColor" Color="{StaticResource FirstColor}"/>
+            <SolidColorBrush x:Key="FirstGlobalColor" Color="#84a5c8"/>
+            <SolidColorBrush x:Key="SecondGlobalColor" Color="#a3bcdc"/>
+            <SolidColorBrush x:Key="ThirdGlobalColor" Color="#304c65"/>
+            <SolidColorBrush x:Key="FourthGlobalColor" Color="#9c6272"/>
+            <SolidColorBrush x:Key="FifthGlobalColor" Color="#aebed4"/>
+            <SolidColorBrush x:Key="SixGlobalColor" Color="#4c393d"/>
 
-            <Color x:Key="SecondColor">#a3bcdc</Color>
-            <SolidColorBrush x:Key="SecondGlobalColor" Color="{StaticResource SecondColor}"/>
+            <SolidColorBrush x:Key="MainGlobalColor" Color="#37BC9D"/>
 
-            <Color x:Key="ThirdColor">#304c65</Color>
-            <SolidColorBrush x:Key="ThirdGlobalColor" Color="{StaticResource ThirdColor}"/>
-
-            <Color x:Key="FourthColor">#9c6272</Color>
-            <SolidColorBrush x:Key="FourthGlobalColor" Color="{StaticResource FourthColor}"/>
-
-            <Color x:Key="FifthColor">#aebed4</Color>
-            <SolidColorBrush x:Key="FifthGlobalColor" Color="{StaticResource FifthColor}"/>
-
-            <Color x:Key="SixColor">#4c393d</Color>
-            <SolidColorBrush x:Key="SixGlobalColor" Color="{StaticResource SixColor}"/>
-
-            <Color x:Key="MainColor">#37BC9D</Color>
-            <SolidColorBrush x:Key="MainGlobalColor" Color="{StaticResource MainColor}"/>
+            <SolidColorBrush x:Key="PerfumeColor" Color="#EC87C1"/>
+            <SolidColorBrush x:Key="CarColor" Color="#DA4553"/>
+            <SolidColorBrush x:Key="ClothesColor" Color="#E0B439"/>
+            <SolidColorBrush x:Key="MessagerColor" Color="#37BC9D"/>
+            <SolidColorBrush x:Key="DrinkColor" Color="#4B89DC"/>
+            <SolidColorBrush x:Key="PlaneColor" Color="#8CC152"/>
+            <SolidColorBrush x:Key="FoodColor" Color="#4FC1E9"/>
+            <SolidColorBrush x:Key="HotelColor" Color="#967BDC"/>
+            <SolidColorBrush x:Key="PhoneColor" Color="#656D78"/>
+            <SolidColorBrush x:Key="GameColor" Color="#7F1F0F"/>
 
         </ResourceDictionary>
     </Application.Resources>

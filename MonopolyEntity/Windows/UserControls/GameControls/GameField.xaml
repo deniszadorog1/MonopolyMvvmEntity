@@ -9,6 +9,8 @@
              
              
              xmlns:CellTypeControl ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.GameCell" 
+             xmlns:Dice ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
+             xmlns:DiceDrop ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages" 
              
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -88,12 +90,16 @@
                 <Grid Grid.Row="0" >
 
                     <Canvas x:Name="ChatMessages" Panel.ZIndex="100"/>
-                    
+
+                   <!-- <DiceDrop:DicesDrop Visibility="Visible" x:Name="ThroughCubes3Ds"
+                                        Width="400" Height="400" /> -->
+
                     <ScrollViewer VerticalScrollBarVisibility="Visible">
                         <ListBox x:Name="GameChat" 
-                            Height="{Binding ActualHeight, ElementName=GameChatPanel}"/>
+                            Height="{Binding ActualHeight, ElementName=GameChatPanel}">
 
-
+                            <!-- <Dice:Dice Width="100" Height="100"/> -->
+                        </ListBox>
                     </ScrollViewer>
                 </Grid>
 

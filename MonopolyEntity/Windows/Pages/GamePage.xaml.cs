@@ -1,10 +1,13 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using MonopolyEntity.Windows.UserControls.GameControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -25,11 +28,81 @@ namespace MonopolyEntity.Windows.Pages
         {
             _frame = workFrame;
             InitializeComponent();
+
+            SetPopupsForUserCards();
         }
 
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             GameField.BussinessInfo.Children.Clear();
+            _dropdownMenuPopup.IsOpen = false;
+            _dropdownMenuPopup.PlacementTarget = null;
+        }
+         
+        private Popup _dropdownMenuPopup;
+        private void SetPopupsForUserCards()
+        {
+            GetContextMenu();
+        }
+
+        private void GetContextMenu()
+        {       
+            _dropdownMenuPopup = new Popup
+            {
+                Placement = PlacementMode.Bottom,
+                //StaysOpen = false,
+                AllowsTransparency = true,
+                Width = 220,
+                VerticalOffset = -10,
+            };
+
+            var popupContent = new Border
+            {
+                Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#E6E9ED"),
+                //BorderBrush = Brushes.Gray,
+                BorderThickness = new Thickness(0),
+                //CornerRadius = new CornerRadius(5),
+                Child = new StackPanel
+                {
+                    Children =
+                    {
+                        CreateMenuItem("Test first"),
+                        new Line(){X1 = 0, Y1 = 0, X2 = 500, Y2 = 0, Stroke = Brushes.Black, StrokeThickness = 1},
+                        CreateMenuItem("Test second"),
+                    }
+                }
+            };
+            _dropdownMenuPopup.Child = popupContent;
+        }
+
+        private Button CreateMenuItem(string content)
+        {
+            var button = new Button
+            {
+                Content = content,
+                //Padding = new Thickness(10, 5, 10, 5),
+                Margin = new Thickness(0),
+                Background = Brushes.Transparent,
+                Width = 220,
+                Foreground = Brushes.Black,
+                BorderThickness = new Thickness(0),
+            };
+
+            button.Click += (s, e) =>
+            {
+                MessageBox.Show($"You choosed: {content}");
+                _dropdownMenuPopup.IsOpen = false; 
+            };
+            return button;
+        }
+
+        private void FirstPlayerRedControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (_dropdownMenuPopup.PlacementTarget == null)
+            {
+                _dropdownMenuPopup.PlacementTarget = ((UserCard)sender);
+            }    
+            _dropdownMenuPopup.IsOpen = !_dropdownMenuPopup.IsOpen;
         }
     }
 }

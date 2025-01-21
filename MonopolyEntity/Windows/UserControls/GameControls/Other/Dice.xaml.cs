@@ -10,8 +10,15 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using System.IO;
+
+using MonopolyEntity.VisualHelper;
+using System.Windows.Media.Animation;
+using System.Windows.Markup.Localizer;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls.Other
 {
@@ -23,6 +30,216 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
         public Dice()
         {
             InitializeComponent();
+
+            SetNeedRoatationParams();
+            CreateCube();
+
+            SetHorizontalRotation();
+            SetVerticalRoation();
         }
+
+        private void CreateCube()
+        {
+            Viewport3D viewport = new Viewport3D();
+
+            PerspectiveCamera camera = new PerspectiveCamera
+            {
+                Position = new Point3D(0, 0, 5),
+                LookDirection = new Vector3D(0, 0, -5),
+                UpDirection = new Vector3D(0, 1, 0),
+                FieldOfView = 40
+            };
+
+            viewport.Camera = camera;
+
+            var light = new DirectionalLight(Colors.White, new Vector3D(-1, -1, -1));
+            var lightVisual = new ModelVisual3D { Content = light };
+            viewport.Children.Add(lightVisual);
+
+            Model3DGroup diceModel = CreateDiceModel();
+            var diceVisual = new ModelVisual3D { Content = diceModel };
+            viewport.Children.Add(diceVisual);
+
+            _horizontalRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0); 
+            _verticalRotation = new AxisAngleRotation3D(new Vector3D(1, 0, 0), 0);
+            
+            _rotateTransforms.Children.Add(new RotateTransform3D(_horizontalRotation));
+            _rotateTransforms.Children.Add(new RotateTransform3D(_verticalRotation));
+
+            diceModel.Transform = _rotateTransforms;
+
+            Content = viewport;
+        }
+
+        private Model3DGroup CreateDiceModel()
+        {
+            var modelGroup = new Model3DGroup();
+
+            Point3D[] vertices =
+            {
+                new Point3D(-1, -1, 1),  // 0
+                new Point3D(1, -1, 1),   // 1
+                new Point3D (1, 1, 1),    // 2
+                new Point3D(-1, 1, 1),   // 3
+                new Point3D(-1, -1, -1), // 4
+                new Point3D(1, -1, -1),  // 5
+                new Point3D(1, 1, -1),   // 6
+                new Point3D(-1, 1, -1)   // 7
+            };
+
+            int[][] faces =
+            {
+                new[] {0, 1, 2, 3}, // Front
+                new[] {1, 5, 6, 2}, // Right
+                new[] {5, 4, 7, 6}, // Back
+                new[] {4, 0, 3, 7}, // Left
+                new[] {3, 2, 6, 7}, // Top
+                new[] {0, 4, 5, 1}  // Bottom
+            };
+
+            string diceFolderPath = BoardHelper.GetDiceFolderPath();
+
+            string[] texturePaths =
+            {
+                System.IO.Path.Combine(diceFolderPath, "one.png"),
+                System.IO.Path.Combine(diceFolderPath, "two.png"),
+                System.IO.Path.Combine(diceFolderPath, "six.png"),
+                System.IO.Path.Combine(diceFolderPath, "five.png"),
+                System.IO.Path.Combine(diceFolderPath, "three.png"),
+                System.IO.Path.Combine(diceFolderPath, "four.png"),
+            };
+
+            foreach (var face in faces)
+            {
+                var material = new DiffuseMaterial
+                {
+                    Brush = new ImageBrush(new BitmapImage(
+                        new Uri(texturePaths[Array.IndexOf(faces, face)], UriKind.Relative)))
+                };
+
+                var mesh = new MeshGeometry3D
+                {
+                    Positions = new Point3DCollection(new[]
+                    {
+                        vertices[face[0]],
+                        vertices[face[1]],
+                        vertices[face[2]],
+                        vertices[face[3]]
+                    }),
+                    TriangleIndices = new Int32Collection(new[] { 0, 1, 2, 2, 3, 0 }),
+                    TextureCoordinates = new PointCollection(new[]
+                    {
+                        new Point(0, 1),
+                        new Point(1, 1),
+                        new Point(1, 0),
+                        new Point(0, 0)
+                    })
+                };
+
+                modelGroup.Children.Add(new GeometryModel3D(mesh, material));
+            }
+
+            return modelGroup;
+        }
+
+        private Transform3DGroup _rotateTransforms = new Transform3DGroup();
+
+        private AxisAngleRotation3D _horizontalRotation;
+        private AxisAngleRotation3D _verticalRotation;
+
+        private void SetHorizontalRotation()
+        {
+            //return;
+            var animation = new DoubleAnimation
+            {
+                From = 0, 
+                To = _horizontalTo, 
+                Duration = TimeSpan.FromSeconds(3),
+                //AccelerationRatio = 0.3, 
+                DecelerationRatio = 1,
+                //RepeatBehavior = RepeatBehavior.Forever,
+
+            };
+
+            _horizontalRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, animation);
+        }
+
+        private void SetVerticalRoation()
+        {
+            var animation = new DoubleAnimation
+            {
+                From = 0, 
+                To = _verticalTo, 
+                Duration = TimeSpan.FromSeconds(3),
+                //AccelerationRatio = 0.3, 
+                DecelerationRatio = 1,
+                //RepeatBehavior = RepeatBehavior.Forever,
+
+            };
+            _verticalRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, animation);
+        }
+
+        Random _rnd = new Random(Guid.NewGuid().GetHashCode());
+        private int _horizontalTo;
+        private int _verticalTo;
+
+        private void SetNeedRoatationParams()
+        {
+            int diceValue = _rnd.Next(0, 6);
+
+            (int hor, int vert) rotation = GetRoationParams(diceValue);
+
+            _horizontalTo = rotation.hor;
+            _verticalTo = rotation.vert; 
+        }
+
+        private (int hor, int vert) GetRoationParams(int diceValue)
+        {
+            (int horizontal, int vertical) res = (0, 0);
+
+            const int baseValue = 1080; //2160
+
+            switch (diceValue)
+            {
+                case 1:
+                    {
+                        res.vertical = 1800;
+                        res.horizontal = baseValue;
+                        break;
+                    }
+                case 2:
+                    {
+                        res.vertical = baseValue;
+                        res.horizontal = 2070;
+                        break;
+                    }
+                case 3:
+                    {
+                        res.vertical = 1890;
+                        res.horizontal = baseValue;
+                        break;
+                    }
+                case 4:
+                    {
+                        res.vertical = 2070;
+                        res.horizontal = baseValue;
+                        break;
+                    }
+                case 5:
+                    {
+                        res.vertical = baseValue;
+                        res.horizontal = 1890;
+                        break;
+                    }
+                case 6:
+                    {
+                        res.vertical = 1980;
+                        res.horizontal = baseValue;
+                        break;
+                    }
+            }
+            return res;
+        }
+
     }
 }

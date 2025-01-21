@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.GameControls.Other.DepositCounter"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="65">
+    <Border CornerRadius="10" Background="#DA4553">
+        <Grid Margin="10 0 10 0">
+            <Image Source="/Visuals/Images/BoardImages/Other/whiteLock.png"
+                   Height="20" Width="20" HorizontalAlignment="Left" />
+            <TextBlock Name ="Counter" Text="99" Foreground="White"
+                       HorizontalAlignment="Right" VerticalAlignment="Center"
+                       FontSize="18"/>
+        </Grid>   
+    </Border>
+</UserControl>

@@ -103,6 +103,16 @@ namespace MonopolyEntity.VisualHelper
             return GetImageByPath(imgPath);
         }
 
+        public static string GetDiceFolderPath()
+        {
+            string res = string.Empty;
+
+            string borderImagesPath = GetBoardImagesPath();
+            res = Path.Combine(borderImagesPath, "DiceRibs");
+
+            return res;
+        }
+
         private const int _chipSize = 25;
         public static Image GetChipImageByName(string name)
         {
@@ -127,6 +137,12 @@ namespace MonopolyEntity.VisualHelper
             res.Add(GetChipImageByName("chipGreen.png"));      
             res.Add(GetChipImageByName("chipPurple.png"));
             res.Add(GetChipImageByName("chipOrange.png"));
+
+            res[0].Name = "One";
+            res[1].Name = "Two";
+            res[2].Name = "Three";
+            res[3].Name = "Four";
+            res[4].Name = "Five";
 
             return res;
         }
@@ -233,7 +249,7 @@ namespace MonopolyEntity.VisualHelper
             }
             else if (cell is PrisonCell prison)
             {
-                return new Size(prison.ChipsPlacer.ActualWidth, prison.ChipsPlacer.ActualHeight);
+                return new Size(prison.ChipsPlacerVisit.ActualWidth, prison.ChipsPlacerVisit.ActualHeight);
             }
             throw new Exception("No such type of cell");
         }
@@ -362,6 +378,111 @@ namespace MonopolyEntity.VisualHelper
             {
                 res.Add(new Point(points[i].Y, points[i].X));
             }
+            return res;
+        }
+
+        public static List<int> GetListOfSquareCellIndexesThatChipGoesThrough(int startIndex, int endIndex)
+        {
+            bool ifGoesTrough = IfChipGoesThroughCorner(startIndex, endIndex);    
+            return !ifGoesTrough ? null : GetCellIndexToGoThrough(startIndex, endIndex);
+        }
+
+        public static bool IfChipGoesThroughCorner(int startIndex, int endPointIndex)
+        {
+            return ((startIndex < 10 && endPointIndex > 10) ||
+                    (startIndex < 20 && endPointIndex > 20) ||
+                    (startIndex < 30 && endPointIndex > 30) ||
+                    (startIndex > 30 && endPointIndex > 40) || 
+                    startIndex > endPointIndex); 
+        }
+
+        public static List<int> GetCellIndexToGoThrough(int startIndex, int endIndex)
+        {
+            int cubesVal = GetAmountOfSetpsFromEndToStartIndexes(startIndex, endIndex);
+            List<int> res = new List<int>();
+            do
+            {
+                startIndex++;
+                cubesVal--;
+
+                if (startIndex == 40) startIndex = 0;
+                if (startIndex % 10 == 0) res.Add(startIndex);
+                if (cubesVal == 0)
+                {
+                    if(endIndex % 10 != 0) res.Add(endIndex);
+                    return res;
+                }
+            } while (true);
+        }
+
+        private static int GetAmountOfSetpsFromEndToStartIndexes(int startIndex, int endIndex)
+        {
+            int res = 0;
+            int counter = endIndex;
+            do
+            {
+                counter--;
+                if(counter < 0)
+                {
+                    counter = 39;
+                }
+                res++;
+
+                if (counter == startIndex)
+                {
+                    return res;
+                }
+            } while (true);
+        }
+
+        public static Point GetCenterOfTheSquareCellForImage(SquareCell cell, Image img)
+        {
+            return new Point(cell.ActualWidth / 2 - img.Width / 2, cell.ActualHeight / 2 - img.Height / 2);
+        }
+
+        public static Point GetCenterOfTheSquareForIamge(Image img, UIElement cell)
+        {
+            if(cell is SquareCell square)
+            {
+                return new Point(square.ActualWidth / 2 - img.Width / 2, square.ActualHeight / 2 - img.Height / 2);
+            }
+            if(cell is PrisonCell prison)
+            {
+                return new Point(prison.ActualWidth / 2 - img.Width / 2, prison.ActualHeight / 2 - img.Height / 2);
+            }
+            if (cell is UpperCell upper)
+            {
+                return new Point(upper.ChipsPlacer.ActualWidth / 2 - img.Width / 2, 
+                    upper.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
+            }
+            if (cell is RightCell right)
+            {
+                return new Point(right.ChipsPlacer.ActualWidth / 2 - img.Width / 2,
+                    right.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
+            }
+            if (cell is BottomCell bottom)
+            {
+                return new Point(bottom.ChipsPlacer.ActualWidth / 2 - img.Width / 2,
+                    bottom.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
+            }
+            if (cell is LeftCell left)
+            {
+                return new Point(left.ChipsPlacer.ActualWidth / 2 - img.Width / 2,
+                    left.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
+            }
+            return new Point(0, 0);
+        }
+
+        private List<Point> GetChipsPointsOnPrisonCell(PrisonCell cell)
+        {
+            List<Point> res = new List<Point>(); 
+            List<Image> img = cell.ChipsPlacerVisit.Children.OfType<Image>().ToList();
+
+            for(int i = 0; i < img.Count; i++)
+            {
+                res.Add(new Point(Canvas.GetLeft(img[i]), Canvas.GetTop(img[i])));
+            }
+
             return res;
         }
     }

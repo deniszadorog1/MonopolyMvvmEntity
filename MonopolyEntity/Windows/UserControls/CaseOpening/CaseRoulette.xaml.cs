@@ -91,7 +91,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                     {
                         // need to add won message here 
                         ShowPrizeWindow();
-
+                        completeAnimsCount = 1;
                     }
 
                     //return;

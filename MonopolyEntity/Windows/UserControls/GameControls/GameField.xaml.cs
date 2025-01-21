@@ -53,10 +53,52 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetChipPositionsInStartSquare();
 
             SetClickEventForBusCells();
-
             SetStartPricesForBusses();
-
             SetTestJacPotClick();
+
+            SetHeaderColorsForBuses();
+        }
+
+        private void SetHeaderColorsForBuses()
+        {
+            PerfumeFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["PerfumeColor"];
+            PerfumeSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["PerfumeColor"];
+
+            UpCar.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["CarColor"];
+            RightCar.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["CarColor"];
+            DownCars.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["CarColor"];
+            LeftCar.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["CarColor"];
+
+            ClothesFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["ClothesColor"];
+            ClothesSeconBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["ClothesColor"];
+            ClothesThirdBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["ClothesColor"];
+
+            MessagerFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["MessagerColor"];
+            MessagerSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["MessagerColor"];
+            MessagerThirdBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["MessagerColor"];
+
+            DrinkFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["DrinkColor"];
+            DrinkSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["DrinkColor"];
+            DrinkThirdBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["DrinkColor"];
+
+            PlanesFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["PlaneColor"];
+            PlanesSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["PlaneColor"];
+            PlanesThirdBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["PlaneColor"];
+
+
+            FoodFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["FoodColor"];
+            FoodSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["FoodColor"];
+            FoodThirdBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["FoodColor"];
+
+            HotelFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["HotelColor"];
+            HotelSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["HotelColor"];
+            HotelThirdBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["HotelColor"];
+
+            PhonesFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["PhoneColor"];
+            PhonesSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["PhoneColor"];
+
+            GamesFirstBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["GameColor"];
+            GamesSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["GameColor"];
         }
 
         private void SetTestJacPotClick()
@@ -65,10 +107,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             JackPotCell.PreviewMouseDown += (sender, e) =>
             {
+                ChatMessages.Children.Remove(jackpot);
                 ChatMessages.Children.Add(jackpot);
             };
         }
-
 
         private void SetStartPricesForBusses()
         {
@@ -196,10 +238,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 infoLoc = new Point(cellLocalPoint.X + left.Width + distToCell, yLoc);
             }
 
-
             Canvas.SetLeft(info, infoLoc.X);
             Canvas.SetTop(info, infoLoc.Y);
-
         }
 
 
@@ -212,10 +252,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private int counter = 0;
         private void UserControl_LayoutUpdated(object sender, EventArgs e)
         {
-            //return;
+            return;
             if (counter >= 1) return;
             //MakeCheckThere
-            Point globalPosition = StartCell.PointToScreen(new Point(0, 0));
+            //Point globalPosition = StartCell.PointToScreen(new Point(0, 0));
 
             const int startCellIndex = 0;
             const int cellIndexToMoveOn = 10;
@@ -227,20 +267,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             counter++;
         }
 
-        private void SetPrisonCellPositions()
-        {
-            // excursion
-
-
-
-            // sitting in prison
-
-        }
-
         private void MoveToPrisonCell(int startCellIndex, int cellIndexToMoveOn, Image img)
         {
             MakeChipsMovementAction(startCellIndex, cellIndexToMoveOn, img);
-
         }
 
         private List<(Image, int)> chipAndCord = new List<(Image, int)>();
@@ -249,24 +278,34 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             if (_ifChipMoves) return;
 
+            _squareIndexesToGoThrough =
+                BoardHelper.GetListOfSquareCellIndexesThatChipGoesThrough(startCellIndex, cellIndexToMoveOn);
+
+            if (!(_squareIndexesToGoThrough is null))
+            {
+                cellIndexToMoveOn = _squareIndexesToGoThrough.First();
+            }
+
             //const int moveDist = 10;
             //Image tempChipImg = _imgs[0];
 
-            Point startChipPoint = chipImage.PointToScreen(new Point(0, 0));
-            Point fieldPoint = this.PointToScreen(new Point(0, 0));
+            Point chipToFieldPoint = GetChipImageLocToField(chipImage);
 
             Point insidePointStartCell = new Point(Canvas.GetLeft(chipImage), Canvas.GetTop(chipImage));
             Point newInsideChipPoint = GetInsidePointToStepOn(_cells[cellIndexToMoveOn]);
-
 
             //Remove from cell
             ((Canvas)chipImage.Parent).Children.Remove(chipImage);
 
             //Add chip tom chipMove canvas
-            AddChipToChipMovePanel(chipImage, new Point(startChipPoint.X - fieldPoint.X, startChipPoint.Y - fieldPoint.Y));
+            AddChipToChipMovePanel(chipImage, chipToFieldPoint);
 
             //make move action
-            MakeChipMoveToAnoutherCell(startCellIndex, cellIndexToMoveOn, chipImage, insidePointStartCell, newInsideChipPoint);
+            MakeChipMove(startCellIndex, cellIndexToMoveOn, chipImage,
+                insidePointStartCell, newInsideChipPoint);
+            //MakeChipMoveToAnoutherCell(startCellIndex, cellIndexToMoveOn, chipImage, insidePointStartCell, newInsideChipPoint);
+
+
 
             //Reassign chip image to new cell (ON ANIMATION COMPLETE EVENT)
             //ReassignChipImageInNewCell(moveDist, tempChipImg, newInsideChipPoint);
@@ -274,6 +313,94 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             //Change Chips In cell
             SetNewPositionsToChipsInCell(startCellIndex);
         }
+
+        private Point GetChipImageLocToField(Image img)
+        {
+            Point startChipPoint = img.PointToScreen(new Point(0, 0));
+            Point fieldPoint = this.PointToScreen(new Point(0, 0));
+
+            return new Point(startChipPoint.X - fieldPoint.X, startChipPoint.Y - fieldPoint.Y);
+        }
+
+        private bool _ifGoesThroughSquareCell = false;
+        private List<int> _squareIndexesToGoThrough = null;
+        private int _tempSquareValToGoOn;
+        private EventHandler _chipAnimEvent;
+
+        private bool IfLastMoveIsPrison = false; 
+
+        public void MakeChipMove(int startCellIndex, int cellIndexToMoveOn, Image chipImg,
+            Point insidePointStartCell, Point newInsideChipPoint)
+        {
+            //chip goes through square cell
+            if (!(_squareIndexesToGoThrough is null))
+            {
+                _tempSquareValToGoOn = _squareIndexesToGoThrough.First();
+                _ifGoesThroughSquareCell = true;
+
+                if (_cells[_squareIndexesToGoThrough.Last()] is PrisonCell) IfLastMoveIsPrison = true;
+
+                _chipAnimEvent = (s, e) =>
+                {
+                    ReassignChipImageInNewCell(_tempSquareValToGoOn, _imgs[0],
+                        BoardHelper.GetCenterOfTheSquareForIamge(chipImg, _cells[_tempSquareValToGoOn]));
+
+                    int toRemoveSquareIndex = _tempSquareValToGoOn;
+                    _squareIndexesToGoThrough.Remove(_tempSquareValToGoOn);
+                    if (_squareIndexesToGoThrough.Count > 0)
+                    {
+                        _tempSquareValToGoOn = _squareIndexesToGoThrough.First();
+
+                        Point startChipPoint = _cells[toRemoveSquareIndex].PointToScreen(new Point(0, 0));
+                        Point fieldPoint = this.PointToScreen(new Point(0, 0));
+
+                        Point check = new Point(Canvas.GetLeft(chipImg), Canvas.GetTop(chipImg));
+                        Point asd = new Point(startChipPoint.X - fieldPoint.X + check.X,
+                            startChipPoint.Y - fieldPoint.Y + check.Y);
+
+                        ((Canvas)chipImg.Parent).Children.Remove(chipImg);
+                        AddChipToChipMovePanel(chipImg, asd);
+
+                        MakeChipMoveToAnoutherCell(toRemoveSquareIndex, _tempSquareValToGoOn, chipImg,
+                        check, BoardHelper.GetCenterOfTheSquareForIamge(chipImg, _cells[_tempSquareValToGoOn]));
+
+                        if (IfLastMoveIsPrison && _squareIndexesToGoThrough.Count == 1)
+                        {
+                            IfLastMoveIsPrison = false;
+                            MakeAMoveToInPrisonCell(true, chipImg);
+                        }
+
+                    }
+                };
+                //_toAddSecondaryAnimation.Completed += _chipAnim;
+                MakeChipMoveToAnoutherCell(startCellIndex, _tempSquareValToGoOn, chipImg,
+                    insidePointStartCell, newInsideChipPoint);
+
+            }
+            else
+            {
+                if (_cells[cellIndexToMoveOn] is PrisonCell) IfLastMoveIsPrison = true;
+
+                //usualMove
+                MakeChipMoveToAnoutherCell(startCellIndex, cellIndexToMoveOn, chipImg, insidePointStartCell, newInsideChipPoint);
+            }
+        }
+
+        //To Make a move in prison cell(sitter or visiter)
+        private void MakeAMoveToInPrisonCell(bool ifVisiter, Image movedChip)
+        {
+            if (ifVisiter)
+            {
+                PrisonCell.ChipsPlacer.Children.Remove(movedChip);
+                PrisonCell.ChipsPlacerVisit.Children.Add(movedChip);
+
+                List<Point> points = BoardHelper.GetPointsForPrisonCellExcurs(PrisonCell.ChipsPlacerVisit.Children.Count,
+                    new Size(PrisonCell.Width, PrisonCell.Height));
+
+                SetChipsImagesInMovePanel(points, PrisonCell.ChipsPlacerVisit, 10);
+            }
+        }
+
 
         private void SetNewPositionsToChipsInCell(int cellIndex)
         {
@@ -332,7 +459,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             Canvas.SetLeft(chipImage, newCellInsideLoc.X);
             Canvas.SetTop(chipImage, newCellInsideLoc.Y);
 
-
             chipImage.RenderTransform = null;
         }
 
@@ -377,7 +503,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         }
 
         private bool _ifChipMoves = false;
-        private void SetChipToMoveAnimation(Image toMove, Point endPoint, int cellIndex, Point newInsideChipPoint)
+        private DoubleAnimation _toAddSecondaryAnimation;
+
+        private void SetChipToMoveAnimation(Image toMove, Point endPoint,
+            int cellIndex, Point newInsideChipPoint)
         {
             var transform = new TranslateTransform();
             toMove.RenderTransform = transform;
@@ -386,21 +515,36 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = 0,
                 To = endPoint.X,
-                Duration = TimeSpan.FromSeconds(4),
+                Duration = TimeSpan.FromSeconds(3),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
-            moveXAnimation.Completed += (s, e) =>
+            if (_ifGoesThroughSquareCell && toMove.Name == "One") // tempMove Chip Img
             {
-                ReassignChipImageInNewCell(cellIndex, toMove, newInsideChipPoint);
-                _ifChipMoves = false;
-            };
+                moveXAnimation.Completed += _chipAnimEvent;
+            }
+            else
+            {
+                moveXAnimation.Completed += (s, e) =>
+                {
+                    ReassignChipImageInNewCell(cellIndex, toMove, newInsideChipPoint);
+
+                    if (IfLastMoveIsPrison)
+                    {
+                        IfLastMoveIsPrison = false;
+                        MakeAMoveToInPrisonCell(true, toMove);
+                    }
+                    
+                    //if (_ifGoesThroughSquareCell) return;
+                    _ifChipMoves = false;
+                };
+            }
 
             DoubleAnimation moveYAnimation = new DoubleAnimation
             {
                 From = 0,
                 To = endPoint.Y,
-                Duration = TimeSpan.FromSeconds(4),
+                Duration = TimeSpan.FromSeconds(3),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
@@ -434,8 +578,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             List<Point> pointsForChips = points[_imgs.Count - 1];
 
-
-            //pointsForChips = BoardHelper.GetPointsForPrisonCellExcurs(5, new Size(PrisonCell.Width, PrisonCell.Height));
+            //pointsForChips = BoardHelper.GetPointsForPrisonCellSitter(5, new Size(PrisonCell.Width, PrisonCell.Height));
 
             for (int i = 0; i < _imgs.Count; i++)
             {

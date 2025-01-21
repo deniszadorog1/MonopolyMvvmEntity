@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyEntity.VisualHelper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,18 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         public UserCard()
         {
             InitializeComponent();
+
+            SetTestCardImage();
+        }
+
+        public void SetTestCardImage()
+        {
+            Image img = ThingForTest.GetCalivanBigCircleImage(70, 70);
+
+            img.VerticalAlignment = VerticalAlignment.Center;
+            img.HorizontalAlignment = HorizontalAlignment.Center;
+
+            UserImageGrid.Children.Add(img);
         }
     }
 }
