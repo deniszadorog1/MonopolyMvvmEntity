@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using MonopolyDLL.Monopoly;
+
 namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
@@ -24,12 +26,32 @@ namespace MonopolyEntity.Windows.Pages
     public partial class GamePage : Page
     {
         private Frame _frame;
-        public GamePage(Frame workFrame)
+        private MonopolySystem _system;
+        public GamePage(Frame workFrame, MonopolySystem system)
         {
             _frame = workFrame;
+            _system = system;
+
             InitializeComponent();
 
             SetPopupsForUserCards();
+
+            SetUserCardsInList();
+        }
+
+        private void GameProcess()
+        {
+           
+        }
+
+        private List<UserCard> _userCards = new List<UserCard>();
+        public void SetUserCardsInList()
+        {
+            _userCards.Add(FirstPlayerRedControl);
+            _userCards.Add(SecondPlayerBlueControl);
+            _userCards.Add(ThirdPlayerGreenControl);
+            _userCards.Add(FourthPlayerPurpleControl);
+            _userCards.Add(FifthPlayerOrangeControl);
         }
 
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)

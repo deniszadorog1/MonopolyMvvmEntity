@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using static System.Net.Mime.MediaTypeNames;
 
+using MonopolyDLL.Monopoly;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -13,10 +14,11 @@ namespace MonopolyEntity.Windows.Pages
     public partial class UserPage : Page
     {
         private Frame _frame;
-
-        public UserPage(Frame workFrame)
+        private MonopolySystem _system;
+        public UserPage(Frame workFrame, MonopolySystem system)
         {
             _frame = workFrame;
+            _system = system;
 
             InitializeComponent();
 
@@ -28,25 +30,25 @@ namespace MonopolyEntity.Windows.Pages
         {
             UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
             {
-                _frame.Content = new UserPage(_frame);
+                _frame.Content = new UserPage(_frame, _system);
             };
         }
 
         public void OpenMainPage()
         {
-            MainPage page = new MainPage(_frame);
+            MainPage page = new MainPage(_frame, _system);
             _frame.Content = page;
         }
 
         public void OpenInventoryPage()
         {
-            InventoryPage page = new InventoryPage(_frame);
+            InventoryPage page = new InventoryPage(_frame, _system);
             _frame.Content = page;
         }
 
         public void OpenGameField()
         {
-            GamePage page = new GamePage(_frame);
+            GamePage page = new GamePage(_frame, _system);
             _frame.Content = page;
         }
 

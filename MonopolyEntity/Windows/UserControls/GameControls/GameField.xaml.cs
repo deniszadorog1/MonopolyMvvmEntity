@@ -31,6 +31,12 @@ using System.Windows.Media.TextFormatting;
 using System.Data.SqlTypes;
 
 using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages;
+using MonopolyDLL.Monopoly;
+using MonopolyDLL.Monopoly.Cell.Bus;
+using System.Xml.Linq;
+using MaterialDesignThemes.Wpf;
+using System.Threading;
+using MonopolyDLL.Monopoly.Enums;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -41,7 +47,20 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
     public partial class GameField : UserControl
     {
+        private MonopolySystem _system;
+        public GameField(MonopolySystem system)
+        {
+            _system = system;
+            MakeBaseMethods();
+        }
+
         public GameField()
+        {
+            _system = new MonopolySystem();
+            MakeBaseMethods();
+        }
+
+        private void MakeBaseMethods()
         {
             InitializeComponent();
 
@@ -57,6 +76,83 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetTestJacPotClick();
 
             SetHeaderColorsForBuses();
+
+            AddThroughCubesControl();
+        }
+
+        private void AddThroughCubesControl()
+        {
+            ThroughCubes cubes = new ThroughCubes();
+            cubes.VerticalAlignment = VerticalAlignment.Top;
+            cubes.ThroughCubesBut.Click += TrowCubes_Click;
+            ChatMessages.Children.Add(cubes);
+        }
+
+        private void TrowCubes_Click(object sender, RoutedEventArgs e)
+        {
+            ChatMessages.Children.Clear();
+            AddThrowingDice();
+        }
+
+        private void AddThrowingDice()
+        {
+            _system.MonGame.DropCubes();
+            DicesDrop drop = new DicesDrop(_system.MonGame.GetFirstCubes(), _system.MonGame.GetSecondCube());
+            drop.VerticalAlignment = VerticalAlignment.Center;
+
+
+            drop._first3dCube._horizontalAnimation.Completed += CubesDroped_Complited;
+
+            ChatMessages.Children.Add(drop);
+
+            //MakeAMoveByChip();
+        }
+
+        private void CubesDroped_Complited(object sender, EventArgs e)
+        {
+            ChatMessages.Children.Clear(); //Move to chips movement complite action
+            MakeChipsMovementAction(_system.MonGame.GetStepperPosition(), 
+                _system.MonGame.GetPointToMoveOn(), _imgs[_system.MonGame.StepperIndex]);
+
+            //Need to understand which cell is Cell On
+            //Get enum action to show whats is happening
+
+            CellAction action = _system.MonGame.GetAction();
+        }
+
+        private void SetActionVisuals(CellAction action)
+        {
+            switch (action)
+            {
+                case CellAction.GotOnBusinessToBuy:
+                    SetBuyBusinessOffer();
+                    break;
+                case CellAction.GotOnOwnBusiness:
+                    break;
+                case CellAction.GotOnEnemysBusiness:
+                    break;
+                case CellAction.GotOnTax:
+                    break;
+                case CellAction.GotOnCasino:
+                    break;
+                case CellAction.GotOnGoToPrison:
+                    break;
+                case CellAction.GotOnChance:
+                    break;
+                case CellAction.GotOnStart:
+                    break;
+                case CellAction.SitIpPrison:
+                    break;
+                case CellAction.VisitPrison:
+                    break;
+            }
+        }
+
+        private void SetBuyBusinessOffer()
+        {
+            BuyBusiness buy = new BuyBusiness();
+
+            ChatMessages.Children.Add(buy);
         }
 
         private void SetHeaderColorsForBuses()
@@ -118,7 +214,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             List<string> prices = new List<string>();
             for (int i = 0; i < _cells.Count; i++)
             {
-                prices.Add(testString);
+                prices.Add(_system.MonGame.GameBoard.GetBusinessPrice(i));
             }
 
             for (int i = 0; i < _cells.Count; i++)
@@ -175,6 +271,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             }
         }
 
+        private int _clickedCellIndex;
         private void SetClickEventForCell(UIElement element)
         {
             if (element is UpperCell upper)
@@ -190,19 +287,166 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 left.PreviewMouseDown += Bussiness_PreviewMouseDown;
         }
 
+        private void SetClickedCellIndex(UIElement element)
+        {
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                if (element == _cells[i])
+                {
+                    _clickedCellIndex = i;
+                    return;
+                }
+            }
+            _clickedCellIndex = -1;
+        }
+
         private void Bussiness_PreviewMouseDown(object sender, MouseEventArgs e)
         {
+            SetClickedCellIndex((UIElement)sender);
             BussinessInfo.Children.Clear();
 
             //Add info about business
-            GameBusInfo info = new GameBusInfo();
-            BussinessInfo.Children.Add(info);
+            (UIElement asd, Size? size) = AddBusinessInfo();
 
-            info.UpdateLayout();
-            SetLocForInfoBox(info, (UIElement)sender);
+            if (asd is null) return;
+            SetLocForInfoBox(asd, (UIElement)sender, (Size)size);
         }
 
-        private void SetLocForInfoBox(GameBusInfo info, UIElement cell)
+        private (UIElement, Size?) AddBusinessInfo()
+        {
+            if (_system.MonGame.GameBoard.Cells[_clickedCellIndex].GetType() == typeof(CarBus))
+            {
+               CarBusInfo info = new CarBusInfo();
+                BussinessInfo.Children.Add(info);
+                SetCarBusInfoParams(info);
+                info.UpdateLayout();
+                return (info, new Size(info.ActualWidth, info.ActualHeight));
+            }
+            else if (_system.MonGame.GameBoard.Cells[_clickedCellIndex].GetType() == typeof(UsualBus))
+            {
+                UsualBusInfo info = new UsualBusInfo();
+                BussinessInfo.Children.Add(info);
+                SetUsualBusInfoParams(info);
+                info.UpdateLayout();
+                return (info, new Size(info.ActualWidth, info.ActualHeight));
+            }
+            else if (_system.MonGame.GameBoard.Cells[_clickedCellIndex].GetType() == typeof(GameBus))
+            {
+                GameBusInfo info = new GameBusInfo();
+                BussinessInfo.Children.Add(info);
+                SetGameBusInfoParams(info);
+                info.UpdateLayout();
+                return (info, new Size(info.ActualWidth, info.ActualHeight));
+            }
+            return (null, null);
+        }
+
+        private void SetCarBusInfoParams(CarBusInfo info)
+        {
+            CarBus bus = (CarBus)_system.MonGame.GameBoard.Cells[_clickedCellIndex];
+
+            info.BusNameText.Text = bus.Name;
+            info.BusType.Text = bus.BusType.ToString();
+
+            info.BusDesc.Text = "This is car business";
+
+            info.OneFieldMoney.Text = bus.PayLevels[0].ToString();
+            info.TwoFieldMoney.Text = bus.PayLevels[1].ToString();
+            info.ThreeFieldMoney.Text = bus.PayLevels[2].ToString();
+            info.FourFieldMoney.Text = bus.PayLevels[3].ToString();
+
+            info.FieldPrice.Text = bus.Price.ToString();
+            info.DepositPriceText.Text = bus.DepositPrice.ToString();
+            info.RebuyPrice.Text = bus.RebuyPrice.ToString();
+
+            info.CarBusHeader.Background = (SolidColorBrush)Application.Current.Resources["CarColor"];
+        }
+
+        private void SetGameBusInfoParams(GameBusInfo info)
+        {
+            GameBus bus = (GameBus)_system.MonGame.GameBoard.Cells[_clickedCellIndex];
+
+            info.BusName.Text = bus.Name;
+            info.BusType.Text = bus.BusType.ToString();
+
+            info.BusDescription.Text = "This is game  business." +
+                "Result bill si multiplication of bought game buses and got " +
+                "cube ribs amount";
+
+            info.OneFieldMoney.Text = bus.PayLevels[0].ToString();
+            info.TwoFieldMoney.Text = bus.PayLevels[1].ToString();
+
+            info.FieldPrice.Text = bus.Price.ToString();
+            info.DepositPriceText.Text = bus.DepositPrice.ToString();
+            info.RebuyPrice.Text = bus.RebuyPrice.ToString();
+
+            info.GameBusHeader.Background = (SolidColorBrush)Application.Current.Resources["GameColor"];
+        }
+
+        private void SetUsualBusInfoParams(UsualBusInfo info)
+        {
+            UsualBus bus = (UsualBus)_system.MonGame.GameBoard.Cells[_clickedCellIndex];
+
+            info.BusName.Text = bus.Name;
+            info.BusType.Text = bus.BusType.ToString();
+
+            info.DescriptionText.Text = "It is a usual business";
+
+            info.BaseRentMoney.Text = bus.PayLevels[0].ToString();
+            info.OneStarRentMoney.Text = bus.PayLevels[1].ToString();
+            info.TwoStarRentMoney.Text = bus.PayLevels[2].ToString();
+            info.ThreeStarRentMoney.Text = bus.PayLevels[3].ToString();
+            info.FourStarRentMoney.Text = bus.PayLevels[4].ToString();
+            info.YellowStarRentMoney.Text = bus.PayLevels[4].ToString();
+
+            info.BusPriceMoney.Text = bus.Price.ToString();
+            info.DepositPriceMoney.Text = bus.DepositPrice.ToString();
+            info.RebuyPriceMoney.Text = bus.RebuyPrice.ToString();
+            info.HousePriceMoney.Text = bus.BuySellHouse.ToString();
+
+            info.NameBusBorder.Background = GetColorForUsusalBusHeader(bus);
+        }
+
+        public SolidColorBrush GetColorForUsusalBusHeader(UsualBus bus)
+        {
+            if (bus.BusType == MonopolyDLL.Monopoly.Enums.BusinessType.Perfume)
+            {
+                return (SolidColorBrush)Application.Current.Resources["PerfumeColor"];
+            }
+            else if (bus.BusType == MonopolyDLL.Monopoly.Enums.BusinessType.Clothes)
+            {
+                return (SolidColorBrush)Application.Current.Resources["ClothesColor"];
+            }
+            else if (bus.BusType == MonopolyDLL.Monopoly.Enums.BusinessType.Messagers)
+            {
+                return (SolidColorBrush)Application.Current.Resources["MessagerColor"];
+            }
+            else if (bus.BusType == MonopolyDLL.Monopoly.Enums.BusinessType.Drinks)
+            {
+                return (SolidColorBrush)Application.Current.Resources["DrinkColor"];
+            }
+            else if (bus.BusType == MonopolyDLL.Monopoly.Enums.BusinessType.Planes)
+            {
+                return (SolidColorBrush)Application.Current.Resources["PlaneColor"];
+            }
+            else if (bus.BusType == MonopolyDLL.Monopoly.Enums.BusinessType.Food)
+            {
+                return (SolidColorBrush)Application.Current.Resources["FoodColor"];
+            }
+            else if (bus.BusType == MonopolyDLL.Monopoly.Enums.BusinessType.Hotels)
+            {
+                return (SolidColorBrush)Application.Current.Resources["HotelColor"];
+            }
+            else if (bus.BusType == MonopolyDLL.Monopoly.Enums.BusinessType.Phones)
+            {
+                return (SolidColorBrush)Application.Current.Resources["PhoneColor"];
+            }
+
+            throw new Exception("No such business type...How is it possiable?");
+        }
+
+
+        private void SetLocForInfoBox(UIElement info, UIElement cell, Size size)
         {
             const int distToCell = 5;
             Point fieldPoint = this.PointToScreen(new Point(0, 0));
@@ -213,27 +457,27 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             Point infoLoc = new Point(0, 0);
             if (cell is UpperCell up)
             {
-                infoLoc = new Point(cellLocalPoint.X + up.Width / 2 - info.ActualWidth / 2, up.Height + distToCell);
+                infoLoc = new Point(cellLocalPoint.X + up.Width / 2 - size.Width / 2, up.Height + distToCell);
             }
             else if (cell is RightCell right)
             {
                 double jacPotYLoc = JackPotCell.PointToScreen(new Point(0, 0)).Y - fieldPoint.Y;
 
-                double yLoc = cellLocalPoint.Y + info.ActualHeight > jacPotYLoc ?
-                    jacPotYLoc - info.ActualHeight : cellLocalPoint.Y;
+                double yLoc = cellLocalPoint.Y + size.Height > jacPotYLoc ?
+                    jacPotYLoc - size.Height : cellLocalPoint.Y;
 
-                infoLoc = new Point(cellLocalPoint.X - info.ActualWidth - distToCell, yLoc);
+                infoLoc = new Point(cellLocalPoint.X - size.Width - distToCell, yLoc);
             }
             else if (cell is BottomCell bot)
             {
-                infoLoc = new Point(cellLocalPoint.X + bot.Width / 2 - info.ActualWidth / 2, cellLocalPoint.Y - info.ActualHeight - distToCell);
+                infoLoc = new Point(cellLocalPoint.X + bot.Width / 2 - size.Width / 2, cellLocalPoint.Y - size.Height - distToCell);
             }
             else if (cell is LeftCell left)
             {
                 double jacPotYLoc = JackPotCell.PointToScreen(new Point(0, 0)).Y - fieldPoint.Y;
 
-                double yLoc = cellLocalPoint.Y + info.ActualHeight > jacPotYLoc ?
-                    jacPotYLoc - info.ActualHeight : cellLocalPoint.Y;
+                double yLoc = cellLocalPoint.Y + size.Height > jacPotYLoc ?
+                    jacPotYLoc - size.Height : cellLocalPoint.Y;
 
                 infoLoc = new Point(cellLocalPoint.X + left.Width + distToCell, yLoc);
             }
@@ -327,7 +571,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private int _tempSquareValToGoOn;
         private EventHandler _chipAnimEvent;
 
-        private bool IfLastMoveIsPrison = false; 
+        private bool IfLastMoveIsPrison = false;
 
         public void MakeChipMove(int startCellIndex, int cellIndexToMoveOn, Image chipImg,
             Point insidePointStartCell, Point newInsideChipPoint)
@@ -534,7 +778,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                         IfLastMoveIsPrison = false;
                         MakeAMoveToInPrisonCell(true, toMove);
                     }
-                    
+
                     //if (_ifGoesThroughSquareCell) return;
                     _ifChipMoves = false;
                 };
@@ -566,13 +810,35 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private List<Image> _imgs = new List<Image>();
         private void SetChipPositionsInStartSquare()
         {
-            _imgs = BoardHelper.GetAllChipsImages();
+            _imgs = BoardHelper.GetAllChipsImages(_system.MonGame.Players.Count);
 
             for (int i = 0; i < _imgs.Count; i++)
             {
-                chipAndCord.Add((_imgs[i], 0));
+                chipAndCord.Add((_imgs[i], _system.MonGame.Players[i].Position));
             }
 
+            for(int i = 0; i < _imgs.Count; i++)
+            {
+                SetStartChipInPlacerCanvas(_cells[_system.MonGame.Players[i].Position], _imgs[i]);
+            }
+
+            List<int> unique = _system.MonGame.GetUniquePositions();
+            //Set Posiotions
+            for(int i = 0; i < unique.Count; i++)
+            {
+                List<List<Point>> cellPoints = BoardHelper.GetChipsPoints(
+                GetCellSize(_cells[unique[i]]));
+
+                List<Point> res = cellPoints[_system.MonGame.GetAmountOfPlayersInCell(unique[i]) - 1];
+                List<(Image, int)> chipsInCell = chipAndCord.Where(x => x.Item2 == unique[i]).ToList();
+
+                for(int j = 0; j < chipsInCell.Count; j++)
+                {
+                    Canvas.SetLeft(chipsInCell[j].Item1, res[j].X);
+                    Canvas.SetTop(chipsInCell[j].Item1, res[j].Y);
+                }
+            }
+            return;
             List<List<Point>> points = BoardHelper.GetChipsPoints(
                 new Size(StartCell.Width, StartCell.Height));
 
@@ -586,6 +852,63 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 Canvas.SetTop(_imgs[i], pointsForChips[i].Y);
 
                 StartCell.ChipsPlacer.Children.Add(_imgs[i]);
+            }
+        }
+
+        private Size GetCellSize(UIElement cell)
+        {
+            if (cell is SquareCell square)
+            {
+                return new Size(square.ChipsPlacer.Width, square.ChipsPlacer.Height);
+            }
+            else if (cell is UpperCell up)
+            {
+                return new Size(up.ChipsPlacer.Width, up.ChipsPlacer.Height);
+            }
+            else if (cell is PrisonCell prison)
+            {
+                return new Size(prison.ChipsPlacer.Width, prison.ChipsPlacer.Height);
+            }
+            else if (cell is RightCell right)
+            {
+                return new Size(right.ChipsPlacer.Width, right.ChipsPlacer.Height);
+            }
+            else if (cell is BottomCell bot)
+            {
+                return new Size(bot.ChipsPlacer.Width, bot.ChipsPlacer.Height);
+            }
+            else if (cell is LeftCell left)
+            {
+                return new Size(left.ChipsPlacer.Width, left.ChipsPlacer.Height);
+            }
+            throw new Exception("Type of cell is not exist... Just How?");
+        }
+
+        private void SetStartChipInPlacerCanvas(UIElement cell, Image chip)
+        {
+            if (cell is SquareCell square)
+            {
+                square.ChipsPlacer.Children.Add(chip);
+            }
+            else if (cell is UpperCell up)
+            {
+                up.ChipsPlacer.Children.Add(chip);
+            }
+            else if (cell is PrisonCell prison)
+            {
+                prison.ChipsPlacer.Children.Add(chip);
+            }
+            else if(cell is RightCell right)
+            {
+                right.ChipsPlacer.Children.Add(chip);
+            }
+            else if(cell is BottomCell bot)
+            {
+                bot.ChipsPlacer.Children.Add(chip);
+            }
+            else if(cell is LeftCell left)
+            {
+                left.ChipsPlacer.Children.Add(chip);
             }
         }
 

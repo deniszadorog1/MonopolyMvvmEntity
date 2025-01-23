@@ -16,14 +16,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="0">
-            <DicePath:Dice Width="175" Height="175" 
-                           HorizontalAlignment="Right" Margin="0 -20 0 0"/>
-        </Grid>
+        <Grid Grid.Column="0" Name ="FirstCube"/>
 
-        <Grid Grid.Column="1">
-            <DicePath:Dice Width="175" Height="175" HorizontalAlignment="Left" Margin="0 20 0 0"/>
-        </Grid>
-
+        <Grid Grid.Column="1" Name="SecondCube"/>
     </Grid>
 </UserControl>

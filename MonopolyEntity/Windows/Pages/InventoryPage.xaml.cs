@@ -21,6 +21,7 @@ using System.Net;
 using System.Xml.Linq;
 using System.Windows.Media.Effects;
 
+using MonopolyDLL.Monopoly;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -30,9 +31,11 @@ namespace MonopolyEntity.Windows.Pages
     public partial class InventoryPage : Page
     {
         private Frame _frame;
-        public InventoryPage(Frame workFrame)
+        private MonopolySystem _system;
+        public InventoryPage(Frame workFrame, MonopolySystem system)
         {
             _frame = workFrame;
+            _system = system;
             InitializeComponent();
 
             SetUpperLineSettings();
@@ -63,7 +66,7 @@ namespace MonopolyEntity.Windows.Pages
              
             if(sender is CaseCard card)
             {
-                Point wrapLoc = Helper.GetElementLocation(card, ItemsPanel);
+                //Point wrapLoc = Helper.GetElementLocation(card, ItemsPanel);
 
                 Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
 
@@ -151,7 +154,7 @@ namespace MonopolyEntity.Windows.Pages
         {
             UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
             {
-                _frame.Content = new UserPage(_frame);
+                _frame.Content = new UserPage(_frame, _system);
             };
         }
 
@@ -166,13 +169,13 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenGameField()
         {
-            GamePage page = new GamePage(_frame);
+            GamePage page = new GamePage(_frame, _system);
             _frame.Content = page;
         }
 
         public void OpenMainPage()
         {
-            MainPage page = new MainPage(_frame);
+            MainPage page = new MainPage(_frame, _system);
             _frame.Content = page;
         }
 

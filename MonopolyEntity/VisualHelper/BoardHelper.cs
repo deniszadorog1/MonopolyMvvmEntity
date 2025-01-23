@@ -128,21 +128,27 @@ namespace MonopolyEntity.VisualHelper
             return res;
         }
 
-        public static List<Image> GetAllChipsImages()
+        public static List<Image> GetAllChipsImages(int amountOfPlayers)
         {
+            List<Image> chips = new List<Image>();
+
+            chips.Add(GetChipImageByName("chipRed.png"));
+            chips.Add(GetChipImageByName("chipBlue.png"));
+            chips.Add(GetChipImageByName("chipGreen.png"));      
+            chips.Add(GetChipImageByName("chipPurple.png"));
+            chips.Add(GetChipImageByName("chipOrange.png"));
+
+            chips[0].Name = "One";
+            chips[1].Name = "Two";
+            chips[2].Name = "Three";
+            chips[3].Name = "Four";
+            chips[4].Name = "Five";
+
             List<Image> res = new List<Image>();
-
-            res.Add(GetChipImageByName("chipRed.png"));
-            res.Add(GetChipImageByName("chipBlue.png"));
-            res.Add(GetChipImageByName("chipGreen.png"));      
-            res.Add(GetChipImageByName("chipPurple.png"));
-            res.Add(GetChipImageByName("chipOrange.png"));
-
-            res[0].Name = "One";
-            res[1].Name = "Two";
-            res[2].Name = "Three";
-            res[3].Name = "Four";
-            res[4].Name = "Five";
+            for(int i = 0; i < amountOfPlayers; i++)
+            {
+                res.Add(chips[i]);
+            }
 
             return res;
         }

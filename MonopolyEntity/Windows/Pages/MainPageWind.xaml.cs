@@ -6,6 +6,8 @@ using System.Windows.Media;
 using MahApps.Metro.Actions;
 using MonopolyEntity.Windows.UserControls.MainPage;
 
+using MonopolyDLL.Monopoly;
+
 namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
@@ -14,9 +16,11 @@ namespace MonopolyEntity.Windows.Pages
     public partial class MainPage : Page
     {
         private Frame _frame;
-        public MainPage(Frame workFrame)
+        private MonopolySystem _system;
+        public MainPage(Frame workFrame, MonopolySystem system)
         {
             _frame = workFrame;
+            _system = system;
             InitializeComponent();
 
             SetGameWindowImg();
@@ -29,7 +33,7 @@ namespace MonopolyEntity.Windows.Pages
         {
             UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
             {
-                _frame.Content = new UserPage(_frame);
+                _frame.Content = new UserPage(_frame, _system);
             };
         }
 
@@ -64,19 +68,19 @@ namespace MonopolyEntity.Windows.Pages
             _frame.Content = open;
 
             return;*/
-            InventoryPage page = new InventoryPage(_frame);
+            InventoryPage page = new InventoryPage(_frame, _system);
             _frame.Content = page;
         }
 
         public void OpenGameField()
         {
-            GamePage page = new GamePage(_frame);
+            GamePage page = new GamePage(_frame, _system);
             _frame.Content = page;
         }
 
         public void OpenMainPage()
         {
-            MainPage page = new MainPage(_frame);
+            MainPage page = new MainPage(_frame, _system);
             _frame.Content = page;
         }
     }

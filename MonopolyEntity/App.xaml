@@ -35,6 +35,15 @@
             <SolidColorBrush x:Key="PhoneColor" Color="#656D78"/>
             <SolidColorBrush x:Key="GameColor" Color="#7F1F0F"/>
 
+
+            <SolidColorBrush x:Key="FirstUserColor" Color="#EA5F5B"/>
+            <SolidColorBrush x:Key="SecondUserColor" Color="#31A2E6"/>
+            <SolidColorBrush x:Key="ThirdUserColor" Color="#9DD766"/>
+            <SolidColorBrush x:Key="FourthUserColor" Color="#C686E6"/>
+            <SolidColorBrush x:Key="FifthUserColor" Color="#D9AA43"/>
+
+            <SolidColorBrush x:Key="BaseUserCardBackground" Color="#161A1B"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

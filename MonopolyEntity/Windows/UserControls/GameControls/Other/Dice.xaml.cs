@@ -19,6 +19,7 @@ using System.IO;
 using MonopolyEntity.VisualHelper;
 using System.Windows.Media.Animation;
 using System.Windows.Markup.Localizer;
+using System.Threading;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls.Other
 {
@@ -27,8 +28,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
     /// </summary>
     public partial class Dice : UserControl
     {
-        public Dice()
+        private int _cubeRes;
+        public Dice(int cubeRes)
         {
+            _cubeRes = cubeRes;
             InitializeComponent();
 
             SetNeedRoatationParams();
@@ -147,10 +150,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
         private AxisAngleRotation3D _horizontalRotation;
         private AxisAngleRotation3D _verticalRotation;
 
+        public DoubleAnimation _horizontalAnimation;
+        public DoubleAnimation _vertialAnimation;
+
         private void SetHorizontalRotation()
         {
             //return;
-            var animation = new DoubleAnimation
+            _horizontalAnimation = new DoubleAnimation
             {
                 From = 0, 
                 To = _horizontalTo, 
@@ -161,33 +167,34 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
 
             };
 
-            _horizontalRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, animation);
+            _horizontalAnimation.Completed += (sender, e) =>
+            {
+            };
+
+            _horizontalRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, _horizontalAnimation);
         }
 
         private void SetVerticalRoation()
         {
-            var animation = new DoubleAnimation
+            _vertialAnimation = new DoubleAnimation
             {
                 From = 0, 
                 To = _verticalTo, 
                 Duration = TimeSpan.FromSeconds(3),
-                //AccelerationRatio = 0.3, 
-                DecelerationRatio = 1,
+                AccelerationRatio = 0.1, 
+                DecelerationRatio = 0.9,
                 //RepeatBehavior = RepeatBehavior.Forever,
 
             };
-            _verticalRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, animation);
+            _verticalRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, _vertialAnimation);
         }
 
-        Random _rnd = new Random(Guid.NewGuid().GetHashCode());
         private int _horizontalTo;
         private int _verticalTo;
 
         private void SetNeedRoatationParams()
         {
-            int diceValue = _rnd.Next(0, 6);
-
-            (int hor, int vert) rotation = GetRoationParams(diceValue);
+            (int hor, int vert) rotation = GetRoationParams(_cubeRes);
 
             _horizontalTo = rotation.hor;
             _verticalTo = rotation.vert; 

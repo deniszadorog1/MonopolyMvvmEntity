@@ -23,6 +23,7 @@ namespace MonopolyEntity
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MonopolyDLL.Monopoly.MonopolySystem _monopolySys;
         public MainWindow()
         {
             InitializeComponent();
@@ -30,7 +31,9 @@ namespace MonopolyEntity
 
         private void LoginBut_Click(object sender, RoutedEventArgs e)
         {
-            WorkWindow window = new WorkWindow();
+            //Set logged user here
+
+            WorkWindow window = new WorkWindow(_monopolySys);
             window.ShowDialog();
 
         }

@@ -15,7 +15,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" CornerRadius="10 10 0 0" Background="Gray">
+            <Border Grid.Row="0" Name ="GameBusHeader"  
+                    CornerRadius="10 10 0 0" Background="Gray">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -24,16 +25,17 @@
 
                     <TextBlock Grid.Row="0" Name="BusName" Margin="5" 
                                Foreground="White" 
-                               Text="There should bus name" FontSize="18"/>
+                               Text="There should bus name" FontSize="20"/>
 
-                    <TextBlock Grid.Row="1" Name="BusDescription" Margin="5" 
+                    <TextBlock Grid.Row="1" Name="BusType" Margin="5" 
                                Foreground="White" 
-                               Text="There should bus type" FontSize="14"/>
+                               Text="There should bus type" FontSize="16"/>
                 </Grid>
             </Border>
 
             <Grid Grid.Row="1" Margin="10 5 20 5">
-                <TextBlock Text="There should be bus type description" 
+                <TextBlock Name="BusDescription"
+                           Text="There should be bus type description" 
                            FontSize="16" TextWrapping="Wrap"/>
             </Grid>
 

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using MonopolyEntity.Windows.Pages;
+using MonopolyDLL.Monopoly;
 
 namespace MonopolyEntity.Windows
 {
@@ -21,8 +22,10 @@ namespace MonopolyEntity.Windows
     /// </summary>
     public partial class WorkWindow : Window
     {
-        public WorkWindow()
+        private MonopolySystem _monSystem;
+        public WorkWindow(MonopolySystem monSystem)
         {
+            _monSystem = monSystem;
             InitializeComponent();
 
             SetStartPage();
@@ -32,7 +35,7 @@ namespace MonopolyEntity.Windows
         {
             //WorkFrame.Content = new OpenCase();
 
-            MainPage mainPage = new MainPage(WorkFrame);
+            MainPage mainPage = new MainPage(WorkFrame, _monSystem);
             WorkFrame.Content = mainPage;   
         }
 

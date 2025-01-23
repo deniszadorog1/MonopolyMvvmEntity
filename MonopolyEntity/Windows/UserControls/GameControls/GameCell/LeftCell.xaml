@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.GameCell"
              mc:Ignorable="d" 
-             d:DesignHeight="65" d:DesignWidth="150">
+             d:DesignHeight="65" d:DesignWidth="150"
+             Height="65" Width="150">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>

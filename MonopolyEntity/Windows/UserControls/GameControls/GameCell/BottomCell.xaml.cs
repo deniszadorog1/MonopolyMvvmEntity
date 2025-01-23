@@ -23,6 +23,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.GameCell
         public BottomCell()
         {
             InitializeComponent();
+
+            SetChipsCanvasSize();
+        }
+
+        public void SetChipsCanvasSize()
+        {
+            const int devider = 5;
+            const int multiplier = 4;
+            ChipsPlacer.Width = Width;
+            ChipsPlacer.Height = Height / devider * multiplier;
         }
     }
 }

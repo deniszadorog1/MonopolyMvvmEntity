@@ -81,7 +81,7 @@
             </Grid>
 
             <Grid  Name ="CenterPanel"  Grid.Column="1" Grid.Row="1" 
-                   Background="Gray" Margin="10">
+                   Background="Transparent" Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="1*"/>
@@ -89,9 +89,9 @@
 
                 <Grid Grid.Row="0" >
 
-                    <Canvas x:Name="ChatMessages" Panel.ZIndex="100"/>
+                    <Grid x:Name="ChatMessages" Panel.ZIndex="100"/>
 
-                   <!-- <DiceDrop:DicesDrop Visibility="Visible" x:Name="ThroughCubes3Ds"
+                    <!-- <DiceDrop:DicesDrop Visibility="Visible" x:Name="ThroughCubes3Ds"
                                         Width="400" Height="400" /> -->
 
                     <ScrollViewer VerticalScrollBarVisibility="Visible">

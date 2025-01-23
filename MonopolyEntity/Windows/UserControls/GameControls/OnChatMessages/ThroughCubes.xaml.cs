@@ -24,5 +24,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         {
             InitializeComponent();
         }
+
+        private void ThroughCubesBut_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo"
              mc:Ignorable="d" 
              d:DesignHeight="420" d:DesignWidth="260"
-             
+             MaxHeight="430" MinHeight="420"
+             MaxWidth="260" MinWidth="260"
              >
     <Border Background="White" CornerRadius="10">
         <Grid>
@@ -28,7 +29,7 @@
             </Border>
 
             <Grid Grid.Row="1" Name="BusDescGrid" Margin="20 5 20 0">
-                <TextBlock FontSize="14" TextWrapping="Wrap" 
+                <TextBlock FontSize="14" TextWrapping="Wrap"  Name="DescriptionText"
                            Text="There some text about bus type"/>
             </Grid>
 

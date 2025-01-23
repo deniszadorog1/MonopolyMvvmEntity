@@ -5,7 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="260">
+             d:DesignHeight="350" d:DesignWidth="260"
+             MaxHeight="350" MinHeight="350"
+             MaxWidth="260" MinWidth="260">
+             
+    
     <Border Background="White" CornerRadius="10">
         <Grid Name ="CardGrid">
             <Grid.RowDefinitions>
@@ -15,7 +19,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Background="Gray" CornerRadius="10 10 0 0">
+            <Border Grid.Row="0" Name="CarBusHeader"
+                    Background="Gray" CornerRadius="10 10 0 0">
                 <Grid Margin="5">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
