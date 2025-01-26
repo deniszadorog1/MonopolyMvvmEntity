@@ -15,7 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using MonopolyEntity.Windows;
-
+using MonopolyDLL.Monopoly;
 namespace MonopolyEntity
 {
     /// <summary>
@@ -23,9 +23,11 @@ namespace MonopolyEntity
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MonopolyDLL.Monopoly.MonopolySystem _monopolySys;
+        private MonopolySystem _monopolySys;
         public MainWindow()
         {
+            _monopolySys = new MonopolySystem();
+
             InitializeComponent();
         }
 

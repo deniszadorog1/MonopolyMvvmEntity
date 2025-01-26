@@ -35,13 +35,35 @@ namespace MonopolyEntity.Windows.Pages
             InitializeComponent();
 
             SetPopupsForUserCards();
+            SetUserCardsInList(); 
+            SetStartValuesInUserCards();
+            
+            AddGameField();
 
-            SetUserCardsInList();
         }
 
-        private void GameProcess()
+        GameField _field;
+        private void AddGameField()
         {
-           
+            _field = new GameField(_system, _userCards)
+            {
+                Height = 950,
+                Width = 950, 
+                Name = "GameField",
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Top
+            };
+
+            FieldGrid.Children.Add(_field);
+        }
+
+        private void SetStartValuesInUserCards()
+        {
+            for (int i = 0; i < _system.MonGame.Players.Count; i++)
+            {
+                _userCards[i].UserLogin.Text = _system.MonGame.Players[i].Login;
+                _userCards[i].UserMoney.Text = _system.MonGame.Players[i].AmountOfMoney.ToString();
+            }
         }
 
         private List<UserCard> _userCards = new List<UserCard>();
@@ -56,11 +78,11 @@ namespace MonopolyEntity.Windows.Pages
 
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            GameField.BussinessInfo.Children.Clear();
+            FieldGrid.Children.OfType<GameField>().First().BussinessInfo.Children.Clear();
             _dropdownMenuPopup.IsOpen = false;
             _dropdownMenuPopup.PlacementTarget = null;
         }
-         
+
         private Popup _dropdownMenuPopup;
         private void SetPopupsForUserCards()
         {
@@ -68,7 +90,7 @@ namespace MonopolyEntity.Windows.Pages
         }
 
         private void GetContextMenu()
-        {       
+        {
             _dropdownMenuPopup = new Popup
             {
                 Placement = PlacementMode.Bottom,
@@ -113,18 +135,73 @@ namespace MonopolyEntity.Windows.Pages
             button.Click += (s, e) =>
             {
                 MessageBox.Show($"You choosed: {content}");
-                _dropdownMenuPopup.IsOpen = false; 
+                _dropdownMenuPopup.IsOpen = false;
             };
             return button;
         }
 
-        private void FirstPlayerRedControl_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void UserCardPopup_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (_dropdownMenuPopup.PlacementTarget == null)
             {
+                SetPopopMenu((UserCard)sender);
                 _dropdownMenuPopup.PlacementTarget = ((UserCard)sender);
-            }    
+            }
             _dropdownMenuPopup.IsOpen = !_dropdownMenuPopup.IsOpen;
+        }
+
+        private void SetPopopMenu(UserCard card)
+        {
+            int cardIndex = _userCards.IndexOf(card);
+
+            StackPanel popupPanel = (StackPanel)((Border)_dropdownMenuPopup.Child).Child;
+            popupPanel.Children.Clear();
+
+
+            if (_system.MonGame.IfIndexAndStepperIndexAreEqual(cardIndex))
+            {
+                SetGiveUpButton(popupPanel);
+                return;
+            }
+            SetSendTradeButton(popupPanel, cardIndex);
+        }
+
+        private void SetSendTradeButton(StackPanel panel, int traderIndex)
+        {
+            Button but = GetButtonForUserCardMenu("Send trade");
+
+            but.Click += (sender, e) =>
+            {
+                _field.SendTrade(traderIndex);
+            };
+            panel.Children.Add(but);
+        }
+
+        private void SetGiveUpButton(StackPanel panel)
+        {
+            Button but = GetButtonForUserCardMenu("Give up");
+
+            but.Click += (sender, e) =>
+            {
+                _field.PlayerGaveUp();
+            };
+
+            panel.Children.Add(but);
+        }
+
+        private Button GetButtonForUserCardMenu(string content)
+        {
+            var button = new Button
+            {
+                Content = content,
+                Margin = new Thickness(0),
+                Background = Brushes.Transparent,
+                Width = 220,
+                Foreground = Brushes.Black,
+                BorderThickness = new Thickness(0),
+            };
+
+            return button;
         }
     }
 }

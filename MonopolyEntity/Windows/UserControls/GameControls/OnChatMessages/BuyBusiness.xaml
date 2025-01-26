@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="600">
+             d:DesignHeight="250" d:DesignWidth="600" 
+             Height="200" VerticalAlignment="Top">
     <Border Background="#E3E3E3" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -29,17 +30,17 @@
             <Grid Grid.Row ="2" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
 
-                    <Button Name ="ThroughCubesBut" Width="200" Height="45"
+                    <Button Name ="BuyBusBut" Width="200" Height="45"
                     Background="{StaticResource MainGlobalColor}" 
                     BorderBrush="White" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Content="Through cubes"
+                    HorizontalAlignment="Center" Content="Buy Business"
                     Foreground="White" VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center" FontSize="16"/>
 
                     <Button Name ="SendToAuctionBut" Background="#ECEEF1" 
                     BorderBrush="White" Margin="10 0 0 0"
-                    Width="{Binding ActualWidth, ElementName=ThroughCubesBut}"
-                    Height="{Binding ActualHeight, ElementName=ThroughCubesBut}"
+                    Width="{Binding ActualWidth, ElementName=BuyBusBut}"
+                    Height="{Binding ActualHeight, ElementName=BuyBusBut}"
                     Content="Send to auction" Foreground="Black"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center" FontSize="16"/>

@@ -11,14 +11,14 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
 {
     public class ParentBus : CellParent
     {
-        public int Price;
-        public int DepositPrice;
-        public int RebuyPrice;
-        public List<int> PayLevels;
-        public int DepositCounter;
-        public int Level;
-        public int OwnerIndex;
-        public BusinessType BusType;
+        public int Price { get; set; }
+        public int DepositPrice { get; set; }
+        public int RebuyPrice { get; set; }
+        public List<int> PayLevels { get; set; }
+        public int DepositCounter { get; set; }
+        public int Level { get; set; }
+        public int OwnerIndex { get; set; }
+        public BusinessType BusType { get; set; }
 
         public int _depositCounterMax = 15;
 

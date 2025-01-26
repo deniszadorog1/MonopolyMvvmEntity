@@ -16,7 +16,7 @@ namespace MonopolyDLL.Monopoly.Enums
         GotOnGoToPrison,
         GotOnChance,
         GotOnStart,
-        SitIpPrison,
+        SitInPrison,
         VisitPrison
     }
 }

@@ -160,7 +160,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             {
                 From = 0, 
                 To = _horizontalTo, 
-                Duration = TimeSpan.FromSeconds(3),
+                Duration = TimeSpan.FromSeconds(1),
                 //AccelerationRatio = 0.3, 
                 DecelerationRatio = 1,
                 //RepeatBehavior = RepeatBehavior.Forever,
@@ -180,7 +180,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             {
                 From = 0, 
                 To = _verticalTo, 
-                Duration = TimeSpan.FromSeconds(3),
+                Duration = TimeSpan.FromSeconds(1),
                 AccelerationRatio = 0.1, 
                 DecelerationRatio = 0.9,
                 //RepeatBehavior = RepeatBehavior.Forever,

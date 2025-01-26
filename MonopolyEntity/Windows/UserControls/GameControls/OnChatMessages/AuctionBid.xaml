@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="600">
+             d:DesignHeight="200" d:DesignWidth="600"
+             Height="200" VerticalAlignment="Top">
     <Border Background="#E3E3E3" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -15,32 +16,32 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Margin="5">
-                <TextBlock Name="YourTurnText" Foreground="#696969" 
+                <TextBlock Name="BidForText" Foreground="#696969" 
                         Text="You got on BusName!"
                     FontSize="26" Margin="10 10 0 0 "/>
             </Grid>
 
             <Grid Grid.Row="1" >
                 <TextBlock Name="GoodLuckText" Foreground="#696969" 
-                        Text="If you wont buy it, unit go to auction!"
+                        Text="Make a bid or not!"
                     FontSize="24" Margin="10 10 0 0 "/>
             </Grid>
 
             <Grid Grid.Row ="2" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
 
-                    <Button Name ="ThroughCubesBut" Width="200" Height="45"
+                    <Button Name ="MakeBidBut" Width="200" Height="45"
                  Background="{StaticResource MainGlobalColor}" 
                  BorderBrush="White" VerticalAlignment="Center"
-                 HorizontalAlignment="Center" Content="Through cubes"
+                 HorizontalAlignment="Center" Content="Make bid"
                  Foreground="White" VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center" FontSize="16"/>
 
-                    <Button Name ="SendToAuctionBut" Background="#ECEEF1" 
+                    <Button Name ="NotMakeABidBut" Background="#ECEEF1" 
                  BorderBrush="White" Margin="10 0 0 0"
-                 Width="{Binding ActualWidth, ElementName=ThroughCubesBut}"
-                 Height="{Binding ActualHeight, ElementName=ThroughCubesBut}"
-                 Content="Send to auction" Foreground="Black"
+                 Width="{Binding ActualWidth, ElementName=MakeBidBut}"
+                 Height="{Binding ActualHeight, ElementName=MakeBidBut}"
+                 Content="Dont buy" Foreground="Black"
                  HorizontalContentAlignment="Center"
                  VerticalContentAlignment="Center" FontSize="16"/>
 

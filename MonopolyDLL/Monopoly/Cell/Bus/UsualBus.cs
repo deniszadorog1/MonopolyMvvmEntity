@@ -9,7 +9,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
 {
     public class UsualBus : ParentBus
     {
-        public int BuySellHouse;
+        public int BuySellHouse { get; set; }
 
         public UsualBus(string name, int price, int depositPrice, int rebuyPrice,List<int> paymentLevels, 
             int depositCounter, int level, int buySellHouse, int ownerIndex, BusinessType type)

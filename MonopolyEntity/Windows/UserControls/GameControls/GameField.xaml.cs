@@ -37,6 +37,8 @@ using System.Xml.Linq;
 using MaterialDesignThemes.Wpf;
 using System.Threading;
 using MonopolyDLL.Monopoly.Enums;
+using System.Globalization;
+using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeControls;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -48,15 +50,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
     public partial class GameField : UserControl
     {
         private MonopolySystem _system;
-        public GameField(MonopolySystem system)
+        private List<UserCard> _cards;
+        public GameField(MonopolySystem system, List<UserCard> cards)
         {
             _system = system;
-            MakeBaseMethods();
-        }
+            _cards = cards;
 
-        public GameField()
-        {
-            _system = new MonopolySystem();
             MakeBaseMethods();
         }
 
@@ -73,11 +72,71 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             SetClickEventForBusCells();
             SetStartPricesForBusses();
-            SetTestJacPotClick();
 
             SetHeaderColorsForBuses();
 
             AddThroughCubesControl();
+            SetUsersColorsInList();
+
+            SetCardForStartStepper();
+        }
+
+        private void SetCardForStartStepper()
+        {
+            _cards[_system.MonGame.StepperIndex].SetAnimation(_colors[_system.MonGame.StepperIndex], true);
+        }
+
+        private void ChangeStepper()
+        {
+            //Get Back size for old Card
+            _cards[_system.MonGame.StepperIndex].SetAnimation(null, false);
+
+            //Change ing dll
+            _system.MonGame.ChangeStepper();
+
+            //Set Size for new Card
+            _cards[_system.MonGame.StepperIndex].SetAnimation(_colors[_system.MonGame.StepperIndex], true);
+
+            SetActionAfterStepperChanged();
+        }
+
+        private void ChangeStepAfterAuction()
+        {
+            _system.MonGame.ChangeStepper();
+
+            _cards[_system.MonGame.StepperIndex].SetAnimation(_colors[_system.MonGame.StepperIndex], true);
+
+            SetActionAfterStepperChanged();
+        }
+
+        private void SetActionAfterStepperChanged()
+        {
+            ActionAfterStepperChanged action = _system.MonGame.GetActionAfterStepperChanged();
+
+            switch (action)
+            {
+                case ActionAfterStepperChanged.ThrowCubes:
+                    AddThroughCubesControl();
+                    break;
+                case ActionAfterStepperChanged.PrisonQuerstion:
+                    break;
+            }
+        }
+
+        List<SolidColorBrush> _colors = new List<SolidColorBrush>();
+        public void SetUsersColorsInList()
+        {
+            List<SolidColorBrush> temp = new List<SolidColorBrush>();
+            temp.Add((SolidColorBrush)Application.Current.Resources["FirstUserColor"]);
+            temp.Add((SolidColorBrush)Application.Current.Resources["SecondUserColor"]);
+            temp.Add((SolidColorBrush)Application.Current.Resources["ThirdUserColor"]);
+            temp.Add((SolidColorBrush)Application.Current.Resources["FourthUserColor"]);
+            temp.Add((SolidColorBrush)Application.Current.Resources["FifthUserColor"]);
+
+            for (int i = 0; i < _system.MonGame.Players.Count; i++)
+            {
+                _colors.Add(temp[i]);
+            }
         }
 
         private void AddThroughCubesControl()
@@ -110,50 +169,470 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void CubesDroped_Complited(object sender, EventArgs e)
         {
-            ChatMessages.Children.Clear(); //Move to chips movement complite action
-            MakeChipsMovementAction(_system.MonGame.GetStepperPosition(), 
+            MakeChipsMovementAction(_system.MonGame.GetStepperPosition(),
                 _system.MonGame.GetPointToMoveOn(), _imgs[_system.MonGame.StepperIndex]);
+
+            //Change temp point 
+            _system.MonGame.SetPlayerPosition();
 
             //Need to understand which cell is Cell On
             //Get enum action to show whats is happening
 
-            CellAction action = _system.MonGame.GetAction();
+            _chipMoveAnimation.Completed += (compSender, eve) =>
+            {
+                //Remove dice 
+                ChatMessages.Children.Remove(ChatMessages.Children.OfType<DicesDrop>().First());
+
+                CellAction action = _system.MonGame.GetAction();
+                SetActionVisuals(action);
+            };
+
         }
 
         private void SetActionVisuals(CellAction action)
         {
+
             switch (action)
             {
                 case CellAction.GotOnBusinessToBuy:
                     SetBuyBusinessOffer();
                     break;
                 case CellAction.GotOnOwnBusiness:
+                    PlayerGotOnOwnBusiness();
                     break;
                 case CellAction.GotOnEnemysBusiness:
+                    SetGotOnEnemysBusiness();
                     break;
                 case CellAction.GotOnTax:
+                    SetGotOnTax();
                     break;
                 case CellAction.GotOnCasino:
+                    SetGetOnCasino();
                     break;
                 case CellAction.GotOnGoToPrison:
                     break;
                 case CellAction.GotOnChance:
+                    SetGotOnChance(); //Correct movement things
                     break;
                 case CellAction.GotOnStart:
                     break;
-                case CellAction.SitIpPrison:
+                case CellAction.SitInPrison:
                     break;
                 case CellAction.VisitPrison:
                     break;
             }
+            //trade
+        }
+
+        private void SetGotOnChance()
+        {
+            ChanceAction action = ChanceAction.GoToPrison;// _system.MonGame.GetChanceAction();
+
+            MakeChanceAction(action);
+
+
+            UpdatePlayersMoney();
+
+            string actionText = GetTextForChanceAction(action);
+            AddMessageTextBlock(actionText);
+        }
+
+        private void MakeChanceAction(ChanceAction action)
+        {
+            switch (action)
+            {
+                case ChanceAction.ForwardInOne:
+                    MakeLittleMoveFromChance(_system.MonGame.GetIndexToStepOnForChance(action));
+                    break;
+                case ChanceAction.BackwardsInOne:
+                    MakeLittleMoveFromChance(_system.MonGame.GetIndexToStepOnForChance(action));
+                    break;
+                case ChanceAction.Pay500:
+                    PayMoneyChanceAction(_system.MonGame.GameBoard.GetLitteleLoseMoneyChance());
+                    break;
+                case ChanceAction.Pay1500:
+                    PayMoneyChanceAction(_system.MonGame.GameBoard.GetBigLoseMoneyChance());
+                    break;
+                case ChanceAction.Get500:
+                    GetMoneyChanceAction(_system.MonGame.GameBoard.GetLitteleWinMoneyChance());
+                    break;
+                case ChanceAction.Get1500:
+                    GetMoneyChanceAction(_system.MonGame.GameBoard.GetBigWinMoneyChance());
+                    break;
+                case ChanceAction.GoToPrison:
+                    GoToPrisonFromChance(_system.MonGame.GameBoard.GetPrisonCellIndex());
+                    break;
+            }
+        }
+
+        private void MakeLittleMoveFromChance(int cellIndex)
+        {
+            MakeChipsMovementAction(_system.MonGame.GetStepperPosition(), cellIndex, _imgs[_system.MonGame.StepperIndex]);
+            _system.MonGame.SetPlayerPositionAfterChanceMove(cellIndex);
+        }
+
+        private void GoToPrisonFromChance(int cellIndexToMoveOn)
+        {
+            MakeChipsMovementAction(_system.MonGame.GetStepperPosition(), 10, _imgs[_system.MonGame.StepperIndex]);
+
+            //MakeAMoveToInPrisonCell(true, _imgs[_system.MonGame.StepperIndex]);
+            _system.MonGame.SetPlayerPositionAfterChanceMove(cellIndexToMoveOn);
+
+        }
+
+        private void GetMoneyChanceAction(int money)
+        {
+            _system.MonGame.GetMoneyFromChance(money);
+        }
+
+        private void PayMoneyChanceAction(int money)
+        {
+            SetPayMoney("You got on chance cell", $"neeed to Pay {money}", money);
+        }
+
+        public void SetPayMoney(string firstLine, string secondLine, int money, bool ifEnemysBus = false)
+        {
+            PayMoney bill = new PayMoney();
+
+            bill.GotOnBusText.Text = $"{firstLine}";
+            bill.PayBillText.Text = $"{secondLine}";
+
+
+            bill.PayBillBut.Click += (sender, e) =>
+            {
+                if (_system.MonGame.IfStepperHasEnoughMoneyToPay(money))
+                {
+                    if (ifEnemysBus)
+                    {
+                        _system.MonGame.PayBusBillByStepper();
+                    }
+                    else { _system.MonGame.PayBillByStepper(money); }
+                    AddMessageTextBlock($"Paid - {money}");
+                    UpdatePlayersMoney();
+                    ChatMessages.Children.Remove(ChatMessages.Children.OfType<PayMoney>().First());
+                }
+                else
+                {
+                    AddMessageTextBlock("Not enough money to pay the bill");
+                }
+            };
+            ChatMessages.Children.Add(bill);
+        }
+
+        public string GetTextForChanceAction(ChanceAction action)
+        {
+            switch (action)
+            {
+                case ChanceAction.ForwardInOne:
+                    return "Moves forward";
+                case ChanceAction.BackwardsInOne:
+                    return "Moves backwards";
+                case ChanceAction.Pay500:
+                    return "Need to pay money";
+                case ChanceAction.Pay1500:
+                    return "Need to pay money";
+                case ChanceAction.Get500:
+                    return "Gets some money";
+                case ChanceAction.Get1500:
+                    return "Gets some money";
+                case ChanceAction.GoToPrison:
+                    return "Goes to prison";
+            };
+
+            throw new Exception("What can you get else");
+        }
+
+        private void SetGetOnCasino()
+        {
+            JackpotElem jackpot = new JackpotElem();
+
+            jackpot.MakeBidBut.Click += (sender, e) =>
+            {
+                if (_system.MonGame.IfPlayerHasEnoughMoneyToPlayCasino())
+                {
+                    _system.MonGame.GetBillForCasino();
+
+                    string casinoRes = _system.MonGame.PlayCasino(jackpot._chosenRibs);
+                    AddMessageTextBlock(casinoRes);
+                    ChatMessages.Children.Remove(ChatMessages.Children.
+                    OfType<JackpotElem>().First());
+
+                    UpdatePlayersMoney();
+                }
+                else
+                {
+                    AddMessageTextBlock("Not enough money to play casino");
+                }
+            };
+
+            jackpot.DeclineBut.Click += (sender, e) =>
+            {
+                ChatMessages.Children.Remove(ChatMessages.Children.
+                    OfType<JackpotElem>().First());
+            };
+
+            JackPotCell.PreviewMouseDown += (sender, e) =>
+            {
+                ChatMessages.Children.Remove(jackpot);
+                ChatMessages.Children.Add(jackpot);
+            };
+        }
+
+        private void SetGotOnTax()
+        {
+            string firstLine = $"You got on Tax Cell - " +
+                $"{_system.MonGame.GetTempPositionCellName()}";
+
+            string secondLine = $"You neeed to pay the bill - " +
+                $"{_system.MonGame.GetBillFromTaxStepperPosition()}";
+
+            int money = _system.MonGame.GetBillFromTaxStepperPosition();
+
+            SetPayMoney(firstLine, secondLine, money);
+
+        }
+
+        private void SetGotOnEnemysBusiness()
+        {
+            string firstLine = $"You got on the enemys business - " +
+                $"{_system.MonGame.GetTempPositionCellName()}";
+
+            string secondLine = $"You neeed to pay the bill - " +
+                $"{_system.MonGame.GetBillForBusinessCell()}";
+
+            int amountOfMoney = _system.MonGame.GetBillForBusinessCell();
+
+            SetPayMoney(firstLine, secondLine, amountOfMoney, true);
+        }
+
+        public void UpdatePlayersMoney()
+        {
+            for (int i = 0; i < _cards.Count; i++)
+            {
+                _cards[i].UserMoney.Text = _system.MonGame.GetPlayersMoney(i).ToString();
+            }
+        }
+
+        private void PlayerGotOnOwnBusiness()
+        {
+            AddMessageTextBlock("Player got on his own Business");
         }
 
         private void SetBuyBusinessOffer()
         {
             BuyBusiness buy = new BuyBusiness();
-
+            buy.YourTurnText.Text = $"You got on {_system.MonGame.GetTempPositionCellName()}";
             ChatMessages.Children.Add(buy);
+
+            buy.BuyBusBut.Click += (sender, e) =>
+            {
+                if (_system.MonGame.IfStepperHasEnughMoneyToBuyBus())
+                {
+                    SetBuyingBusiness();
+                    ChatMessages.Children.Clear();
+                    ChangeStepper();
+                    AddMessageTextBlock("Player is bought business");
+                }
+                else
+                {
+                    MessageBox.Show("Not enough money");
+                    AddMessageTextBlock("Player doesnt want to buy this business");
+                }
+            };
+
+            buy.SendToAuctionBut.Click += (sender, e) =>
+            {
+                //!!Make auction
+
+                //auction action
+                ChatMessages.Children.Clear();
+                //ChangeStepper();
+                //AddMessageTextBlock("Player is sending business to  auction");
+
+                SetAuctionOffer();
+            };
         }
+
+        private void SetAuctionOffer()
+        {
+            _system.MonGame.SetStartAuctionPrice();
+            _system.MonGame.SetStartPlayersForAuction();
+
+            List<int> playresIndexesAuction = _system.MonGame._playerIndxesForAuction;
+
+            if (playresIndexesAuction.Count == 0)
+            {
+                AddMessageTextBlock("Noone want to buy this business");
+                return;
+            }
+
+            if (IfAuctionIsEnded()) return;
+
+            SetBidderInAuction(_system.MonGame._prevBidderIndex, _system.MonGame._bidderIndex);
+            AddBidControl();
+        }
+
+        public bool IfAuctionIsEnded()
+        {
+            if (IfNooneTakesPartInAuction())
+            {
+                MakeEveryCardThinner();
+                AddMessageTextBlock("Noone wants this business");
+
+                ChangeStepAfterAuction();
+
+                return true;
+            }
+            if (_system.MonGame.IfSomeOneWonAuction())
+            {
+                PaintCellInColor(_system.MonGame.GetStepperPosition(), _colors[_system.MonGame._bidderIndex]);
+                AddMessageTextBlock($"Business is buying = - {_system.MonGame.GetBidderLogin()}");
+
+                //Get money form winner 
+                _system.MonGame.GetMoneyFromAuctionWinner();
+
+                //Clear visuals after auction 
+                MakeEveryCardThinner();
+                _system.MonGame.ClearAuctionValues();
+
+                ChangeStepAfterAuction();
+
+                return true;
+            }
+            return false;
+        }
+
+        private void MakeEveryCardThinner()
+        {
+            for (int i = 0; i < _cards.Count; i++)
+            {
+                _cards[i].MakeCardUsual();
+            }
+        }
+
+        private bool AddBidControl()
+        {
+            if (IfAuctionIsEnded()) return true;
+
+            AuctionBid bid = new AuctionBid();
+            bid.BidForText.Text = $"Auction for {_system.MonGame.GetTempPositionCellName()}";
+            bid.GoodLuckText.Text = $"Temp price in auction is {_system.MonGame.GetTempPriceInAuction()}"; ;
+
+            bid.MakeBidBut.Click += (sender, e) =>
+            {
+                if (_system.MonGame.IfBidderHasEnoughMoneyToPlaceBid())
+                {
+                    _system.MonGame.MakeBidInAuction();
+                    ChatMessages.Children.Remove(ChatMessages.Children.OfType<AuctionBid>().First());
+
+                    if (IfAuctionIsEnded()) return;
+                    _system.MonGame.SetNextBidder();
+
+                    if (AddBidControl()) return;
+                    SetBidderInAuction(_system.MonGame._prevBidderIndex, _system.MonGame._bidderIndex);
+                }
+                else
+                {
+                    AddMessageTextBlock("Not enough money!");
+                }
+            };
+
+            bid.NotMakeABidBut.Click += (sender, e) =>
+            {
+                string message = $"{_system.MonGame.GetBidderLogin()} doesnt wanna buy business";
+                AddMessageTextBlock(message);
+
+                ChatMessages.Children.Remove(ChatMessages.Children.OfType<AuctionBid>().First());
+
+                if (IfAuctionIsEnded()) return;
+                if (_system.MonGame.RemoveAuctionBidderIfItsWasLast()) ;
+                {
+                    if (IfAuctionIsEnded()) return;
+                }
+
+                if (AddBidControl()) return;
+                SetBidderInAuction(_system.MonGame._prevBidderIndex, _system.MonGame._bidderIndex);
+            };
+
+            ChatMessages.Children.Add(bid);
+            return false;
+        }
+
+        private void SetBidderInAuction(int makeUsualCardIndex, int toMarkCardIndex)
+        {
+            //Get Back size for old Card
+            _cards[makeUsualCardIndex].SetAnimation(null, false);
+
+            //Set Size for new Card
+            _cards[toMarkCardIndex].SetAnimation(_colors[toMarkCardIndex], true);
+        }
+
+        private bool IfNooneTakesPartInAuction()
+        {
+            if (!_system.MonGame.IfSomeoneIsLeftInAuction())
+            {
+                _system.MonGame.ClearAuctionValues();
+                return true;
+            }
+            return false;
+        }
+
+
+        private void SetBuyingBusiness()
+        {
+            _system.MonGame.BuyBusinessByStepper();
+
+            int position = _system.MonGame.GetStepperPosition();
+
+            PaintCellInColor(position, _colors[_system.MonGame.StepperIndex]);
+
+            _cards[_system.MonGame.StepperIndex].UserMoney.Text = _system.MonGame.GetSteppersMoney().ToString();
+
+            _system.MonGame.SetStartLevelOfBusinessForStepper();
+            int startRent = _system.MonGame.GetStartPriceOfBoughtBusinessByStepper();
+            ChangePriceInBusiness(position, startRent.ToString());
+        }
+
+        public void ChangePriceInBusiness(int cellIndex, string newPrice)
+        {
+            if (_cells[cellIndex] is UpperCell upper)
+            {
+                upper.Money.Text = newPrice;
+            }
+            else if (_cells[cellIndex] is RightCell right)
+            {
+                right.Money.Text = newPrice;
+            }
+            else if (_cells[cellIndex] is BottomCell bottom)
+            {
+                bottom.Money.Text = newPrice;
+            }
+            else if (_cells[cellIndex] is LeftCell left)
+            {
+                left.Money.Text = newPrice;
+            }
+        }
+
+        private void PaintCellInColor(int cellIndex, SolidColorBrush brush)
+        {
+            if (_cells[cellIndex] is UpperCell upper)
+            {
+                upper.ImagePlacer.Background = brush;
+            }
+            else if (_cells[cellIndex] is RightCell right)
+            {
+                right.ImagePlacer.Background = brush;
+            }
+            else if (_cells[cellIndex] is BottomCell bottom)
+            {
+                bottom.ImagePlacer.Background = brush;
+            }
+            else if (_cells[cellIndex] is LeftCell left)
+            {
+                left.ImagePlacer.Background = brush;
+            }
+        }
+
 
         private void SetHeaderColorsForBuses()
         {
@@ -197,20 +676,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             GamesSecondBus.MoneyPlacer.Background = (SolidColorBrush)Application.Current.Resources["GameColor"];
         }
 
-        private void SetTestJacPotClick()
-        {
-            JackpotElem jackpot = new JackpotElem();
 
-            JackPotCell.PreviewMouseDown += (sender, e) =>
-            {
-                ChatMessages.Children.Remove(jackpot);
-                ChatMessages.Children.Add(jackpot);
-            };
-        }
 
         private void SetStartPricesForBusses()
         {
-            const string testString = "55555";
             List<string> prices = new List<string>();
             for (int i = 0; i < _cells.Count; i++)
             {
@@ -284,8 +753,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 bottom.PreviewMouseDown += Bussiness_PreviewMouseDown;
 
             if (element is LeftCell left)
-                left.PreviewMouseDown += Bussiness_PreviewMouseDown;
+                left.PreviewMouseDown += Bussiness_PreviewMouseDown;    
         }
+
+
+        
 
         private void SetClickedCellIndex(UIElement element)
         {
@@ -316,7 +788,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             if (_system.MonGame.GameBoard.Cells[_clickedCellIndex].GetType() == typeof(CarBus))
             {
-               CarBusInfo info = new CarBusInfo();
+                CarBusInfo info = new CarBusInfo();
                 BussinessInfo.Children.Add(info);
                 SetCarBusInfoParams(info);
                 info.UpdateLayout();
@@ -550,12 +1022,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             //MakeChipMoveToAnoutherCell(startCellIndex, cellIndexToMoveOn, chipImage, insidePointStartCell, newInsideChipPoint);
 
 
-
             //Reassign chip image to new cell (ON ANIMATION COMPLETE EVENT)
             //ReassignChipImageInNewCell(moveDist, tempChipImg, newInsideChipPoint);
 
             //Change Chips In cell
             SetNewPositionsToChipsInCell(startCellIndex);
+
         }
 
         private Point GetChipImageLocToField(Image img)
@@ -616,7 +1088,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
                     }
                 };
-                //_toAddSecondaryAnimation.Completed += _chipAnim;
                 MakeChipMoveToAnoutherCell(startCellIndex, _tempSquareValToGoOn, chipImg,
                     insidePointStartCell, newInsideChipPoint);
 
@@ -747,7 +1218,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         }
 
         private bool _ifChipMoves = false;
-        private DoubleAnimation _toAddSecondaryAnimation;
+        private DoubleAnimation _chipMoveAnimation;
 
         private void SetChipToMoveAnimation(Image toMove, Point endPoint,
             int cellIndex, Point newInsideChipPoint)
@@ -755,21 +1226,21 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             var transform = new TranslateTransform();
             toMove.RenderTransform = transform;
 
-            DoubleAnimation moveXAnimation = new DoubleAnimation
+            _chipMoveAnimation = new DoubleAnimation
             {
                 From = 0,
                 To = endPoint.X,
-                Duration = TimeSpan.FromSeconds(3),
+                Duration = TimeSpan.FromSeconds(1),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
             if (_ifGoesThroughSquareCell && toMove.Name == "One") // tempMove Chip Img
             {
-                moveXAnimation.Completed += _chipAnimEvent;
+                _chipMoveAnimation.Completed += _chipAnimEvent;
             }
             else
             {
-                moveXAnimation.Completed += (s, e) =>
+                _chipMoveAnimation.Completed += (s, e) =>
                 {
                     ReassignChipImageInNewCell(cellIndex, toMove, newInsideChipPoint);
 
@@ -781,6 +1252,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
                     //if (_ifGoesThroughSquareCell) return;
                     _ifChipMoves = false;
+
                 };
             }
 
@@ -788,11 +1260,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = 0,
                 To = endPoint.Y,
-                Duration = TimeSpan.FromSeconds(3),
+                Duration = TimeSpan.FromSeconds(1),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
-            transform.BeginAnimation(TranslateTransform.XProperty, moveXAnimation);
+            transform.BeginAnimation(TranslateTransform.XProperty, _chipMoveAnimation);
             transform.BeginAnimation(TranslateTransform.YProperty, moveYAnimation);
 
             _ifChipMoves = true;
@@ -817,14 +1289,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 chipAndCord.Add((_imgs[i], _system.MonGame.Players[i].Position));
             }
 
-            for(int i = 0; i < _imgs.Count; i++)
+            for (int i = 0; i < _imgs.Count; i++)
             {
                 SetStartChipInPlacerCanvas(_cells[_system.MonGame.Players[i].Position], _imgs[i]);
             }
 
             List<int> unique = _system.MonGame.GetUniquePositions();
             //Set Posiotions
-            for(int i = 0; i < unique.Count; i++)
+            for (int i = 0; i < unique.Count; i++)
             {
                 List<List<Point>> cellPoints = BoardHelper.GetChipsPoints(
                 GetCellSize(_cells[unique[i]]));
@@ -832,7 +1304,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 List<Point> res = cellPoints[_system.MonGame.GetAmountOfPlayersInCell(unique[i]) - 1];
                 List<(Image, int)> chipsInCell = chipAndCord.Where(x => x.Item2 == unique[i]).ToList();
 
-                for(int j = 0; j < chipsInCell.Count; j++)
+                for (int j = 0; j < chipsInCell.Count; j++)
                 {
                     Canvas.SetLeft(chipsInCell[j].Item1, res[j].X);
                     Canvas.SetTop(chipsInCell[j].Item1, res[j].Y);
@@ -898,15 +1370,15 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 prison.ChipsPlacer.Children.Add(chip);
             }
-            else if(cell is RightCell right)
+            else if (cell is RightCell right)
             {
                 right.ChipsPlacer.Children.Add(chip);
             }
-            else if(cell is BottomCell bot)
+            else if (cell is BottomCell bot)
             {
                 bot.ChipsPlacer.Children.Add(chip);
             }
-            else if(cell is LeftCell left)
+            else if (cell is LeftCell left)
             {
                 left.ChipsPlacer.Children.Add(chip);
             }
@@ -1313,5 +1785,101 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             }
         }
 
+        public void PlayerGaveUp()
+        {
+
+        }
+
+        public void SendTrade(int traderIndex)
+        {
+            if (ChatMessages.Children.OfType<TradeOfferEl>().Any()) return;
+            
+            ClearClickInfoEventForBusCells();
+            SetTradeMouseDownForBusses(true);
+
+            TradeOfferEl tradeControl = new TradeOfferEl();
+
+            tradeControl.GiverItem.ItemName.Text = _system.MonGame.GetStepperLogin();
+            tradeControl.GiverItem.ItemType.Text = "Sender Login";
+
+            tradeControl.ReciverItem.ItemName.Text = _system.MonGame.GetPlayerLoginByIndex(traderIndex);
+            tradeControl.ReciverItem.ItemType.Text = "Reciever login";
+
+            tradeControl.CloseTrade.MouseDown += (sender, e) =>
+            {
+                SetClickEventForBusCells();
+                SetTradeMouseDownForBusses(false);
+
+                ChatMessages.Children.Remove(ChatMessages.Children.OfType<TradeOfferEl>().First());
+            };
+
+            ChatMessages.Children.Add(tradeControl);
+        }
+
+        private void SetTradeMouseDownForBusses(bool ifAddEvents)
+        {
+            for(int i = 0; i < _cells.Count; i++)
+            {
+                SetTradeMouseDownForCell(_cells[i], ifAddEvents);
+            }
+        }
+
+        public void SetTradeMouseDownForCell(UIElement element, bool ifAdd)
+        {
+            if (element is UpperCell upper)
+            {
+                if(ifAdd) upper.PreviewMouseDown += TradeBuss_PreviewMouseDown;
+                else upper.PreviewMouseDown -= TradeBuss_PreviewMouseDown;
+            }
+            else if (element is RightCell right)
+            {
+                if (ifAdd) right.PreviewMouseDown += TradeBuss_PreviewMouseDown;
+                else right.PreviewMouseDown -= TradeBuss_PreviewMouseDown;
+            }
+            else if (element is BottomCell bottom)
+            {
+                if (ifAdd) bottom.PreviewMouseDown += TradeBuss_PreviewMouseDown;
+                else bottom.PreviewMouseDown -= TradeBuss_PreviewMouseDown;
+            }
+            else if (element is LeftCell left)
+            {
+                if (ifAdd) left.PreviewMouseDown += TradeBuss_PreviewMouseDown;
+                else left.PreviewMouseDown -= TradeBuss_PreviewMouseDown;
+            }
+        }
+
+        public void TradeBuss_PreviewMouseDown(object sender, EventArgs e)
+        {
+           //sender - card(up, right, bootom or left)
+           //set it as a trdae element 
+           //set money counter
+           //set money wirter
+           
+
+        }
+
+
+        private void ClearClickInfoEventForBusCells()
+        {
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                ClearClickInfoEventForBus(_cells[i]);
+            }
+        }
+
+        private void ClearClickInfoEventForBus(UIElement element)
+        {
+            if (element is UpperCell upper)
+                upper.PreviewMouseDown -= Bussiness_PreviewMouseDown;
+
+            if (element is RightCell right)
+                right.PreviewMouseDown -= Bussiness_PreviewMouseDown;
+
+            if (element is BottomCell bottom)
+                bottom.PreviewMouseDown -= Bussiness_PreviewMouseDown;
+
+            if (element is LeftCell left)
+                left.PreviewMouseDown -= Bussiness_PreviewMouseDown;
+        }
     }
 }

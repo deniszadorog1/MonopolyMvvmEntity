@@ -36,28 +36,31 @@
 
                 <BoardControls:UserCard Grid.Row="0" x:Name="FirstPlayerRedControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
-                                    MouseDown="FirstPlayerRedControl_PreviewMouseDown"/>
+                                    MouseDown="UserCardPopup_PreviewMouseDown"/>
 
                 <BoardControls:UserCard Grid.Row="1" x:Name="SecondPlayerBlueControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
-                                    MouseDown="FirstPlayerRedControl_PreviewMouseDown"/>
+                                    MouseDown="UserCardPopup_PreviewMouseDown"/>
 
                 <BoardControls:UserCard Grid.Row="2" x:Name="ThirdPlayerGreenControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
-                                    MouseDown="FirstPlayerRedControl_PreviewMouseDown"/>
+                                    MouseDown="UserCardPopup_PreviewMouseDown"/>
 
                 <BoardControls:UserCard Grid.Row="3" x:Name="FourthPlayerPurpleControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
-                                    MouseDown="FirstPlayerRedControl_PreviewMouseDown"/>
+                                    MouseDown="UserCardPopup_PreviewMouseDown"/>
 
                 <BoardControls:UserCard Grid.Row="4" x:Name="FifthPlayerOrangeControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
-                                    MouseDown="FirstPlayerRedControl_PreviewMouseDown"/>
+                                    MouseDown="UserCardPopup_PreviewMouseDown"/>
 
             </Grid>
 
-            <BoardControls:GameField Grid.Column="1" Height="950" Width="950" x:Name="GameField"
-                             HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Grid Grid.Column ="1" Name="FieldGrid">
+                
+            </Grid >
+            <!--<BoardControls:GameField  Height="950" Width="950" x:Name="GameField"
+                             HorizontalAlignment="Left" VerticalAlignment="Top"/> -->
         </Grid>
     </ScrollViewer>
 </Page>

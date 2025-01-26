@@ -9,6 +9,13 @@
              
              xmlns:TradeItem ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeControls"
              
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             FontFamily="{DynamicResource MaterialDesignFont}"
              >
     <Grid Background="#E3E3E3">
         <Grid.RowDefinitions>
@@ -21,6 +28,10 @@
         <Grid Grid.Row="0">
             <TextBlock Foreground= "#696969" Text="Contract" FontSize="36"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            
+            <materialDesign:PackIcon Kind="CloseCircle" Name="CloseTrade" 
+                                     HorizontalAlignment="Right" Margin="0 5 5 0"
+                                     Width="25" Height="25"/>
         </Grid>
 
         <Grid Grid.Row="1" Name="MainPartGrid">

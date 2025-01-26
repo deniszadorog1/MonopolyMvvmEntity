@@ -8,9 +8,12 @@ namespace MonopolyDLL.Monopoly.Cell
 {
     public class Tax : CellParent
     {
-        public Tax(string name)
+        public int TaxBill { get; set; }
+
+        public Tax(string name, int bill)
         {
             Name = name;
+            TaxBill = bill;
         }
     }
 }

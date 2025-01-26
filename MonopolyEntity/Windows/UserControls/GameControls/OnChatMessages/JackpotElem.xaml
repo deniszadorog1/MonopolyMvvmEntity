@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="575" MinWidth="575"
-             
+             Height="250" VerticalAlignment="Top"
              Loaded="UserControl_Loaded"
              >
     <Border Background="#E3E3E3" CornerRadius="10">

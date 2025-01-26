@@ -43,7 +43,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         const double _basicOpacity = 0.5;
         private void SetEventsForBorders()
         {
-            for(int i = 0; i < _ribBorders.Count; i++)
+            for (int i = 0; i < _ribBorders.Count; i++)
             {
                 if (_ribBorders[i] is Border border)
                 {
@@ -53,35 +53,44 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             }
         }
 
+        public List<int> _chosenRibs = new List<int>();
         private void RibBorder_PreviewMouseDown(object sender, MouseEventArgs e)
         {
+            int index = -1;
+
+            for (int i = 0; i < _ribBorders.Count; i++)
+            {
+                if (_ribBorders[i] == sender)
+                {
+                    index = i;
+                }
+            }
+
             const int maxAllowedChosenRib = 3;
             SolidColorBrush brush = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
-            //Color color = brush.Color;
 
-            if(sender is Border border)
+            if (sender is Border border)
             {
                 if (border.BorderBrush == brush)
                 {
                     border.Opacity = _basicOpacity;
                     border.BorderBrush = Brushes.Black;
+                    _chosenRibs.Remove((index - 1));
                 }
-                else if(border.BorderBrush != brush &&
+                else if (border.BorderBrush != brush &&
                     GetAmountOfChosenBorders(brush) < maxAllowedChosenRib)
                 {
                     border.Opacity = 1;
                     border.BorderBrush = brush;
+                    if (index != -1) _chosenRibs.Add((index + 1));
                 }
             }
         }
-        
+
         private int GetAmountOfChosenBorders(SolidColorBrush brush)
         {
             return _ribBorders.Where(x => x.BorderBrush == brush).Count();
         }
-        
-
-
 
         const int _cubeSize = 100;
         const int _circleSize = 8;
@@ -89,7 +98,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         {
             const int distFromBorder = 10;
 
-            Point center = new Point(OneRibGrid.ActualWidth / 2 - _circleSize / 2, 
+            Point center = new Point(OneRibGrid.ActualWidth / 2 - _circleSize / 2,
                 OneRibGrid.ActualHeight / 2 - _circleSize / 2);
 
             Point upLeft = new Point(distFromBorder, distFromBorder);
@@ -128,12 +137,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             SixRibGrid.Children.Add(GetElipseInRib(downLeft));
             SixRibGrid.Children.Add(GetElipseInRib(upRight));
             SixRibGrid.Children.Add(GetElipseInRib(centerRight));
-            SixRibGrid.Children.Add(GetElipseInRib(downRight));        
+            SixRibGrid.Children.Add(GetElipseInRib(downRight));
         }
 
         private Ellipse GetElipseInRib(Point point)
         {
-            Ellipse el =  new Ellipse()
+            Ellipse el = new Ellipse()
             {
                 Width = _circleSize,
                 Height = _circleSize,

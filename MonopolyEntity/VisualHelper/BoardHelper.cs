@@ -303,8 +303,6 @@ namespace MonopolyEntity.VisualHelper
             const int distFromBorder = 5;
             const int distBetweenChips = 5;
 
-            double chipRadius = _chipSize / 2;
-
             Point rightCorner = new Point(squareSize.Width - distFromBorder - _chipSize , distFromBorder);
 
             Point cornerRightOne = new Point(rightCorner.X - distBetweenChips - _chipSize, distFromBorder);
