@@ -223,12 +223,15 @@ namespace MonopolyEntity.VisualHelper
             return res;
         }
 
-        public static List<Point> GetPointsForChips(Size cellSize, int amountOfChipsInCell)
+        public static List<Point> GetPointsForChips(Size cellSize, int amountOfChipsInCell, bool ifInMove)
         {
             List<List<Point>> allPoints = GetChipsPoints(cellSize);
 
             if (amountOfChipsInCell == 0) return allPoints.First();
-            return allPoints[amountOfChipsInCell - 1];
+
+            int ifChipIsInMove = ifInMove ? 0 : -1;
+            
+            return allPoints[amountOfChipsInCell + ifChipIsInMove];
         }
 
         public static Size GetSizeOfCell(UIElement cell)

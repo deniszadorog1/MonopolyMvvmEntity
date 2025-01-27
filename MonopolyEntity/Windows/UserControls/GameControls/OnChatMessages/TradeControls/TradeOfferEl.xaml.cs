@@ -24,5 +24,65 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
         {
             InitializeComponent();
         }
+
+        public bool IfTradeItemNameContainsInList(string busName)
+        {
+            return IfItemNameContainsInListBox(busName, SenderListBox) ||
+                IfItemNameContainsInListBox(busName, ReciverListBox);
+        }
+
+        public bool IfItemNameContainsInListBox(string name, ListBox box)
+        {
+            for (int i = 0; i < box.Items.Count; i++)
+            {
+                if (box.Items[i] is TradeItem item &&
+                    item.ItemName.Text == name)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void UpdateSenderTotalMoney(int money)
+        {
+            SenderTotalMoney.Text = money.ToString();
+        }
+
+        public void UpdateReciverTotalMoney(int money)
+        {
+            ReciverTotalMoney.Text = money.ToString();
+        }
+
+        public int GetSenderTradeMoney()
+        {
+            return ConvertMoneyStringInInterger(SenderMoney.AmountOfMoneyBox.Text);
+        }
+
+        public int GetReciverTradeMoney()
+        {
+            return ConvertMoneyStringInInterger(ReciverMoney.AmountOfMoneyBox.Text);
+        }
+
+        private int ConvertMoneyStringInInterger(string money)
+        {
+            string zeroRemoved = RemoveZerosFromStart(money);
+            return int.Parse(zeroRemoved);
+        }
+
+        public string RemoveZerosFromStart(string moneyString)
+        {
+            StringBuilder res = new StringBuilder();
+            bool startWrite = false;
+
+            for(int i = 0; i < moneyString.Length; i++)
+            {
+                if (moneyString[i] != '0') startWrite = true;
+                if (startWrite) res.Append(moneyString[i]);
+            }
+
+            if (res.Length == 0) res.Append("0");
+            return res.ToString();
+        }
     }
 }

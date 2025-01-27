@@ -172,7 +172,7 @@ namespace MonopolyEntity.Windows.Pages
 
             but.Click += (sender, e) =>
             {
-                _field.SendTrade(traderIndex);
+                _field.CreateTrade(traderIndex);
             };
             panel.Children.Add(but);
         }
@@ -180,12 +180,10 @@ namespace MonopolyEntity.Windows.Pages
         private void SetGiveUpButton(StackPanel panel)
         {
             Button but = GetButtonForUserCardMenu("Give up");
-
             but.Click += (sender, e) =>
             {
                 _field.PlayerGaveUp();
             };
-
             panel.Children.Add(but);
         }
 

@@ -19,6 +19,8 @@ using Casino = MonopolyDLL.Monopoly.Cell.AngleCells.Casino;
 using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 
+using MonopolyDLL.Monopoly.TradeAction;
+using System.Runtime.Remoting.Channels;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -78,8 +80,8 @@ namespace MonopolyDLL.Monopoly
         Random _rnd = new Random(Guid.NewGuid().GetHashCode());
         public void DropCubes()
         {
-            _firstCube = 1;// _rnd.Next(1, 7);
-            _secondCube = 1;// _rnd.Next(1, 7);
+            _firstCube = 6;// _rnd.Next(1, 7);
+            _secondCube = 6;// _rnd.Next(1, 7);
         }
 
         public int GetFirstCubes()
@@ -100,7 +102,7 @@ namespace MonopolyDLL.Monopoly
         public int GetPointToMoveOn()
         {
             const int lastCellIndex = 39;
-            const int amountOfCell = 40;
+            const int amountOfCell = 39;
 
             int tempPost = Players[StepperIndex].Position;
             int sumPoint = (tempPost + GetSumOfCubes());
@@ -204,7 +206,11 @@ namespace MonopolyDLL.Monopoly
         public int GetBillForBusinessCell()
         {
             ParentBus bus = ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]);
-            return bus.PayLevels[bus.Level];
+            int payment = bus.PayLevels[bus.Level];
+
+            if (bus is GameBus) payment *= (_firstCube + _secondCube);
+
+            return payment;
         }
 
         public int GetSteppersMoney()
@@ -228,27 +234,17 @@ namespace MonopolyDLL.Monopoly
 
         public bool IfStepperHasEnoughMoneyToPayBill()
         {
-            int bill = GetPayLevelForTempSteppetPosition();
+            int bill = GetBillForBusinessCell();
 
             return Players[StepperIndex].AmountOfMoney >= bill;
         }
 
-        public int GetPayLevelForTempSteppetPosition()
-        {
-            int pos = Players[StepperIndex].Position;
-            ParentBus bus = ((ParentBus)GameBoard.Cells[pos]);
-
-            int bill = bus.PayLevels[bus.Level];
-
-            return bill;
-        }
-
         public void PayBusBillByStepper()
         {
-            int amount = GetPayLevelForTempSteppetPosition();
+            int amount = GetBillForBusinessCell();
             Players[StepperIndex].AmountOfMoney -= amount;
 
-            Players[((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).OwnerIndex].AmountOfMoney += amount; 
+            Players[((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).OwnerIndex].AmountOfMoney += amount;
         }
 
         public int GetStartPriceOfBoughtBusinessByStepper()
@@ -495,12 +491,12 @@ namespace MonopolyDLL.Monopoly
 
         public int GetIndexToStepOnForChance(ChanceAction action)
         {
-            int step = action == ChanceAction.ForwardInOne ? 
+            int step = action == ChanceAction.ForwardInOne ?
                 GameBoard.GetStepForwardChance() : GameBoard.GetStepBackwardChance();
 
             return Players[StepperIndex].Position + step;
         }
-        
+
         public bool IfIndexAndStepperIndexAreEqual(int index)
         {
             return index == StepperIndex;
@@ -515,6 +511,109 @@ namespace MonopolyDLL.Monopoly
         {
             return Players[index].Login;
         }
+
+        public bool IfCellIndexIsBusiness(int cellIndex)
+        {
+            return GameBoard.Cells[cellIndex] is ParentBus;
+        }
+
+        public bool IfSteperOwnsBusiness(int busIndex)
+        {
+            return GameBoard.IfPlayerOwnsBusiness(StepperIndex, busIndex);
+        }
+
+        public bool IfPlayerOwnsBusiness(int playerIndex, int busIndex)
+        {
+            return GameBoard.IfPlayerOwnsBusiness(playerIndex, busIndex);
+        }
+
+        public ParentBus GetBusinessByIndex(int cellIndex)
+        {
+            return GameBoard.GetBusinessByIndex(cellIndex);
+        }
+
+        public TradeClass _trade;
+        public void CreateTrade()
+        {
+            _trade = new TradeClass();
+
+            _trade.SetSenderIndex(StepperIndex);
+        }
+
+        public void SetTradeReciverIndex(int reciverIndex)
+        {
+            _trade.SetReciverIndex(reciverIndex);  
+        }
+
+        public void AddBusinesInTrade(int busIndex)
+        {
+            bool ifSendersBus = GameBoard.IfPlayerOwnsBusiness(StepperIndex, busIndex);
+            _trade.AddCellIndexInTrade(busIndex, ifSendersBus);
+        }
+
+        public void RemoveBusinessFromTrade(int busIndex)
+        {
+            _trade.RemoveCellIndexFromTrade(busIndex);
+        }
+
+        public int GetCellIndexByName(string name)
+        {
+            return GameBoard.GetCellIndexByName(name);
+        }
+
+        public int GetSenderTotalMoneyForTrde()
+        {
+            List<int> cellIndexes = _trade.GetSenderCellsIndexes();
+            int totalBusesPrice = GameBoard.GetTotalPriceForBuses(cellIndexes);
+
+            int money = _trade.GetSenderMoney();
+            return (totalBusesPrice + money);
+        }
+
+        public int GetReciverTotalMoneyForTrade()
+        {
+            List<int> cellIndexes = _trade.GetReciverIndexes();
+            int totalBusesPrice = GameBoard.GetTotalPriceForBuses(cellIndexes);
+
+            int money = _trade.GetReciverMoney();
+            return (totalBusesPrice + money);
+        }
+
+        public bool IfTwiceRuleinTradeComplite()
+        {
+            return _trade.IfTwiceRuleIsComplited(
+                GetSenderTotalMoneyForTrde(), GetReciverTotalMoneyForTrade());
+        }
+
+        public void SetSenderMoneyTrade(int money)
+        {
+            _trade.SetSenderMoney(money);
+        }
+
+        public void SetReciverMoneyTrade(int money)
+        {
+            _trade.SetReciverMoney(money);
+        }
+
+        public void AcceptTrade()
+        {
+            //Chane cells owner
+            GameBoard.SetNewOwnerAfterTrade(_trade.GetSenderCellsIndexes(), _trade.ReciverIndex);
+            GameBoard.SetNewOwnerAfterTrade(_trade.GetReciverIndexes(), _trade.SenderIndex);
+
+            //money
+            GiveMoney(_trade.SenderIndex, _trade.ReciverIndex, _trade.GetSenderMoney());
+            GiveMoney(_trade.ReciverIndex, _trade.SenderIndex, _trade.GetReciverMoney());
+
+        }
+
+        public void GiveMoney(int giverIndex, int reciverIndex, int money)
+        {
+            Players[giverIndex].PayMoney(money);
+            Players[reciverIndex].GetMoney(money);
+        }
+
+
 
     }
 }

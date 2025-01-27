@@ -39,6 +39,7 @@ using System.Threading;
 using MonopolyDLL.Monopoly.Enums;
 using System.Globalization;
 using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeControls;
+using System.Windows.Media.Effects;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -159,15 +160,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             DicesDrop drop = new DicesDrop(_system.MonGame.GetFirstCubes(), _system.MonGame.GetSecondCube());
             drop.VerticalAlignment = VerticalAlignment.Center;
 
-
-            drop._first3dCube._horizontalAnimation.Completed += CubesDroped_Complited;
+            drop._first3dCube._horizontalAnimation.Completed += CubesDropped_Completed;
 
             ChatMessages.Children.Add(drop);
 
             //MakeAMoveByChip();
         }
 
-        private void CubesDroped_Complited(object sender, EventArgs e)
+        private void CubesDropped_Completed(object sender, EventArgs e)
         {
             MakeChipsMovementAction(_system.MonGame.GetStepperPosition(),
                 _system.MonGame.GetPointToMoveOn(), _imgs[_system.MonGame.StepperIndex]);
@@ -310,6 +310,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     AddMessageTextBlock($"Paid - {money}");
                     UpdatePlayersMoney();
                     ChatMessages.Children.Remove(ChatMessages.Children.OfType<PayMoney>().First());
+
+                    ChangeStepper(); //Next stepper after paid money
                 }
                 else
                 {
@@ -416,6 +418,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private void PlayerGotOnOwnBusiness()
         {
             AddMessageTextBlock("Player got on his own Business");
+            ChangeStepper();
         }
 
         private void SetBuyBusinessOffer()
@@ -753,11 +756,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 bottom.PreviewMouseDown += Bussiness_PreviewMouseDown;
 
             if (element is LeftCell left)
-                left.PreviewMouseDown += Bussiness_PreviewMouseDown;    
+                left.PreviewMouseDown += Bussiness_PreviewMouseDown;
         }
-
-
-        
 
         private void SetClickedCellIndex(UIElement element)
         {
@@ -789,6 +789,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             if (_system.MonGame.GameBoard.Cells[_clickedCellIndex].GetType() == typeof(CarBus))
             {
                 CarBusInfo info = new CarBusInfo();
+
                 BussinessInfo.Children.Add(info);
                 SetCarBusInfoParams(info);
                 info.UpdateLayout();
@@ -996,11 +997,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             _squareIndexesToGoThrough =
                 BoardHelper.GetListOfSquareCellIndexesThatChipGoesThrough(startCellIndex, cellIndexToMoveOn);
+            int checkLastCellIndex = cellIndexToMoveOn;
 
             if (!(_squareIndexesToGoThrough is null))
             {
                 cellIndexToMoveOn = _squareIndexesToGoThrough.First();
             }
+
 
             //const int moveDist = 10;
             //Image tempChipImg = _imgs[0];
@@ -1008,13 +1011,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             Point chipToFieldPoint = GetChipImageLocToField(chipImage);
 
             Point insidePointStartCell = new Point(Canvas.GetLeft(chipImage), Canvas.GetTop(chipImage));
-            Point newInsideChipPoint = GetInsidePointToStepOn(_cells[cellIndexToMoveOn]);
+            Point newInsideChipPoint = GetInsidePointToStepOn(_cells[cellIndexToMoveOn], true);
 
             //Remove from cell
             ((Canvas)chipImage.Parent).Children.Remove(chipImage);
 
             //Add chip tom chipMove canvas
             AddChipToChipMovePanel(chipImage, chipToFieldPoint);
+
 
             //make move action
             MakeChipMove(startCellIndex, cellIndexToMoveOn, chipImage,
@@ -1028,6 +1032,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             //Change Chips In cell
             SetNewPositionsToChipsInCell(startCellIndex);
 
+            SetNewPositionsToChipsInCell(checkLastCellIndex, true);
         }
 
         private Point GetChipImageLocToField(Image img)
@@ -1055,11 +1060,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 _ifGoesThroughSquareCell = true;
 
                 if (_cells[_squareIndexesToGoThrough.Last()] is PrisonCell) IfLastMoveIsPrison = true;
-
+                
                 _chipAnimEvent = (s, e) =>
                 {
-                    ReassignChipImageInNewCell(_tempSquareValToGoOn, _imgs[0],
-                        BoardHelper.GetCenterOfTheSquareForIamge(chipImg, _cells[_tempSquareValToGoOn]));
+                    Point qwe = GetInsidePointToStepOn(_cells[_tempSquareValToGoOn], false);
+
+                    //BoardHelper.GetCenterOfTheSquareForIamge(chipImg, _cells[_tempSquareValToGoOn])
+
+                    ReassignChipImageInNewCell(_tempSquareValToGoOn, chipImg, qwe);
 
                     int toRemoveSquareIndex = _tempSquareValToGoOn;
                     _squareIndexesToGoThrough.Remove(_tempSquareValToGoOn);
@@ -1077,16 +1085,20 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                         ((Canvas)chipImg.Parent).Children.Remove(chipImg);
                         AddChipToChipMovePanel(chipImg, asd);
 
+
+                        Point moveOn = GetInsidePointToStepOn(_cells[_tempSquareValToGoOn], false);
+                        //BoardHelper.GetCenterOfTheSquareForIamge(chipImg, _cells[_tempSquareValToGoOn])
+
                         MakeChipMoveToAnoutherCell(toRemoveSquareIndex, _tempSquareValToGoOn, chipImg,
-                        check, BoardHelper.GetCenterOfTheSquareForIamge(chipImg, _cells[_tempSquareValToGoOn]));
+                        check, moveOn);
 
                         if (IfLastMoveIsPrison && _squareIndexesToGoThrough.Count == 1)
                         {
                             IfLastMoveIsPrison = false;
                             MakeAMoveToInPrisonCell(true, chipImg);
                         }
-
                     }
+                    else _ifChipMoves = false;
                 };
                 MakeChipMoveToAnoutherCell(startCellIndex, _tempSquareValToGoOn, chipImg,
                     insidePointStartCell, newInsideChipPoint);
@@ -1116,14 +1128,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             }
         }
 
-
-        private void SetNewPositionsToChipsInCell(int cellIndex)
+        private void SetNewPositionsToChipsInCell(int cellIndex, bool ifInMove = false)
         {
             Canvas can = BoardHelper.GetChipCanvas(_cells[cellIndex]);
 
             //new points for chips
             List<Point> newChipsPoints = BoardHelper.GetPointsForChips(
-                new Size(can.ActualWidth, can.ActualHeight), can.Children.OfType<Image>().ToList().Count);
+                new Size(can.ActualWidth, can.ActualHeight), can.Children.OfType<Image>().ToList().Count, ifInMove);
 
             if (newChipsPoints is null) return;
 
@@ -1158,7 +1169,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 if (chips[i] is Image img)
                 {
                     Point chipPointDiffer = new Point(points[i].X - chipsStartPoints[i].X, points[i].Y - chipsStartPoints[i].Y);
-                    SetChipToMoveAnimation(img, chipPointDiffer, cellIndex, points[i]);
+                    SetChipToMoveAnimation(img, chipPointDiffer, cellIndex, points[i], true);
                 }
             }
         }
@@ -1203,16 +1214,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetChipToMoveAnimation(chip, pointToStepOn, movePoint, newCellInsideChipPoint);
         }
 
-        private Point GetInsidePointToStepOn(UIElement cellToMoveOn)
+        private Point GetInsidePointToStepOn(UIElement cellToMoveOn, bool ifInMove = false)
         {
             //amount of chips in cell to step on
-            int amountOfChipsInCell = BoardHelper.GetAmountOfItemsInCell(cellToMoveOn);
+            int amountOfChipsInCell = _system.MonGame.GetAmountOfPlayersInCell(_cells.IndexOf(cellToMoveOn));// BoardHelper.GetAmountOfItemsInCell(cellToMoveOn);
 
             //Size of cell to step on
             Size cellSize = BoardHelper.GetSizeOfCell(cellToMoveOn);
 
             //Get Points for chips to place on cel to step on (need to replace all chips)
-            List<Point> chipPoints = BoardHelper.GetPointsForChips(cellSize, amountOfChipsInCell);
+            List<Point> chipPoints = BoardHelper.GetPointsForChips(cellSize, amountOfChipsInCell, ifInMove);
 
             return chipPoints.Last();
         }
@@ -1221,7 +1232,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private DoubleAnimation _chipMoveAnimation;
 
         private void SetChipToMoveAnimation(Image toMove, Point endPoint,
-            int cellIndex, Point newInsideChipPoint)
+            int cellIndex, Point newInsideChipPoint, bool IfChipsInOldCell = false)
         {
             var transform = new TranslateTransform();
             toMove.RenderTransform = transform;
@@ -1234,7 +1245,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
-            if (_ifGoesThroughSquareCell && toMove.Name == "One") // tempMove Chip Img
+            if (!(_squareIndexesToGoThrough is null) &&
+                _ifGoesThroughSquareCell && /*_squareIndexesToGoThrough.Count > 1 &&*/ !IfChipsInOldCell) // tempMove Chip Img
             {
                 _chipMoveAnimation.Completed += _chipAnimEvent;
             }
@@ -1790,35 +1802,121 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         }
 
-        public void SendTrade(int traderIndex)
+        private int _tradeReciveIndex;
+        private TradeOfferEl _tradeOffer;
+        public void CreateTrade(int traderIndex)
         {
             if (ChatMessages.Children.OfType<TradeOfferEl>().Any()) return;
-            
+            _tradeReciveIndex = traderIndex;
+
+            _system.MonGame.CreateTrade();
+            _system.MonGame.SetTradeReciverIndex(traderIndex);
+
             ClearClickInfoEventForBusCells();
             SetTradeMouseDownForBusses(true);
 
-            TradeOfferEl tradeControl = new TradeOfferEl();
+            _tradeOffer = new TradeOfferEl();
 
-            tradeControl.GiverItem.ItemName.Text = _system.MonGame.GetStepperLogin();
-            tradeControl.GiverItem.ItemType.Text = "Sender Login";
+            _tradeOffer.GiverItem.ItemName.Text = _system.MonGame.GetStepperLogin();
+            _tradeOffer.GiverItem.ItemType.Text = "Sender Login";
 
-            tradeControl.ReciverItem.ItemName.Text = _system.MonGame.GetPlayerLoginByIndex(traderIndex);
-            tradeControl.ReciverItem.ItemType.Text = "Reciever login";
+            _tradeOffer.ReciverItem.ItemName.Text = _system.MonGame.GetPlayerLoginByIndex(traderIndex);
+            _tradeOffer.ReciverItem.ItemType.Text = "Reciever login";
 
-            tradeControl.CloseTrade.MouseDown += (sender, e) =>
+            _tradeOffer.CloseTrade.MouseDown += (sender, e) =>
             {
                 SetClickEventForBusCells();
                 SetTradeMouseDownForBusses(false);
-
                 ChatMessages.Children.Remove(ChatMessages.Children.OfType<TradeOfferEl>().First());
             };
 
-            ChatMessages.Children.Add(tradeControl);
+            _tradeOffer.SendTradeBut.Click += (sender, e) =>
+            {
+                if (_system.MonGame.IfTwiceRuleinTradeComplite())
+                {
+                    _tradeOffer.SendTradeBut.Visibility = Visibility.Hidden;
+                    _tradeOffer.AcceptanceButtons.Visibility = Visibility.Visible;
+
+                    SetEventsForAcceptenceButsInTrade();
+                }
+                else
+                {
+                    AddMessageTextBlock("Twice rule does not complite");
+                }
+            };
+
+            SetEventsForMoneyBoxesInTrade();
+
+            ChatMessages.Children.Add(_tradeOffer);
         }
+
+        private void SetEventsForAcceptenceButsInTrade()
+        {
+            _tradeOffer.AcceptTradeBut.Click += (sender, e) =>
+            {
+                _system.MonGame.AcceptTrade();
+
+                UpdatePlayersMoney();
+                RepaintAfterTradeBuses();
+
+                AddMessageTextBlock("Trade accepted!");
+                ChatMessages.Children.Remove(ChatMessages.Children.OfType<TradeOfferEl>().First());
+            };
+
+            _tradeOffer.DeclineTradeBut.Click += (sender, e) =>
+            {
+                AddMessageTextBlock("Trade is declined");
+                ChatMessages.Children.Remove(ChatMessages.Children.OfType<TradeOfferEl>().First());
+            };
+        }
+
+        private void RepaintAfterTradeBuses()
+        {
+            PaintCellsAfterTrade(_system.MonGame._trade.SenderIndex,
+                _system.MonGame._trade.GetReciverIndexes());
+
+            PaintCellsAfterTrade(_system.MonGame._trade.ReciverIndex,
+                _system.MonGame._trade.GetSenderCellsIndexes());
+        }
+
+        private void PaintCellsAfterTrade(int newOwnerIndex, List<int> cellsIndexes)
+        {
+            for (int i = 0; i < cellsIndexes.Count; i++)
+            {
+                PaintCellInColor(cellsIndexes[i], _colors[newOwnerIndex]);
+            }
+        }
+
+        private void SetEventsForMoneyBoxesInTrade()
+        {
+            _tradeOffer.SenderMoney.AmountOfMoneyBox.TextChanged += (sender, e) =>
+            {
+                int senderMoney = _tradeOffer.GetSenderTradeMoney();
+                _system.MonGame.SetSenderMoneyTrade(senderMoney);
+
+                _tradeOffer.UpdateSenderTotalMoney(_system.MonGame.GetSenderTotalMoneyForTrde());
+
+            };
+
+            _tradeOffer.ReciverMoney.AmountOfMoneyBox.TextChanged += (sender, e) =>
+            {
+                int reciverMoney = _tradeOffer.GetReciverTradeMoney();
+                _system.MonGame.SetReciverMoneyTrade(reciverMoney);
+
+                _tradeOffer.UpdateReciverTotalMoney(_system.MonGame.GetReciverTotalMoneyForTrade());
+            };
+        }
+
+        private void UpdateTradeMoneyBoxes()
+        {
+            _tradeOffer.UpdateSenderTotalMoney(_system.MonGame.GetSenderTotalMoneyForTrde());
+            _tradeOffer.UpdateReciverTotalMoney(_system.MonGame.GetReciverTotalMoneyForTrade());
+        }
+
 
         private void SetTradeMouseDownForBusses(bool ifAddEvents)
         {
-            for(int i = 0; i < _cells.Count; i++)
+            for (int i = 0; i < _cells.Count; i++)
             {
                 SetTradeMouseDownForCell(_cells[i], ifAddEvents);
             }
@@ -1828,7 +1926,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             if (element is UpperCell upper)
             {
-                if(ifAdd) upper.PreviewMouseDown += TradeBuss_PreviewMouseDown;
+                if (ifAdd) upper.PreviewMouseDown += TradeBuss_PreviewMouseDown;
                 else upper.PreviewMouseDown -= TradeBuss_PreviewMouseDown;
             }
             else if (element is RightCell right)
@@ -1850,14 +1948,60 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         public void TradeBuss_PreviewMouseDown(object sender, EventArgs e)
         {
-           //sender - card(up, right, bootom or left)
-           //set it as a trdae element 
-           //set money counter
-           //set money wirter
-           
+            int cellIndex = GetCellIndex((UIElement)sender);
+            if (!_system.MonGame.IfCellIndexIsBusiness(cellIndex)) return; //cell is business
+            if (!_system.MonGame.IfSteperOwnsBusiness(cellIndex) &&
+                !_system.MonGame.IfPlayerOwnsBusiness(_tradeReciveIndex, cellIndex)) return; //Cell owner is sender or reciver 
 
+            ParentBus bus = _system.MonGame.GetBusinessByIndex(cellIndex);
+            if (_tradeOffer.IfTradeItemNameContainsInList(bus.Name)) return; // such bus is already exist
+            TradeItem item = new TradeItem(bus, GetImageFromBusCell(_cells[cellIndex]));
+
+            _system.MonGame.AddBusinesInTrade(cellIndex);
+            UpdateTradeMoneyBoxes();
+
+            item.PreviewMouseDown += (senderItem, action) =>
+            {
+                if (senderItem is TradeItem tradeItem)
+                {
+                    _tradeOffer.SenderListBox.Items.Remove(tradeItem);
+                    _tradeOffer.ReciverListBox.Items.Remove(tradeItem);
+
+                    _system.MonGame.RemoveBusinessFromTrade(cellIndex);
+                    UpdateTradeMoneyBoxes();
+                }
+            };
+
+            AddTradeItemToListBox(item, _system.MonGame.IfSteperOwnsBusiness(cellIndex));
         }
 
+        public void AddTradeItemToListBox(TradeItem item, bool ifAddToSender)
+        {
+            if (ifAddToSender) _tradeOffer.SenderListBox.Items.Add(item);
+            else _tradeOffer.ReciverListBox.Items.Add(item);
+        }
+
+        private Image GetImageFromBusCell(UIElement element)
+        {
+            if (element is UpperCell upper)
+                return upper.ImagePlacer.Children.OfType<Image>().First();
+
+            if (element is RightCell right)
+                return right.ImagePlacer.Children.OfType<Image>().First();
+
+            if (element is BottomCell bottom)
+                return bottom.ImagePlacer.Children.OfType<Image>().First();
+
+            if (element is LeftCell left)
+                return left.ImagePlacer.Children.OfType<Image>().First();
+
+            throw new Exception("No image in iamgePlacer!");
+        }
+
+        private int GetCellIndex(UIElement cell)
+        {
+            return _cells.IndexOf(cell);
+        }
 
         private void ClearClickInfoEventForBusCells()
         {

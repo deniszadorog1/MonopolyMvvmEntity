@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyDLL.Monopoly.Cell.Bus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
         {
             InitializeComponent();
         }
+
+        public TradeItem(ParentBus bus, Image busImg)
+        {
+            InitializeComponent();
+
+            ItemName.Text = bus.Name;
+            ItemType.Text = bus.Price.ToString();
+
+            Itemimg.Source = busImg.Source;
+        }
+
     }
 }

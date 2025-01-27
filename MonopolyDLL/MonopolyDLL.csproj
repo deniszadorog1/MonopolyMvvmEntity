@@ -175,6 +175,7 @@
     <Compile Include="Monopoly\Enums\ChanceAction.cs" />
     <Compile Include="Monopoly\Game.cs" />
     <Compile Include="Monopoly\MonopolySystem.cs" />
+    <Compile Include="Monopoly\TradeAction\TradeClass.cs" />
     <Compile Include="Monopoly\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

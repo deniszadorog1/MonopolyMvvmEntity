@@ -22,5 +22,17 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
 
         public int _depositCounterMax = 15;
 
+
+        public int GetPriceForBus()
+        {
+            return Price;
+        }
+
+        public void ChangeOwner(int newOwnerIndex)
+        {
+            OwnerIndex = newOwnerIndex;
+        }
+
+        
     }
 }

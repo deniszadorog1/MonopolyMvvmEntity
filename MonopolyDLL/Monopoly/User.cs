@@ -33,5 +33,20 @@ namespace MonopolyDLL.Monopoly
             Position = position;
             IfSitInPrison = false;
         }
+
+        public void PayMoney(int money)
+        {
+            AmountOfMoney -= money;
+        }
+
+        public void GetMoney(int money)
+        {
+            AmountOfMoney += money;
+        }
+
+        public bool IfPlayersInCellIndex(int cellIndex)
+        {
+            return Position == cellIndex;
+        }
     }
 }

@@ -151,11 +151,51 @@ namespace MonopolyDLL.Monopoly
             throw new Exception("Cant find any chance cell!");
         }
 
-        
-
         public int GetPrisonCellIndex()
         {
             return _prisonIndex;
         }
+
+        public bool IfPlayerOwnsBusiness(int playerIndex, int cellIndex)
+        {
+            return ((ParentBus)Cells[cellIndex]).OwnerIndex == playerIndex;
+        }
+
+        public ParentBus GetBusinessByIndex(int cellIndex)
+        {
+            return ((ParentBus)Cells[cellIndex]);
+        }
+
+        public int GetCellIndexByName(string cellName)
+        {
+            for(int i = 0; i < Cells.Length; i++)
+            {
+                if (Cells[i].Name == cellName) return i;
+            }
+            throw new Exception("There is no cell with such name!");
+        }
+
+        public int GetTotalPriceForBuses(List<int> buses)
+        {
+            int res = 0;
+            for(int i = 0; i < buses.Count; i++)
+            {
+                if (Cells[buses[i]] is ParentBus bus)
+                {
+                    res += bus.GetPriceForBus();
+                }
+            }
+            return res;
+        }
+
+        public void SetNewOwnerAfterTrade(List<int> indexes, int newOwnerIndex)
+        {
+            for(int i = 0; i < indexes.Count; i++)
+            {
+                ((ParentBus)Cells[indexes[i]]).ChangeOwner(newOwnerIndex);
+            }
+        }
+
+
     }
 }
