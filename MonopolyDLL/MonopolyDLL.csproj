@@ -173,6 +173,7 @@
     <Compile Include="Monopoly\Enums\BusinessType.cs" />
     <Compile Include="Monopoly\Enums\CellAction.cs" />
     <Compile Include="Monopoly\Enums\ChanceAction.cs" />
+    <Compile Include="Monopoly\Enums\VisualPrisonCellActions.cs" />
     <Compile Include="Monopoly\Game.cs" />
     <Compile Include="Monopoly\MonopolySystem.cs" />
     <Compile Include="Monopoly\TradeAction\TradeClass.cs" />

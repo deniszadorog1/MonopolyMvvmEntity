@@ -74,7 +74,6 @@
             </StackPanel>
 
             <Grid Grid.Row="0" Grid.Column="2" Name="PrisonCanvas" >
-
                 <CellTypeControl:PrisonCell x:Name="PrisonCell" Width="125" Height="125" 
                                             VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
 

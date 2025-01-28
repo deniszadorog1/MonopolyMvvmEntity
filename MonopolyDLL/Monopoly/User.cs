@@ -10,13 +10,12 @@ namespace MonopolyDLL.Monopoly
 {
     public class User
     {
-        public string Login;
-        public int AmountOfMoney;
-        public int Position;
-        public bool IfSitInPrison;
+        public string Login { get; set; }
+        public int AmountOfMoney { get; set; }
+        public int Position { get; set; }
+        public bool IfSitInPrison { get; set; }
+        public int SitInPrisonCounter { get; set; }
 
-
-        private int _sitInPrisonCounter = 0;
         public User()
         {
             Login = string.Empty;
@@ -47,6 +46,31 @@ namespace MonopolyDLL.Monopoly
         public bool IfPlayersInCellIndex(int cellIndex)
         {
             return Position == cellIndex;
+        }
+
+        public bool IfPlayerSitsInPrison()
+        {
+            return IfSitInPrison;
+        }
+
+        public void ClearSitInPrisonCounter()
+        {
+            SitInPrisonCounter = 0;
+        }
+
+        public void MakePrisonCounterHigher()
+        {
+            SitInPrisonCounter++;
+        }
+
+        public void ReverseSitInPrison()
+        {
+            IfSitInPrison = !IfSitInPrison;
+        }
+
+        public int GetPrisonCounter()
+        {
+            return SitInPrisonCounter;
         }
     }
 }

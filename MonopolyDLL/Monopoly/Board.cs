@@ -196,6 +196,15 @@ namespace MonopolyDLL.Monopoly
             }
         }
 
+        public int GetPrisonPrice()
+        {
+            return ((Prison)Cells[GetPrisonCellIndex()]).GetOutPrisonPrice();
+        }
+
+        public int GetMaxSittingRoundsInPrison()
+        {
+            return ((Prison)Cells[GetPrisonCellIndex()]).GetMaxSittingRounds();
+        }
 
     }
 }

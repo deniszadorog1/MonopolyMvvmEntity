@@ -74,14 +74,29 @@ namespace MonopolyDLL.Monopoly
 
         public int GetAmountOfPlayersInCell(int cellIndex)
         {
+            if (cellIndex == GameBoard.GetPrisonCellIndex()) return 0;
             return Players.Where(x => x.Position == cellIndex).Count();
         }
 
         Random _rnd = new Random(Guid.NewGuid().GetHashCode());
+
+        public bool check = false;
         public void DropCubes()
         {
-            _firstCube = 6;// _rnd.Next(1, 7);
-            _secondCube = 6;// _rnd.Next(1, 7);
+/*            if (StepperIndex == 0 && check == true)
+            {
+                _firstCube = 4;
+                _secondCube = 4;
+                return;
+            }
+            check = true;*/
+            _firstCube = 1;// _rnd.Next(1, 7);
+            _secondCube = 1;// _rnd.Next(1, 7);
+        }
+
+        public (int,int) GetValsForPrisonDice()
+        {
+            return (_rnd.Next(1, 7), _rnd.Next(1, 7));
         }
 
         public int GetFirstCubes()
@@ -542,7 +557,7 @@ namespace MonopolyDLL.Monopoly
 
         public void SetTradeReciverIndex(int reciverIndex)
         {
-            _trade.SetReciverIndex(reciverIndex);  
+            _trade.SetReciverIndex(reciverIndex);
         }
 
         public void AddBusinesInTrade(int busIndex)
@@ -613,7 +628,56 @@ namespace MonopolyDLL.Monopoly
             Players[reciverIndex].GetMoney(money);
         }
 
+        public VisualPrisonCellActions IfPlayerIsInPrison(int playerIndex)
+        {
+            return Players[playerIndex].IfPlayerSitsInPrison() ? VisualPrisonCellActions.SitInPrison :
+            Players[playerIndex].Position == GameBoard.GetPrisonCellIndex() ? VisualPrisonCellActions.VisitPrison :
+            VisualPrisonCellActions.OutOfPrison;   
+        }
 
+        public bool IfPlayerSitsInPrison(int playerIndex)
+        {
+            return Players[playerIndex].IfSitInPrison;
+        }
 
+        public bool IfStepperHasEnoughMoneyToPayPrisonPrice()
+        {
+            return Players[StepperIndex].AmountOfMoney >= GameBoard.GetPrisonPrice();
+        }
+
+        public bool IfStepperSatInPrisonTooMuch()
+        {
+            return Players[StepperIndex].SitInPrisonCounter >= GameBoard.GetMaxSittingRoundsInPrison();
+        }
+
+        public void PayPrisonBill()
+        {
+            Players[StepperIndex].PayMoney(GameBoard.GetPrisonPrice());
+        }
+
+        public void ClearStepperSitInPrisonCounter()
+        {
+            Players[StepperIndex].ClearSitInPrisonCounter();
+        }
+
+        public void MakeStepperPrisonCounterHigher()
+        {
+            Players[StepperIndex].MakePrisonCounterHigher();
+        }
+
+        public void ReverseStepperSitInPrison()
+        {
+            Players[StepperIndex].ReverseSitInPrison();
+        }
+
+        public int GetStepperPrisonCounter()
+        {
+            return Players[StepperIndex].GetPrisonCounter();
+        }
+
+        public int GetPrisonIndex()
+        {
+            return GameBoard.GetPrisonCellIndex();
+        }
     }
 }

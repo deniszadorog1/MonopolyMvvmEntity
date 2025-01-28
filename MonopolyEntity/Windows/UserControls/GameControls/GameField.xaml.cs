@@ -40,6 +40,7 @@ using MonopolyDLL.Monopoly.Enums;
 using System.Globalization;
 using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeControls;
 using System.Windows.Media.Effects;
+using System.Reflection;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -120,8 +121,94 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     AddThroughCubesControl();
                     break;
                 case ActionAfterStepperChanged.PrisonQuerstion:
+                    SetPrisonQuestion();
                     break;
             }
+        }
+
+        private void SetPrisonQuestion()
+        {
+            ChatMessages.Children.Clear();
+            PrisonQuestion question = new PrisonQuestion();
+            
+            SetPrisonButtonsVisibility(question);
+            SetEventsForPrisonQuestion(question);
+            
+            ChatMessages.Children.Add(question);
+        }
+
+        public void SetEventsForPrisonQuestion(PrisonQuestion question)
+        {
+            SetPayEventInPrison(question.PayBut);
+            SetPayEventInPrison(question.LastPay);
+
+            question.ContinueSitting.Click += (sender, e) =>
+            {
+                DropDiceInPrison();
+            };
+        }
+
+        private void DropDiceInPrison()
+        {
+            (int,int) cubeVals = _system.MonGame.GetValsForPrisonDice();
+            DicesDrop drop = new DicesDrop(cubeVals.Item1, cubeVals.Item2);
+
+            Canvas.SetZIndex(drop, 0);
+            drop.VerticalAlignment = VerticalAlignment.Center;
+
+            drop._first3dCube._horizontalAnimation.Completed += (sender, e) =>
+            {
+                if(cubeVals.Item1 == cubeVals.Item2)
+                {
+                    //ChatMessages.Children.Clear();
+
+                    _system.MonGame.ReverseStepperSitInPrison();
+                    _system.MonGame.ClearStepperSitInPrisonCounter();
+
+                    UpdatePlayersMoney();
+
+                    SetActionAfterStepperChanged();
+                    return;
+                }
+                _system.MonGame.MakeStepperPrisonCounterHigher();
+                ChatMessages.Children.Clear();
+                AddMessageTextBlock($"Values are not equal. You got {cubeVals.Item1} and {cubeVals.Item2}");
+                ChangeStepper();
+            };
+
+            ChatMessages.Children.Add(drop);
+        }
+        
+        public void SetPayEventInPrison(Button but)
+        {
+            but.Click += (sender, e) =>
+            {
+                if (_system.MonGame.IfStepperHasEnoughMoneyToPayPrisonPrice())
+                {
+                    _system.MonGame.PayPrisonBill();
+                    ChatMessages.Children.Clear();
+
+                    _system.MonGame.ReverseStepperSitInPrison();
+                    _system.MonGame.ClearStepperSitInPrisonCounter();
+
+                    UpdatePlayersMoney();
+
+                    SetActionAfterStepperChanged();
+                    return;
+                }
+                AddMessageTextBlock("Not enough money to pay prison price");
+            };
+        }
+
+        private void SetPrisonButtonsVisibility(PrisonQuestion question)
+        {
+            if (!_system.MonGame.IfStepperSatInPrisonTooMuch()) //If Player sat NOT too much
+            {
+                question.SetEnoughMoneyButsVisibility();
+                return;
+            }
+            //Player sat too many rounds in prison + set there if giveup later
+            question.SetNotEnoughMoneyButsVisibility();
         }
 
         List<SolidColorBrush> _colors = new List<SolidColorBrush>();
@@ -191,7 +278,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetActionVisuals(CellAction action)
         {
-
             switch (action)
             {
                 case CellAction.GotOnBusinessToBuy:
@@ -230,7 +316,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             MakeChanceAction(action);
 
-
             UpdatePlayersMoney();
 
             string actionText = GetTextForChanceAction(action);
@@ -267,17 +352,21 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void MakeLittleMoveFromChance(int cellIndex)
         {
-            MakeChipsMovementAction(_system.MonGame.GetStepperPosition(), cellIndex, _imgs[_system.MonGame.StepperIndex]);
+            int position = _system.MonGame.GetStepperPosition();
+
+
+            MakeChipsMovementAction(position, cellIndex, _imgs[_system.MonGame.StepperIndex]);
             _system.MonGame.SetPlayerPositionAfterChanceMove(cellIndex);
         }
 
         private void GoToPrisonFromChance(int cellIndexToMoveOn)
         {
-            MakeChipsMovementAction(_system.MonGame.GetStepperPosition(), 10, _imgs[_system.MonGame.StepperIndex]);
-
-            //MakeAMoveToInPrisonCell(true, _imgs[_system.MonGame.StepperIndex]);
+            int stepperPosition = _system.MonGame.GetStepperPosition();
+            IfLastMoveIsPrison = true;
+            _system.MonGame.Players[_system.MonGame.StepperIndex].IfSitInPrison = true;
+            MakeChipsMovementAction(stepperPosition, cellIndexToMoveOn, _imgs[_system.MonGame.StepperIndex]);
             _system.MonGame.SetPlayerPositionAfterChanceMove(cellIndexToMoveOn);
-
+            ChangeStepper();
         }
 
         private void GetMoneyChanceAction(int money)
@@ -1004,10 +1093,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 cellIndexToMoveOn = _squareIndexesToGoThrough.First();
             }
 
-
-            //const int moveDist = 10;
-            //Image tempChipImg = _imgs[0];
-
             Point chipToFieldPoint = GetChipImageLocToField(chipImage);
 
             Point insidePointStartCell = new Point(Canvas.GetLeft(chipImage), Canvas.GetTop(chipImage));
@@ -1019,24 +1104,50 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             //Add chip tom chipMove canvas
             AddChipToChipMovePanel(chipImage, chipToFieldPoint);
 
-
             //make move action
             MakeChipMove(startCellIndex, cellIndexToMoveOn, chipImage,
                 insidePointStartCell, newInsideChipPoint);
-            //MakeChipMoveToAnoutherCell(startCellIndex, cellIndexToMoveOn, chipImage, insidePointStartCell, newInsideChipPoint);
-
 
             //Reassign chip image to new cell (ON ANIMATION COMPLETE EVENT)
             //ReassignChipImageInNewCell(moveDist, tempChipImg, newInsideChipPoint);
 
+
             //Change Chips In cell
-            SetNewPositionsToChipsInCell(startCellIndex);
+
+            if (startCellIndex == _system.MonGame.GetPrisonIndex()) UpdatePrisonCanvases(_system.MonGame.GetPrisonIndex());
+            else SetNewPositionsToChipsInCell(startCellIndex);
 
             SetNewPositionsToChipsInCell(checkLastCellIndex, true);
+        }
+         
+        private void UpdatePrisonCanvases(int cellIndex)
+        {
+            UpdatePrisonCanvas(PrisonCell.ChipsPlacerVisit, cellIndex, false);
+            UpdatePrisonCanvas(PrisonCell.ChipsPlacerSitters, cellIndex, true);
+        }
+
+        private void UpdatePrisonCanvas(Canvas can, int cellIndex, bool ifSit)
+        {        
+            //new points for chips
+            List<Point> newChipsPoints = ifSit  ? 
+                BoardHelper.GetPointsForPrisonCellSitter(can.Children.OfType<Image>().ToList().Count,
+                new Size(can.ActualWidth, can.ActualHeight)) :
+
+                BoardHelper.GetPointsForPrisonCellExcurs(can.Children.OfType<Image>().ToList().Count, 
+                new Size(can.ActualWidth, can.ActualHeight));
+
+            if (newChipsPoints is null) return;
+
+            //Reassign chips in move panel
+            SetChipsImagesInMovePanel(newChipsPoints, can, cellIndex);
         }
 
         private Point GetChipImageLocToField(Image img)
         {
+            ChipMovePanel.UpdateLayout();
+            //img.UpdateLayout();
+            //Application.Current.MainWindow.UpdateLayout();
+
             Point startChipPoint = img.PointToScreen(new Point(0, 0));
             Point fieldPoint = this.PointToScreen(new Point(0, 0));
 
@@ -1060,7 +1171,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 _ifGoesThroughSquareCell = true;
 
                 if (_cells[_squareIndexesToGoThrough.Last()] is PrisonCell) IfLastMoveIsPrison = true;
-                
+
                 _chipAnimEvent = (s, e) =>
                 {
                     Point qwe = GetInsidePointToStepOn(_cells[_tempSquareValToGoOn], false);
@@ -1095,18 +1206,17 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                         if (IfLastMoveIsPrison && _squareIndexesToGoThrough.Count == 1)
                         {
                             IfLastMoveIsPrison = false;
-                            MakeAMoveToInPrisonCell(true, chipImg);
+                            MakeAMoveToInPrisonCell(IfPlayerSitsInPrisonByChipImage(chipImg), chipImg);
                         }
                     }
                     else _ifChipMoves = false;
                 };
                 MakeChipMoveToAnoutherCell(startCellIndex, _tempSquareValToGoOn, chipImg,
                     insidePointStartCell, newInsideChipPoint);
-
             }
             else
             {
-                if (_cells[cellIndexToMoveOn] is PrisonCell) IfLastMoveIsPrison = true;
+                //if (_cells[cellIndexToMoveOn] is PrisonCell) IfLastMoveIsPrison = true;
 
                 //usualMove
                 MakeChipMoveToAnoutherCell(startCellIndex, cellIndexToMoveOn, chipImg, insidePointStartCell, newInsideChipPoint);
@@ -1114,23 +1224,29 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         }
 
         //To Make a move in prison cell(sitter or visiter)
-        private void MakeAMoveToInPrisonCell(bool ifVisiter, Image movedChip)
+        private void MakeAMoveToInPrisonCell(bool ifSitsInPrison, Image movedChip)
         {
-            if (ifVisiter)
+            if (!ifSitsInPrison)
             {
-                PrisonCell.ChipsPlacer.Children.Remove(movedChip);
-                PrisonCell.ChipsPlacerVisit.Children.Add(movedChip);
+                //PrisonCell.ChipsPlacer.Children.Remove(movedChip);
+                //PrisonCell.ChipsPlacerVisit.Children.Add(movedChip);
 
                 List<Point> points = BoardHelper.GetPointsForPrisonCellExcurs(PrisonCell.ChipsPlacerVisit.Children.Count,
                     new Size(PrisonCell.Width, PrisonCell.Height));
 
-                SetChipsImagesInMovePanel(points, PrisonCell.ChipsPlacerVisit, 10);
+                SetChipsImagesInMovePanel(points, PrisonCell.ChipsPlacerVisit, _system.MonGame.GameBoard.GetPrisonCellIndex());
+                return;
             }
+
+            List<Point> sitPrisonPoints = BoardHelper.GetPointsForPrisonCellSitter(PrisonCell.ChipsPlacerSitters.Children.Count,
+            new Size(PrisonCell.Width, PrisonCell.Height));
+            SetChipsImagesInMovePanel(sitPrisonPoints, PrisonCell.ChipsPlacerSitters, _system.MonGame.GameBoard.GetPrisonCellIndex());
+
         }
 
         private void SetNewPositionsToChipsInCell(int cellIndex, bool ifInMove = false)
         {
-            Canvas can = BoardHelper.GetChipCanvas(_cells[cellIndex]);
+            Canvas can = GetChipCanvas(_cells[cellIndex]);
 
             //new points for chips
             List<Point> newChipsPoints = BoardHelper.GetPointsForChips(
@@ -1179,13 +1295,47 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             ChipMovePanel.Children.Remove(chipImage);
 
             UIElement cellToMoveOn = _cells[newCellIndex];
-            Canvas chipCan = BoardHelper.GetChipCanvas(cellToMoveOn);
+
+            Canvas chipCan = GetChipCanvas(cellToMoveOn, chipImage);
+
             chipCan.Children.Add(chipImage);
+            //chipCan.UpdateLayout();
+            //Application.Current.MainWindow.UpdateLayout();
 
             Canvas.SetLeft(chipImage, newCellInsideLoc.X);
             Canvas.SetTop(chipImage, newCellInsideLoc.Y);
 
             chipImage.RenderTransform = null;
+        }
+
+        public Canvas GetChipCanvas(UIElement el, Image img = null)
+        {
+            string canvasName = GetCanvasNameToStepOn(img);
+
+            var chipsPlacerField = el.GetType().GetField(
+                canvasName,
+                BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+
+            if (chipsPlacerField is null) throw new Exception("Cell doesnt have chips placer");
+            return chipsPlacerField.GetValue(el) as Canvas;
+        }
+
+        public string GetCanvasNameToStepOn(Image img)
+        {
+            if (img is null) return PrisonCell.ChipsPlacer.Name.ToString();
+            int index = _imgs.IndexOf(img);
+            VisualPrisonCellActions action = _system.MonGame.IfPlayerIsInPrison(index);
+            switch (action)
+            {
+                case VisualPrisonCellActions.SitInPrison:
+                    return PrisonCell.ChipsPlacerSitters.Name.ToString();
+                case VisualPrisonCellActions.VisitPrison:
+                    return PrisonCell.ChipsPlacerVisit.Name.ToString();
+                case VisualPrisonCellActions.OutOfPrison:
+                    return PrisonCell.ChipsPlacer.Name.ToString();
+            }
+
+            throw new Exception("No such prison actions type...HOW?");
         }
 
 
@@ -1197,18 +1347,15 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             //GetPoints for this Cell To stepOn
             //Get point for new Chip
 
-
             //cell to step on
             UIElement cellToMoveOn = _cells[movePoint];
 
-
             //Last point - for chips which we are moving
-            Point newCellPoint = BoardHelper.GetChipCanvas(cellToMoveOn).PointToScreen(new Point(0, 0));
-            Point startcCell = BoardHelper.GetChipCanvas(_cells[startCellIndex]).PointToScreen(new Point(0, 0));
+            Point newCellPoint = GetChipCanvas(cellToMoveOn).PointToScreen(new Point(0, 0));
+            Point startcCell = GetChipCanvas(_cells[startCellIndex]).PointToScreen(new Point(0, 0));
 
             Point pointToStepOn = new Point(newCellPoint.X - startcCell.X + newCellInsideChipPoint.X - prevCellInsideChipPoint.X,
                 newCellPoint.Y - startcCell.Y + newCellInsideChipPoint.Y - prevCellInsideChipPoint.Y);
-
 
             //Set chip amimation 
             SetChipToMoveAnimation(chip, pointToStepOn, movePoint, newCellInsideChipPoint);
@@ -1217,7 +1364,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private Point GetInsidePointToStepOn(UIElement cellToMoveOn, bool ifInMove = false)
         {
             //amount of chips in cell to step on
-            int amountOfChipsInCell = _system.MonGame.GetAmountOfPlayersInCell(_cells.IndexOf(cellToMoveOn));// BoardHelper.GetAmountOfItemsInCell(cellToMoveOn);
+            int amountOfChipsInCell = _system.MonGame.GetAmountOfPlayersInCell(_cells.IndexOf(cellToMoveOn));
 
             //Size of cell to step on
             Size cellSize = BoardHelper.GetSizeOfCell(cellToMoveOn);
@@ -1246,7 +1393,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             };
 
             if (!(_squareIndexesToGoThrough is null) &&
-                _ifGoesThroughSquareCell && /*_squareIndexesToGoThrough.Count > 1 &&*/ !IfChipsInOldCell) // tempMove Chip Img
+                _ifGoesThroughSquareCell && !IfChipsInOldCell) // tempMove Chip Img
             {
                 _chipMoveAnimation.Completed += _chipAnimEvent;
             }
@@ -1255,16 +1402,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 _chipMoveAnimation.Completed += (s, e) =>
                 {
                     ReassignChipImageInNewCell(cellIndex, toMove, newInsideChipPoint);
-
                     if (IfLastMoveIsPrison)
                     {
                         IfLastMoveIsPrison = false;
-                        MakeAMoveToInPrisonCell(true, toMove);
+                        MakeAMoveToInPrisonCell(IfPlayerSitsInPrisonByChipImage(toMove), toMove);
                     }
 
                     //if (_ifGoesThroughSquareCell) return;
                     _ifChipMoves = false;
-
                 };
             }
 
@@ -1282,6 +1427,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             _ifChipMoves = true;
         }
 
+        public bool IfPlayerSitsInPrisonByChipImage(Image chipImage)
+        {
+            int playerIndex = _imgs.IndexOf(chipImage);
+            return _system.MonGame.IfPlayerSitsInPrison(playerIndex);
+        }
 
         private void AddChipToChipMovePanel(Image img, Point startChipPoint)
         {

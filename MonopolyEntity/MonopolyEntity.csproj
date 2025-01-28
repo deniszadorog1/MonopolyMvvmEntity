@@ -162,6 +162,9 @@
     <Compile Include="Windows\UserControls\GameControls\OnChatMessages\PayMoney.xaml.cs">
       <DependentUpon>PayMoney.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\UserControls\GameControls\OnChatMessages\PrisonQuestion.xaml.cs">
+      <DependentUpon>PrisonQuestion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UserControls\GameControls\OnChatMessages\ThroughCubes.xaml.cs">
       <DependentUpon>ThroughCubes.xaml</DependentUpon>
     </Compile>
@@ -313,6 +316,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserControls\GameControls\OnChatMessages\PayMoney.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\OnChatMessages\PrisonQuestion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

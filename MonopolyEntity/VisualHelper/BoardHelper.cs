@@ -288,16 +288,6 @@ namespace MonopolyEntity.VisualHelper
             return 0;
         }
 
-        public static Canvas GetChipCanvas(UIElement el)
-        {
-            var chipsPlacerField = el.GetType().GetField(
-                "ChipsPlacer",
-                BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
-
-            if (chipsPlacerField is null) throw new Exception("Cell doesnt have chips placer");
-            return chipsPlacerField.GetValue(el) as Canvas;
-        }
-
         public static List<List<Point>> GetPointsToStandForPrisonCell(Size squareSize)
         {
             //Ponints for up Right (Donat), if for prison, need to change x and y in cords
