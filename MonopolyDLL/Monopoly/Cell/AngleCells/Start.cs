@@ -15,5 +15,17 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
         {
             Name = name;
         }
+
+        public int GetGeOnCellMoney()
+        {
+            return _paymentToGetOn;
+        }
+
+        public int GetGoThroughMoney()
+        {
+            return _paymentToGetThrough;
+        }
+
+
     }
 }

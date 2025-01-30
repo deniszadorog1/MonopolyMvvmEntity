@@ -20,7 +20,6 @@ namespace MonopolyEntity.VisualHelper
     {
         public static Image GetSquareByName(string imageName)
         {
-
             string boardImages = GetBoardImagesPath();
             string squarePath = Path.Combine(Path.Combine(boardImages, "CardImages"), "Squares");
             string imgSquarePath = Path.Combine(squarePath, imageName);
@@ -56,9 +55,11 @@ namespace MonopolyEntity.VisualHelper
             string visPath = Path.Combine(parentPath, "Visuals");
             string imagePath = Path.Combine(visPath, "Images");
             string boardImages = Path.Combine(imagePath, "BoardImages");
-
+    
             return boardImages;
         }
+
+       
 
         public static Image GetImageFromOtherFolder(string name)
         {

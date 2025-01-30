@@ -23,6 +23,7 @@
             <SolidColorBrush x:Key="SixGlobalColor" Color="#4c393d"/>
 
             <SolidColorBrush x:Key="MainGlobalColor" Color="#37BC9D"/>
+            <SolidColorBrush x:Key="DenyGlobalColor" Color="#ED1C24"/>
 
             <SolidColorBrush x:Key="PerfumeColor" Color="#EC87C1"/>
             <SolidColorBrush x:Key="CarColor" Color="#DA4553"/>

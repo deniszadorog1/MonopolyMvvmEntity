@@ -28,9 +28,74 @@
                 </StackPanel>
             </Border>
 
-            <Grid Grid.Row="1" Name="BusDescGrid" Margin="20 5 20 0">
+            <Grid Grid.Row="1" Name="BusDescGrid">
                 <TextBlock FontSize="14" TextWrapping="Wrap"  Name="DescriptionText"
-                           Text="There some text about bus type"/>
+                           Margin="20 5 20 0"
+                           Text="There some text about bus type" Visibility="Hidden"/>
+
+                <Button Name ="BuildHouseBut" Width="200" Height="25" Visibility="Hidden"
+                Background="{StaticResource MainGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Build house"
+                Foreground="White" VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
+
+                <Button Name ="SellHouseBut" Width="200" Height="25" Visibility="Hidden"
+                Background="{StaticResource DenyGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="SellHouse"
+                Foreground="White" VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
+                
+                <Grid Name ="CombineHouseButs"  Width="235" Visibility="Hidden">
+                    <Button Name ="BuildHouseCombineBut" Width="115" Height="25" 
+                    Background="{StaticResource MainGlobalColor}" 
+                    BorderBrush="White" VerticalAlignment="Center"
+                    HorizontalAlignment="Left" Content="Build house"
+                    Foreground="White" VerticalContentAlignment="Top"
+                    HorizontalContentAlignment="Center" FontSize="14"/>
+
+
+                    <Button Name ="SellHouseCombineBut" Width="115" Height="25"
+                    Background="{StaticResource DenyGlobalColor}" 
+                    BorderBrush="White" VerticalAlignment="Center"
+                    HorizontalAlignment="Right" Content="SellHouse"
+                    Foreground="White" VerticalContentAlignment="Top"
+                    HorizontalContentAlignment="Center" FontSize="14"/>
+                </Grid>
+
+                <Grid Name ="CombineDepositBuyHouse" Width="235" Visibility="Hidden">
+                    <Button Name ="BuildHouseSecondCombineBut" Width="115" Height="25" 
+                    Background="{StaticResource MainGlobalColor}" 
+                    BorderBrush="White" VerticalAlignment="Center"
+                    HorizontalAlignment="Left" Content="Build house"
+                    Foreground="White" VerticalContentAlignment="Top"
+                    HorizontalContentAlignment="Center" FontSize="14"/>
+
+                    <Button Name ="DepositCellSecondCombineBut" Width="115" Height="25"
+                    Background="{StaticResource DenyGlobalColor}" 
+                    BorderBrush="White" VerticalAlignment="Center"
+                    HorizontalAlignment="Right" Content="Deposit"
+                    Foreground="White" VerticalContentAlignment="Top"
+                    HorizontalContentAlignment="Center" FontSize="14"/>
+                </Grid>
+
+                <Button Name ="RebuyBut" Width="200" Height="25" Visibility="Hidden"
+                Background="{StaticResource MainGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Rebuy business"
+                Foreground="White" VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
+                <Button Name ="DepositBut" Width="200" Height="25" Visibility="Hidden"
+                Background="{StaticResource DenyGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Deposit business"
+                Foreground="White" VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
             </Grid>
 
             <Grid Grid.Row="2" Name ="BusLevelsGrid">

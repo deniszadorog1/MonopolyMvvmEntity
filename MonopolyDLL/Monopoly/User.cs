@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
+using MonopolyDLL.Monopoly.Enums;
+
 namespace MonopolyDLL.Monopoly
 {
     public class User
@@ -16,21 +18,29 @@ namespace MonopolyDLL.Monopoly
         public bool IfSitInPrison { get; set; }
         public int SitInPrisonCounter { get; set; }
 
+        public bool IfLost { get; set; }
+
+        public List<BusinessType> BuiltHousesInRowType { get; set; }         
+        private List<BusinessType> _collectedMonopolies = new List<BusinessType>();
+
         public User()
         {
             Login = string.Empty;
             AmountOfMoney = 15000;
             Position = 0;
             IfSitInPrison = false;
-
+            BuiltHousesInRowType = new List<BusinessType>();
+            IfLost = false;
         }
 
-        public User(string login, int amountOfMoney, int position)
+        public User(string login, int amountOfMoney, int position, bool ifLost)
         {
             Login = login;
             AmountOfMoney = amountOfMoney;
             Position = position;
             IfSitInPrison = false;
+            BuiltHousesInRowType = new List<BusinessType>();
+            IfLost = ifLost;
         }
 
         public void PayMoney(int money)
@@ -71,6 +81,32 @@ namespace MonopolyDLL.Monopoly
         public int GetPrisonCounter()
         {
             return SitInPrisonCounter;
+        }
+
+        public List<BusinessType> GetCollectedMonopolys()
+        {
+            return _collectedMonopolies;
+        }
+
+        public void AddMonopoly(BusinessType type)
+        {
+            if (_collectedMonopolies.Contains(type)) return;
+            _collectedMonopolies.Add(type);
+        }
+
+        public void RemoveFromCollectedMonopolies(BusinessType type)
+        {
+            _collectedMonopolies.Remove(type);
+        }
+
+        public void ClearCollectedMonopolies()
+        {
+            _collectedMonopolies.Clear();
+        }
+
+        public bool IfPlayerHasEnoughMoney(int money)
+        {
+            return AmountOfMoney >= money;
         }
     }
 }

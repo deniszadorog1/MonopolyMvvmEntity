@@ -12,7 +12,8 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
         public int BuySellHouse { get; set; }
 
         public UsualBus(string name, int price, int depositPrice, int rebuyPrice,List<int> paymentLevels, 
-            int depositCounter, int level, int buySellHouse, int ownerIndex, BusinessType type)
+            int depositCounter, int level, int buySellHouse, int ownerIndex, BusinessType type,
+            bool ifDeposited)
         {
             Name = name;
             Price = price;
@@ -24,6 +25,28 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             BuySellHouse = buySellHouse;
             OwnerIndex = ownerIndex;
             BusType = type;
+            IfDeposited = ifDeposited;
+        }
+
+        public int GetHousePrice()
+        {
+            return BuySellHouse;
+        }
+
+        public void BuyHouse()
+        {
+            ++Level;
+        }
+
+        public void SellHouse()
+        {
+            --Level;
+            if (Level < 0) throw new Exception("Level can be lower than 0");
+        }
+
+        public int GetPriceForBuiltHouses()
+        {
+            return (Level * Level);
         }
 
     }

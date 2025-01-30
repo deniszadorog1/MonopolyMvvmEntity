@@ -10,7 +10,8 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
     public class CarBus : ParentBus
     {
         public CarBus(string name, int price, int depositPrice, int rebuyPrice,
-            List<int> paymentLevels, int depositCounter, int level, int ownerIndex, BusinessType type)
+            List<int> paymentLevels, int depositCounter, int level, int ownerIndex, BusinessType type,
+            bool ifDeposited)
         {
             Name = name;
             Price = price;
@@ -21,6 +22,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             Level = level;
             OwnerIndex = ownerIndex;
             BusType = type;
+            IfDeposited = ifDeposited;
         }
     }
 }

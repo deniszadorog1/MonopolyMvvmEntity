@@ -26,5 +26,13 @@
 
         </Canvas>
 
+        <Canvas Width="65" Height="20" VerticalAlignment="Bottom" 
+                Margin="0 160 0 0" Background="Transparent" Name="StarsCanvas">
+            <Grid Width="65" Height="20" Background="Transparent"
+                  Name ="StarsGrid">
+
+            </Grid> 
+        </Canvas>
+
     </Grid>
 </UserControl>

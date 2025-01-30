@@ -171,8 +171,11 @@
     <Compile Include="Monopoly\Cell\Tax.cs" />
     <Compile Include="Monopoly\Enums\ActionAfterStepperChanged.cs" />
     <Compile Include="Monopoly\Enums\BusinessType.cs" />
+    <Compile Include="Monopoly\Enums\CarGameInfoVisual.cs" />
     <Compile Include="Monopoly\Enums\CellAction.cs" />
     <Compile Include="Monopoly\Enums\ChanceAction.cs" />
+    <Compile Include="Monopoly\Enums\StarType.cs" />
+    <Compile Include="Monopoly\Enums\UsualBusInfoVisual.cs" />
     <Compile Include="Monopoly\Enums\VisualPrisonCellActions.cs" />
     <Compile Include="Monopoly\Game.cs" />
     <Compile Include="Monopoly\MonopolySystem.cs" />

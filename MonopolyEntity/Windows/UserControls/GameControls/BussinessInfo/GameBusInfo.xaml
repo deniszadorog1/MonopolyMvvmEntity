@@ -37,6 +37,21 @@
                 <TextBlock Name="BusDescription"
                            Text="There should be bus type description" 
                            FontSize="16" TextWrapping="Wrap"/>
+
+                <Button Name ="RebuyBut" Width="200" Height="30" Visibility="Hidden"
+                Background="{StaticResource MainGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Rebuy business"
+                Foreground="White" VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
+                <Button Name ="DepositBut" Width="200" Height="30" Visibility="Hidden"
+                Background="{StaticResource DenyGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Deposit business"
+                Foreground="White" VerticalContentAlignment="Top"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+                
             </Grid>
 
             <Grid Grid.Row="2" Margin="10 5 20 5">
