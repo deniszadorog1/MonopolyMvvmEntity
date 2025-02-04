@@ -1,12 +1,16 @@
-﻿using MonopolyEntity.Windows.UserControls.GameControls.GameCell;
+﻿using MonopolyDLL.Monopoly.Enums;
+using MonopolyEntity.Windows.UserControls.GameControls.GameCell;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Configuration;
+using System.Diagnostics;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -55,11 +59,11 @@ namespace MonopolyEntity.VisualHelper
             string visPath = Path.Combine(parentPath, "Visuals");
             string imagePath = Path.Combine(visPath, "Images");
             string boardImages = Path.Combine(imagePath, "BoardImages");
-    
+
             return boardImages;
         }
 
-       
+
 
         public static Image GetImageFromOtherFolder(string name)
         {
@@ -135,7 +139,7 @@ namespace MonopolyEntity.VisualHelper
 
             chips.Add(GetChipImageByName("chipRed.png"));
             chips.Add(GetChipImageByName("chipBlue.png"));
-            chips.Add(GetChipImageByName("chipGreen.png"));      
+            chips.Add(GetChipImageByName("chipGreen.png"));
             chips.Add(GetChipImageByName("chipPurple.png"));
             chips.Add(GetChipImageByName("chipOrange.png"));
 
@@ -146,7 +150,7 @@ namespace MonopolyEntity.VisualHelper
             chips[4].Name = "Five";
 
             List<Image> res = new List<Image>();
-            for(int i = 0; i < amountOfPlayers; i++)
+            for (int i = 0; i < amountOfPlayers; i++)
             {
                 res.Add(chips[i]);
             }
@@ -231,7 +235,7 @@ namespace MonopolyEntity.VisualHelper
             if (amountOfChipsInCell == 0) return allPoints.First();
 
             int ifChipIsInMove = ifInMove ? 0 : -1;
-            
+
             return allPoints[amountOfChipsInCell + ifChipIsInMove];
         }
 
@@ -297,12 +301,12 @@ namespace MonopolyEntity.VisualHelper
             const int distFromBorder = 5;
             const int distBetweenChips = 5;
 
-            Point rightCorner = new Point(squareSize.Width - distFromBorder - _chipSize , distFromBorder);
+            Point rightCorner = new Point(squareSize.Width - distFromBorder - _chipSize, distFromBorder);
 
             Point cornerRightOne = new Point(rightCorner.X - distBetweenChips - _chipSize, distFromBorder);
             Point cornerRightTwo = new Point(cornerRightOne.X - distBetweenChips - _chipSize, distFromBorder);
 
-            Point cornerDownOne = new Point(rightCorner.X, rightCorner.Y  + distBetweenChips + _chipSize);
+            Point cornerDownOne = new Point(rightCorner.X, rightCorner.Y + distBetweenChips + _chipSize);
             Point cornerDownTwo = new Point(rightCorner.X, cornerDownOne.Y + distBetweenChips + _chipSize);
 
             for (int i = 1; i <= _maxPlayers; i++)
@@ -372,7 +376,7 @@ namespace MonopolyEntity.VisualHelper
         private static List<Point> SwapPointsForPrisonCell(List<Point> points)
         {
             List<Point> res = new List<Point>();
-            for(int i = 0; i < points.Count; i++)
+            for (int i = 0; i < points.Count; i++)
             {
                 res.Add(new Point(points[i].Y, points[i].X));
             }
@@ -381,7 +385,7 @@ namespace MonopolyEntity.VisualHelper
 
         public static List<int> GetListOfSquareCellIndexesThatChipGoesThrough(int startIndex, int endIndex)
         {
-            bool ifGoesTrough = IfChipGoesThroughCorner(startIndex, endIndex);    
+            bool ifGoesTrough = IfChipGoesThroughCorner(startIndex, endIndex);
             return !ifGoesTrough ? null : GetCellIndexToGoThrough(startIndex, endIndex);
         }
 
@@ -390,8 +394,8 @@ namespace MonopolyEntity.VisualHelper
             return ((startIndex < 10 && endPointIndex > 10) ||
                     (startIndex < 20 && endPointIndex > 20) ||
                     (startIndex < 30 && endPointIndex > 30) ||
-                    (startIndex > 30 && endPointIndex > 40) || 
-                    startIndex > endPointIndex); 
+                    (startIndex > 30 && endPointIndex > 40) ||
+                    startIndex > endPointIndex);
         }
 
         public static List<int> GetCellIndexToGoThrough(int startIndex, int endIndex)
@@ -407,7 +411,7 @@ namespace MonopolyEntity.VisualHelper
                 if (startIndex % 10 == 0) res.Add(startIndex);
                 if (cubesVal == 0)
                 {
-                    if(endIndex % 10 != 0) res.Add(endIndex);
+                    if (endIndex % 10 != 0) res.Add(endIndex);
                     return res;
                 }
             } while (true);
@@ -420,7 +424,7 @@ namespace MonopolyEntity.VisualHelper
             do
             {
                 counter--;
-                if(counter < 0)
+                if (counter < 0)
                 {
                     counter = 39;
                 }
@@ -440,17 +444,17 @@ namespace MonopolyEntity.VisualHelper
 
         public static Point GetCenterOfTheSquareForIamge(Image img, UIElement cell)
         {
-            if(cell is SquareCell square)
+            if (cell is SquareCell square)
             {
                 return new Point(square.ActualWidth / 2 - img.Width / 2, square.ActualHeight / 2 - img.Height / 2);
             }
-            if(cell is PrisonCell prison)
+            if (cell is PrisonCell prison)
             {
                 return new Point(prison.ActualWidth / 2 - img.Width / 2, prison.ActualHeight / 2 - img.Height / 2);
             }
             if (cell is UpperCell upper)
             {
-                return new Point(upper.ChipsPlacer.ActualWidth / 2 - img.Width / 2, 
+                return new Point(upper.ChipsPlacer.ActualWidth / 2 - img.Width / 2,
                     upper.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
             }
             if (cell is RightCell right)
@@ -473,15 +477,84 @@ namespace MonopolyEntity.VisualHelper
 
         private List<Point> GetChipsPointsOnPrisonCell(PrisonCell cell)
         {
-            List<Point> res = new List<Point>(); 
+            List<Point> res = new List<Point>();
             List<Image> img = cell.ChipsPlacerVisit.Children.OfType<Image>().ToList();
 
-            for(int i = 0; i < img.Count; i++)
+            for (int i = 0; i < img.Count; i++)
             {
                 res.Add(new Point(Canvas.GetLeft(img[i]), Canvas.GetTop(img[i])));
             }
 
             return res;
         }
+
+
+        private static string GetAddedImagePath()
+        {
+            DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            string parentPath = baseDirectoryInfo.Parent.Parent.FullName;
+            string visPath = Path.Combine(parentPath, "Visuals");
+            string imagePath = Path.Combine(visPath, "Images");
+            string addedImagesPath = Path.Combine(imagePath, "AddItemsImages");
+
+            return addedImagesPath;
+        }
+
+        public static Image GetLotBoxImage(string imageName)
+        {
+            string addedImagesPath = GetAddedImagePath();
+            string boxPath = Path.Combine(addedImagesPath, "Box");
+            string imgPath = Path.Combine(boxPath, imageName);
+
+            Image img = new Image()
+            {
+                Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute))
+            };
+
+            return img;
+        }
+
+        public static Image GetAddedItemImage(string imageName, BusinessType type)
+        {
+            string addedImagesPath = GetAddedImagePath();
+            string busPath = Path.Combine(addedImagesPath, "Businesses");
+            string busTypePath = GetFieldPathComineByType(busPath, type);
+            string imagePath = Path.Combine(busTypePath, imageName);
+
+            return new Image()
+            {
+                Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute))
+            };
+        }
+
+        private static string GetFieldPathComineByType(string boxFolderPath, BusinessType type)
+        {
+            switch (type)
+            {
+                case BusinessType.Perfume:
+                    return Path.Combine(boxFolderPath, "Perfume"); ;
+                case BusinessType.Cars:
+                    return Path.Combine(boxFolderPath, "Car"); ;
+                case BusinessType.Clothes:
+                    return Path.Combine(boxFolderPath, "Clothes"); ;
+                case BusinessType.Games:
+                    return Path.Combine(boxFolderPath, "Games"); ;
+                case BusinessType.Messagers:
+                    return Path.Combine(boxFolderPath, "Messager"); ;
+                case BusinessType.Drinks:
+                    return Path.Combine(boxFolderPath, "Drinks"); ;
+                case BusinessType.Planes:
+                    return Path.Combine(boxFolderPath, "Planes"); ;
+                case BusinessType.Food:
+                    return Path.Combine(boxFolderPath, "Food"); ;
+                case BusinessType.Hotels:
+                    return Path.Combine(boxFolderPath, "Hotels"); ;
+                case BusinessType.Phones:
+                    return Path.Combine(boxFolderPath, "Phones"); ;
+            }
+
+            throw new Exception("No such type");
+        }
+
     }
 }

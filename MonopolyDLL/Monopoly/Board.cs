@@ -12,7 +12,6 @@ using MonopolyDLL.Monopoly.Enums;
 using System.Dynamic;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using MonopolyEntity.Windows.UserControls.GameControls;
 
 using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;

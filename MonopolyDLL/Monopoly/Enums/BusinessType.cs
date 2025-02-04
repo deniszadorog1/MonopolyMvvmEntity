@@ -18,6 +18,5 @@ namespace MonopolyDLL.Monopoly.Enums
         Food,
         Hotels,
         Phones
-
     }
 }

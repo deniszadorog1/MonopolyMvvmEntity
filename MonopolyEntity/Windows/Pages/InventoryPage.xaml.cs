@@ -22,6 +22,7 @@ using System.Xml.Linq;
 using System.Windows.Media.Effects;
 
 using MonopolyDLL.Monopoly;
+using MonopolyDLL.Monopoly.InventoryObjs;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -48,23 +49,64 @@ namespace MonopolyEntity.Windows.Pages
 
         public void SetInventoryItems()
         {
-            SetTestInventoryItems();
+            for (int i = 0; i < _system.UserInventory.InventoryItems.Count; i++)
+            {
+                if (_system.UserInventory.InventoryItems[i] is CaseBox box)
+                {
+                    CaseCard card = SetLootBoxCard(box, BoardHelper.GetLotBoxImage(box.ImagePath));
+                    card.PreviewMouseDown += InventoryItem_MouseDown;
+                    ItemsPanel.Children.Add(card);
+                }
+                else if (_system.UserInventory.InventoryItems[i] is BoxItem boxItem) 
+                {
+                    CaseCard card = SetLootBoxCard(boxItem, BoardHelper.GetAddedItemImage(boxItem.ImagePath, boxItem.Type));
+                    ItemsPanel.Children.Add(card);
+                }
+            }
         }
+
+
+
+
+        public CaseCard SetLootBoxCard(Item box, Image img)
+        {
+            string name = box.Name;
+
+            CaseCard res = new CaseCard()
+            {
+                Width = 150,
+                Height = 175,
+                Margin = new Thickness(10)
+            };
+
+            res.CardImage.Source = img.Source;
+            res.CardImage.Width = 100;
+            res.CardImage.Height = 100;
+            res.CardImage.Stretch = Stretch.Fill;
+            res.CardImage.VerticalAlignment = VerticalAlignment.Center;
+            res.CardImage.HorizontalAlignment = HorizontalAlignment.Center;
+
+            res.BorderBgColor.Background = Brushes.Blue;
+            res.CardName.Foreground = Brushes.White;
+
+            res.CardName.Text = $"{box.Name} case";
+            return res;
+        }
+       
+
 
         public void SetTestInventoryItems()
         {
             CaseCard testCard = ThingForTest.GetDragonBoxCard();
-
             testCard.PreviewMouseDown += InventoryItem_MouseDown;
-
             ItemsPanel.Children.Add(testCard);
         }
 
         private void InventoryItem_MouseDown(object sender, EventArgs e)
         {
             //Make Description animation here
-             
-            if(sender is CaseCard card)
+
+            if (sender is CaseCard card)
             {
                 //Point wrapLoc = Helper.GetElementLocation(card, ItemsPanel);
 
@@ -73,7 +115,7 @@ namespace MonopolyEntity.Windows.Pages
                 SetAnimationforCaseBox(pagePoint, card.CardImage);
 
                 //MakeImageDescriptionAnimation(card.CardImage);
-            }            
+            }
         }
 
         private BoxDescription _boxDescript = null;
@@ -86,27 +128,27 @@ namespace MonopolyEntity.Windows.Pages
             if (_frame.Opacity == _inActiveOpacity) return;
 
             WorkWindow window = Helper.FindParent<WorkWindow>(_frame);
-            Canvas items =  window.VisiableItems;
+            Canvas items = window.VisiableItems;
 
             _boxDescript = new BoxDescription(_frame);
             _boxDescript.DescImage.Source = caseImg.Source;
 
             Canvas.SetLeft(_boxDescript, cardLocation.X);
-            Canvas.SetTop(_boxDescript, cardLocation.Y) ;
+            Canvas.SetTop(_boxDescript, cardLocation.Y);
 
             MakeImageDescriptionAnimation(_boxDescript.DescImage);
             MoveElementLeftAnimation(_boxDescript.DescriptionGrid);
 
             items.Children.Add(_boxDescript);
 
-            _frame.Effect =  new BlurEffect
+            _frame.Effect = new BlurEffect
             {
                 Radius = 100
-            }; 
+            };
 
             //this.IsEnabled = false;
         }
-        
+
         private void MoveElementLeftAnimation(UIElement element)
         {
             const int movePoint = -50;
@@ -198,7 +240,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(!(_boxDescript is null))
+            if (!(_boxDescript is null))
             {
                 _frame.Effect = null;
                 ClearDescription();

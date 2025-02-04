@@ -56,107 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Board.cs">
-      <Link>GameObjs\Board.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\BoxItem.cs">
-      <Link>InventoryItems\BoxItem.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\BusinessToGive.cs">
-      <Link>Trade\BusinessToGive.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Casino.cs">
-      <Link>Cells\Casino\Casino.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\CasinoType.cs">
-      <Link>Cells\Casino\CasinoType.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Cell.cs">
-      <Link>Cells\Cell.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\CellType.cs">
-      <Link>Cells\CellType.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Chance.cs">
-      <Link>Cells\Chance\Chance.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\ChanceMoney.cs">
-      <Link>Cells\Chance\ChanceMoney.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\ChanceMove.cs">
-      <Link>Cells\Chance\ChanceMove.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\ChanceType.cs">
-      <Link>Cells\Chance\ChanceType.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Game.cs">
-      <Link>GameObjs\Game.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\InventoryStaff.cs">
-      <Link>InventoryItems\InventoryStaff.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Item.cs">
-      <Link>InventoryItems\Item.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\LotBox.cs">
-      <Link>InventoryItems\LotBox.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\PictureFile.cs">
-      <Link>GameObjs\PictureFile.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Player.cs">
-      <Link>Players\Player.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\PlayerGame.cs">
-      <Link>Players\PlayerGame.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\PriceForLevel.cs">
-      <Link>Cells\Business\PriceForLevel.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\PriceType.cs">
-      <Link>Cells\Business\PriceType.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Rearity.cs">
-      <Link>InventoryItems\Rearity.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Station.cs">
-      <Link>Cells\Business\Station.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\StationType.cs">
-      <Link>Cells\Business\StationType.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\sysdiagram.cs">
-      <Link>sysdiagram.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\SystemColor.cs">
-      <Link>InventoryItems\SystemColor.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Tax.cs">
-      <Link>Cells\Tax\Tax.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\TaxType.cs">
-      <Link>Cells\Tax\TaxType.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\Trade.cs">
-      <Link>Trade\Trade.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\TradeAttrib.cs">
-      <Link>Trade\TradeAttrib.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\TradeStatu.cs">
-      <Link>Trade\TradeStatu.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\WonLevel.cs">
-      <Link>Cells\CasinoCell\WonLevel.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\WonPlayer.cs">
-      <Link>Players\WonPlayer.cs</Link>
-    </Compile>
-    <Compile Include="..\MonopolyEntity\Windows\UserControls\GameControls\WonTablesInCasino.cs">
-      <Link>Cells\CasinoCell\WonTablesInCasino.cs</Link>
-    </Compile>
     <Compile Include="Class1.cs" />
-    <Compile Include="MonopolyModel.cs" />
     <Compile Include="Monopoly\Board.cs" />
     <Compile Include="Monopoly\Cell\AngleCells\Casino.cs" />
     <Compile Include="Monopoly\Cell\AngleCells\GoToPrison.cs" />
@@ -171,6 +71,7 @@
     <Compile Include="Monopoly\Cell\Tax.cs" />
     <Compile Include="Monopoly\Enums\ActionAfterStepperChanged.cs" />
     <Compile Include="Monopoly\Enums\BusinessType.cs" />
+    <Compile Include="Monopoly\Enums\BusRearity.cs" />
     <Compile Include="Monopoly\Enums\CarGameInfoVisual.cs" />
     <Compile Include="Monopoly\Enums\CellAction.cs" />
     <Compile Include="Monopoly\Enums\ChanceAction.cs" />
@@ -178,6 +79,10 @@
     <Compile Include="Monopoly\Enums\UsualBusInfoVisual.cs" />
     <Compile Include="Monopoly\Enums\VisualPrisonCellActions.cs" />
     <Compile Include="Monopoly\Game.cs" />
+    <Compile Include="Monopoly\InventoryObjs\BoxItem.cs" />
+    <Compile Include="Monopoly\InventoryObjs\CaseBox.cs" />
+    <Compile Include="Monopoly\InventoryObjs\Item.cs" />
+    <Compile Include="Monopoly\InventoryObjs\UserInventory.cs" />
     <Compile Include="Monopoly\MonopolySystem.cs" />
     <Compile Include="Monopoly\TradeAction\TradeClass.cs" />
     <Compile Include="Monopoly\User.cs" />
@@ -188,6 +93,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

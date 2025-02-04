@@ -2,7 +2,6 @@
 using MonopolyDLL.Monopoly.Cell.AngleCells;
 using MonopolyDLL.Monopoly.Cell.Bus;
 using MonopolyDLL.Monopoly.Enums;
-using MonopolyEntity.Windows.UserControls.GameControls;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -22,6 +21,7 @@ using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 using MonopolyDLL.Monopoly.TradeAction;
 using System.Runtime.Remoting.Channels;
 using System.Data.OleDb;
+using System.Diagnostics.SymbolStore;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -40,7 +40,7 @@ namespace MonopolyDLL.Monopoly
         {
             Players = new List<User>()
             {
-               new User("One", 150000, 0, false),
+               new User("One", 15000, 0, false),
                new User("Two", 15000, 0, false),
                new User("Three", 15000, 0, false),
                new User("Four", 15000, 0, false),
@@ -91,8 +91,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 2;// _rnd.Next(1, 7);
-            _secondCube = 3;// _rnd.Next(1, 7);
+            _firstCube = _rnd.Next(1, 7);
+            _secondCube = _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -283,12 +283,19 @@ namespace MonopolyDLL.Monopoly
 
         public void ChangeStepper()
         {
-            if (StepperIndex == Players.Count - 1)
-            {
-                StepperIndex = 0;
-                return;
-            }
-            StepperIndex++;
+            do
+            { 
+                if (StepperIndex == Players.Count - 1)
+                {
+                    StepperIndex = 0;
+                }
+                else StepperIndex++;
+            } while (Players[StepperIndex].IfLost);
+        }
+
+        public bool IfStepperLost()
+        {
+            return Players[StepperIndex].IfLost;
         }
 
         public ActionAfterStepperChanged GetActionAfterStepperChanged()
@@ -313,7 +320,8 @@ namespace MonopolyDLL.Monopoly
 
             for (int i = 0; i < Players.Count; i++)
             {
-                if (i != StepperIndex && Players[i].AmountOfMoney >= auctionBus.Price)
+                if (i != StepperIndex && Players[i].AmountOfMoney >= auctionBus.Price &&
+                    !Players[i].IfLost)
                 {
                     _playerIndxesForAuction.Add(i);
                 }
@@ -504,13 +512,13 @@ namespace MonopolyDLL.Monopoly
             Players[StepperIndex].AmountOfMoney += money;
         }
 
-        public int GetIndexToStepOnForChance(ChanceAction action)
+    /*    public int GetIndexToStepOnForChance(ChanceAction action)
         {
             int step = action == ChanceAction.ForwardInOne ?
                 GameBoard.GetStepForwardChance() : GameBoard.GetStepBackwardChance();
 
             return Players[StepperIndex].Position + step;
-        }
+        }*/
 
         public bool IfIndexAndStepperIndexAreEqual(int index)
         {
@@ -544,7 +552,7 @@ namespace MonopolyDLL.Monopoly
             return GameBoard.Cells[cellIndex] is UsualBus;
         }
 
-        public bool IfSteperOwnsBusiness(int busIndex)
+        public bool IfStepperOwnsBusiness(int busIndex)
         {
             return GameBoard.IfPlayerOwnsBusiness(StepperIndex, busIndex);
         }
@@ -882,6 +890,7 @@ namespace MonopolyDLL.Monopoly
         public void StepperGaveUp()
         {
             GameBoard.ClearAllPlayersBuses(StepperIndex);
+            Players[StepperIndex].IfLost = true;
         }
 
         public int GetAllPlayersActivitiesPrice()

@@ -46,10 +46,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private int _toMakeBigger = 20;
         private int _toMakeThinner = -20;
 
+        const int translateMove = 10;
         public void SetAnimation(SolidColorBrush brush, bool ifStepper)
-        {           
+        {
+            var transform = new TranslateTransform();
+            UserCardGrid.RenderTransform = transform;
+
             int value = ifStepper ? _toMakeBigger : _toMakeThinner;
-            //return;
             UserCardGrid.Background = brush is null ? _usualBrush : brush;
 
             var widthAnimation = new DoubleAnimation
@@ -68,12 +71,25 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 //AutoReverse = true 
             };
 
+            var translateAnim = new DoubleAnimation
+            {
+                From = 0,
+                To = translateMove,
+                Duration = TimeSpan.FromSeconds(0.5),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            transform.BeginAnimation(TranslateTransform.XProperty, translateAnim);
+
             UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);
             UserCardGrid.BeginAnimation(HeightProperty, heightAnimation);
         }        
 
         public void MakeCardUsual()
         {
+            var transform = new TranslateTransform();
+            UserCardGrid.RenderTransform = transform;
+
             if (UserCardGrid.Background == _usualBrush) return;
             UserCardGrid.Background = _usualBrush;
 
@@ -92,6 +108,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 Duration = TimeSpan.FromSeconds(0.5),
                 //AutoReverse = true 
             };
+
+            var translateAnim = new DoubleAnimation
+            {
+                From = 0,
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.5),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
+
+            transform.BeginAnimation(TranslateTransform.XProperty, translateAnim);
 
             UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);
             UserCardGrid.BeginAnimation(HeightProperty, heightAnimation);

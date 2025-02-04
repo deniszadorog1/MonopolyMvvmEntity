@@ -8,9 +8,9 @@ namespace MonopolyDLL.Monopoly.Enums
 {
     public enum ChanceAction
     {
-        ForwardInOne = 1,
-        BackwardsInOne,
-        Pay500,
+        //ForwardInOne = 1,
+        //BackwardsInOne,
+        Pay500 = 1,
         Pay1500,
         Get500, 
         Get1500,

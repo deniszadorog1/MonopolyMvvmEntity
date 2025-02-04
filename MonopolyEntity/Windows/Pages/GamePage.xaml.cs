@@ -142,6 +142,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void UserCardPopup_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
+            if(_system.MonGame.IfStepperLost()) return;
             if (_dropdownMenuPopup.PlacementTarget == null)
             {
                 SetPopopMenu((UserCard)sender);
@@ -156,7 +157,6 @@ namespace MonopolyEntity.Windows.Pages
 
             StackPanel popupPanel = (StackPanel)((Border)_dropdownMenuPopup.Child).Child;
             popupPanel.Children.Clear();
-
 
             if (_system.MonGame.IfIndexAndStepperIndexAreEqual(cardIndex))
             {
@@ -183,6 +183,7 @@ namespace MonopolyEntity.Windows.Pages
             but.Click += (sender, e) =>
             {
                 _field.PlayerGaveUp();
+                _dropdownMenuPopup.IsOpen = !_dropdownMenuPopup.IsOpen;
             };
             panel.Children.Add(but);
         }

@@ -34,6 +34,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
+             
                 <BoardControls:UserCard Grid.Row="0" x:Name="FirstPlayerRedControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
                                     MouseDown="UserCardPopup_PreviewMouseDown"/>

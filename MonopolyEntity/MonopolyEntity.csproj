@@ -146,7 +146,6 @@
     <Compile Include="Windows\UserControls\GameControls\GameField.xaml.cs">
       <DependentUpon>GameField.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\UserControls\GameControls\MonopolyModel.cs" />
     <Compile Include="Windows\UserControls\GameControls\OnChatMessages\AuctionBid.xaml.cs">
       <DependentUpon>AuctionBid.xaml</DependentUpon>
     </Compile>
@@ -557,12 +556,9 @@
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\Other\chanceUp.png" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MonopolyDLL\MonopolyDLL.csproj">
-      <Project>{89b589b4-51c0-4856-aacf-61957f75ccd7}</Project>
-      <Name>MonopolyDLL</Name>
-    </ProjectReference>
-  </ItemGroup>
+
+	
+	
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\DiceRibs\five.png" />
     <Resource Include="Visuals\Images\BoardImages\DiceRibs\four.png" />

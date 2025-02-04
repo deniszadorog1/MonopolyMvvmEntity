@@ -9,7 +9,6 @@
     <Grid>
 
         <Grid Height="165" Width="220" Name="UserCardGrid" Background="#161A1B" >
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="90"/>
                 <RowDefinition Height="30"/>
@@ -22,18 +21,21 @@
             </Grid>
 
             <Grid Grid.Row="1" Name ="UserLoginCanvas">
-
                 <TextBlock Text="TestUserName" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           Foreground="White" Name="UserLogin"/>
+                           Foreground="White" Name="UserLogin" FontSize="22"/>
 
             </Grid>
 
             <Grid Grid.Row="2" Name="UserMoneyAmountCanvas">
                 <TextBlock Text="TestUserMoney" HorizontalAlignment="Center" VerticalAlignment="Center"
-                      Foreground="White" Name="UserMoney"/>
+                      Foreground="White" Name="UserMoney" FontSize="18"/>
             </Grid>
-
         </Grid>
 
+        <Grid Width="100" Height="100" VerticalAlignment="Bottom" Margin="0 0 0 10" 
+              Name ="SkullImg" Visibility="Hidden"> 
+            <Image Width="70" Height="60" Source="/Visuals/Images/BoardImages/Other/skull.png"/>
+        </Grid>
+        
     </Grid>
 </UserControl>
