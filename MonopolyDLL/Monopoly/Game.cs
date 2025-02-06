@@ -5,23 +5,12 @@ using MonopolyDLL.Monopoly.Enums;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Migrations.Model;
-using System.Dynamic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using Casino = MonopolyDLL.Monopoly.Cell.AngleCells.Casino;
 using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 
 using MonopolyDLL.Monopoly.TradeAction;
-using System.Runtime.Remoting.Channels;
-using System.Data.OleDb;
-using System.Diagnostics.SymbolStore;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -91,8 +80,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = _rnd.Next(1, 7);
-            _secondCube = _rnd.Next(1, 7);
+            _firstCube = 1;// _rnd.Next(1, 7);
+            _secondCube = 1;// _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -281,16 +270,20 @@ namespace MonopolyDLL.Monopoly
                 ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).Price;
         }
 
-        public void ChangeStepper()
+        public bool ChangeStepper()
         {
+            bool ifCircle = false;
             do
             { 
                 if (StepperIndex == Players.Count - 1)
                 {
                     StepperIndex = 0;
+                    ifCircle = true;
                 }
                 else StepperIndex++;
             } while (Players[StepperIndex].IfLost);
+
+            return ifCircle;
         }
 
         public bool IfStepperLost()
@@ -916,6 +909,34 @@ namespace MonopolyDLL.Monopoly
         {
             const int amountOfPlayersToWin = 1;
             return Players.Where(x => x.IfLost == false).Count() == amountOfPlayersToWin;
+        }
+
+        public int GetDepositCounter(int cellIndex)
+        {
+            return GameBoard.GetDepositCounter(cellIndex);
+        }
+
+        public bool IfDeposited(int cellIndex)
+        {
+            if (!(GameBoard.Cells[cellIndex] is ParentBus)) return false;
+            return GameBoard.IfBusinessIsDeposited(cellIndex);
+        }
+
+        public bool IfBusDepositCounterIsZero(int busIndex)
+        {
+            return GameBoard.IfDepositCounterIsZero(busIndex);
+        }
+        
+        public void SetNewDepositCircle()
+        {
+            GameBoard.SetNewCircleOfDepositedBuses();
+        }
+
+        public void ClearBusiness(int busIndex)
+        {
+            Players[GameBoard.GetOwnerIndex(busIndex)].
+                RemoveFromCollectedMonopolies(GameBoard.GetBusTypeByIndex(busIndex));
+            GameBoard.ClearBusiness(busIndex);
         }
     }
 }

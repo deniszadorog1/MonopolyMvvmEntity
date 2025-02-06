@@ -1,25 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using System.IO.Packaging;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MaterialDesignThemes.Wpf;
 using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.Pages;
-using MonopolyEntity.Windows.UserControls;
 
 namespace MonopolyEntity.Windows.UserControls.CaseOpening
 {
@@ -30,6 +16,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
     {
         private List<Image> _imgs;
         private List<string> _names;
+        new List<SolidColorBrush> _colors;
 
         public bool _animationIsDone = false;
 
@@ -37,6 +24,8 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         {
             _imgs = new List<Image>();
             _names = new List<string>();
+            _colors = new List<SolidColorBrush>();
+
             _animationIsDone = false;
             SetTestValues();
 
@@ -48,18 +37,20 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             //SetTestValues();
         }
 
-        public CaseRoulette(List<Image> caseImgs, List<string> itemNames)
+        public CaseRoulette(List<Image> caseImgs, 
+            List<string> itemNames, List<SolidColorBrush> colors)
         {
             _imgs = caseImgs;
             _names = itemNames;
+            _colors = colors;
+
             _animationIsDone = false;
-            SetTestValues();
+            //SetTestValues();
 
             InitializeComponent();
 
             FillCaseCard();
             MakeRotationAction();
-
         }
 
         public void SetTestValues()
@@ -125,6 +116,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         private void CloseRoulette()
         {
             OpenCase parent = Helper.FindParent<OpenCase>(this);
+            if (parent is null) return;
 
             this.Visibility = Visibility.Hidden;
             parent.CheckToOpen.Visibility = Visibility.Visible;
@@ -172,7 +164,6 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                     Height = _cardHeight,
                     Margin = new Thickness(0, 0, _distBetweenCards, 0),
                     VerticalAlignment = VerticalAlignment.Top,
-
                 };
 
                 FillCaseCardInRandom(item);
@@ -180,12 +171,12 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                 _cardsToFind.Add(item);
                 CaseRotator.Children.Add(item);
 
-                double xValue = _cardWidth * (i + 1) + _distBetweenCards * (i + 1);
+/*                double xValue = _cardWidth * (i + 1) + _distBetweenCards * (i + 1);
 
                 if (xValue > 10000)
                 {
                     Console.WriteLine();
-                }
+                }*/
             }
         }
 
@@ -200,7 +191,6 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             ChoseLine.Y2 = _distBetweenCards + _cardHeight;
         }
 
-
         Random rnd = new Random();
         public CaseCard FillCaseCardInRandom(CaseCard card)
         {
@@ -208,6 +198,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
 
             card.CardImage.Source = _imgs[index].Source;
             card.CardName.Text = _names[index];
+            card.BorderBgColor.Background = _colors[index];
 
             return card;
         }

@@ -10,6 +10,11 @@ using MonopolyEntity;
 using MonopolyEntity.Windows.UserControls;
 using MonopolyEntity.Windows.UserControls.CaseOpening;
 
+using MonopolyDLL.Monopoly.InventoryObjs;
+using MonopolyEntity.VisualHelper;
+using MonopolyDLL.DBService;
+using System.CodeDom;
+
 namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
@@ -17,22 +22,93 @@ namespace MonopolyEntity.Windows.Pages
     /// </summary>
     public partial class OpenCase : Page
     {
-        private CaseRoulette _rol = new CaseRoulette();
-        public OpenCase()
+        private CaseRoulette _rol;
+        private CaseBox _caseBox;
+
+        public OpenCase(CaseBox box)
         {
+            _caseBox = box;
+
             InitializeComponent();
 
-            SetTestCaseDrops();
+            SetCaseDrops();
+            FillCheckToOpen();
         }
 
-        public void SetTestCaseDrops()
+        /*        public void SetTestCaseDrops()
+                {
+                    List<CaseCard> testCards = ThingForTest.GetTestCaseCards();
+
+                    for (int i = 0; i < testCards.Count; i++)
+                    {
+                        CanBeDropedPanel.Children.Add(testCards[i]);
+                    }
+                }*/
+
+        public void FillCheckToOpen()
         {
-            List<CaseCard> testCards = ThingForTest.GetTestCaseCards();
-        
-            for(int i = 0; i < testCards.Count; i++)
+            CheckToOpen.KeyToBox.CardName.Text = "Key";
+
+            Image img = BoardHelper.GetLotBoxImage(_caseBox.ImagePath);
+            CheckToOpen.Box.CardName.Text = $"{_caseBox.Name} box";
+            CheckToOpen.Box.CardImage.Source = img.Source;
+        }
+
+        public void SetCaseDrops()
+        {
+            List<CaseCard> cards = new List<CaseCard>();
+            for (int i = 0; i < _caseBox.ItemsThatCanDrop.Count; i++)
             {
-                CanBeDropedPanel.Children.Add(testCards[i]);
+                cards.Add(GetCaseCards(_caseBox.ItemsThatCanDrop[i].Name,
+                    BoardHelper.GetAddedItemImage(_caseBox.ItemsThatCanDrop[i].ImagePath, _caseBox.ItemsThatCanDrop[i].Type),
+                    _caseBox.ItemsThatCanDrop[i]));
             }
+            
+            cards = BoardHelper.SetCardsInRightPosition(cards);
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                CanBeDropedPanel.Children.Add(cards[i]);
+            }
+        }
+      
+        public static CaseCard GetCaseCards(string name, Image img, MonopolyDLL.Monopoly.InventoryObjs.Item item)
+        {
+            CaseCard newCard = new CaseCard()
+            {
+                Width = 175,
+                Height = 175
+            };
+
+            newCard.CardImage.Source = img.Source;
+            newCard.CardName.Text = name;
+            newCard.Margin = new System.Windows.Thickness(20);
+
+            newCard.BorderBgColor.Background = BoardHelper.GetRearityColorForCard(item);
+
+
+            newCard.BorderBase.Clip = new RectangleGeometry()
+            {
+                RadiusX = 10,
+                RadiusY = 10,
+                Rect = new System.Windows.Rect(0, 0, newCard.Width, newCard.Height)
+            };
+            return newCard;
+        }
+
+        private (List<Image>, List<string>, List<SolidColorBrush>) GetParamsForCaseRoulette()
+        {
+            (List<Image> images, List<string> names, List<SolidColorBrush> colors) res = 
+                (new List<Image>(), new List<string>(), new List<SolidColorBrush>());
+
+            for(int i = 0; i < _caseBox.ItemsThatCanDrop.Count; i++)
+            {
+                res.names.Add(_caseBox.ItemsThatCanDrop[i].Name);
+                res.images.Add(BoardHelper.GetAddedItemImage(
+                    _caseBox.ItemsThatCanDrop[i].ImagePath, _caseBox.ItemsThatCanDrop[i].Type));
+                res.colors.Add(BoardHelper.GetRearityColorForCard(_caseBox.ItemsThatCanDrop[i]));
+            }
+            return res;
         }
 
         private void OpenCaseBut_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -40,7 +116,10 @@ namespace MonopolyEntity.Windows.Pages
             ExitBut.IsEnabled = false;
             OpenCaseBut.Visibility = Visibility.Hidden;
             CheckToOpen.Visibility = System.Windows.Visibility.Hidden;
-            _rol = new CaseRoulette(new List<Image>(), new List<string>())
+
+            (List<Image> images, List<string> names, List<SolidColorBrush> colors) 
+                rouletteParams = GetParamsForCaseRoulette();
+            _rol = new CaseRoulette(rouletteParams.images, rouletteParams.names, rouletteParams.colors)
             {
                 Background = new SolidColorBrush(Colors.Transparent),
                 Width = 600,
@@ -67,7 +146,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void ExitBut_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            WorkWindow window =  (WorkWindow)Window.GetWindow(this); 
+            WorkWindow window = (WorkWindow)Window.GetWindow(this);
             if (window != null)
             {
                 window.CaseFrame.Content = null;

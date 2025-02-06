@@ -39,7 +39,6 @@ namespace MonopolyEntity.Windows.Pages
             SetStartValuesInUserCards();
             
             AddGameField();
-
         }
 
         GameField _field;

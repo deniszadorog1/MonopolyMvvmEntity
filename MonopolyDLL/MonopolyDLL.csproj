@@ -57,6 +57,41 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="DBService\Board.cs" />
+    <Compile Include="DBService\BoxItem.cs" />
+    <Compile Include="DBService\BusinessToGive.cs" />
+    <Compile Include="DBService\Casino.cs" />
+    <Compile Include="DBService\CasinoType.cs" />
+    <Compile Include="DBService\Cell.cs" />
+    <Compile Include="DBService\CellType.cs" />
+    <Compile Include="DBService\Chance.cs" />
+    <Compile Include="DBService\ChanceMoney.cs" />
+    <Compile Include="DBService\ChanceMove.cs" />
+    <Compile Include="DBService\ChanceType.cs" />
+    <Compile Include="DBService\Game.cs" />
+    <Compile Include="DBService\InventoryStaff.cs" />
+    <Compile Include="DBService\Item.cs" />
+    <Compile Include="DBService\LotBox.cs" />
+    <Compile Include="DBService\MonopolyModel.cs" />
+    <Compile Include="DBService\PictureFile.cs" />
+    <Compile Include="DBService\Player.cs" />
+    <Compile Include="DBService\PlayerGame.cs" />
+    <Compile Include="DBService\PriceForLevel.cs" />
+    <Compile Include="DBService\PriceMultiplier.cs" />
+    <Compile Include="DBService\PriceType.cs" />
+    <Compile Include="DBService\Rearity.cs" />
+    <Compile Include="DBService\Station.cs" />
+    <Compile Include="DBService\StationType.cs" />
+    <Compile Include="DBService\sysdiagram.cs" />
+    <Compile Include="DBService\SystemColor.cs" />
+    <Compile Include="DBService\Tax.cs" />
+    <Compile Include="DBService\TaxType.cs" />
+    <Compile Include="DBService\Trade.cs" />
+    <Compile Include="DBService\TradeAttrib.cs" />
+    <Compile Include="DBService\TradeStatu.cs" />
+    <Compile Include="DBService\WonLevel.cs" />
+    <Compile Include="DBService\WonPlayer.cs" />
+    <Compile Include="DBService\WonTablesInCasino.cs" />
     <Compile Include="Monopoly\Board.cs" />
     <Compile Include="Monopoly\Cell\AngleCells\Casino.cs" />
     <Compile Include="Monopoly\Cell\AngleCells\GoToPrison.cs" />
@@ -69,6 +104,7 @@
     <Compile Include="Monopoly\Cell\CellParent.cs" />
     <Compile Include="Monopoly\Cell\Chance.cs" />
     <Compile Include="Monopoly\Cell\Tax.cs" />
+    <Compile Include="DBQueries.cs" />
     <Compile Include="Monopoly\Enums\ActionAfterStepperChanged.cs" />
     <Compile Include="Monopoly\Enums\BusinessType.cs" />
     <Compile Include="Monopoly\Enums\BusRearity.cs" />
@@ -92,7 +128,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.Pkcs;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,11 +21,10 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
         public int OwnerIndex { get; set; }
         public BusinessType BusType { get; set; }
         public bool IfDeposited { get; set; }
+        public int TempDepositCounter { get; set; }
 
         public int _depositCounterMax = 15;
-
-
-
+  
         public int GetPriceForBus()
         {
             return Price;
@@ -104,6 +104,38 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
         public void SetBusLevel(int level)
         {
             Level = level;
+        }
+
+        public void SetNewDepositCounter()
+        {
+            TempDepositCounter = _depositCounterMax;
+        }
+
+        public int GetDepositCounter()
+        {
+            return TempDepositCounter;
+        }
+
+        public void NewCircleOfDeposit()
+        {
+            TempDepositCounter--;
+        }
+
+        public bool IfDepositCounterIsZero()
+        {
+            return TempDepositCounter == 0;
+        }
+
+        public void DepositCounterIsZero()
+        {
+            OwnerIndex = -1;
+            TempDepositCounter = _depositCounterMax;
+            IfDeposited = false;
+        }
+
+        public int GetOwnerIndex()
+        {
+            return OwnerIndex;
         }
     }
 }

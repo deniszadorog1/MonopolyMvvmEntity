@@ -23,6 +23,7 @@ using System.Windows.Media.Effects;
 
 using MonopolyDLL.Monopoly;
 using MonopolyDLL.Monopoly.InventoryObjs;
+using System.Security.Policy;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -45,6 +46,14 @@ namespace MonopolyEntity.Windows.Pages
             SetUserImageEvent();
 
             SetInventoryItems();
+
+            SetUserParamsText();
+        }
+
+        public void SetUserParamsText()
+        {
+            UserLogin.Content = _system.LoggedUser.Login;
+            AmountOfItems.Text = _system.UserInventory.InventoryItems.Count().ToString();
         }
 
         public void SetInventoryItems()
@@ -54,7 +63,11 @@ namespace MonopolyEntity.Windows.Pages
                 if (_system.UserInventory.InventoryItems[i] is CaseBox box)
                 {
                     CaseCard card = SetLootBoxCard(box, BoardHelper.GetLotBoxImage(box.ImagePath));
-                    card.PreviewMouseDown += InventoryItem_MouseDown;
+                    card.PreviewMouseDown += (sender, e) =>
+                    {
+                        Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
+                        SetAnimationForCaseBox(pagePoint, card.CardImage, box);
+                    };
                     ItemsPanel.Children.Add(card);
                 }
                 else if (_system.UserInventory.InventoryItems[i] is BoxItem boxItem) 
@@ -65,12 +78,9 @@ namespace MonopolyEntity.Windows.Pages
             }
         }
 
-
-
-
-        public CaseCard SetLootBoxCard(Item box, Image img)
+        public CaseCard SetLootBoxCard(Item item, Image img)
         {
-            string name = box.Name;
+            string name = item.Name;
 
             CaseCard res = new CaseCard()
             {
@@ -86,16 +96,16 @@ namespace MonopolyEntity.Windows.Pages
             res.CardImage.VerticalAlignment = VerticalAlignment.Center;
             res.CardImage.HorizontalAlignment = HorizontalAlignment.Center;
 
-            res.BorderBgColor.Background = Brushes.Blue;
+            res.BorderBgColor.Background = BoardHelper.GetRearityColorForCard(item);
             res.CardName.Foreground = Brushes.White;
 
-            res.CardName.Text = $"{box.Name} case";
+            res.CardName.Text = $"{item.Name}";
             return res;
         }
-       
+        
 
 
-        public void SetTestInventoryItems()
+/*        public void SetTestInventoryItems()
         {
             CaseCard testCard = ThingForTest.GetDragonBoxCard();
             testCard.PreviewMouseDown += InventoryItem_MouseDown;
@@ -112,41 +122,50 @@ namespace MonopolyEntity.Windows.Pages
 
                 Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
 
-                SetAnimationforCaseBox(pagePoint, card.CardImage);
+                SetAnimationForCaseBox(pagePoint, card.CardImage);
 
                 //MakeImageDescriptionAnimation(card.CardImage);
             }
-        }
+        }*/
 
         private BoxDescription _boxDescript = null;
         private BussinessDescription _busDesc = null;
 
         private const double _inActiveOpacity = 0.1;
 
-        public void SetAnimationforCaseBox(Point cardLocation, Image caseImg)
+        public void SetAnimationForCaseBox(Point cardLocation, Image caseImg, CaseBox box)
         {
             if (_frame.Opacity == _inActiveOpacity) return;
 
             WorkWindow window = Helper.FindParent<WorkWindow>(_frame);
             Canvas items = window.VisiableItems;
 
-            _boxDescript = new BoxDescription(_frame);
-            _boxDescript.DescImage.Source = caseImg.Source;
-
-            Canvas.SetLeft(_boxDescript, cardLocation.X);
-            Canvas.SetTop(_boxDescript, cardLocation.Y);
+            _boxDescript = new BoxDescription(_frame, box);
+            SetBoxDescriptionParams(cardLocation, caseImg);
 
             MakeImageDescriptionAnimation(_boxDescript.DescImage);
             MoveElementLeftAnimation(_boxDescript.DescriptionGrid);
 
             items.Children.Add(_boxDescript);
 
+            SetBlurEffect();
+        }
+
+        public void SetBoxDescriptionParams(Point cardLocation, Image caseImg)
+        {
+            _boxDescript.DescImage.Source = caseImg.Source;
+
+            Canvas.SetLeft(_boxDescript, cardLocation.X);
+            Canvas.SetTop(_boxDescript, cardLocation.Y);
+        }
+
+        private void SetBlurEffect()
+        {
+            const int fullBlur = 100;
             _frame.Effect = new BlurEffect
             {
-                Radius = 100
+                Radius = fullBlur
             };
-
-            //this.IsEnabled = false;
         }
 
         private void MoveElementLeftAnimation(UIElement element)
@@ -253,9 +272,6 @@ namespace MonopolyEntity.Windows.Pages
         {
             WorkWindow window = Helper.FindParent<WorkWindow>(_frame);
             window.ClearVisiableItems();
-
         }
-
-
     }
 }

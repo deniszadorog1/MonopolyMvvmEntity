@@ -14,9 +14,13 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
         public int StationId { get; set; }
         public double Multiplier { get; set; }
 
+        private int rColor = -1;
+        private int gColor = -1;
+        private int bColor = -1;
+
         public BoxItem(string name, string imagePath, 
             BusRearity rearity, BusinessType type, int stationId, 
-            double multiplier)
+            double multiplier, int r, int g, int b)
         {
             Name = name;
             IsBox = false;
@@ -25,6 +29,24 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
             Type = type;
             StationId = stationId;
             Multiplier = multiplier;
+            rColor = r;
+            gColor = g;
+            bColor = b;
+        }
+
+        public byte GetRParam()
+        {
+            return (byte)rColor;
+        }
+
+        public byte GetGParam()
+        {
+            return (byte)gColor;
+        }
+
+        public byte GetBParam()
+        {
+            return (byte)bColor;
         }
     }
 }

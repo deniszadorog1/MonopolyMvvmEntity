@@ -26,6 +26,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             OwnerIndex = ownerIndex;
             BusType = type;
             IfDeposited = ifDeposited;
+            TempDepositCounter = _depositCounterMax;
         }
 
         public int GetHousePrice()

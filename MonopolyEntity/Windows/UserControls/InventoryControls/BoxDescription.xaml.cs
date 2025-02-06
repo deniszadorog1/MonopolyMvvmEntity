@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using MonopolyDLL.Monopoly.InventoryObjs;
+
 namespace MonopolyEntity.Windows.UserControls.InventoryControls
 {
     /// <summary>
@@ -24,10 +26,24 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
     public partial class BoxDescription : UserControl
     {
         private Frame _frame;
-        public BoxDescription(Frame workingFrame)
+        private CaseBox _caseBox;
+
+        public BoxDescription(Frame workingFrame, CaseBox item)
         {
             _frame = workingFrame;
+            _caseBox = item;
             InitializeComponent();
+
+            SetTextParams();
+        }
+
+        public void SetTextParams()
+        {
+            ItemName.Text = _caseBox.Name;
+            ItemType.Text = "LotBox";
+            ItemDesctiption.Text = "This is box which you can open";
+            ColType.Text = "The same as box name btw";
+            CanBeDroppedDescription.Text = "Several items from the worst type to the best";
         }
 
         private void OpenCaseBut_Click(object sender, RoutedEventArgs e)
@@ -36,9 +52,8 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
             WorkWindow obj = 
                 Helper.FindParent<WorkWindow>(_frame);
 
-            OpenCase inventory = new OpenCase();
+            OpenCase inventory = new OpenCase(_caseBox);
             //_frame.Content = inventory;
-
 
             obj.CaseFrame.Content = inventory;
 

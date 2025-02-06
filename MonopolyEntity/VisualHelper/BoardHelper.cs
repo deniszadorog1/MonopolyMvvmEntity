@@ -1,22 +1,20 @@
 ﻿using MonopolyDLL.Monopoly.Enums;
 using MonopolyEntity.Windows.UserControls.GameControls.GameCell;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Configuration;
-using System.Diagnostics;
-using System.Dynamic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+
+using MonopolyDLL.Monopoly.InventoryObjs;
+using MonopolyEntity.Windows.UserControls;
+using MonopolyDLL.Monopoly;
+using MonopolyDLL;
+using MonopolyEntity.Windows.UserControls.GameControls.Other;
+using System.Diagnostics;
 
 namespace MonopolyEntity.VisualHelper
 {
@@ -517,7 +515,7 @@ namespace MonopolyEntity.VisualHelper
         public static Image GetAddedItemImage(string imageName, BusinessType type)
         {
             string addedImagesPath = GetAddedImagePath();
-            string busPath = Path.Combine(addedImagesPath, "Businesses");
+            string busPath = Path.Combine(addedImagesPath, "Busnesses");
             string busTypePath = GetFieldPathComineByType(busPath, type);
             string imagePath = Path.Combine(busTypePath, imageName);
 
@@ -554,6 +552,70 @@ namespace MonopolyEntity.VisualHelper
             }
 
             throw new Exception("No such type");
+        }
+
+        public static SolidColorBrush GetRearityColorForCard(Item item)
+        {
+            if (item is BoxItem boxItem)
+            {
+                return new SolidColorBrush(Color.FromRgb(
+                    boxItem.GetRParam(), boxItem.GetGParam(), boxItem.GetBParam()));
+            }
+            return new SolidColorBrush(Color.FromRgb(76, 180, 219));
+        }
+
+        public static List<CaseCard> SetCardsInRightPosition(List<CaseCard> cards)
+        {
+            List<CaseCard> res = new List<CaseCard>();
+            
+            List<SolidColorBrush> colors = GetAllColorsFromDB();
+            for(int i = 0; i < colors.Count; i++)
+            {
+                for(int j = 0; j < cards.Count; j++)
+                {
+                    if (SolidColorBrushesComparation(colors[i], 
+                        (SolidColorBrush)cards[j].BorderBgColor.Background))
+                    {
+                        res.Add(cards[j]);
+                    }
+                }
+            }
+            return res;
+        }
+
+        private static bool SolidColorBrushesComparation(SolidColorBrush first, SolidColorBrush second)
+        {
+            return first.Color.R == second.Color.R &&
+                first.Color.G == second.Color.G &&
+                first.Color.B == second.Color.B;
+        }
+
+        private static List<SolidColorBrush> GetAllColorsFromDB()
+        {
+            List<SolidColorBrush> colors = new List<SolidColorBrush>();
+            List<(byte r, byte g, byte b)> colorParams = DBQueries.GetAllRearityColors();
+
+            for (int i = 0; i < colorParams.Count; i++)
+            {
+                colors.Add(new SolidColorBrush(Color.FromRgb(colorParams[i].r, colorParams[i].g, colorParams[i].b)));
+            }
+            return colors;
+        }
+
+        public static void MakeDepositCounterVisible(UIElement cell)
+        {
+            if (cell is UpperCell up) up.DepositObj.Visibility = Visibility.Visible; 
+        }
+
+        public static void MakeDepositCounterHidden(UIElement cell)
+        {
+            if (cell is UpperCell up) up.DepositObj.Visibility = Visibility.Hidden;
+        }
+
+        public static void SetValueForDepositCounter(UIElement cell, int value)
+        {
+            if (cell is UpperCell up)
+                up.DepositObj.Counter.Text = value.ToString();
         }
 
     }

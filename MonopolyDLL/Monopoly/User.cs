@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
-
+using MonopolyDLL.DBService;
 using MonopolyDLL.Monopoly.Enums;
 
 namespace MonopolyDLL.Monopoly
@@ -22,6 +22,14 @@ namespace MonopolyDLL.Monopoly
 
         public List<BusinessType> BuiltHousesInRowType { get; set; }         
         private List<BusinessType> _collectedMonopolies = new List<BusinessType>();
+
+        private int Id;
+
+        public User(string login, int id)
+        {
+            Login = login;
+            Id = id;
+        }
 
         public User()
         {
@@ -108,5 +116,7 @@ namespace MonopolyDLL.Monopoly
         {
             return AmountOfMoney >= money;
         }
+
+
     }
 }

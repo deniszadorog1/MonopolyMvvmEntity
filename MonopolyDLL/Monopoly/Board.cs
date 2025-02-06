@@ -491,5 +491,36 @@ namespace MonopolyDLL.Monopoly
             return ((ParentBus)Cells[busIndex]).Price;
         }
 
+        public int GetDepositCounter(int cellIndex)
+        {
+            return ((ParentBus)Cells[cellIndex]).GetDepositCounter();
+        }
+
+        public bool IfDepositCounterIsZero(int busIndex)
+        {
+            return ((ParentBus)Cells[busIndex]).IfDepositCounterIsZero();
+        }
+
+        public void SetNewCircleOfDepositedBuses()
+        {
+            for(int i = 0; i < Cells.Length; i++)
+            {
+                if(Cells[i] is ParentBus bus)
+                {
+                    bus.NewCircleOfDeposit();
+                }
+            }
+        }
+        
+        public void ClearBusiness(int busIndex)
+        {
+            ((ParentBus)Cells[busIndex]).DepositCounterIsZero();
+        }
+
+        public int GetOwnerIndex(int busIndex)
+        {
+            return ((ParentBus)Cells[busIndex]).GetOwnerIndex();
+        }
+
     }
 }

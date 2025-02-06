@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.GameCell"
              mc:Ignorable="d" 
+             
+             xmlns:DepoistCounter ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
+
              d:DesignHeight="150" d:DesignWidth="65"
              Height="150" Width="65">
     <Grid>
@@ -30,8 +33,15 @@
                 Margin="0 160 0 0" Background="Transparent" Name="StarsCanvas">
             <Grid Width="65" Height="20" Background="Transparent"
                   Name ="StarsGrid">
+                
+                    
+            </Grid>
 
-            </Grid> 
+            <Grid Width="65" Height="20" Background="Transparent">
+                <DepoistCounter:DepositCounter Height="20" 
+                                               x:Name="DepositObj" Visibility="Hidden"/>
+            </Grid>
+
         </Canvas>
 
     </Grid>

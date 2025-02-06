@@ -32,7 +32,7 @@
                 <RowDefinition  Height="90"/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
 
             <Border Grid.Row="0" Background="White" Margin="5" CornerRadius="10" >
@@ -44,12 +44,12 @@
 
                     <Grid Grid.Row="0" Name="ItemNamePanel">
                         <TextBlock Name="ItemName" Text="There should be itme name" 
-                                   Margin="10 10 0 0 " FontSize="14"/>
+                                   Margin="10 10 0 0 " FontSize="16"/>
                     </Grid>
 
                     <Grid Grid.Row="1" Name="ItemTypePanel">
                         <TextBlock Name ="ItemType" Text="There should be item type"
-                                   Margin="10 0 0 0" FontSize="10"/>
+                                   Margin="10 0 0 0" FontSize="14"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -63,13 +63,13 @@
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
-                        <TextBlock Name ="ItemDesctiption" TextWrapping="Wrap"
+                        <TextBlock Name ="ItemDesctiption" TextWrapping="Wrap" FontSize="14"
                                    Text="There will be item description" Margin="10 10 0 0 "/>
                     </Grid>
 
                     <Grid Name ="CollectionTypeGrid" Grid.Row="1">
                         <TextBlock Name="ColType" Text="There is collection type"
-                                   Margin="10 0 0 0" FontSize="10"/>
+                                   Margin="10 0 0 0" FontSize="12"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -78,12 +78,13 @@
                     Grid.Row="2" CornerRadius="10" Margin="5">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="40"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0" Name="CanDropDescGrid">
-                        <TextBlock x:Name="CanBeDroppedDescription" Margin="10 10 0 0 "
+                        <TextBlock x:Name="CanBeDroppedDescription" Margin="10 10 20 0 "
+                                   TextWrapping="Wrap" FontSize="14"
                                    Text="What you can get from this case"/>
                     </Grid>
 
@@ -94,14 +95,15 @@
             </Border>
 
             <Border Grid.Row="3" Background="White" 
-                    CornerRadius="10" Margin="5">
-                <StackPanel x:Name="ButtonsPanel" Orientation="Vertical" Margin="0">
+                    CornerRadius="10" Margin="5" >
+                <Canvas x:Name="ButtonsPanel" Margin="0 3 0 0">
                     <Button x:Name="OpenCaseBut" Background="Transparent" 
                             BorderThickness="0" Content="Open case" Foreground="Black" 
                             HorizontalContentAlignment="Left" 
+                            VerticalAlignment="Bottom"
                             Width="{Binding ActualWidth, ElementName=ButtonsPanel}"
                             Click="OpenCaseBut_Click"/>
-                </StackPanel>
+                </Canvas>
             </Border>
         </Grid>
     </Grid>

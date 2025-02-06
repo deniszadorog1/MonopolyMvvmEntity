@@ -39,14 +39,9 @@ using System.Threading;
 using MonopolyDLL.Monopoly.Enums;
 using System.Globalization;
 using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeControls;
-using System.Windows.Media.Effects;
 using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Windows.Controls.Primitives;
-using MonopolyEntity.Windows.UserControls.MainPageWindow;
-using System.Data.Entity.Core.Common.CommandTrees;
-using MaterialDesignThemes.MahApps;
 using System.Runtime.InteropServices;
+
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -90,7 +85,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             SetCellsStars();
 
-            //SetOwnerToAllCells();
+            SetOwnerToAllCells();
         }
 
         public void SetOwnerToAllCells()
@@ -118,11 +113,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             _cards[_system.MonGame.StepperIndex].SetAnimation(null, false);
 
             //Change ing dll
-            _system.MonGame.ChangeStepper();
+            if (_system.MonGame.ChangeStepper())
+            {
+                UpdateDepositCounters();
+            }
 
             //Set Size for new Card
             _cards[_system.MonGame.StepperIndex].SetAnimation(_colors[_system.MonGame.StepperIndex], true);
             SetActionAfterStepperChanged();
+
+
         }
 
         private void ChangeStepAfterAuction()
@@ -392,7 +392,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetGotOnChance()
         {
-            ChanceAction action = ChanceAction.GoToPrison;// _system.MonGame.GetChanceAction();
+            ChanceAction action = ChanceAction.Get500;// _system.MonGame.GetChanceAction();
 
             MakeChanceAction(action);
 
@@ -1073,6 +1073,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     //Set Payment
                     SetCarsPayments();
                     UpdatePlayersMoney();
+                    BoardHelper.MakeDepositCounterHidden(_cells[_clickedCellIndex]);
                     return;
                 }
                 AddMessageTextBlock("Not enough money to rebuy business");
@@ -1093,6 +1094,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 //Set Payment
                 SetCarsPayments();
                 UpdatePlayersMoney();
+
+                BoardHelper.MakeDepositCounterVisible(_cells[_clickedCellIndex]);
+                BoardHelper.SetValueForDepositCounter(_cells[_clickedCellIndex],
+                    _system.MonGame.GetDepositCounter(_clickedCellIndex));
             };
         }
 
@@ -1181,6 +1186,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     //Set Payment
                     SetGamePayments();
                     UpdatePlayersMoney();
+                    BoardHelper.MakeDepositCounterHidden(_cells[_clickedCellIndex]);
                     return;
                 }
                 AddMessageTextBlock("Not enough money to rebuy business");
@@ -1201,6 +1207,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 //Set Payment
                 SetGamePayments();
                 UpdatePlayersMoney();
+
+                BoardHelper.MakeDepositCounterVisible(_cells[_clickedCellIndex]);
+                BoardHelper.SetValueForDepositCounter(_cells[_clickedCellIndex],
+                    _system.MonGame.GetDepositCounter(_clickedCellIndex));
             };
         }
 
@@ -1313,6 +1323,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     ChangePriceInBusiness(_clickedCellIndex, _system.MonGame.GetBusMoneyLevel(_clickedCellIndex).ToString());
 
                     UpdatePlayersMoney();
+                    BoardHelper.MakeDepositCounterHidden(_cells[_clickedCellIndex]);
                     return;
                 }
                 AddMessageTextBlock("Not enough money to rebut busines");
@@ -1331,6 +1342,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 //Set Payment
                 ChangePriceInBusiness(_clickedCellIndex, _system.MonGame.GetBusMoneyLevel(_clickedCellIndex).ToString());
                 UpdatePlayersMoney();
+
+                BoardHelper.MakeDepositCounterVisible(_cells[_clickedCellIndex]);
+                BoardHelper.SetValueForDepositCounter(_cells[_clickedCellIndex], 
+                    _system.MonGame.GetDepositCounter(_clickedCellIndex));
             };
         }
 
@@ -2757,6 +2772,24 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             if (element is LeftCell left)
                 left.PreviewMouseDown -= Bussiness_PreviewMouseDown;
+        }
+
+        public void UpdateDepositCounters()
+        {
+            _system.MonGame.SetNewDepositCircle();
+            for (int i = 0; i < _cells.Count; i++)
+            {
+                if (_system.MonGame.IfDeposited(i))
+                {
+                    BoardHelper.SetValueForDepositCounter(_cells[i], _system.MonGame.GetDepositCounter(i));
+                    if (_system.MonGame.IfBusDepositCounterIsZero(i))
+                    {
+                        ClearCell(_cells[i], i);
+                        _system.MonGame.ClearBusiness(i);
+                        BoardHelper.MakeDepositCounterHidden(_cells[i]);
+                    }
+                }
+            }
         }
     }
 }

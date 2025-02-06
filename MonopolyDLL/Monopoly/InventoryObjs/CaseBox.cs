@@ -9,14 +9,21 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
 {
     public class CaseBox : Item
     {
-        private List<BoxItem> ItemsThatCanDrop { get; set; }
-
+        public List<BoxItem> ItemsThatCanDrop { get; set; }
 
         public CaseBox()
         {
             Name = string.Empty;
             ImagePath = string.Empty;
             IsBox = true;
+        }
+
+        public CaseBox(string name, string imagePath, List<BoxItem> items)
+        {
+            Name = name;
+            ImagePath = imagePath;
+            IsBox = true;
+            ItemsThatCanDrop = items;
         }
 
         public CaseBox(string name, string imagePath)

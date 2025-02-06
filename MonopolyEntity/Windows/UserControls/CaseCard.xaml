@@ -27,7 +27,6 @@
 
                 <Border Grid.Row="1" Name="BorderBgColor" Background="Pink"  CornerRadius="0, 0, 10, 10">
                     <Canvas  Name="DownPart"  Margin="5, 0, 5, 5">
-
                         <TextBlock Name ="CardName"
                                Loaded="CardName_Loaded"
                                Width="{Binding ActualWidth, ElementName=DownPart}"
@@ -35,7 +34,6 @@
                                Text="TestText"
                                TextAlignment="Center"
                                FontSize="16"/>
-
                     </Canvas>
                 </Border>
 

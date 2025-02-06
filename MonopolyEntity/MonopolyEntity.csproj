@@ -26,7 +26,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>5</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -556,9 +556,6 @@
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\Other\chanceUp.png" />
   </ItemGroup>
-
-	
-	
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\DiceRibs\five.png" />
     <Resource Include="Visuals\Images\BoardImages\DiceRibs\four.png" />
@@ -605,7 +602,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Hotels\kimptonHotel.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Hotels\sheratonHotel.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Hotels\sheartonHotel.png" />
     <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Hotels\westinHotel.png" />
   </ItemGroup>
   <ItemGroup>
@@ -628,6 +625,12 @@
   <ItemGroup>
     <Resource Include="Visuals\Images\AddItemsImages\Box\spectrum.png" />
     <Resource Include="Visuals\Images\AddItemsImages\Box\winter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MonopolyDLL\MonopolyDLL.csproj">
+      <Project>{89b589b4-51c0-4856-aacf-61957f75ccd7}</Project>
+      <Name>MonopolyDLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.2.0\build\MaterialDesignThemes.targets')" />
