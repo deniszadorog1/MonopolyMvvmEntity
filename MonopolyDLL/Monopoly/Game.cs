@@ -11,6 +11,7 @@ using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 
 using MonopolyDLL.Monopoly.TradeAction;
+using MonopolyDLL.DBService;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -80,8 +81,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 1;// _rnd.Next(1, 7);
-            _secondCube = 1;// _rnd.Next(1, 7);
+            _firstCube = _rnd.Next(1, 7);
+            _secondCube = _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -117,14 +118,14 @@ namespace MonopolyDLL.Monopoly
                 sumPoint - amountOfCell : sumPoint;
         }
 
-        public void SetPlayerPosition()
+        public void SetPlayerPosition(bool ifGoesToPrison)
         {
             const int lastCellIndex = 40;
 
             int sum = Players[StepperIndex].Position + GetSumOfCubes();
             int newPos = sum >= lastCellIndex ? sum - lastCellIndex : sum;
 
-            Players[StepperIndex].Position = newPos;
+            Players[StepperIndex].Position = ifGoesToPrison ? GetPrisonIndex() : newPos;
         }
 
         public void SetPlayerPositionAfterChanceMove(int newCellIndex)
@@ -274,7 +275,7 @@ namespace MonopolyDLL.Monopoly
         {
             bool ifCircle = false;
             do
-            { 
+            {
                 if (StepperIndex == Players.Count - 1)
                 {
                     StepperIndex = 0;
@@ -505,13 +506,13 @@ namespace MonopolyDLL.Monopoly
             Players[StepperIndex].AmountOfMoney += money;
         }
 
-    /*    public int GetIndexToStepOnForChance(ChanceAction action)
-        {
-            int step = action == ChanceAction.ForwardInOne ?
-                GameBoard.GetStepForwardChance() : GameBoard.GetStepBackwardChance();
+        /*    public int GetIndexToStepOnForChance(ChanceAction action)
+            {
+                int step = action == ChanceAction.ForwardInOne ?
+                    GameBoard.GetStepForwardChance() : GameBoard.GetStepBackwardChance();
 
-            return Players[StepperIndex].Position + step;
-        }*/
+                return Players[StepperIndex].Position + step;
+            }*/
 
         public bool IfIndexAndStepperIndexAreEqual(int index)
         {
@@ -663,6 +664,11 @@ namespace MonopolyDLL.Monopoly
             return Players[StepperIndex].SitInPrisonCounter >= GameBoard.GetMaxSittingRoundsInPrison();
         }
 
+        public bool IfStepperSitsInPrison()
+        {
+            return Players[StepperIndex].IfSitInPrison;
+        }
+
         public void PayPrisonBill()
         {
             Players[StepperIndex].PayMoney(GameBoard.GetPrisonPrice());
@@ -671,6 +677,11 @@ namespace MonopolyDLL.Monopoly
         public void ClearStepperSitInPrisonCounter()
         {
             Players[StepperIndex].ClearSitInPrisonCounter();
+        }
+
+        public void ClearStepperDoublesCounter()
+        {
+            Players[StepperIndex].ClearDoubleCounter();
         }
 
         public void MakeStepperPrisonCounterHigher()
@@ -926,7 +937,7 @@ namespace MonopolyDLL.Monopoly
         {
             return GameBoard.IfDepositCounterIsZero(busIndex);
         }
-        
+
         public void SetNewDepositCircle()
         {
             GameBoard.SetNewCircleOfDepositedBuses();
@@ -937,6 +948,33 @@ namespace MonopolyDLL.Monopoly
             Players[GameBoard.GetOwnerIndex(busIndex)].
                 RemoveFromCollectedMonopolies(GameBoard.GetBusTypeByIndex(busIndex));
             GameBoard.ClearBusiness(busIndex);
+        }
+
+        public bool IfCubeDropsAreEqual()
+        {
+            return _firstCube == _secondCube;
+        }
+
+        public void AddToDoubleCounter()
+        {
+            Players[StepperIndex].AddToDoubleCounter();
+        }
+
+        public int GetDoubleCounter()
+        {
+            return Players[StepperIndex].GetDoubleCounter();
+        }
+
+        public bool IfMaxDoublesIsAchieved()
+        {
+            return Players[StepperIndex].IfMaxDoublesIsAchieved();
+        }
+
+        public List<ParentBus> GetBusWithGivenBoxItem(InventoryObjs.BoxItem item)
+        {
+            return item.Type == BusinessType.Games ? GameBoard.GetAllGameBuses() :
+                item.Type == BusinessType.Cars ? GameBoard.GetAllCarBuses() :
+                GameBoard.GetUsualBussesToChangeOn(item);
         }
     }
 }

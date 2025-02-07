@@ -19,8 +19,12 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Name="UpPart">
+                    <CheckBox Name="IfTicked"
+                              VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="100"
+                              Margin="0 5 5 0" IsChecked="True" Visibility="Hidden"/>
+
                     <Image Name="CardImage"          
-                           Stretch="Fill"
+                           Stretch ="Fill"
                            Width="{Binding ActualWidth, ElementName=UpPart}" 
                            Height="{Binding ActualHeight, ElementName=UpPart}"/>
                 </Grid>

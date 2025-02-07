@@ -188,6 +188,9 @@
     <Compile Include="Windows\UserControls\InventoryControls\BoxDescription.xaml.cs">
       <DependentUpon>BoxDescription.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\UserControls\InventoryControls\BusDescButton.xaml.cs">
+      <DependentUpon>BusDescButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UserControls\InventoryControls\BussinessDescription.xaml.cs">
       <DependentUpon>BussinessDescription.xaml</DependentUpon>
     </Compile>
@@ -351,6 +354,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserControls\InventoryControls\BoxDescription.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\InventoryControls\BusDescButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

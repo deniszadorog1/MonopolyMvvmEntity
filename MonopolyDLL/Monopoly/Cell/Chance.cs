@@ -19,9 +19,10 @@ namespace MonopolyDLL.Monopoly.Cell
         private const int _stepForward = 1;
         private const int _stepBackward = -1;
 
-        public Chance(string name)
+        public Chance(string name, int id)
         {
             Name = name;
+            Id = id;
         }
 
         private Random _rnd = new Random();

@@ -13,9 +13,10 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
 
         private List<int> _wonLevels = new List<int>();
 
-        public Casino(string name)
+        public Casino(string name, int id)
         {
             Name = name;
+            Id = id;
         }
 
         public int GetCasinoGamePrice()

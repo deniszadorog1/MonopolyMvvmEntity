@@ -19,7 +19,6 @@ namespace MonopolyDLL.Monopoly
     {
         public User LoggedUser { get; set; }
         public Game MonGame { get; set; }
-        public UserInventory UserInventory { get; set; }
 
         public MonopolySystem()
         {
@@ -28,9 +27,9 @@ namespace MonopolyDLL.Monopoly
 
             List<InventoryObjs.Item> items = DBQueries.GetUserItemsFromInventory(1);
 
-
-            UserInventory = new UserInventory(items);
+            UserInventory inventory = new UserInventory(items);
             LoggedUser = DBQueries.GetPlayerById(1);
+            LoggedUser.Inventory = inventory;
             return;
             //UserInventory = DBQueries.GetInventoryItems(LoggedUser.Login);
         }   

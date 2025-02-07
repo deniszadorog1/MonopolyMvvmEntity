@@ -1,29 +1,22 @@
 ﻿using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.UserControls;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 using MonopolyEntity.Windows.UserControls.InventoryControls;
-using System.Net;
-using System.Xml.Linq;
 using System.Windows.Media.Effects;
 
 using MonopolyDLL.Monopoly;
 using MonopolyDLL.Monopoly.InventoryObjs;
-using System.Security.Policy;
+using System.Collections.Generic;
+using MonopolyDLL.Monopoly.Cell.Bus;
+using System.Data.Entity.Infrastructure;
+using MonopolyDLL;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -53,14 +46,14 @@ namespace MonopolyEntity.Windows.Pages
         public void SetUserParamsText()
         {
             UserLogin.Content = _system.LoggedUser.Login;
-            AmountOfItems.Text = _system.UserInventory.InventoryItems.Count().ToString();
+            AmountOfItems.Text = _system.LoggedUser.Inventory.InventoryItems.Count().ToString();
         }
 
         public void SetInventoryItems()
         {
-            for (int i = 0; i < _system.UserInventory.InventoryItems.Count; i++)
+            for (int i = 0; i < _system.LoggedUser.Inventory.InventoryItems.Count; i++)
             {
-                if (_system.UserInventory.InventoryItems[i] is CaseBox box)
+                if (_system.LoggedUser.Inventory.InventoryItems[i] is CaseBox box)
                 {
                     CaseCard card = SetLootBoxCard(box, BoardHelper.GetLotBoxImage(box.ImagePath));
                     card.PreviewMouseDown += (sender, e) =>
@@ -70,9 +63,14 @@ namespace MonopolyEntity.Windows.Pages
                     };
                     ItemsPanel.Children.Add(card);
                 }
-                else if (_system.UserInventory.InventoryItems[i] is BoxItem boxItem) 
+                else if (_system.LoggedUser.Inventory.InventoryItems[i] is BoxItem boxItem)
                 {
                     CaseCard card = SetLootBoxCard(boxItem, BoardHelper.GetAddedItemImage(boxItem.ImagePath, boxItem.Type));
+                    card.PreviewMouseDown += (sender, e) =>
+                    {
+                        Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
+                        SetAnimationForInventoryBusiness(pagePoint, card.CardImage, boxItem);
+                    };
                     ItemsPanel.Children.Add(card);
                 }
             }
@@ -102,35 +100,123 @@ namespace MonopolyEntity.Windows.Pages
             res.CardName.Text = $"{item.Name}";
             return res;
         }
-        
 
 
-/*        public void SetTestInventoryItems()
+
+        /*        public void SetTestInventoryItems()
+                {
+                    CaseCard testCard = ThingForTest.GetDragonBoxCard();
+                    testCard.PreviewMouseDown += InventoryItem_MouseDown;
+                    ItemsPanel.Children.Add(testCard);
+                }
+
+                private void InventoryItem_MouseDown(object sender, EventArgs e)
+                {
+                    //Make Description animation here
+
+                    if (sender is CaseCard card)
+                    {
+                        //Point wrapLoc = Helper.GetElementLocation(card, ItemsPanel);
+
+                        Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
+
+                        SetAnimationForCaseBox(pagePoint, card.CardImage);
+
+                        //MakeImageDescriptionAnimation(card.CardImage);
+                    }
+                }*/
+
+        private BussinessDescription _busDesc;
+        public void SetAnimationForInventoryBusiness(Point cardLocation, Image busImg, BoxItem bus)
         {
-            CaseCard testCard = ThingForTest.GetDragonBoxCard();
-            testCard.PreviewMouseDown += InventoryItem_MouseDown;
-            ItemsPanel.Children.Add(testCard);
+            if (_frame.Opacity == _inActiveOpacity) return;
+
+            WorkWindow window = Helper.FindParent<WorkWindow>(_frame);
+            Canvas items = window.VisiableItems;
+
+            _busDesc = new BussinessDescription(bus);
+            _busDesc.DescImage.Source = busImg.Source;
+
+            SetButtonsInBusDescription(bus);
+
+            Canvas.SetLeft(_busDesc, cardLocation.X);
+            Canvas.SetTop(_busDesc, cardLocation.Y);
+
+            MakeImageDescriptionAnimation(_busDesc.DescImage);
+            MoveElementLeftAnimation(_busDesc.DescriptionGrid);
+
+            items.Children.Add(_busDesc);
+
+            SetBlurEffect();
         }
 
-        private void InventoryItem_MouseDown(object sender, EventArgs e)
+        private void SetButtonsInBusDescription(BoxItem item)
         {
-            //Make Description animation here
+            List<BusDescButton> buts = GetButtonForUsualBus(item);
 
-            if (sender is CaseCard card)
+            for (int i = 0; i < buts.Count; i++)
             {
-                //Point wrapLoc = Helper.GetElementLocation(card, ItemsPanel);
-
-                Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
-
-                SetAnimationForCaseBox(pagePoint, card.CardImage);
-
-                //MakeImageDescriptionAnimation(card.CardImage);
+                _busDesc.ButtonsPanel.Children.Add(buts[i]);
             }
-        }*/
+        }
+
+
+        /// <summary>
+        /// Set buttons for bus description
+        /// to change busses in game
+        /// </summary>
+        public List<BusDescButton> GetButtonForUsualBus(BoxItem item)
+        {
+            List<BusDescButton> res = new List<BusDescButton>();
+            List<ParentBus> busesToGetButsFor = _system.MonGame.GetBusWithGivenBoxItem(item);
+
+            for (int i = 0; i < busesToGetButsFor.Count; i++)
+            {
+                BoxItem usingItem = _system.LoggedUser.GetItemWhichUsesInGameById(busesToGetButsFor[i].GetId());
+
+                if (usingItem is null)
+                {
+                    res.Add(GetBusForBusinessDescription(
+                        busesToGetButsFor[i].Name, new SolidColorBrush(Color.FromRgb(76, 180, 219))));
+                }
+                else
+                {
+                    res.Add(GetBusForBusinessDescription(usingItem.Name,
+                        BoardHelper.GetColorFromSystemColorName(usingItem.Rearity.ToString())));
+                }
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// Check for not using same cards several times
+        /// </summary>
+        /// <param name="item"></param>
+        private void IfSuchItemIsAlreadyUsingInGame(BoxItem item)
+        {   //If user is using boxItem with such name
+            if (_system.LoggedUser.IfBusWithSuchNameIsUSedInGame(item.Name))
+            {
+
+            }
+        }
+
+
+        public BusDescButton GetBusForBusinessDescription(string busName, SolidColorBrush color)
+        {
+            BusDescButton res = new BusDescButton();
+
+            res.ActionNameText.Text = "Change";
+            res.BusName.Text = busName;
+            res.RearityColor.Background = color;
+
+            res.PreviewMouseDown += (sender, e) =>
+            {
+
+            };
+            return res;
+        }
 
         private BoxDescription _boxDescript = null;
-        private BussinessDescription _busDesc = null;
-
         private const double _inActiveOpacity = 0.1;
 
         public void SetAnimationForCaseBox(Point cardLocation, Image caseImg, CaseBox box)
@@ -259,12 +345,13 @@ namespace MonopolyEntity.Windows.Pages
 
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!(_boxDescript is null))
+            if (!(_boxDescript is null) || !(_busDesc is null))
             {
                 _frame.Effect = null;
                 ClearDescription();
                 this.IsEnabled = true;
                 _boxDescript = null;
+                _busDesc = null;
             }
         }
 

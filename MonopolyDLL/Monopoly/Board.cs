@@ -16,6 +16,7 @@ using System.Runtime.InteropServices;
 using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 using Casino = MonopolyDLL.Monopoly.Cell.AngleCells.Casino;
+using MonopolyDLL.DBService;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -37,57 +38,57 @@ namespace MonopolyDLL.Monopoly
         {
             Cells = new CellParent[40];
 
-            Cells[0] = new Start("Start");
+            Cells[0] = new Start("Start", 0);
             _startIndex = 0;
 
-            Cells[1] = new UsualBus("Chanel", 600, 300, 360, new List<int>() { 20, 100, 300, 900, 1600, 2500 }, 0, 0, 500, -1, BusinessType.Perfume, false);
-            Cells[2] = new Chance("Chance");
-            Cells[3] = new UsualBus("HugoBoss", 600, 300, 360, new List<int>() { 40, 200, 600, 1800, 3200, 4500 }, 0, 0, 500, -1, BusinessType.Perfume, false);
-            Cells[4] = new Tax("LittleTax", 1000);
-            Cells[5] = new CarBus("Mercedes", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false);
-            Cells[6] = new UsualBus("Adidas", 1000, 500, 600, new List<int>() { 60, 300, 900, 2700, 4000, 5500 }, 0, 0, 500, -1, BusinessType.Clothes, false);
-            Cells[7] = new Chance("Chance");
-            Cells[8] = new UsualBus("Puma", 1000, 500, 600, new List<int>() { 60, 300, 900, 2700, 4000, 5500 }, 0, 0, 500, -1, BusinessType.Clothes, false);
-            Cells[9] = new UsualBus("Lacoste", 1200, 600, 720, new List<int>() { 80, 400, 1000, 3000, 4500, 6000 }, 0, 0, 500, -1, BusinessType.Clothes, false);
+            Cells[1] = new UsualBus("Chanel", 600, 300, 360, new List<int>() { 20, 100, 300, 900, 1600, 2500 }, 0, 0, 500, -1, BusinessType.Perfume, false, 1);
+            Cells[2] = new Chance("Chance", 2);
+            Cells[3] = new UsualBus("HugoBoss", 600, 300, 360, new List<int>() { 40, 200, 600, 1800, 3200, 4500 }, 0, 0, 500, -1, BusinessType.Perfume, false,3);
+            Cells[4] = new Tax("LittleTax", 1000, 4);
+            Cells[5] = new CarBus("Mercedes", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false, 5);
+            Cells[6] = new UsualBus("Adidas", 1000, 500, 600, new List<int>() { 60, 300, 900, 2700, 4000, 5500 }, 0, 0, 500, -1, BusinessType.Clothes, false, 6);
+            Cells[7] = new Chance("Chance", 7);
+            Cells[8] = new UsualBus("Puma", 1000, 500, 600, new List<int>() { 60, 300, 900, 2700, 4000, 5500 }, 0, 0, 500, -1, BusinessType.Clothes, false, 8);
+            Cells[9] = new UsualBus("Lacoste", 1200, 600, 720, new List<int>() { 80, 400, 1000, 3000, 4500, 6000 }, 0, 0, 500, -1, BusinessType.Clothes, false, 9);
 
-            Cells[10] = new Prison("Prison");
+            Cells[10] = new Prison("Prison", 10);
             _prisonIndex = 10;
 
-            Cells[11] = new UsualBus("VK", 1400, 700, 840, new List<int>() { 100, 500, 1500, 4500, 6250, 7500 }, 0, 0, 750, -1, BusinessType.Messagers, false);
-            Cells[12] = new GameBus("RockStarGames", 1500, 750, 900, new List<int>() { 100, 250 }, 0, 0, -1, BusinessType.Games, false);
-            Cells[13] = new UsualBus("Facebook", 1400, 700, 840, new List<int>() { 100, 500, 1500, 4500, 6250, 7500 }, 0, 0, 750, -1, BusinessType.Messagers, false);
-            Cells[14] = new UsualBus("Twitter", 1600, 800, 960, new List<int>() { 120, 600, 1800, 5000, 7000, 9000 }, 0, 0, 750, -1, BusinessType.Messagers, false);
-            Cells[15] = new CarBus("Audi", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false);
-            Cells[16] = new UsualBus("CocaCola", 1800, 900, 1080, new List<int>() { 140, 700, 2000, 5500, 7500, 9500 }, 0, 0, 1000, -1, BusinessType.Drinks, false);
-            Cells[17] = new Chance("Chance");
-            Cells[18] = new UsualBus("Pepsi", 1800, 900, 1080, new List<int>() { 140, 700, 2000, 5500, 7500, 9500 }, 0, 0, 1000, -1, BusinessType.Drinks, false);
-            Cells[19] = new UsualBus("Fanta", 2000, 1000, 1200, new List<int>() { 160, 800, 2200, 6000, 8000, 10000 }, 0, 0, 1000, -1, BusinessType.Drinks, false);
+            Cells[11] = new UsualBus("VK", 1400, 700, 840, new List<int>() { 100, 500, 1500, 4500, 6250, 7500 }, 0, 0, 750, -1, BusinessType.Messagers, false, 11);
+            Cells[12] = new GameBus("RockStarGames", 1500, 750, 900, new List<int>() { 100, 250 }, 0, 0, -1, BusinessType.Games, false, 12);
+            Cells[13] = new UsualBus("Facebook", 1400, 700, 840, new List<int>() { 100, 500, 1500, 4500, 6250, 7500 }, 0, 0, 750, -1, BusinessType.Messagers, false, 13);
+            Cells[14] = new UsualBus("Twitter", 1600, 800, 960, new List<int>() { 120, 600, 1800, 5000, 7000, 9000 }, 0, 0, 750, -1, BusinessType.Messagers, false, 14);
+            Cells[15] = new CarBus("Audi", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false, 15);
+            Cells[16] = new UsualBus("CocaCola", 1800, 900, 1080, new List<int>() { 140, 700, 2000, 5500, 7500, 9500 }, 0, 0, 1000, -1, BusinessType.Drinks, false, 16);
+            Cells[17] = new Chance("Chance", 17);
+            Cells[18] = new UsualBus("Pepsi", 1800, 900, 1080, new List<int>() { 140, 700, 2000, 5500, 7500, 9500 }, 0, 0, 1000, -1, BusinessType.Drinks, false, 18);
+            Cells[19] = new UsualBus("Fanta", 2000, 1000, 1200, new List<int>() { 160, 800, 2200, 6000, 8000, 10000 }, 0, 0, 1000, -1, BusinessType.Drinks, false, 19);
 
-            Cells[20] = new Casino("Casino");
+            Cells[20] = new Casino("Casino", 20);
             _casinoIndex = 20;
 
-            Cells[21] = new UsualBus("AmericanAirlines", 2200, 1100, 1320, new List<int>() { 180, 900, 2500, 7000, 8750, 10500 }, 0, 0, 1250, -1, BusinessType.Planes, false);
-            Cells[22] = new Chance("Chance");
-            Cells[23] = new UsualBus("Lufthansa", 2200, 1100, 1320, new List<int>() { 180, 900, 2500, 7000, 8750, 10500 }, 0, 0, 1250, -1, BusinessType.Planes, false);
-            Cells[24] = new UsualBus("BritishAirways", 2400, 1200, 1440, new List<int>() { 200, 1000, 3000, 7500, 9250, 11000 }, 0, 0, 1250, -1, BusinessType.Planes, false);
-            Cells[25] = new CarBus("Ford", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false);
-            Cells[26] = new UsualBus("MaxBurgers", 2600, 1300, 1500, new List<int>() { 220, 1100, 3300, 8000, 9750, 11500 }, 0, 0, 1500, -1, BusinessType.Food, false);
-            Cells[27] = new UsualBus("Burger King", 2600, 1300, 1500, new List<int>() { 220, 1100, 3300, 8000, 9750, 11500 }, 0, 0, 1500, -1, BusinessType.Food, false);
-            Cells[28] = new GameBus("Rovio", 1500, 750, 900, new List<int>() { 100, 250 }, 0, 0, 0, BusinessType.Games, false);
-            Cells[29] = new UsualBus("KFC", 2800, 1400, 1680, new List<int>() { 240, 1200, 3600, 8500, 10250, 12000 }, 0, 0, 1500, -1, BusinessType.Food, false);
+            Cells[21] = new UsualBus("AmericanAirlines", 2200, 1100, 1320, new List<int>() { 180, 900, 2500, 7000, 8750, 10500 }, 0, 0, 1250, -1, BusinessType.Planes, false, 21);
+            Cells[22] = new Chance("Chance", 22);
+            Cells[23] = new UsualBus("Lufthansa", 2200, 1100, 1320, new List<int>() { 180, 900, 2500, 7000, 8750, 10500 }, 0, 0, 1250, -1, BusinessType.Planes, false, 23);
+            Cells[24] = new UsualBus("BritishAirways", 2400, 1200, 1440, new List<int>() { 200, 1000, 3000, 7500, 9250, 11000 }, 0, 0, 1250, -1, BusinessType.Planes, false, 24);
+            Cells[25] = new CarBus("Ford", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false, 25);
+            Cells[26] = new UsualBus("MaxBurgers", 2600, 1300, 1500, new List<int>() { 220, 1100, 3300, 8000, 9750, 11500 }, 0, 0, 1500, -1, BusinessType.Food, false, 26);
+            Cells[27] = new UsualBus("Burger King", 2600, 1300, 1500, new List<int>() { 220, 1100, 3300, 8000, 9750, 11500 }, 0, 0, 1500, -1, BusinessType.Food, false, 27);
+            Cells[28] = new GameBus("Rovio", 1500, 750, 900, new List<int>() { 100, 250 }, 0, 0, 0, BusinessType.Games, false, 28);
+            Cells[29] = new UsualBus("KFC", 2800, 1400, 1680, new List<int>() { 240, 1200, 3600, 8500, 10250, 12000 }, 0, 0, 1500, -1, BusinessType.Food, false, 29);
 
-            Cells[30] = new GoToPrison("GoToPrison");
+            Cells[30] = new GoToPrison("GoToPrison", 30);
             _goToPrisonIndex = 30;
 
-            Cells[31] = new UsualBus("HolidayInn", 3000, 1500, 1800, new List<int>() { 260, 1300, 3900, 9000, 11000, 12750 }, 0, 0, 1750, -1, BusinessType.Hotels, false);
-            Cells[32] = new UsualBus("RadissonBlu", 3000, 1500, 1800, new List<int>() { 260, 1300, 3900, 9000, 11000, 12750 }, 0, 0, 1750, -1, BusinessType.Hotels, false);
-            Cells[33] = new Chance("Chance");
-            Cells[34] = new UsualBus("Novotel", 3200, 1600, 1920, new List<int>() { 280, 1500, 4500, 10000, 12000, 14000 }, 0, 0, 1750, -1, BusinessType.Hotels, false);
-            Cells[35] = new CarBus("LandRover", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false);
-            Cells[36] = new Tax("BigTax", 2000);
-            Cells[37] = new UsualBus("Apple", 3500, 1750, 2100, new List<int>() { 360, 1750, 5000, 11000, 13000, 15000 }, 0, 0, 2000, -1, BusinessType.Phones, false);
-            Cells[38] = new Chance("Chance");
-            Cells[39] = new UsualBus("Nokia", 4000, 2000, 2400, new List<int>() { 500, 2000, 6000, 14000, 17000, 20000 }, 0, 0, 2000, -1, BusinessType.Phones, false);
+            Cells[31] = new UsualBus("HolidayInn", 3000, 1500, 1800, new List<int>() { 260, 1300, 3900, 9000, 11000, 12750 }, 0, 0, 1750, -1, BusinessType.Hotels, false, 31);
+            Cells[32] = new UsualBus("RadissonBlu", 3000, 1500, 1800, new List<int>() { 260, 1300, 3900, 9000, 11000, 12750 }, 0, 0, 1750, -1, BusinessType.Hotels, false, 32);
+            Cells[33] = new Chance("Chance", 33);
+            Cells[34] = new UsualBus("Novotel", 3200, 1600, 1920, new List<int>() { 280, 1500, 4500, 10000, 12000, 14000 }, 0, 0, 1750, -1, BusinessType.Hotels, false, 34);
+            Cells[35] = new CarBus("LandRover", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false, 35);
+            Cells[36] = new Tax("BigTax", 2000, 36);
+            Cells[37] = new UsualBus("Apple", 3500, 1750, 2100, new List<int>() { 360, 1750, 5000, 11000, 13000, 15000 }, 0, 0, 2000, -1, BusinessType.Phones, false, 37);
+            Cells[38] = new Chance("Chance", 38);
+            Cells[39] = new UsualBus("Nokia", 4000, 2000, 2400, new List<int>() { 500, 2000, 6000, 14000, 17000, 20000 }, 0, 0, 2000, -1, BusinessType.Phones, false, 39);
         }
 
         public string GetBusinessPrice(int index)
@@ -521,6 +522,50 @@ namespace MonopolyDLL.Monopoly
         {
             return ((ParentBus)Cells[busIndex]).GetOwnerIndex();
         }
+
+        private const int _littleStrickBusType = 2;
+        private const int _bigStrickBusType = 2;
+        public List<ParentBus> GetUsualBussesToChangeOn(InventoryObjs.BoxItem item)
+        {
+            List<ParentBus> res = new List<ParentBus>();
+
+            List<UsualBus> buses = Cells.OfType<UsualBus>().Where(x => x.BusType == item.Type).ToList();
+            if(buses.Count == _littleStrickBusType)
+            {
+                res.AddRange(buses.Where(x => x.GetId() == item.StationId));
+                return res; 
+            }
+
+            //if three busses in row
+            if(buses.Last().GetId() == item.StationId) // if change for last one
+            {
+                res.Add(buses.Last());
+                return res;
+            }
+
+            //to change for first two
+            res.Add(buses.First());
+            res.Add(buses[1]);
+
+            return res;
+        }
+
+        public List<ParentBus> GetAllCarBuses()
+        {
+            List<ParentBus> buses = new List<ParentBus>(); 
+            buses.AddRange(Cells.OfType<CarBus>().ToList());
+            return buses;
+        }
+
+        public List<ParentBus> GetAllGameBuses()
+        {
+            List<ParentBus> buses = new List<ParentBus>();
+            buses.AddRange(Cells.OfType<GameBus>().ToList());
+            return buses;
+        }
+
+      
+        
 
     }
 }

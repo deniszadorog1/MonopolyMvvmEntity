@@ -11,7 +11,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
     {
         public GameBus(string name, int price, int depositPrice, int rebuyPrice,
             List<int> paymentLevels, int depositCounter, int level, int ownerIndex, BusinessType type,
-            bool ifDeposited)
+            bool ifDeposited, int id)
         {
             Name = name;
             Price = price;
@@ -24,6 +24,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             BusType = type;
             IfDeposited = ifDeposited;
             TempDepositCounter = _depositCounterMax;
+            Id = id;
         }
 
 

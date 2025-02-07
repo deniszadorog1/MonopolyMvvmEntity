@@ -11,9 +11,10 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
         private const int _paymentToGetOn = 2000;
         private const int _paymentToGetThrough = 1000;
 
-        public Start(string name)
+        public Start(string name, int id)
         {
             Name = name;
+            Id = id;
         }
 
         public int GetGeOnCellMoney()

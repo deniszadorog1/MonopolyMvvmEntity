@@ -203,3 +203,5 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.csproj.Core
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Monopoly.4743857C.Up2Date
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.exe
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.pdb
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BusDescButton.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BusDescButton.baml

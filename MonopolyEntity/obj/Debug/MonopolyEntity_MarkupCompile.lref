@@ -35,6 +35,7 @@ FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\O
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\Other\Dice.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\GameControls\UserCard.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\InventoryControls\BoxDescription.xaml;;
+FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\InventoryControls\BusDescButton.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\InventoryControls\BussinessDescription.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\MainPageWindow\ChoosePlayersForGame.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\MainPageWindow\DescribeBox.xaml;;

@@ -109,6 +109,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void ChangeStepper()
         {
+            if (_system.MonGame.IfCubeDropsAreEqual() && !_system.MonGame.IfStepperSitsInPrison())
+            {
+                SetActionAfterStepperChanged();
+                return;
+            }
+
             //Get Back size for old Card
             _cards[_system.MonGame.StepperIndex].SetAnimation(null, false);
 
@@ -121,8 +127,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             //Set Size for new Card
             _cards[_system.MonGame.StepperIndex].SetAnimation(_colors[_system.MonGame.StepperIndex], true);
             SetActionAfterStepperChanged();
-
-
         }
 
         private void ChangeStepAfterAuction()
@@ -278,10 +282,28 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private int _cellIndex;
         private EventHandler _checkEvent;
         private bool _toDropCubes = false;
+        private bool _goToPrisonByDouble = false;
 
         private void CubesDropped_Completed(object sender, EventArgs e)
         {
             int cellIndexToMoveOn = _system.MonGame.GetPointToMoveOn();
+            _goToPrisonByDouble = false;
+
+            if (_system.MonGame.IfCubeDropsAreEqual())
+            {
+                _system.MonGame.AddToDoubleCounter();
+
+                if (_system.MonGame.IfMaxDoublesIsAchieved())
+                {
+                    //Go To Prison
+                    cellIndexToMoveOn = _system.MonGame.GetPrisonIndex();
+                    _system.MonGame.ReverseStepperSitInPrison();
+                    _system.MonGame.ClearStepperDoublesCounter();
+                    _goToPrisonByDouble = true;
+                    //return;
+                }
+            }
+
             if (cellIndexToMoveOn == _system.MonGame.GetPrisonIndex()) IfLastMoveIsPrison = true;
             _cellIndex = cellIndexToMoveOn;
             _toDropCubes = true;
@@ -293,6 +315,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 if (!_toDropCubes) return;
                 _toDropCubes = false;
+
+
                 //Check if stepper went through start(to get money)
                 GoThroughStartCellCheck();
 
@@ -301,15 +325,24 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 ChatMessages.Children.Clear();
                 _ifChipMoves = false;
 
+
                 CellAction action = _system.MonGame.GetAction();
+
+                if (_goToPrisonByDouble)
+                {
+                    ChangeStepper();
+                    return;
+                }
                 SetActionVisuals(action);
             };
 
-            MakeChipsMovementAction(_system.MonGame.GetStepperPosition(),
+            int tempPos = _system.MonGame.GetStepperPosition();
+
+            MakeChipsMovementAction(tempPos,
                 cellIndexToMoveOn, _imgs[_system.MonGame.StepperIndex]);
 
             //Change temp point 
-            _system.MonGame.SetPlayerPosition();
+            _system.MonGame.SetPlayerPosition(_goToPrisonByDouble);
         }
 
         private void GoThroughStartCellCheck()
@@ -371,6 +404,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             _system.MonGame.Players[_system.MonGame.StepperIndex].IfSitInPrison = true;
             MakeChipsMovementAction(stepperPosition, prisonCellIndex, _imgs[_system.MonGame.StepperIndex]);
             _system.MonGame.SetPlayerPositionAfterChanceMove(prisonCellIndex);
+            _system.MonGame.ClearStepperDoublesCounter();
             ChangeStepper();
         }
 
@@ -392,7 +426,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetGotOnChance()
         {
-            ChanceAction action = ChanceAction.Get500;// _system.MonGame.GetChanceAction();
+            ChanceAction action = /*ChanceAction.GoToPrison;//*/ _system.MonGame.GetChanceAction();
 
             MakeChanceAction(action);
 
@@ -444,7 +478,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             IfLastMoveIsPrison = true;
             _system.MonGame.Players[_system.MonGame.StepperIndex].IfSitInPrison = true;
             _ifChipMoves = false;
-
+            _system.MonGame.ClearStepperDoublesCounter();
 
             MakeChipsMovementAction(stepperPosition, cellIndexToMoveOn, _imgs[_system.MonGame.StepperIndex]);
             _system.MonGame.SetPlayerPositionAfterChanceMove(cellIndexToMoveOn);
@@ -454,6 +488,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private void GetMoneyChanceAction(int money)
         {
             _system.MonGame.GetMoneyFromChance(money);
+            ChangeStepper();
         }
 
         private void PayMoneyChanceAction(int money)
@@ -496,10 +531,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             switch (action)
             {
-/*                case ChanceAction.ForwardInOne:
-                    return "Moves forward";
-                case ChanceAction.BackwardsInOne:
-                    return "Moves backwards";*/
+                /*                case ChanceAction.ForwardInOne:
+                                    return "Moves forward";
+                                case ChanceAction.BackwardsInOne:
+                                    return "Moves backwards";*/
                 case ChanceAction.Pay500:
                     return "Need to pay money";
                 case ChanceAction.Pay1500:
@@ -1344,7 +1379,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 UpdatePlayersMoney();
 
                 BoardHelper.MakeDepositCounterVisible(_cells[_clickedCellIndex]);
-                BoardHelper.SetValueForDepositCounter(_cells[_clickedCellIndex], 
+                BoardHelper.SetValueForDepositCounter(_cells[_clickedCellIndex],
                     _system.MonGame.GetDepositCounter(_clickedCellIndex));
             };
         }
@@ -1641,8 +1676,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             SetNewPositionsToChipsInCell(checkLastCellIndex, true);
 
-            
-            if(_squareIndexesToGoThrough is null)_chipMoveAnimation.Completed += _checkEvent;
+
+            if (_squareIndexesToGoThrough is null) _chipMoveAnimation.Completed += _checkEvent;
         }
 
         private void UpdatePrisonCanvases(int cellIndex)
@@ -1919,7 +1954,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 _chipMoveAnimation.Completed += _chipAnimEvent;
 
-                if(_squareIndexesToGoThrough.Count == 1)_chipMoveAnimation.Completed += _checkEvent;
+                if (_squareIndexesToGoThrough.Count == 1) _chipMoveAnimation.Completed += _checkEvent;
             }
             else
             {

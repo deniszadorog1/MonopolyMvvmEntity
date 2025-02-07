@@ -12,9 +12,10 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
         private const int _outPrisonPrice = 500;
         private const int _maxSittingRounds = 3;
 
-        public Prison(string name)
+        public Prison(string name, int id)
         {
             Name = name;
+            Id = id;
         }
 
         public int GetOutPrisonPrice()

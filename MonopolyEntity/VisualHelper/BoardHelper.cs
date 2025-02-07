@@ -602,6 +602,13 @@ namespace MonopolyEntity.VisualHelper
             return colors;
         }
 
+        public static SolidColorBrush GetColorFromSystemColorName(string name)
+        {
+            (byte r,byte g, byte b) colorParams = DBQueries.GetColorParamsByName(name);       
+            return new SolidColorBrush(Color.FromRgb(colorParams.r, colorParams.g, colorParams.b));
+        }
+
+
         public static void MakeDepositCounterVisible(UIElement cell)
         {
             if (cell is UpperCell up) up.DepositObj.Visibility = Visibility.Visible; 

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.Model;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using MonopolyDLL.DBService;
 using MonopolyDLL.Monopoly.Enums;
+using MonopolyDLL.Monopoly.InventoryObjs;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -18,17 +21,23 @@ namespace MonopolyDLL.Monopoly
         public bool IfSitInPrison { get; set; }
         public int SitInPrisonCounter { get; set; }
 
+        public UserInventory Inventory { get; set; }
+        public List<InventoryObjs.BoxItem> GameBusses { get; set; }
+
         public bool IfLost { get; set; }
+        public int DoubleCounter { get; set; }
 
         public List<BusinessType> BuiltHousesInRowType { get; set; }         
         private List<BusinessType> _collectedMonopolies = new List<BusinessType>();
 
         private int Id;
+        private int _maxDoubles = 3;
 
         public User(string login, int id)
         {
             Login = login;
             Id = id;
+            GameBusses = new List<InventoryObjs.BoxItem>();
         }
 
         public User()
@@ -39,6 +48,8 @@ namespace MonopolyDLL.Monopoly
             IfSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();
             IfLost = false;
+            DoubleCounter = 0;
+            GameBusses = new List<InventoryObjs.BoxItem>();
         }
 
         public User(string login, int amountOfMoney, int position, bool ifLost)
@@ -49,6 +60,18 @@ namespace MonopolyDLL.Monopoly
             IfSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();
             IfLost = ifLost;
+            DoubleCounter = 0;
+            GameBusses = new List<InventoryObjs.BoxItem>();
+        }
+
+        public void AddToDoubleCounter()
+        {
+            DoubleCounter++;
+        }
+
+        public int GetDoubleCounter()
+        {
+            return DoubleCounter;
         }
 
         public void PayMoney(int money)
@@ -117,6 +140,30 @@ namespace MonopolyDLL.Monopoly
             return AmountOfMoney >= money;
         }
 
+        public bool IfMaxDoublesIsAchieved()
+        {
+            return _maxDoubles <= DoubleCounter;
+        }
 
+        public void ClearDoubleCounter()
+        {
+            DoubleCounter = 0;
+        }
+
+        public bool IfBusWithSuchIdIsUsedInGame(int stationId)
+        {
+            return GameBusses.Any(x => x.StationId == stationId);
+        }
+
+        public InventoryObjs.BoxItem GetItemWhichUsesInGameById(int id)
+        {
+            return GameBusses.Any(x => x.StationId == id) ?
+                GameBusses.Find(x => x.StationId == id) : null;
+        }
+
+        public bool IfBusWithSuchNameIsUSedInGame(string name)
+        {
+            return GameBusses.Any(x => x.Name == name);
+        }
     }
 }

@@ -11,11 +11,34 @@ using MonopolyDLL.Monopoly.Enums;
 
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
+using System.Data;
 
 namespace MonopolyDLL
 {
     public static class DBQueries
     {
+        public static List<BoxItem> GetItemsToUseInGame(int playerId)
+        {
+            List<BoxItem> res = new List<BoxItem>();
+
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                foreach(var item in model.InventoryStaffs)
+                {
+                    if(item.PlayerId == playerId)
+                    {
+                        if ((bool)item.IfEnabled)
+                        {
+                            BoxItem boxItem = GetBoxItemById((int)item.StaffId);
+                            res.Add(boxItem);
+                        }                      
+                    }
+                }
+            }
+
+            return res;
+        }
+
         public static User GetPlayerById(int id)
         {
             using (MonopolyModel model = new MonopolyModel())
@@ -68,7 +91,7 @@ namespace MonopolyDLL
                 foreach (var item in model.BoxItems)
                 {
                     if (item.Id == id)
-                    {
+                    {                    
                         (int r, int g, int b) colorParams = GetColorByRearityId((int)item.RearityId);
                         return new BoxItem(item.Name, GetImagePathById((int)item.PicId),
                             GetRearityById((int)item.RearityId), (BusinessType)item.StationTypeId,
@@ -95,6 +118,21 @@ namespace MonopolyDLL
             }
 
             throw new Exception("no Rearity with such Id");
+        }
+
+        public static (byte, byte, byte) GetColorParamsByName(string name)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                foreach (var color in model.SystemColors)
+                {
+                    if (color.Name == name)
+                    {
+                        return ((byte)color.R, (byte)color.G, (byte)color.B);
+                    }
+                }
+            }
+            return (76, 180, 219);
         }
 
         public static (int, int, int) GetColorInSystemColorsById(int id)
@@ -151,7 +189,11 @@ namespace MonopolyDLL
                 {
                     if (item.PlayerId == playerId)
                     {
-                        items.Add(GetItemFromItemsTableById((int)item.StaffId));
+                        Item toAdd = GetItemFromItemsTableById((int)item.StaffId);
+
+                        if(toAdd is BoxItem boxItem) boxItem.SetTick(item.IfEnabled);
+
+                        items.Add(toAdd);
                     }
                 }
             }
@@ -276,6 +318,37 @@ namespace MonopolyDLL
                 }
             }
             throw new Exception("No player with such user");
+        }
+
+        public static string GetBoxNameByItsDropItemName(string boxItemNmae)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                foreach(var item in model.BoxItems)
+                {
+                    if(item.Name == boxItemNmae)
+                    {
+                        return GetBoxNameByBoxId((int)item.BoxId);
+                    }
+                }
+            }
+            throw new Exception("No item with such item name");
+        }
+
+        private static string GetBoxNameByBoxId(int boxId)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                foreach (var box in model.LotBoxes)
+                {
+                    if(box.Id == boxId)
+                    {
+                        return box.Name;
+                    }
+                }
+            }
+
+            throw new Exception("no box with such id");
         }
     }
 }

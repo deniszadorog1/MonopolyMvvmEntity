@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using System.Security.Cryptography.Pkcs;
 using System.Security.Policy;
 using System.Text;
@@ -24,7 +25,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
         public int TempDepositCounter { get; set; }
 
         public int _depositCounterMax = 15;
-  
+
         public int GetPriceForBus()
         {
             return Price;

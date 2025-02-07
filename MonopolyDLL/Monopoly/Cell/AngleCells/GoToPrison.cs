@@ -8,9 +8,10 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
 {
     public class GoToPrison : CellParent
     {
-        public GoToPrison(string name)
+        public GoToPrison(string name, int id)
         {
             Name = name;
+            Id = id;
         }
     }
 }

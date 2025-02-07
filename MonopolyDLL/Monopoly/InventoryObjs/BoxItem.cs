@@ -10,7 +10,7 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
     public class BoxItem : Item
     {
         public BusRearity Rearity { get; set; }
-        public BusinessType Type { get; set; } 
+        public BusinessType Type { get; set; }
         public int StationId { get; set; }
         public double Multiplier { get; set; }
 
@@ -18,8 +18,10 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
         private int gColor = -1;
         private int bColor = -1;
 
-        public BoxItem(string name, string imagePath, 
-            BusRearity rearity, BusinessType type, int stationId, 
+        private bool _ifTicked;
+
+        public BoxItem(string name, string imagePath,
+            BusRearity rearity, BusinessType type, int stationId,
             double multiplier, int r, int g, int b)
         {
             Name = name;
@@ -32,6 +34,17 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
             rColor = r;
             gColor = g;
             bColor = b;
+        }
+
+        public void SetTick(bool? tick)
+        {
+            if (tick is null) return;
+            _ifTicked = (bool)tick;
+        }
+
+        public bool IsTicked()
+        {
+            return _ifTicked;
         }
 
         public byte GetRParam()
@@ -47,6 +60,13 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
         public byte GetBParam()
         {
             return (byte)bColor;
+        }
+
+        public bool IfBusIsUsual()
+        {
+            return Type != BusinessType.Games && 
+                Type != BusinessType.Cars;
+
         }
     }
 }
