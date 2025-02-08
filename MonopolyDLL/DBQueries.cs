@@ -12,6 +12,9 @@ using MonopolyDLL.Monopoly.Enums;
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using System.Data;
+using System.Dynamic;
+using System.Security.Policy;
+using System.Diagnostics;
 
 namespace MonopolyDLL
 {
@@ -21,22 +24,165 @@ namespace MonopolyDLL
         {
             List<BoxItem> res = new List<BoxItem>();
 
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                foreach (var item in model.InventoryStaffs)
+                {
+                    if (item.PlayerId == playerId)
+                    {
+                        if (!(item.IfEnabled is null) && (bool)item.IfEnabled)
+                        {
+                            int? id = GetItemIdByIdFromItems((int)item.StaffId);
+
+                            if (id is null) return res;
+
+                            BoxItem boxItem = GetBoxItemById((int)id);
+                            boxItem.SetInventoryId(item.Id);
+                            if (!(item.StationId is null)) boxItem.StationId = (int)item.StationId;
+                            res.Add(boxItem);
+                        }
+                    }
+                }
+            }
+            return res;
+        }
+
+        public static void ClearInventoryItemById(int id)
+        {
             using(MonopolyModel model = new MonopolyModel())
             {
-                foreach(var item in model.InventoryStaffs)
+                var item = model.InventoryStaffs.FirstOrDefault(x => x.Id == id);
+                if (item is null) return;
+                item.StationId = null;
+                item.IfEnabled = false;
+
+                model.SaveChanges();
+            }
+        }
+
+        private static int? GetItemIdByIdFromItems(int id)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                return model.Items.FirstOrDefault(x => x.Id == id).ItemId;
+            }
+        }
+
+
+        public static void SetBoxItemWhichUserStartsToUse(BoxItem item)
+        {
+            int inventoryId = item.GetInventoryIdInDB();
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                var staff = model.InventoryStaffs.FirstOrDefault(s => s.Id == inventoryId);
+
+                if (staff != null)
                 {
-                    if(item.PlayerId == playerId)
+                    staff.IfEnabled = true;
+                    staff.StationId = item.StationId;
+                    model.SaveChanges();
+                }
+            }
+        }
+
+        public static void SetBoxItemWhichUserNotUse(BoxItem item)
+        {
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                foreach (var staff in model.InventoryStaffs)
+                {
+                    if (staff.Id == item.GetInventoryIdInDB())
                     {
-                        if ((bool)item.IfEnabled)
-                        {
-                            BoxItem boxItem = GetBoxItemById((int)item.StaffId);
-                            res.Add(boxItem);
-                        }                      
+                        staff.IfEnabled = false;
+                        staff.StationId = null;
+                        model.SaveChanges();
+                        return;
+                    }
+                }
+            }
+        }
+
+
+        public static BoxItem GetBoxItemByName(string name)
+        {
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                foreach (var item in model.BoxItems)
+                {
+                    if (item.Name == name)
+                    {
+                        (int r, int g, int b) colorParams = GetColorByRearityId((int)item.RearityId);
+                        return new BoxItem(item.Name, GetImagePathById((int)item.PicId),
+                            GetRearityById((int)item.RearityId), (BusinessType)item.StationTypeId,
+                            (int)item.StationId, GetMultiplierById((int)item.MultiplierId),
+                            colorParams.r, colorParams.g, colorParams.b);
+                    }
+                }
+            }
+            throw new Exception("no item with such name");
+        }
+
+        public static void AddBoxItemInUserInventory(string userLogin, string itemName)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                model.InventoryStaffs.Add(new InventoryStaff()
+                {
+                    PlayerId = GetPlayerIdByLogin(userLogin),
+                    StaffId = GetItemIdByBoxItemName(itemName),
+                    StationId = null,
+                    IfEnabled = false,
+                });
+                model.SaveChanges();
+            }
+        }
+
+        private static int GetItemIdByBoxItemName(string name)
+        {
+            int boxItemId = GetBoxItemIdByName(name);
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                foreach(var item in model.Items)
+                {
+                    if(item.ItemId == boxItemId)
+                    {
+                        return item.Id;
                     }
                 }
             }
 
-            return res;
+            throw new Exception("no item with such item id");
+        }
+
+        private static int GetBoxItemIdByName(string name)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                foreach(var item in model.BoxItems)
+                {
+                    if(item.Name == name)
+                    {
+                        return item.Id;
+                    }
+                }
+            }
+            throw new Exception("no boxItem with such name");
+        }
+
+        private static int GetPlayerIdByLogin(string login)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                foreach(var player in model.Players)
+                {
+                    if(player.Login == login)
+                    {
+                        return player.Id;
+                    }
+                }
+            }
+
+            throw new Exception("No user with such login");
         }
 
         public static User GetPlayerById(int id)
@@ -91,7 +237,7 @@ namespace MonopolyDLL
                 foreach (var item in model.BoxItems)
                 {
                     if (item.Id == id)
-                    {                    
+                    {
                         (int r, int g, int b) colorParams = GetColorByRearityId((int)item.RearityId);
                         return new BoxItem(item.Name, GetImagePathById((int)item.PicId),
                             GetRearityById((int)item.RearityId), (BusinessType)item.StationTypeId,
@@ -120,9 +266,25 @@ namespace MonopolyDLL
             throw new Exception("no Rearity with such Id");
         }
 
+        public static (byte, byte, byte) GetColorByRearityName(string name)
+        {
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                foreach (var rear in model.Rearities)
+                {
+                    if (rear.Rearity1 == name)
+                    {
+                        return GetColorInSystemColorsById((int)rear.ColorId);
+                    }
+                }
+            }
+
+            return (76, 180, 219);
+        }
+
         public static (byte, byte, byte) GetColorParamsByName(string name)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
                 foreach (var color in model.SystemColors)
                 {
@@ -135,7 +297,7 @@ namespace MonopolyDLL
             return (76, 180, 219);
         }
 
-        public static (int, int, int) GetColorInSystemColorsById(int id)
+        public static (byte, byte, byte) GetColorInSystemColorsById(int id)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
@@ -143,7 +305,7 @@ namespace MonopolyDLL
                 {
                     if (color.Id == id)
                     {
-                        return ((int)color.R, (int)color.G, (int)color.B);
+                        return ((byte)color.R, (byte)color.G, (byte)color.B);
                     }
                 }
             }
@@ -155,9 +317,9 @@ namespace MonopolyDLL
         {
             List<(byte, byte, byte)> res = new List<(byte, byte, byte)>();
 
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-                foreach(var color in model.SystemColors)
+                foreach (var color in model.SystemColors)
                 {
                     res.Add(((byte)color.R, (byte)color.G, (byte)color.B));
                 }
@@ -190,9 +352,11 @@ namespace MonopolyDLL
                     if (item.PlayerId == playerId)
                     {
                         Item toAdd = GetItemFromItemsTableById((int)item.StaffId);
-
-                        if(toAdd is BoxItem boxItem) boxItem.SetTick(item.IfEnabled);
-
+                        if (toAdd is BoxItem boxItem)
+                        {
+                            boxItem.SetInventoryId(item.Id);
+                            boxItem.SetTick(item.IfEnabled);
+                        }
                         items.Add(toAdd);
                     }
                 }
@@ -322,11 +486,11 @@ namespace MonopolyDLL
 
         public static string GetBoxNameByItsDropItemName(string boxItemNmae)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-                foreach(var item in model.BoxItems)
+                foreach (var item in model.BoxItems)
                 {
-                    if(item.Name == boxItemNmae)
+                    if (item.Name == boxItemNmae)
                     {
                         return GetBoxNameByBoxId((int)item.BoxId);
                     }
@@ -337,11 +501,11 @@ namespace MonopolyDLL
 
         private static string GetBoxNameByBoxId(int boxId)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
                 foreach (var box in model.LotBoxes)
                 {
-                    if(box.Id == boxId)
+                    if (box.Id == boxId)
                     {
                         return box.Name;
                     }
@@ -349,6 +513,14 @@ namespace MonopolyDLL
             }
 
             throw new Exception("no box with such id");
+        }
+
+        public static bool IfInventoryStaffIsEnabled(int id)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                return model.InventoryStaffs.Where(x => x.Id == id && x.IfEnabled != null && (bool)x.IfEnabled).Any();
+            }
         }
     }
 }

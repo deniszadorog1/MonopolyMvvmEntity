@@ -12,6 +12,10 @@ using System.Windows.Markup;
 
 using MonopolyDLL.DBService;
 using System.Dynamic;
+using System.CodeDom.Compiler;
+
+using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
+using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -20,18 +24,49 @@ namespace MonopolyDLL.Monopoly
         public User LoggedUser { get; set; }
         public Game MonGame { get; set; }
 
+
+        private const int _checkId = 1; //before making right login form
         public MonopolySystem()
         {
             LoggedUser = new User();
-            MonGame = new Game();
-
-            List<InventoryObjs.Item> items = DBQueries.GetUserItemsFromInventory(1);
-
-            UserInventory inventory = new UserInventory(items);
-            LoggedUser = DBQueries.GetPlayerById(1);
-            LoggedUser.Inventory = inventory;
-            return;
-            //UserInventory = DBQueries.GetInventoryItems(LoggedUser.Login);
+            LoggedUser = DBQueries.GetPlayerById(_checkId);
+            SetUserInventory();
+            
+            MonGame = new Game(LoggedUser);
         }   
+
+        public void SetUserInventory()
+        {
+            List<Item> items = DBQueries.GetUserItemsFromInventory(_checkId);
+            LoggedUser.Inventory = new UserInventory(items);;
+
+            List<BoxItem> boxItems = DBQueries.GetItemsToUseInGame(_checkId);
+            LoggedUser.GameBusses = boxItems;
+        }
+
+        public void AddUsingBusInList(InventoryObjs.BoxItem item)
+        {
+            LoggedUser.AddBoxItemInUsingList(item);
+        }
+
+        public void RemoveBoxItemFromUsingList(InventoryObjs.BoxItem item)
+        {
+            LoggedUser.RemoveBoxItemFromList(item);
+        }
+        
+        public InventoryObjs.BoxItem GetUserInventoryItemByIndex(int index)
+        {
+            return LoggedUser.GetUsingItemByIndex(index);
+        }
+
+        public InventoryObjs.BoxItem GetUserInventoryItemByName(string name)
+        {
+            return LoggedUser.GetItemByName(name);
+        }
+
+        public bool IfBussWithSuchNameIsUsing(string name)
+        {
+            return LoggedUser.IfBusWithSuchNameIsUsedInGame(name);
+        }
     }
 }

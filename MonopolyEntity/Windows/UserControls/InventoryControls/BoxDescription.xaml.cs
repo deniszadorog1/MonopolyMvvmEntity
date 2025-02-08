@@ -27,11 +27,14 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
     {
         private Frame _frame;
         private CaseBox _caseBox;
+        private string _loggedUserLogin;
 
-        public BoxDescription(Frame workingFrame, CaseBox item)
+        public BoxDescription(Frame workingFrame, CaseBox item, string loggedUserLogin)
         {
             _frame = workingFrame;
             _caseBox = item;
+            _loggedUserLogin = loggedUserLogin;
+
             InitializeComponent();
 
             SetTextParams();
@@ -52,7 +55,7 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
             WorkWindow obj = 
                 Helper.FindParent<WorkWindow>(_frame);
 
-            OpenCase inventory = new OpenCase(_caseBox);
+            OpenCase inventory = new OpenCase(_caseBox, _loggedUserLogin);
             //_frame.Content = inventory;
 
             obj.CaseFrame.Content = inventory;

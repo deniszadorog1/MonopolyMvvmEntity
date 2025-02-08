@@ -38,6 +38,13 @@ namespace MonopolyDLL.Monopoly
             Login = login;
             Id = id;
             GameBusses = new List<InventoryObjs.BoxItem>();
+            AmountOfMoney = 15000;
+            Position = 0;
+            IfSitInPrison = false;
+            BuiltHousesInRowType = new List<BusinessType>();
+            IfLost = false;
+            DoubleCounter = 0;
+            GameBusses = new List<InventoryObjs.BoxItem>();
         }
 
         public User()
@@ -161,9 +168,30 @@ namespace MonopolyDLL.Monopoly
                 GameBusses.Find(x => x.StationId == id) : null;
         }
 
-        public bool IfBusWithSuchNameIsUSedInGame(string name)
+        public bool IfBusWithSuchNameIsUsedInGame(string name)
         {
             return GameBusses.Any(x => x.Name == name);
         }
+
+        public InventoryObjs.BoxItem GetItemByName(string name)
+        {
+            return GameBusses.Find(x => x.Name == name);
+        }
+
+        public void AddBoxItemInUsingList(InventoryObjs.BoxItem item)
+        {
+            GameBusses.Add(item);
+        }
+
+        public void RemoveBoxItemFromList(InventoryObjs.BoxItem item)
+        {
+            GameBusses.Remove(GameBusses.Find(x => x.Name == item.Name));
+        }
+
+        public InventoryObjs.BoxItem GetUsingItemByIndex(int index)
+        {
+            return GameBusses[index];
+        }
+        
     }
 }

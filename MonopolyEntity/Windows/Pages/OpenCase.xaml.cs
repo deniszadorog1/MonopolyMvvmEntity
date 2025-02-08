@@ -14,6 +14,8 @@ using MonopolyDLL.Monopoly.InventoryObjs;
 using MonopolyEntity.VisualHelper;
 using MonopolyDLL.DBService;
 using System.CodeDom;
+using MonopolyDLL;
+
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -24,26 +26,18 @@ namespace MonopolyEntity.Windows.Pages
     {
         private CaseRoulette _rol;
         private CaseBox _caseBox;
+        private string _loggedUserLogin;
 
-        public OpenCase(CaseBox box)
+        public OpenCase(CaseBox box, string loggedUserLogin)
         {
             _caseBox = box;
+            _loggedUserLogin = loggedUserLogin;
 
             InitializeComponent();
 
             SetCaseDrops();
             FillCheckToOpen();
         }
-
-        /*        public void SetTestCaseDrops()
-                {
-                    List<CaseCard> testCards = ThingForTest.GetTestCaseCards();
-
-                    for (int i = 0; i < testCards.Count; i++)
-                    {
-                        CanBeDropedPanel.Children.Add(testCards[i]);
-                    }
-                }*/
 
         public void FillCheckToOpen()
         {
@@ -111,11 +105,11 @@ namespace MonopolyEntity.Windows.Pages
             return res;
         }
 
-        private void OpenCaseBut_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void OpenCaseBut_Click(object sender, RoutedEventArgs e)
         {
             ExitBut.IsEnabled = false;
             OpenCaseBut.Visibility = Visibility.Hidden;
-            CheckToOpen.Visibility = System.Windows.Visibility.Hidden;
+            CheckToOpen.Visibility = Visibility.Hidden;
 
             (List<Image> images, List<string> names, List<SolidColorBrush> colors) 
                 rouletteParams = GetParamsForCaseRoulette();
@@ -124,9 +118,23 @@ namespace MonopolyEntity.Windows.Pages
                 Background = new SolidColorBrush(Colors.Transparent),
                 Width = 600,
                 Height = 175,
-                VerticalAlignment = System.Windows.VerticalAlignment.Top,
-                HorizontalAlignment = System.Windows.HorizontalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Top,
+                HorizontalAlignment = HorizontalAlignment.Center
             };
+
+
+            _rol._animation.Completed += (obj, ev) =>
+            {
+                if (!_rol._animationIsDone) return;
+
+                 MonopolyDLL.Monopoly.InventoryObjs.BoxItem prize = 
+                DBQueries.GetBoxItemByName(_rol._resCard.CardName.Text);
+
+                DBQueries.AddBoxItemInUserInventory(_loggedUserLogin, prize.Name);
+
+                _rol._animationIsDone = false;
+            };
+
 
             _rol.SetChosenLine();
 

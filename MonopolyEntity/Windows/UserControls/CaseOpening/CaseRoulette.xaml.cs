@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using MaterialDesignThemes.Wpf;
 using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.Pages;
 
@@ -37,7 +38,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             //SetTestValues();
         }
 
-        public CaseRoulette(List<Image> caseImgs, 
+        public CaseRoulette(List<Image> caseImgs,
             List<string> itemNames, List<SolidColorBrush> colors)
         {
             _imgs = caseImgs;
@@ -58,17 +59,19 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             (_imgs, _names) = ThingForTest.GetParamsForCaseRoullete();
         }
 
+        public DoubleAnimation _animation;
         public void MakeRotationAction()
         {
             int cardId = 1;
             const int endPoint = -10000;
             int completeAnimsCount = 1;
+
             foreach (UIElement element in CaseRotator.Children)
             {
                 var transform = new TranslateTransform();
                 element.RenderTransform = transform;
 
-                var animation = new DoubleAnimation
+                _animation = new DoubleAnimation
                 {
                     From = 0,
                     To = endPoint,
@@ -76,25 +79,21 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                     EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
                 };
 
-                animation.Completed += (s, e) =>
+                _animation.Completed += (s, e) =>
                 {
-                    if (completeAnimsCount  == amountOfItems)
+                    if (completeAnimsCount == amountOfItems)
                     {
+                        Console.WriteLine(_resCard.CardName.Text);
                         // need to add won message here 
                         ShowPrizeWindow();
                         completeAnimsCount = 1;
+                        _animationIsDone = true;
                     }
-
-                    //return;
-           /*         CaseRotator.Children.Remove(element);
-                    CaseRotator.Children.Add(element);*/
-
                     transform.X = 0;
                     completeAnimsCount++;
-
                 };
 
-                transform.BeginAnimation(TranslateTransform.XProperty, animation);
+                transform.BeginAnimation(TranslateTransform.XProperty, _animation);
                 SetCaseGotCard(Math.Abs(endPoint), cardId);
                 cardId++;
             }
@@ -104,6 +103,8 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         {
             if (!(_resCard is null))
             {
+                Console.WriteLine(_resCard.CardName);
+
                 CustomMessageBoxWonPrize prize = new CustomMessageBoxWonPrize();
                 prize.ShowDialog();
                 CloseRoulette();
@@ -124,29 +125,33 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             parent.OpenCaseBut.Visibility = Visibility.Visible;
         }
 
-        private CaseCard _resCard = null;
+        public CaseCard _resCard = null;
         public void SetCaseGotCard(int endPoint, int tempCardId)
         {
+            if (!(_resCard is null)) return;
+
+
             CaseCard card = GetCardByXLocation(endPoint, tempCardId);
-            if (!(card is null))
+            if (_resCard is null && !(card is null))
             {
                 _resCard = card;
             }
         }
+
+        private const int _centerWidth = _cardWidth * 2 + _distBetweenCards * 2;
 
         public CaseCard GetCardByXLocation(int endPoint, int tempCardId)
         {
             CaseCard res = new CaseCard();
             int tempXLoc = tempCardId * _cardWidth + tempCardId * _distBetweenCards;
 
-            if (tempXLoc > endPoint)
+            if (tempXLoc > endPoint + _centerWidth)
             {
+                Console.WriteLine(_cardsToFind[tempCardId ].CardName.Text);
                 return _cardsToFind[tempCardId - 1];
             }
-
             return null;
         }
-
 
         private const int _cardWidth = 130;
         private const int _cardHeight = 150;
@@ -170,13 +175,6 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
 
                 _cardsToFind.Add(item);
                 CaseRotator.Children.Add(item);
-
-/*                double xValue = _cardWidth * (i + 1) + _distBetweenCards * (i + 1);
-
-                if (xValue > 10000)
-                {
-                    Console.WriteLine();
-                }*/
             }
         }
 

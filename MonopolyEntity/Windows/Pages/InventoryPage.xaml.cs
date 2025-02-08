@@ -17,6 +17,12 @@ using System.Collections.Generic;
 using MonopolyDLL.Monopoly.Cell.Bus;
 using System.Data.Entity.Infrastructure;
 using MonopolyDLL;
+using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages;
+using System.Security.Cryptography.X509Certificates;
+using System.Reflection;
+using MonopolyDLL.DBService;
+using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
+using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -43,14 +49,24 @@ namespace MonopolyEntity.Windows.Pages
             SetUserParamsText();
         }
 
+        public void ResetItemsAndUserInventory()
+        {
+            _system.SetUserInventory();
+            SetInventoryItems();
+        }
+
         public void SetUserParamsText()
         {
             UserLogin.Content = _system.LoggedUser.Login;
             AmountOfItems.Text = _system.LoggedUser.Inventory.InventoryItems.Count().ToString();
         }
 
+        private List<CaseCard> _cards = new List<CaseCard>();
         public void SetInventoryItems()
         {
+            ItemsPanel.Children.Clear();
+            _cards.Clear();
+
             for (int i = 0; i < _system.LoggedUser.Inventory.InventoryItems.Count; i++)
             {
                 if (_system.LoggedUser.Inventory.InventoryItems[i] is CaseBox box)
@@ -61,25 +77,57 @@ namespace MonopolyEntity.Windows.Pages
                         Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
                         SetAnimationForCaseBox(pagePoint, card.CardImage, box);
                     };
-                    ItemsPanel.Children.Add(card);
+                    _cards.Add(card);
                 }
                 else if (_system.LoggedUser.Inventory.InventoryItems[i] is BoxItem boxItem)
                 {
                     CaseCard card = SetLootBoxCard(boxItem, BoardHelper.GetAddedItemImage(boxItem.ImagePath, boxItem.Type));
-                    card.PreviewMouseDown += (sender, e) =>
+
+                    _cards.Add(card);
+                    boxItem.SetCaseCardId(_cards.Count() - 1);
+
+                    card.IfTicked.Unchecked += (sender, e) =>
+                    {
+                        BoxItem toRemove = _system.GetUserInventoryItemByName(card.CardName.Text);
+                        _system.RemoveBoxItemFromUsingList(toRemove);
+
+                        DBQueries.ClearInventoryItemById(toRemove.GetInventoryIdInDB());
+
+                        card.IfTicked.IsChecked = true;
+                        card.IfTicked.Visibility = Visibility.Hidden;
+                    };
+
+                    card.MouseDown += (sender, e) =>
                     {
                         Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
                         SetAnimationForInventoryBusiness(pagePoint, card.CardImage, boxItem);
                     };
-                    ItemsPanel.Children.Add(card);
+
+                    if (IfBoxCardIsTicked(boxItem))
+                    {
+                        card.IfTicked.Visibility = Visibility.Visible;
+                    }
                 }
+            }
+            SetCardsInItemsPanel();
+        }   
+
+        private bool IfBoxCardIsTicked(BoxItem item)
+        {
+            return DBQueries.IfInventoryStaffIsEnabled(item.GetInventoryIdInDB());
+        }
+
+        private void SetCardsInItemsPanel()
+        {
+            for (int i = 0; i < _cards.Count; i++)
+            {
+                ItemsPanel.Children.Add(_cards[i]);
             }
         }
 
         public CaseCard SetLootBoxCard(Item item, Image img)
         {
             string name = item.Name;
-
             CaseCard res = new CaseCard()
             {
                 Width = 150,
@@ -153,13 +201,11 @@ namespace MonopolyEntity.Windows.Pages
         private void SetButtonsInBusDescription(BoxItem item)
         {
             List<BusDescButton> buts = GetButtonForUsualBus(item);
-
             for (int i = 0; i < buts.Count; i++)
             {
                 _busDesc.ButtonsPanel.Children.Add(buts[i]);
             }
         }
-
 
         /// <summary>
         /// Set buttons for bus description
@@ -174,32 +220,72 @@ namespace MonopolyEntity.Windows.Pages
             {
                 BoxItem usingItem = _system.LoggedUser.GetItemWhichUsesInGameById(busesToGetButsFor[i].GetId());
 
+                BusDescButton but = new BusDescButton();
                 if (usingItem is null)
                 {
-                    res.Add(GetBusForBusinessDescription(
-                        busesToGetButsFor[i].Name, new SolidColorBrush(Color.FromRgb(76, 180, 219))));
+                    but = GetBusForBusinessDescription(
+                        busesToGetButsFor[i].Name, new SolidColorBrush(Color.FromRgb(76, 180, 219)));
+                    SetButMouseDownEventChangedWithParentBus(but, busesToGetButsFor[i], item);
                 }
                 else
                 {
-                    res.Add(GetBusForBusinessDescription(usingItem.Name,
-                        BoardHelper.GetColorFromSystemColorName(usingItem.Rearity.ToString())));
+                    but = GetBusForBusinessDescription(usingItem.Name,
+                        BoardHelper.GetColorFromSystemColorName(usingItem.Rearity.ToString()));
+                    SetButMouseDownEventChangeWithBoxItem(but, usingItem, item);
                 }
+                res.Add(but);
             }
             return res;
         }
 
-        /// <summary>
-        /// Check for not using same cards several times
-        /// </summary>
-        /// <param name="item"></param>
-        private void IfSuchItemIsAlreadyUsingInGame(BoxItem item)
-        {   //If user is using boxItem with such name
-            if (_system.LoggedUser.IfBusWithSuchNameIsUSedInGame(item.Name))
+        private void SetButMouseDownEventChangedWithParentBus(BusDescButton but, ParentBus oldItem, BoxItem newItem)
+        {
+            but.MouseDown += (sender, e) =>
             {
+                if (_system.IfBussWithSuchNameIsUsing(newItem.Name)) return;
 
-            }
+                newItem.StationId = oldItem.GetId();
+                _system.AddUsingBusInList(newItem);
+                _busDesc.ButtonsPanel.Children.Clear();
+                SetButtonsInBusDescription(newItem);
+
+                AddTickForCaseCard(newItem);
+
+                DBQueries.SetBoxItemWhichUserStartsToUse(newItem);         
+            };
         }
 
+        private void SetButMouseDownEventChangeWithBoxItem(BusDescButton but, BoxItem oldItem, BoxItem newItem)
+        {
+            but.MouseDown += (sender, e) =>
+            {
+                if (_system.IfBussWithSuchNameIsUsing(newItem.Name)) return;
+
+                newItem.StationId = oldItem.StationId;
+                _system.RemoveBoxItemFromUsingList(oldItem);
+                _system.AddUsingBusInList(newItem);
+                _busDesc.ButtonsPanel.Children.Clear();
+                SetButtonsInBusDescription(newItem);
+
+                RemoveTickForCaseCard(oldItem);
+                AddTickForCaseCard(newItem);
+
+                DBQueries.SetBoxItemWhichUserNotUse(oldItem);
+                DBQueries.SetBoxItemWhichUserStartsToUse(newItem);
+            };
+        }
+
+        private void AddTickForCaseCard(BoxItem toAdd)
+        {
+            CaseCard card = _cards[toAdd.GetCaseCardId()];
+            card.IfTicked.Visibility = Visibility.Visible;
+        }
+
+        private void RemoveTickForCaseCard(BoxItem toHide)
+        {
+            CaseCard card = _cards[toHide.GetCaseCardId()];
+            card.IfTicked.Visibility = Visibility.Hidden;
+        }
 
         public BusDescButton GetBusForBusinessDescription(string busName, SolidColorBrush color)
         {
@@ -226,7 +312,7 @@ namespace MonopolyEntity.Windows.Pages
             WorkWindow window = Helper.FindParent<WorkWindow>(_frame);
             Canvas items = window.VisiableItems;
 
-            _boxDescript = new BoxDescription(_frame, box);
+            _boxDescript = new BoxDescription(_frame, box, _system.LoggedUser.Login);
             SetBoxDescriptionParams(cardLocation, caseImg);
 
             MakeImageDescriptionAnimation(_boxDescript.DescImage);
@@ -352,7 +438,12 @@ namespace MonopolyEntity.Windows.Pages
                 this.IsEnabled = true;
                 _boxDescript = null;
                 _busDesc = null;
+
+
+                //Update item is box is opened
+                ResetItemsAndUserInventory();
             }
+
         }
 
         private void ClearDescription()

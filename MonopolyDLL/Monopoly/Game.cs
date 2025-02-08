@@ -26,11 +26,12 @@ namespace MonopolyDLL.Monopoly
         private int _firstCube = 1;
         private int _secondCube = 1;
 
-        public Game()
+        public Game(User loggedUser)
         {
             Players = new List<User>()
             {
-               new User("One", 15000, 0, false),
+               /*new User("One", 15000, 0, false)*/
+               loggedUser,
                new User("Two", 15000, 0, false),
                new User("Three", 15000, 0, false),
                new User("Four", 15000, 0, false),
@@ -81,8 +82,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = _rnd.Next(1, 7);
-            _secondCube = _rnd.Next(1, 7);
+            _firstCube = 2;// _rnd.Next(1, 7);
+            _secondCube = 3;// _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()

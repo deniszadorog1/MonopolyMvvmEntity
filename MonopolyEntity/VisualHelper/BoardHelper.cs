@@ -604,7 +604,7 @@ namespace MonopolyEntity.VisualHelper
 
         public static SolidColorBrush GetColorFromSystemColorName(string name)
         {
-            (byte r,byte g, byte b) colorParams = DBQueries.GetColorParamsByName(name);       
+            (byte r,byte g, byte b) colorParams = DBQueries.GetColorByRearityName(name);       
             return new SolidColorBrush(Color.FromRgb(colorParams.r, colorParams.g, colorParams.b));
         }
 

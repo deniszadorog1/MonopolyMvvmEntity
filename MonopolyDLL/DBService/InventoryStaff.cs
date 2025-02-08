@@ -15,6 +15,8 @@ namespace MonopolyDLL.DBService
 
         public int? StaffId { get; set; }
 
+        public int? StationId { get; set; }
+
         public bool? IfEnabled { get; set; }
 
         public virtual Player Player { get; set; }

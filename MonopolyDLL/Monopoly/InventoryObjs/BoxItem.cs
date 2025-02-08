@@ -19,6 +19,8 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
         private int bColor = -1;
 
         private bool _ifTicked;
+        private int _caseCardId;
+        private int _inventoryIdInDB;
 
         public BoxItem(string name, string imagePath,
             BusRearity rearity, BusinessType type, int stationId,
@@ -66,7 +68,26 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
         {
             return Type != BusinessType.Games && 
                 Type != BusinessType.Cars;
+        }
 
+        public void SetCaseCardId(int id)
+        {
+            _caseCardId = id;
+        }
+
+        public int GetCaseCardId()
+        {
+            return _caseCardId;
+        }
+
+        public void SetInventoryId(int id)
+        {
+            _inventoryIdInDB = id;
+        }
+
+        public int GetInventoryIdInDB()
+        {
+            return _inventoryIdInDB;
         }
     }
 }
