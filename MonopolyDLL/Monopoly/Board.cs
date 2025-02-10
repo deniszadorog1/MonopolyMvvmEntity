@@ -17,6 +17,7 @@ using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 using Casino = MonopolyDLL.Monopoly.Cell.AngleCells.Casino;
 using MonopolyDLL.DBService;
+using System.Security.Policy;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -583,6 +584,21 @@ namespace MonopolyDLL.Monopoly
             List<ParentBus> buses = new List<ParentBus>();
             buses.AddRange(Cells.OfType<GameBus>().ToList());
             return buses;
+        }
+
+        public void ChangeBoardItemOnInventory(ParentBus bus, int id)
+        {
+            Cells[id] = bus;
+        }
+
+        public void GetBasicBusBack(int position)
+        {
+            Cells[position] = _basicBoardCells[position];
+        }
+
+        public ParentBus GetBusByIndex(int index)
+        {
+            return ((ParentBus)Cells[index]);
         }
     }
 }

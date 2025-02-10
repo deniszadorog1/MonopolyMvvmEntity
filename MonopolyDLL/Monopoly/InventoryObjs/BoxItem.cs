@@ -89,5 +89,18 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
         {
             return _inventoryIdInDB;
         }
+
+        public List<int> GetNewPaymentList(List<int> payments)
+        {
+            List<int> res = new List<int>();
+
+            double mult = Multiplier / 100 + 1;
+
+            for(int i = 0; i < payments.Count; i++)
+            {
+                res.Add((int)(payments[i] * mult));
+            }
+            return res;
+        }
     }
 }

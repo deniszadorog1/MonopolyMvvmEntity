@@ -8,8 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using MonopolyDLL.DBService;
+using MonopolyDLL.Monopoly.Cell.Bus;
 using MonopolyDLL.Monopoly.Enums;
 using MonopolyDLL.Monopoly.InventoryObjs;
+using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -22,7 +24,7 @@ namespace MonopolyDLL.Monopoly
         public int SitInPrisonCounter { get; set; }
 
         public UserInventory Inventory { get; set; }
-        public List<InventoryObjs.BoxItem> GameBusses { get; set; }
+        public List<BoxItem> GameBusses { get; set; }
 
         public bool IfLost { get; set; }
         public int DoubleCounter { get; set; }
@@ -192,6 +194,46 @@ namespace MonopolyDLL.Monopoly
         {
             return GameBusses[index];
         }
-        
+
+        public bool IfHasInventoryOnPosition()
+        {
+            return GameBusses.Where(x => x.StationId == Position).Any();
+        }
+
+        public bool IfHasInventoryItemOnCellIndex(int cellIndex)
+        {
+            return GameBusses.Where(x => x.StationId == cellIndex).Any();
+        }
+
+        public ParentBus GetInventoryItemById(int position, ParentBus ususalPosBus, int newOwnerIndex)
+        {
+            BoxItem item = GameBusses.Where(x => x.StationId == position).First();
+
+            const int usCounter = 15;
+            
+            if (item.Type == BusinessType.Cars)
+            {
+                return new CarBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice, 
+                    ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels), 
+                    usCounter, 0, newOwnerIndex, item.Type, false, ususalPosBus.GetId());
+            }
+            if (item.Type == BusinessType.Games)
+            {
+                return new GameBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice, 
+                    ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels), 
+                    usCounter, 0, newOwnerIndex, item.Type, false, ususalPosBus.GetId());
+            }
+            return new UsualBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice, 
+                ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels), 
+                usCounter, 0, ((UsualBus)ususalPosBus).BuySellHouse, newOwnerIndex, 
+                item.Type, false, ususalPosBus.GetId());
+        }
+
+        public BoxItem GetBoxItemByPosition(int position)
+        {
+            BoxItem item = GameBusses.Where(x => x.StationId == position).First();
+            return item;
+        }
+
     }
 }

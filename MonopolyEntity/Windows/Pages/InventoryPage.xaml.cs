@@ -72,8 +72,9 @@ namespace MonopolyEntity.Windows.Pages
                 if (_system.LoggedUser.Inventory.InventoryItems[i] is CaseBox box)
                 {
                     CaseCard card = SetLootBoxCard(box, BoardHelper.GetLotBoxImage(box.ImagePath));
-                    card.PreviewMouseDown += (sender, e) =>
+                    card.MouseDown += (sender, e) =>
                     {
+                        if (_ifJustBlured) { _ifJustBlured = !_ifJustBlured; return; }
                         Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
                         SetAnimationForCaseBox(pagePoint, card.CardImage, box);
                     };
@@ -99,6 +100,7 @@ namespace MonopolyEntity.Windows.Pages
 
                     card.MouseDown += (sender, e) =>
                     {
+                        if (_ifJustBlured) { _ifJustBlured = !_ifJustBlured; return; }
                         Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
                         SetAnimationForInventoryBusiness(pagePoint, card.CardImage, boxItem);
                     };
@@ -148,8 +150,6 @@ namespace MonopolyEntity.Windows.Pages
             res.CardName.Text = $"{item.Name}";
             return res;
         }
-
-
 
         /*        public void SetTestInventoryItems()
                 {
@@ -429,6 +429,7 @@ namespace MonopolyEntity.Windows.Pages
             UpperMenuu.UserAnim.UserIcon.Foreground = new SolidColorBrush(Colors.Gray);
         }
 
+        private bool _ifJustBlured = false;
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!(_boxDescript is null) || !(_busDesc is null))
@@ -438,12 +439,14 @@ namespace MonopolyEntity.Windows.Pages
                 this.IsEnabled = true;
                 _boxDescript = null;
                 _busDesc = null;
+                _ifJustBlured = true;
 
 
                 //Update item is box is opened
                 ResetItemsAndUserInventory();
+                return;
             }
-
+            _ifJustBlured = false;
         }
 
         private void ClearDescription()

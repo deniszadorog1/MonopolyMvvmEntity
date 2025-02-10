@@ -1,34 +1,16 @@
-﻿using MahApps.Metro.Controls;
-using MonopolyEntity.VisualHelper;
+﻿using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.UserControls.GameControls.GameCell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Security.Cryptography;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Markup.Localizer;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Serialization;
 
-using MonopolyDLL;
 using System.Windows.Media.Animation;
-using System.Runtime.InteropServices.ComTypes;
-using System.Diagnostics;
-using System.Security.AccessControl;
 using MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo;
-using System.Windows.Media.TextFormatting;
-using System.Data.SqlTypes;
+
 
 using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages;
 using MonopolyDLL.Monopoly;
@@ -37,11 +19,12 @@ using System.Xml.Linq;
 using MaterialDesignThemes.Wpf;
 using System.Threading;
 using MonopolyDLL.Monopoly.Enums;
-using System.Globalization;
 using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeControls;
 using System.Reflection;
-using System.Runtime.InteropServices;
-
+using MonopolyDLL.Monopoly.InventoryObjs;
+using System.Security.Cryptography.X509Certificates;
+using MonopolyDLL.Monopoly.TradeAction;
+using MahApps.Metro.Controls;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -85,7 +68,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             SetCellsStars();
 
-            SetOwnerToAllCells();
+            //SetOwnerToAllCells();
         }
 
         public void SetOwnerToAllCells()
@@ -426,7 +409,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetGotOnChance()
         {
-            ChanceAction action = /*ChanceAction.GoToPrison;//*/ _system.MonGame.GetChanceAction();
+            ChanceAction action = ChanceAction.Get500;// _system.MonGame.GetChanceAction();
 
             MakeChanceAction(action);
 
@@ -652,8 +635,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 if (_system.MonGame.IfStepperHasEnughMoneyToBuyBus())
                 {
+                    SetSteppersBusFromInventory();
+
                     SetBuyingBusiness();
                     ChatMessages.Children.Clear();
+
                     ChangeStepper();
                     AddMessageTextBlock("Player is bought business");
                 }
@@ -675,6 +661,58 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
                 SetAuctionOffer();
             };
+        }
+
+        private void SetSteppersBusFromInventory()
+        {
+            if (!_system.MonGame.IfStepperHasInventoryBusOnPosition()) return;
+            _system.MonGame.SetPlayerSteppersBus();
+
+            ParentBus bus = _system.MonGame.GetBusThatStepperIsOn();
+
+            SetImageImg(bus);
+        }
+
+        private void SetImageImg(ParentBus bus)
+        {
+            BoxItem item = _system.MonGame.GetUserInventoryItem();
+            UIElement cell = _cells[bus.GetId()];
+
+            Image img = BoardHelper.GetAddedItemImage(item.ImagePath, item.Type);
+
+            Grid grid = null;
+            if (cell is UpperCell upper)
+            {
+                upper.ImagePlacer.Children.Add(img);
+                grid = upper.ImagePlacer;
+            }
+            else if (cell is RightCell right)
+            {
+                right.ImagePlacer.Children.Add(img);
+                grid = right.ImagePlacer;
+            }
+            else if (cell is BottomCell bottom)
+            {
+                bottom.ImagePlacer.Children.Add(img);
+                grid = bottom.ImagePlacer;
+            }
+            else if (cell is LeftCell left)
+            {
+                left.ImagePlacer.Children.Add(img);
+                grid = left.ImagePlacer;
+            }
+
+
+            MakeVisibleNewBusImage(grid);
+        }
+
+        private void MakeVisibleNewBusImage(Grid imagePlacer)
+        {
+            //2 - ususal bus pic and inventory bus pic
+            if (imagePlacer is null || imagePlacer.Children.Count != 2) return;
+
+            imagePlacer.Children[0].Visibility = Visibility.Hidden;
+            imagePlacer.Children[1].Visibility = Visibility.Visible;
         }
 
         private void SetAuctionOffer()
@@ -813,7 +851,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             _system.MonGame.BuyBusinessByStepper();
 
             int position = _system.MonGame.GetStepperPosition();
-
             PaintCellInColor(position, _colors[_system.MonGame.StepperIndex]);
 
             _cards[_system.MonGame.StepperIndex].UserMoney.Text = _system.MonGame.GetSteppersMoney().ToString();
@@ -1005,10 +1042,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             BussinessInfo.Children.Clear();
 
             //Add info about business
-            (UIElement asd, Size? size) = AddBusinessInfo();
+            (UIElement info, Size? size) = AddBusinessInfo();
 
-            if (asd is null) return;
-            SetLocForInfoBox(asd, (UIElement)sender, (Size)size);
+            if (info is null) return;
+            SetLocForInfoBox(info, (UIElement)sender, (Size)size);
         }
 
         private (UIElement, Size?) AddBusinessInfo()
@@ -2233,8 +2270,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             img.Height = imageSize.Height;
         }
 
-
-
         private void SetBasicClothesImages()
         {
             SetUpperCellImage(BoardHelper.GetImageFromFolder("adidas.png", "Clothes"), ClothesFirstBus, new Size(75, 45));
@@ -2620,7 +2655,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     _tradeOffer.SendTradeBut.Visibility = Visibility.Hidden;
                     _tradeOffer.AcceptanceButtons.Visibility = Visibility.Visible;
 
-                    SetEventsForAcceptenceButsInTrade();
+                    SetEventsForAcceptanceButsInTrade();
                 }
                 else
                 {
@@ -2633,7 +2668,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             ChatMessages.Children.Add(_tradeOffer);
         }
 
-        private void SetEventsForAcceptenceButsInTrade()
+        private void SetEventsForAcceptanceButsInTrade()
         {
             _tradeOffer.AcceptTradeBut.Click += (sender, e) =>
             {
@@ -2642,15 +2677,99 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 UpdatePlayersMoney();
                 RepaintAfterTradeBuses();
 
+                CheckTradeBusesForInventoryBuses();
+
                 AddMessageTextBlock("Trade accepted!");
                 ChatMessages.Children.Remove(ChatMessages.Children.OfType<TradeOfferEl>().First());
+
+                SetClickEventForBusCells();
+                SetTradeMouseDownForBusses(false);
             };
 
             _tradeOffer.DeclineTradeBut.Click += (sender, e) =>
             {
                 AddMessageTextBlock("Trade is declined");
                 ChatMessages.Children.Remove(ChatMessages.Children.OfType<TradeOfferEl>().First());
+
+                SetClickEventForBusCells();
+                SetTradeMouseDownForBusses(false);
             };
+        }
+
+        private void CheckTradeBusesForInventoryBuses()
+        {
+            TradeClass trade = _system.MonGame.GetTrade();
+
+            //Clear senders and receivers busses
+            ClearInventoriedBuses(trade.SenderBusesIndexes, trade.ReciverIndex);
+            ClearInventoriedBuses(trade.ReciverBusesIndexes, trade.SenderIndex);
+            //Set new Inventory cells for Sender and receiver
+
+            SetPlayersInventoryItems(trade.ReciverIndex, trade.SenderBusesIndexes);
+            SetPlayersInventoryItems(trade.SenderIndex, trade.ReciverBusesIndexes);
+
+            SetStartRentForBuses(trade.SenderBusesIndexes);
+            SetStartRentForBuses(trade.ReciverBusesIndexes);
+        }
+
+        private void SetStartRentForBuses(List<int> cellIndexes)
+        {
+            for(int i = 0; i < cellIndexes.Count; i++)
+            {
+                int startRent = _system.MonGame.GetStartPaymentForBusByIndex(cellIndexes[i]);
+                ChangePriceInBusiness(cellIndexes[i], startRent.ToString());
+            }
+        }
+
+        private void SetPlayersInventoryItems(int playerIndex, List<int> cellsIndexes)
+        {
+            for (int i = 0; i < cellsIndexes.Count; i++)
+            {
+                if (_system.MonGame.IfPlayerHasInventoryItemOnIndex(playerIndex, cellsIndexes[i]))
+                {
+                    _system.MonGame.SetInventoryItemForPlayer(playerIndex, cellsIndexes[i]);
+
+                    ParentBus bus = _system.MonGame.GetBusinessByIndex(cellsIndexes[i]);
+
+                    SetImageImg(bus);
+                }
+            }
+        }
+
+        private void ClearInventoriedBuses(List<int> cellsIndexes, int newOwnerIndex)
+        {
+            for (int i = 0; i < cellsIndexes.Count; i++)
+            {
+                ClearInventoryBusImage(cellsIndexes[i]);
+                _system.MonGame.SetBasicBusBack(cellsIndexes[i]);
+                _system.MonGame.GetBusinessByIndex(cellsIndexes[i]).ChangeOwner(newOwnerIndex);
+            }
+        }
+
+        private void ClearInventoryBusImage(int cellIndex)
+        {
+            UIElement cell = _cells[cellIndex];
+
+            if (cell is UpperCell up && up.ImagePlacer.Children.Count > 1)
+            {
+                up.ImagePlacer.Children.RemoveAt(up.ImagePlacer.Children.Count - 1);
+                up.ImagePlacer.Children[0].Visibility = Visibility.Visible;
+            }
+            else if (cell is RightCell right && right.ImagePlacer.Children.Count > 1)
+            {
+                right.ImagePlacer.Children.RemoveAt(right.ImagePlacer.Children.Count - 1);
+                right.ImagePlacer.Children[0].Visibility = Visibility.Visible;
+            }
+            else if (cell is BottomCell bot && bot.ImagePlacer.Children.Count > 1)
+            {
+                bot.ImagePlacer.Children.RemoveAt(bot.ImagePlacer.Children.Count - 1);
+                bot.ImagePlacer.Children[0].Visibility = Visibility.Visible;
+            }
+            else if (cell is LeftCell left && left.ImagePlacer.Children.Count > 1)
+            {
+                left.ImagePlacer.Children.RemoveAt(left.ImagePlacer.Children.Count - 1);
+                left.ImagePlacer.Children[0].Visibility = Visibility.Visible;
+            }
         }
 
         private void RepaintAfterTradeBuses()
@@ -2767,18 +2886,18 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private Image GetImageFromBusCell(UIElement element)
         {
             if (element is UpperCell upper)
-                return upper.ImagePlacer.Children.OfType<Image>().First();
+                return upper.ImagePlacer.Children.OfType<Image>().Last();
 
             if (element is RightCell right)
-                return right.ImagePlacer.Children.OfType<Image>().First();
+                return right.ImagePlacer.Children.OfType<Image>().Last();
 
             if (element is BottomCell bottom)
-                return bottom.ImagePlacer.Children.OfType<Image>().First();
+                return bottom.ImagePlacer.Children.OfType<Image>().Last();
 
             if (element is LeftCell left)
-                return left.ImagePlacer.Children.OfType<Image>().First();
+                return left.ImagePlacer.Children.OfType<Image>().Last();
 
-            throw new Exception("No image in iamgePlacer!");
+            throw new Exception("No image in imagePlacer!");
         }
 
         private int GetCellIndex(UIElement cell)
@@ -2822,6 +2941,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                         ClearCell(_cells[i], i);
                         _system.MonGame.ClearBusiness(i);
                         BoardHelper.MakeDepositCounterHidden(_cells[i]);
+
+                        ClearInventoryBusImage(i);
+                        _system.MonGame.SetBasicBusBack(i);
                     }
                 }
             }

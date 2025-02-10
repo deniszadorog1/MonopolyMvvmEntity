@@ -260,6 +260,12 @@ namespace MonopolyDLL.Monopoly
             return bus.PayLevels[bus.Level];
         }
 
+        public int GetStartPaymentForBusByIndex(int index)
+        {
+            ParentBus bus = ((ParentBus)GameBoard.Cells[index]);
+            return bus.PayLevels[bus.Level];
+        }
+
         public void SetStartLevelOfBusinessForStepper()
         {
             ParentBus bus = ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]);
@@ -620,6 +626,11 @@ namespace MonopolyDLL.Monopoly
             _trade.SetSenderMoney(money);
         }
 
+        public TradeClass GetTrade()
+        {
+            return _trade;
+        }
+
         public void SetReciverMoneyTrade(int money)
         {
             _trade.SetReciverMoney(money);
@@ -977,5 +988,46 @@ namespace MonopolyDLL.Monopoly
                 item.Type == BusinessType.Cars ? GameBoard.GetAllCarBuses() :
                 GameBoard.GetUsualBussesToChangeOn(item);
         }
+
+        public bool IfStepperHasInventoryBusOnPosition()
+        {
+            return Players[StepperIndex].IfHasInventoryOnPosition();            
+        }
+
+        public void SetPlayerSteppersBus()
+        {
+            int position = Players[StepperIndex].Position;
+            ParentBus newBus = Players[StepperIndex].GetInventoryItemById(position, GameBoard.GetBusByIndex(position), StepperIndex);
+            GameBoard.ChangeBoardItemOnInventory(newBus, position);
+        }
+
+        public void SetInventoryItemForPlayer(int playerIndex, int cellIndex)
+        {
+            ParentBus newBus = Players[StepperIndex].GetInventoryItemById(cellIndex, GameBoard.GetBusByIndex(cellIndex), StepperIndex);
+            GameBoard.ChangeBoardItemOnInventory(newBus, cellIndex);
+        }
+
+        public ParentBus GetBusThatStepperIsOn()
+        {
+            int position = Players[StepperIndex].Position;
+            return GameBoard.GetBusByIndex(position);
+        }
+
+        public InventoryObjs.BoxItem GetUserInventoryItem()
+        {
+            int position = Players[StepperIndex].Position;
+            return Players[StepperIndex].GetBoxItemByPosition(position);
+        }
+
+        public void SetBasicBusBack(int cellIndex)
+        {
+            GameBoard.GetBasicBusBack(cellIndex);
+        }
+
+        public bool IfPlayerHasInventoryItemOnIndex(int playerIndex, int cellIndex)
+        {
+            return Players[playerIndex].IfHasInventoryItemOnCellIndex(cellIndex);
+        }
+
     }
 }

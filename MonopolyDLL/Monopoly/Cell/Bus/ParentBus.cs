@@ -24,7 +24,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
         public bool IfDeposited { get; set; }
         public int TempDepositCounter { get; set; }
 
-        public int _depositCounterMax = 15;
+        public int _depositCounterMax = 16;
 
         public int GetPriceForBus()
         {

@@ -44,22 +44,22 @@ namespace MonopolyDLL.Monopoly
             LoggedUser.GameBusses = boxItems;
         }
 
-        public void AddUsingBusInList(InventoryObjs.BoxItem item)
+        public void AddUsingBusInList(BoxItem item)
         {
             LoggedUser.AddBoxItemInUsingList(item);
         }
 
-        public void RemoveBoxItemFromUsingList(InventoryObjs.BoxItem item)
+        public void RemoveBoxItemFromUsingList(BoxItem item)
         {
             LoggedUser.RemoveBoxItemFromList(item);
         }
         
-        public InventoryObjs.BoxItem GetUserInventoryItemByIndex(int index)
+        public BoxItem GetUserInventoryItemByIndex(int index)
         {
             return LoggedUser.GetUsingItemByIndex(index);
         }
 
-        public InventoryObjs.BoxItem GetUserInventoryItemByName(string name)
+        public BoxItem GetUserInventoryItemByName(string name)
         {
             return LoggedUser.GetItemByName(name);
         }
