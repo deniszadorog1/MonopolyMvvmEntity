@@ -82,8 +82,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 2;// _rnd.Next(1, 7);
-            _secondCube = 3;// _rnd.Next(1, 7);
+            _firstCube =  _rnd.Next(1, 7);
+            _secondCube = _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()

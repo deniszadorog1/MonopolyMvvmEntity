@@ -522,5 +522,27 @@ namespace MonopolyDLL
                 return model.InventoryStaffs.Where(x => x.Id == id && x.IfEnabled != null && (bool)x.IfEnabled).Any();
             }
         }
+
+        public static bool IfUserExistByLogin(string login)
+        {
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                return model.Players.Any(x => x.Login == login);
+            }
+        }
+
+        public static void AddNewUserInDB(User user)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                model.Players.Add(new Player()
+                {
+                    Login = user.Login,
+                    Password = user.Password,
+                });
+
+                model.SaveChanges();
+            }
+        }
     }
 }

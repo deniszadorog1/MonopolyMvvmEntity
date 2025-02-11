@@ -96,7 +96,7 @@
                           Style="{StaticResource MaterialDesignFlatButton}"
                           ToolTip="Registration"
                           materialDesign:RippleAssist.Feedback="{StaticResource ThirdGlobalColor}"
-                             />
+                          Click="RegistrationBut_Click"/>
                 </StackPanel>
 
             </Grid>

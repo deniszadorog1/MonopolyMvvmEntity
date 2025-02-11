@@ -549,7 +549,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\Other\whiteLock.png" />
-    <Resource Include="Visuals\Images\BoardImages\Other\whiteStar.png" />
     <Resource Include="Visuals\Images\BoardImages\Other\yellowStar.png" />
   </ItemGroup>
   <ItemGroup>
@@ -582,7 +581,9 @@
     <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Perfume\diorPerfume.png" />
     <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Perfume\niveaPerfume.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Visuals\Images\BoardImages\Other\whiteStar.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Car\jeepCar.png" />
     <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Car\kiaCar.png" />

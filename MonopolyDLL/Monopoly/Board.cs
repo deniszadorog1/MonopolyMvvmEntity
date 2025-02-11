@@ -87,7 +87,7 @@ namespace MonopolyDLL.Monopoly
             res.Add(new CarBus("Ford", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false, 25));
             res.Add(new UsualBus("MaxBurgers", 2600, 1300, 1500, new List<int>() { 220, 1100, 3300, 8000, 9750, 11500 }, 0, 0, 1500, -1, BusinessType.Food, false, 26));
             res.Add(new UsualBus("Burger King", 2600, 1300, 1500, new List<int>() { 220, 1100, 3300, 8000, 9750, 11500 }, 0, 0, 1500, -1, BusinessType.Food, false, 27));
-            res.Add(new GameBus("Rovio", 1500, 750, 900, new List<int>() { 100, 250 }, 0, 0, 0, BusinessType.Games, false, 28));
+            res.Add(new GameBus("Rovio", 1500, 750, 900, new List<int>() { 100, 250 }, 0, 0, -1, BusinessType.Games, false, 28));
             res.Add(new UsualBus("KFC", 2800, 1400, 1680, new List<int>() { 240, 1200, 3600, 8500, 10250, 12000 }, 0, 0, 1500, -1, BusinessType.Food, false, 29));
 
             res.Add(new GoToPrison("GoToPrison", 30));

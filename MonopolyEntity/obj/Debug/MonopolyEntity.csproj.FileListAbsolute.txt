@@ -205,3 +205,5 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.exe
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.pdb
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BusDescButton.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BusDescButton.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\RegistrationWindow.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\RegistrationWindow.baml

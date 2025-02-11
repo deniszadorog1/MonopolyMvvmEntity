@@ -7,8 +7,38 @@
              mc:Ignorable="d" 
              d:DesignHeight="420" d:DesignWidth="260"
              MaxHeight="430" MinHeight="420"
-             MaxWidth="260" MinWidth="260"
+             MaxWidth="260" MinWidth="260"                    
              >
+
+    <UserControl.Resources>
+        <Style x:Key="PaymentNumber" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Open Sans"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Text" Value="xxxx"/>
+            <Setter Property="Margin" Value="0 0 30 0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style x:Key="PriceNames" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="20 0 0 0"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
+
+        <Style x:Key="KLetter" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontFamily" Value="Open Sans"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="0 0 22 0"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+        </Style>
+    </UserControl.Resources>
+
+
     <Border Background="White" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -19,19 +49,21 @@
             </Grid.RowDefinitions>
 
             <Border Grid.Row="0" Name ="NameBusBorder" CornerRadius="10 10 0 0" Background="Gray">
-                <StackPanel Orientation="Vertical" Margin="5">
+                <StackPanel Orientation="Vertical" Margin="20 10 0 0">
                     <TextBlock Name="BusName" Text="Busness name place" 
-                               FontSize="22" Foreground="White"/>
+                               FontSize="22" Foreground="White"
+                               FontFamily="Open Sans" FontWeight="SemiBold"/>
 
                     <TextBlock Name= "BusType" Text="Busness type" 
-                               FontSize="18" Foreground="White"/>
+                               FontSize="16" Foreground="White"
+                               FontFamily="Open Sans"/>
                 </StackPanel>
             </Border>
 
             <Grid Grid.Row="1" Name="BusDescGrid">
-                <TextBlock FontSize="14" TextWrapping="Wrap"  Name="DescriptionText"
+                <TextBlock FontSize="16" TextWrapping="Wrap"  Name="DescriptionText"
                            Margin="20 5 20 0"
-                           Text="There some text about bus type" Visibility="Hidden"/>
+                           Text="Build houses to get bigger payment" Visibility="Hidden"/>
 
                 <Button Name ="BuildHouseBut" Width="200" Height="25" Visibility="Hidden"
                 Background="{StaticResource MainGlobalColor}" 
@@ -107,13 +139,11 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
+                
                 <Grid Grid.Row="0">
-                    <TextBlock Name="BaseRentText" Text="Base rent" Margin="20 0 0 0"
-                               VerticalAlignment="Center" FontSize="16"/>
-
-                    <TextBlock Name="BaseRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="BaseRentText" Text="Base rent" Style="{StaticResource PriceNames}"/>
+                    <TextBlock Name="BaseRentMoney" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="20 0 0 0">
@@ -121,8 +151,8 @@
                             HorizontalAlignment="Left" 
                             Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
 
-                    <TextBlock Name="OneStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="OneStarRentMoney" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -136,8 +166,9 @@
                             Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
                     </WrapPanel>
 
-                    <TextBlock Name="TwoStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="TwoStarRentMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="3">
@@ -155,8 +186,9 @@
                             Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
                     </WrapPanel>
 
-                    <TextBlock Name="ThreeStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="ThreeStarRentMoney"
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="4">
@@ -178,8 +210,10 @@
                             Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
                     </WrapPanel>
 
-                    <TextBlock Name="FourStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="FourStarRentMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+
                 </Grid>
 
                 <Grid Grid.Row="5" Margin="20 0 0 0">
@@ -187,8 +221,9 @@
                             HorizontalAlignment="Left" 
                             Source="/Visuals/Images/BoardImages/Other/yellowStar.png"/>
 
-                    <TextBlock Name="YellowStarRentMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="YellowStarRentMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
             </Grid>
 
@@ -201,35 +236,39 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <TextBlock Name="BusPrice" Text="Bussiness price" Margin="20 0 0 0"
-                               VerticalAlignment="Center" FontSize="16"/>
+                    <TextBlock Name="BusPrice" Text="Bussiness price" 
+                               Style="{StaticResource PriceNames}"/>
 
-                    <TextBlock Name="BusPriceMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="BusPriceMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <TextBlock Name="DepositPrice" Text="Deposit price" Margin="20 0 0 0"
-                               VerticalAlignment="Center" FontSize="16"/>
+                    <TextBlock Name="DepositPrice" Text="Deposit price" 
+                               Style="{StaticResource PriceNames}"/>
 
-                    <TextBlock Name="DepositPriceMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="DepositPriceMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <TextBlock Name= "RebuyPrice" Text="Rebuy price" Margin="20 0 0 0"
-                               VerticalAlignment="Center" FontSize="16"/>
+                    <TextBlock Name= "RebuyPrice" Text="Rebuy price"
+                               Style="{StaticResource PriceNames}"/>
 
-                    <TextBlock Name="RebuyPriceMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="RebuyPriceMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="3">
-                    <TextBlock Name= "HousePrice" Text="House price" Margin="20 0 0 0"
-                               VerticalAlignment="Center" FontSize="16"/>
+                    <TextBlock Name= "HousePrice" Text="House price" 
+                               Style="{StaticResource PriceNames}"/> 
 
-                    <TextBlock Name="HousePriceMoney" Text="xxxxK" HorizontalAlignment="Right" 
-                    VerticalAlignment="Center" FontSize="16" Margin="0 0 25 0"/>
+                    <TextBlock Name="HousePriceMoney"
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
             </Grid>

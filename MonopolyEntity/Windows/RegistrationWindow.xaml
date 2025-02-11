@@ -6,11 +6,37 @@
         xmlns:local="clr-namespace:MonopolyEntity.Windows"
         mc:Ignorable="d"
         Title="RegistrationWindow" Height="450" Width="600"
-        Background="#EDEDD6">
+        WindowStartupLocation="CenterScreen" Background="#EDEDD6" >
     <Grid>
-        <Border Width="550" Height="400" Background="White" CornerRadius="50"> 
-            
+        <Border Width="550" Height="400" Background="White" CornerRadius="50">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Name="RegistrationText" Text="Registration window"
+                           FontSize="28" Margin="20 20 0 0" FontWeight="Bold"/>
+
+                <Button Name="RegBut" Grid.Row="6" Margin="25 0 25 0" Content="Register" Click="RegBut_Click"/>
+
+                <TextBox Grid.Row="1" Margin="10" FontSize="20" ToolTip="Login"
+                         Name ="LoginBox" Foreground="Gray" Text="Login"
+                         GotFocus="LoginBox_GotFocus" LostFocus="LoginBox_LostFocus"/>
+
+                <TextBox Grid.Row="2" Margin="10" FontSize="20" ToolTip="Password"
+                         Name ="PasswordBox" Foreground="Gray" Text="Password"
+                         GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+
+
+            </Grid>
         </Border>
-        
     </Grid>
 </Window>

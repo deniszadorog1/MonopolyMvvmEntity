@@ -39,5 +39,14 @@ namespace MonopolyEntity
             window.ShowDialog();
 
         }
+
+        private void RegistrationBut_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow reg = new RegistrationWindow();
+
+            this.Visibility = Visibility.Hidden;
+            reg.ShowDialog();
+            this.Visibility = Visibility.Visible;
+        }
     }
 }

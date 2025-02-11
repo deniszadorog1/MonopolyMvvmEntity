@@ -8,8 +8,35 @@
              d:DesignHeight="350" d:DesignWidth="260"
              MaxHeight="350" MinHeight="350"
              MaxWidth="260" MinWidth="260">
-             
-    
+
+    <UserControl.Resources>
+        <Style x:Key="PaymentNumber" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Open Sans"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Text" Value="xxxx"/>
+            <Setter Property="Margin" Value="0 0 10 0"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style x:Key="PriceNames" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
+
+        <Style x:Key="KLetter" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontFamily" Value="Open Sans"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="0 0 2 0"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+        </Style>
+    </UserControl.Resources>
+
     <Border Background="White" CornerRadius="10">
         <Grid Name ="CardGrid">
             <Grid.RowDefinitions>
@@ -21,7 +48,7 @@
 
             <Border Grid.Row="0" Name="CarBusHeader"
                     Background="Gray" CornerRadius="10 10 0 0">
-                <Grid Margin="5">
+                <Grid Margin="15 5 0 0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -62,35 +89,28 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <TextBlock VerticalAlignment="Center" Text="One field - "   
-                               HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Name ="OneFieldMoney" Text="xxxxK" 
-                               HorizontalAlignment="Right" FontSize="16"
-                               VerticalAlignment="Center"/>
+                    <TextBlock Text="One field - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Name ="OneFieldMoney" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <TextBlock VerticalAlignment="Center" Text="Two field - "   
-                               HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Name ="TwoFieldMoney" Text="xxxxK" 
-                               HorizontalAlignment="Right" FontSize="16"
-                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Two field - " Style="{StaticResource PriceNames}"/>
+                   
+                    <TextBlock Name ="TwoFieldMoney" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <TextBlock VerticalAlignment="Center" Text="Three field - "   
-                               HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Name ="ThreeFieldMoney" Text="xxxxK" 
-                               HorizontalAlignment="Right" FontSize="16"
-                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Three field - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Name ="ThreeFieldMoney" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="3">
-                    <TextBlock VerticalAlignment="Center" Text="Four field - "   
-                               HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Name ="FourFieldMoney" Text="xxxxK" 
-                               HorizontalAlignment="Right" FontSize="16"
-                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Four field - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Name ="FourFieldMoney" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
             </Grid>
 
@@ -103,29 +123,22 @@
                 </Grid.RowDefinitions>
                 
                 <Grid Grid.Row="0">
-                    <TextBlock VerticalAlignment="Center" Text="Field price - "   
-                               HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Name ="FieldPrice" Text="xxxxK" 
-                               HorizontalAlignment="Right" FontSize="16"
-                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Field price - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Name ="FieldPrice" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>  
                 
                 <Grid Grid.Row="1">
-                    <TextBlock VerticalAlignment="Center" Text="Deposit price - "   
-                               HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Name ="DepositPriceText" Text="xxxxK" 
-                               HorizontalAlignment="Right" FontSize="16"
-                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Deposit price - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Name ="DepositPriceText" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <TextBlock VerticalAlignment="Center" Text="Rebuy price - "   
-                               HorizontalAlignment="Left" FontSize="16"/>
-                    <TextBlock Name ="RebuyPrice" Text="xxxxK" 
-                               HorizontalAlignment="Right" FontSize="16"
-                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Rebuy price - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Name ="RebuyPrice" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
-
             </Grid>
             
         </Grid>    

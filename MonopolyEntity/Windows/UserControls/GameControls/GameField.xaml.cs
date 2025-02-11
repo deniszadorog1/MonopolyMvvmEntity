@@ -409,7 +409,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetGotOnChance()
         {
-            ChanceAction action = ChanceAction.Get500;// _system.MonGame.GetChanceAction();
+            ChanceAction action = /*ChanceAction.GoToPrison;// */_system.MonGame.GetChanceAction();
 
             MakeChanceAction(action);
 
@@ -442,7 +442,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     GetMoneyChanceAction(_system.MonGame.GameBoard.GetBigWinMoneyChance());
                     break;
                 case ChanceAction.GoToPrison:
-                    GoToPrisonFromChance(_system.MonGame.GameBoard.GetPrisonCellIndex());
+                    GoToPrisonFromChance();
                     break;
             }
         }
@@ -455,9 +455,20 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             _system.MonGame.SetPlayerPositionAfterChanceMove(cellIndex);
         }
 
-        private void GoToPrisonFromChance(int cellIndexToMoveOn)
+        private void GoToPrisonFromChance()
         {
             int stepperPosition = _system.MonGame.GetStepperPosition();
+            int prisonCellIndex = _system.MonGame.GetPrisonIndex();
+            _ifWithoutGoingThrugh = true;
+            IfLastMoveIsPrison = true;
+            _system.MonGame.Players[_system.MonGame.StepperIndex].IfSitInPrison = true;
+            MakeChipsMovementAction(stepperPosition, prisonCellIndex, _imgs[_system.MonGame.StepperIndex]);
+            _system.MonGame.SetPlayerPositionAfterChanceMove(prisonCellIndex);
+            _system.MonGame.ClearStepperDoublesCounter();
+            ChangeStepper();
+            //
+
+/*            int stepperPosition = _system.MonGame.GetStepperPosition();
             IfLastMoveIsPrison = true;
             _system.MonGame.Players[_system.MonGame.StepperIndex].IfSitInPrison = true;
             _ifChipMoves = false;
@@ -465,7 +476,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             MakeChipsMovementAction(stepperPosition, cellIndexToMoveOn, _imgs[_system.MonGame.StepperIndex]);
             _system.MonGame.SetPlayerPositionAfterChanceMove(cellIndexToMoveOn);
-            ChangeStepper();
+            ChangeStepper();*/
         }
 
         private void GetMoneyChanceAction(int money)
@@ -1299,7 +1310,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             }
         }
 
-
         private void SetUsualBusInfoParams(UsualBusInfo info)
         {
             UsualBus bus = (UsualBus)_system.MonGame.GameBoard.Cells[_clickedCellIndex];
@@ -1307,7 +1317,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             info.BusName.Text = bus.Name;
             info.BusType.Text = bus.BusType.ToString();
 
-            info.DescriptionText.Text = "It is a usual business";
+            //info.DescriptionText.Text = "Build houses to get bigger payment";
 
             info.BaseRentMoney.Text = bus.PayLevels[0].ToString();
             info.OneStarRentMoney.Text = bus.PayLevels[1].ToString();
@@ -1326,6 +1336,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetEventsForUsualBusInfo(info);
             SetHouseButtonsForBusInfo(info);
         }
+
+        
 
         private void SetHouseButtonsForBusInfo(UsualBusInfo info)
         {
