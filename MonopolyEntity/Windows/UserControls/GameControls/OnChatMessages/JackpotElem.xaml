@@ -96,13 +96,18 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
-                    <Button Name ="MakeBidBut" Width="200" Height="40"
-                    Background="{StaticResource MainGlobalColor}" 
-                    BorderBrush="White" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Content="Bid 1000k"
-                    Foreground="White" VerticalContentAlignment="Center"
-                    HorizontalContentAlignment="Center" FontSize="14"/>
-
+                  <Grid>
+                      <Image Name ="LockImage" Margin="45 0 0 0"  Visibility="Visible"
+                            Width="25" Height="25" HorizontalAlignment="Left" Panel.ZIndex="100" 
+                            Source="//Visuals/Images/BoardImages/Other/blackLock.png"/>
+   
+                        <Button Name ="MakeBidBut" Width="200" Height="40"
+                        Background="{StaticResource MainGlobalColor}" 
+                        BorderBrush="White" VerticalAlignment="Center"
+                        HorizontalAlignment="Center" Content="Bid 1000k"
+                        Foreground="White" VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center" FontSize="14"/>
+                    </Grid>
                     <Button Name ="DeclineBut"  Background="#ECEEF1" 
                     BorderBrush="White" Margin="10 0 0 0"
                     Width="{Binding ActualWidth, ElementName=MakeBidBut}"

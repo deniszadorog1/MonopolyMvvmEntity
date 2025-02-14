@@ -7,6 +7,7 @@ using MahApps.Metro.Actions;
 using MonopolyEntity.Windows.UserControls.MainPage;
 
 using MonopolyDLL.Monopoly;
+using MonopolyEntity.VisualHelper;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -40,12 +41,12 @@ namespace MonopolyEntity.Windows.Pages
         public void SetDescRibeCards()
         {
             //return;
-            SetParamsToCard(OneDesc,"One", "This is first", ThingForTest.GetCalivanImage());
-            SetParamsToCard(TwoDesc, "Two", "This is second", ThingForTest.GetCalivanImage());
-            SetParamsToCard(ThreeDesc, "Three", "This is third", ThingForTest.GetCalivanImage());
-            SetParamsToCard(FourDesc, "Four", "This is fourth", ThingForTest.GetCalivanImage());
-            SetParamsToCard(FiveDesc, "Five", "This is fifth", ThingForTest.GetCalivanImage());
-            SetParamsToCard(SixDesc, "Six", "This is sixth", ThingForTest.GetCalivanImage());
+            SetParamsToCard(OneDesc,"One", "This is first", MainWindowHelper.GetImagePyName("okay.png"));
+            SetParamsToCard(TwoDesc, "Two", "This is second", MainWindowHelper.GetImagePyName("dices.png"));
+            SetParamsToCard(ThreeDesc, "Three", "This is third", MainWindowHelper.GetImagePyName("cup.png"));
+            SetParamsToCard(FourDesc, "Four", "This is fourth", MainWindowHelper.GetImagePyName("rating-positive.png"));
+            SetParamsToCard(FiveDesc, "Five", "This is fifth", MainWindowHelper.GetImagePyName("delivery.png"));
+            SetParamsToCard(SixDesc, "Six", "This is sixth", MainWindowHelper.GetImagePyName("planet.png"));
         }
 
         public void SetParamsToCard(DescribeBox box, string nameText, string descText, Image img)
@@ -59,7 +60,7 @@ namespace MonopolyEntity.Windows.Pages
 
         public void SetGameWindowImg()
         {
-            GameWindowImg.Source = ThingForTest.GetCalivanImage().Source;
+            GameWindowImg.Source = MainWindowHelper.GetImagePyName("BoardImg.png").Source; //ThingForTest.GetCalivanImage().Source;
         }
 
         public void OpenInventoryPage()
@@ -74,6 +75,11 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenGameField()
         {
+            SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
+            setPlayers.ShowDialog();
+
+            
+            return;
             GamePage page = new GamePage(_frame, _system);
             _frame.Content = page;
         }

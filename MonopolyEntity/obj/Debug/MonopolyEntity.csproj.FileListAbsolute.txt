@@ -207,3 +207,5 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\Inven
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BusDescButton.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\RegistrationWindow.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\RegistrationWindow.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\SetPlayersForGame.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\SetPlayersForGame.baml

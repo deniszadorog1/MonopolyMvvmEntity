@@ -113,10 +113,10 @@ namespace MonopolyDLL.Monopoly
             _goToPrisonIndex = 30;
         }
 
-        public string GetBusinessPrice(int index)
+        public int GetBusinessPrice(int index)
         {
-            return !(Cells[index] is ParentBus) ? string.Empty :
-                ((ParentBus)Cells[index]).Price.ToString();
+            return !(Cells[index] is ParentBus) ? -1 :
+                ((ParentBus)Cells[index]).Price;
         }
 
         public (int, string) PlayCasino(List<int> chosenCasinoRibs)
@@ -215,6 +215,11 @@ namespace MonopolyDLL.Monopoly
                 }
             }
             return res;
+        }
+
+        public int GetParentBusPrice(int index)
+        {
+            return ((ParentBus)Cells[index]).Price;
         }
 
         public void SetNewOwnerAfterTrade(List<int> indexes, int newOwnerIndex)
@@ -597,8 +602,19 @@ namespace MonopolyDLL.Monopoly
         }
 
         public ParentBus GetBusByIndex(int index)
-        {
+        {   
             return ((ParentBus)Cells[index]);
+        }
+
+        public bool IfPlayerIsOnEnemiesBus(int playerIndex, int cellIndex)
+        {
+            return Cells[cellIndex] is ParentBus && ((ParentBus)Cells[cellIndex]).OwnerIndex != -1 &&
+                ((ParentBus)Cells[cellIndex]).OwnerIndex != playerIndex;
+        }
+
+        public int GetBusOwnerIndex(int cellIndex)
+        {
+            return Cells[cellIndex] is ParentBus ? ((ParentBus)Cells[cellIndex]).OwnerIndex : -1;
         }
     }
 }

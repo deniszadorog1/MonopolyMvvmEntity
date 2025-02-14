@@ -20,9 +20,38 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
     /// </summary>
     public partial class PayMoney : UserControl
     {
-        public PayMoney()
+        public bool _ifPlayerHasEnoughMoney = false;
+        public bool _ifGiveUp = false;
+        private SolidColorBrush _inActiveColor = (SolidColorBrush)Application.Current.Resources["InActiveColor"];
+
+        public PayMoney(bool ifPlayerHasEnoughMoney, bool ifGiveUp)
         {
+            _ifPlayerHasEnoughMoney = ifPlayerHasEnoughMoney;
+            _ifGiveUp = ifGiveUp;
+
             InitializeComponent();
+            SetPayButton(_ifPlayerHasEnoughMoney);
+            
+            SetGiveUpButton();
+        }
+
+        public void SetGiveUpButton()
+        {
+            if (!_ifGiveUp) return;
+            PayBillBut.Visibility = Visibility.Hidden;
+            GiveUpBut.Visibility = Visibility.Visible;
+        }
+
+        public void SetPayButton(bool ifPlayerHasEnoughMoney)
+        {
+            if (ifPlayerHasEnoughMoney)
+            {
+                PayBillBut.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
+                //LockImage.Visibility = Visibility.Hidden;
+                return;
+            }
+            PayBillBut.Background = _inActiveColor;
+            LockImage.Visibility = Visibility.Visible;
         }
     }
 }

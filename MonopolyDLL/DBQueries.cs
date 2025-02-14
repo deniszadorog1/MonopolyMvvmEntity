@@ -49,7 +49,7 @@ namespace MonopolyDLL
 
         public static void ClearInventoryItemById(int id)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
                 var item = model.InventoryStaffs.FirstOrDefault(x => x.Id == id);
                 if (item is null) return;
@@ -62,7 +62,7 @@ namespace MonopolyDLL
 
         private static int? GetItemIdByIdFromItems(int id)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
                 return model.Items.FirstOrDefault(x => x.Id == id).ItemId;
             }
@@ -124,7 +124,7 @@ namespace MonopolyDLL
 
         public static void AddBoxItemInUserInventory(string userLogin, string itemName)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
                 model.InventoryStaffs.Add(new InventoryStaff()
                 {
@@ -142,9 +142,9 @@ namespace MonopolyDLL
             int boxItemId = GetBoxItemIdByName(name);
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach(var item in model.Items)
+                foreach (var item in model.Items)
                 {
-                    if(item.ItemId == boxItemId)
+                    if (item.ItemId == boxItemId)
                     {
                         return item.Id;
                     }
@@ -156,11 +156,11 @@ namespace MonopolyDLL
 
         private static int GetBoxItemIdByName(string name)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-                foreach(var item in model.BoxItems)
+                foreach (var item in model.BoxItems)
                 {
-                    if(item.Name == name)
+                    if (item.Name == name)
                     {
                         return item.Id;
                     }
@@ -171,11 +171,11 @@ namespace MonopolyDLL
 
         private static int GetPlayerIdByLogin(string login)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-                foreach(var player in model.Players)
+                foreach (var player in model.Players)
                 {
-                    if(player.Login == login)
+                    if (player.Login == login)
                     {
                         return player.Id;
                     }
@@ -517,7 +517,7 @@ namespace MonopolyDLL
 
         public static bool IfInventoryStaffIsEnabled(int id)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
                 return model.InventoryStaffs.Where(x => x.Id == id && x.IfEnabled != null && (bool)x.IfEnabled).Any();
             }
@@ -533,7 +533,7 @@ namespace MonopolyDLL
 
         public static void AddNewUserInDB(User user)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
                 model.Players.Add(new Player()
                 {
@@ -543,6 +543,21 @@ namespace MonopolyDLL
 
                 model.SaveChanges();
             }
+        }
+
+        public static List<User> GetAllPlayers()
+        {
+            List<User> res = new List<User>();
+
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                foreach(var user in model.Players)
+                {
+                    User addUser = new User(user.Login, user.Id);
+                    res.Add(addUser);
+                }
+            }
+            return res;
         }
     }
 }

@@ -45,6 +45,8 @@
 
             <SolidColorBrush x:Key="BaseUserCardBackground" Color="#161A1B"/>
 
+            <SolidColorBrush x:Key="InActiveColor" Color="#C7CCD3"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

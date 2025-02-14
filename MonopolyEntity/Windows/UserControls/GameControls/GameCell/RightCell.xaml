@@ -5,6 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.GameCell"
              mc:Ignorable="d" 
+             
+             xmlns:DepoistCounter ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
+             
              d:DesignHeight="65" d:DesignWidth="150"
              Height="65" Width="150">
     <Grid>
@@ -34,6 +37,12 @@
 
             </Grid>
         </Canvas>
+
+        <Grid Width="45" Height="20" Background="Transparent" 
+              HorizontalAlignment="Left" Margin="-20 0 0 0">
+            <DepoistCounter:DepositCounter Height="20" 
+                                           x:Name="DepositObj" Visibility="Hidden"/>
+        </Grid>
 
     </Grid>
 </UserControl>

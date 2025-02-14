@@ -47,6 +47,11 @@
 
                 </StackPanel>
 
+                <Button Name ="GiveUpBut" Width="410" Height="45"  
+                        Background="{StaticResource InActiveColor}"
+                        BorderBrush="White" Content="Give up" FontSize="16"
+                        Foreground="Black" Visibility="Hidden"/>
+
                 <Button Name ="LastPay" Width="400" Height="45" Visibility="Hidden"
                     Background="{StaticResource MainGlobalColor}" 
                     BorderBrush="White" VerticalAlignment="Center"

@@ -30,13 +30,13 @@
     <Grid >
 
         <Canvas Name="ChipMovePanel" Panel.ZIndex="100">
-            
+
         </Canvas>
 
         <Canvas Name ="BussinessInfo" Panel.ZIndex="100">
-            
+
         </Canvas>
-        
+
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
@@ -102,13 +102,10 @@
                     </ScrollViewer>
                 </Grid>
 
-                <StackPanel Grid.Row="1" Orientation="Horizontal">
 
-                    <Button Name="UserMessage" Content="User Login" Background="LightGreen" Margin="10 0 0 0"/>
-                    <TextBox Margin="10 10 0 10" Width="300" Name ="MessageWriter"/>
-                    <materialDesign:PackIcon Kind="ImageMultipleOutline" Margin="15 0 0 0" 
-                                             Height="40" Width="40"/>
-                </StackPanel>
+                <TextBox Grid.Row="1" Margin="10 10 0 10" Width="500" Name ="MessageWriter"/>
+
+                
             </Grid>
 
             <StackPanel Grid.Row="1" Grid.Column="2" Name="SecondLinePanel" 

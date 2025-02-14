@@ -61,8 +61,6 @@ namespace MonopolyEntity.VisualHelper
             return boardImages;
         }
 
-
-
         public static Image GetImageFromOtherFolder(string name)
         {
             string boardImagesPath = GetBoardImagesPath();
@@ -486,7 +484,6 @@ namespace MonopolyEntity.VisualHelper
             return res;
         }
 
-
         private static string GetAddedImagePath()
         {
             DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
@@ -608,22 +605,28 @@ namespace MonopolyEntity.VisualHelper
             return new SolidColorBrush(Color.FromRgb(colorParams.r, colorParams.g, colorParams.b));
         }
 
-
         public static void MakeDepositCounterVisible(UIElement cell)
         {
             if (cell is UpperCell up) up.DepositObj.Visibility = Visibility.Visible; 
+            if (cell is RightCell right) right.DepositObj.Visibility = Visibility.Visible; 
+            if (cell is BottomCell bottom) bottom.DepositObj.Visibility = Visibility.Visible; 
+            if (cell is LeftCell left) left.DepositObj.Visibility = Visibility.Visible; 
         }
 
         public static void MakeDepositCounterHidden(UIElement cell)
         {
             if (cell is UpperCell up) up.DepositObj.Visibility = Visibility.Hidden;
+            if (cell is RightCell right) right.DepositObj.Visibility = Visibility.Hidden;
+            if (cell is BottomCell bottom) bottom.DepositObj.Visibility = Visibility.Hidden;
+            if (cell is LeftCell left) left.DepositObj.Visibility = Visibility.Hidden;
         }
 
         public static void SetValueForDepositCounter(UIElement cell, int value)
         {
-            if (cell is UpperCell up)
-                up.DepositObj.Counter.Text = value.ToString();
+            if (cell is UpperCell up)  up.DepositObj.Counter.Text = value.ToString();
+            if (cell is RightCell right)  right.DepositObj.Counter.Text = value.ToString();
+            if (cell is BottomCell bottom) bottom.DepositObj.Counter.Text = value.ToString();
+            if (cell is LeftCell left)  left.DepositObj.Counter.Text = value.ToString();
         }
-
     }
 }

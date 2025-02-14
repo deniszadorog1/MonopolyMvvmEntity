@@ -20,11 +20,29 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
     /// </summary>
     public partial class JackpotElem : UserControl
     {
-        public JackpotElem()
+        public bool _ifPlayerHasEnoughMoney = false;
+        private SolidColorBrush _inActiveColor = (SolidColorBrush)Application.Current.Resources["InActiveColor"];
+
+        public JackpotElem(bool ifPlayerHasEnoughMoney)
         {
+            _ifPlayerHasEnoughMoney = ifPlayerHasEnoughMoney; 
             InitializeComponent();
 
             SetBordersRibsInList();
+
+            SetPlayButton(_ifPlayerHasEnoughMoney);
+        }
+
+        public void SetPlayButton(bool ifPlayerHasEnoughMoney)
+        {
+            if (ifPlayerHasEnoughMoney)
+            {
+                MakeBidBut.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
+                //LockImage.Visibility = Visibility.Hidden;
+                return;
+            }
+            MakeBidBut.Background = _inActiveColor;
+            LockImage.Visibility = Visibility.Visible;
         }
 
         List<Border> _ribBorders = new List<Border>();

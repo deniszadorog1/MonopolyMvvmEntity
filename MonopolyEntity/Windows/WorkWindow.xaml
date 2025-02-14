@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen"
         >
     <Grid>
-        <Frame Name="WorkFrame" >
+        <Frame Name="WorkFrame" NavigationUIVisibility="Hidden" >
 
         </Frame>
 
@@ -17,7 +17,8 @@
             
         </Canvas>
 
-        <Frame Name ="CaseFrame" Background="Transparent" Visibility="Hidden">
+        <Frame Name ="CaseFrame" Background="Transparent" Visibility="Hidden"
+                NavigationUIVisibility="Hidden">
             
         </Frame>
         

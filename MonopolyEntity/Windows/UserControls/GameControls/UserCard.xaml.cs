@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +24,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
     /// </summary>
     public partial class UserCard : UserControl
     {
-        private SolidColorBrush _usualBrush = (SolidColorBrush)Application.Current.Resources["BaseUserCardBackground"];
+        public SolidColorBrush _usualBrush = (SolidColorBrush)Application.Current.Resources["BaseUserCardBackground"];
         public UserCard()
         {
             InitializeComponent();
@@ -47,46 +48,56 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private int _toMakeThinner = -20;
 
         const int translateMove = 10;
+
+        public DoubleAnimation _horizAnim;
         public void SetAnimation(SolidColorBrush brush, bool ifStepper)
         {
             var transform = new TranslateTransform();
             UserCardGrid.RenderTransform = transform;
 
             int value = ifStepper ? _toMakeBigger : _toMakeThinner;
+            int horValue = ifStepper ? translateMove : 0;
             UserCardGrid.Background = brush is null ? _usualBrush : brush;
 
             var widthAnimation = new DoubleAnimation
             {
                 From = UserCardGrid.Width,
-                To = UserCardGrid.Width + value, 
+                To = UserCardGrid.Width + value,
                 Duration = TimeSpan.FromSeconds(0.5),
-               // AutoReverse = true 
+                // AutoReverse = true 
             };
 
             var heightAnimation = new DoubleAnimation
             {
                 From = UserCardGrid.Height,
-                To = UserCardGrid.Height + value, 
+                To = UserCardGrid.Height + value,
                 Duration = TimeSpan.FromSeconds(0.5),
                 //AutoReverse = true 
             };
 
-            var translateAnim = new DoubleAnimation
+            _horizAnim = new DoubleAnimation
             {
                 From = 0,
-                To = translateMove,
+                To = horValue,
                 Duration = TimeSpan.FromSeconds(0.5),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
+            _horizAnim.Completed += HorizAnim_Complited;
 
-            transform.BeginAnimation(TranslateTransform.XProperty, translateAnim);
+            transform.BeginAnimation(TranslateTransform.XProperty, _horizAnim);
 
             UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);
             UserCardGrid.BeginAnimation(HeightProperty, heightAnimation);
         }        
 
+        public void HorizAnim_Complited(object sender, EventArgs e)
+        {
+            
+        }
+
         public void MakeCardUsual()
         {
+            return;
             var transform = new TranslateTransform();
             UserCardGrid.RenderTransform = transform;
 
@@ -112,7 +123,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             var translateAnim = new DoubleAnimation
             {
                 From = 0,
-                To = 0,
+                To = 600,
                 Duration = TimeSpan.FromSeconds(0.5),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };

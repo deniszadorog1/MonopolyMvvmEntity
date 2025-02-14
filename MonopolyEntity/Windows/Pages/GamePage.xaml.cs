@@ -35,10 +35,11 @@ namespace MonopolyEntity.Windows.Pages
             InitializeComponent();
 
             SetPopupsForUserCards();
-            SetUserCardsInList(); 
-            SetStartValuesInUserCards();
+            SetUserCardsInList();
             
             AddGameField();
+
+            SetStartValuesInUserCards();
         }
 
         GameField _field;
@@ -61,7 +62,7 @@ namespace MonopolyEntity.Windows.Pages
             for (int i = 0; i < _system.MonGame.Players.Count; i++)
             {
                 _userCards[i].UserLogin.Text = _system.MonGame.Players[i].Login;
-                _userCards[i].UserMoney.Text = _system.MonGame.Players[i].AmountOfMoney.ToString();
+                _userCards[i].UserMoney.Text = _field.GetConvertedPrice(_system.MonGame.Players[i].AmountOfMoney);
             }
         }
 
@@ -73,7 +74,25 @@ namespace MonopolyEntity.Windows.Pages
             _userCards.Add(ThirdPlayerGreenControl);
             _userCards.Add(FourthPlayerPurpleControl);
             _userCards.Add(FifthPlayerOrangeControl);
+
+            List<UserCard> res = new List<UserCard>();
+            for(int i = 0; i < _system.MonGame.Players.Count; i++)
+            {
+                res.Add(_userCards[i]);
+            }
+
+            for (int i = 0; i < _userCards.Count; i++)
+            {
+                if (!res.Contains(_userCards[i]))
+                {
+                    UserCards.Children.Remove(_userCards[i]);
+                }
+
+            }
+            _userCards = res;    
         }
+
+        
 
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {

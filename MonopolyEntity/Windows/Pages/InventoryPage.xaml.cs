@@ -15,12 +15,7 @@ using MonopolyDLL.Monopoly;
 using MonopolyDLL.Monopoly.InventoryObjs;
 using System.Collections.Generic;
 using MonopolyDLL.Monopoly.Cell.Bus;
-using System.Data.Entity.Infrastructure;
 using MonopolyDLL;
-using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages;
-using System.Security.Cryptography.X509Certificates;
-using System.Reflection;
-using MonopolyDLL.DBService;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 

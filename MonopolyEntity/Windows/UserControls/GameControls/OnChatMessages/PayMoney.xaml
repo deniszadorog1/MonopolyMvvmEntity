@@ -28,12 +28,24 @@
             </Grid>
 
             <Grid Grid.Row ="2">
-                <Button Name ="PayBillBut" Width="500" Height="45"
+                
+                <Image Name ="LockImage" Margin="55 0 0 0"  Visibility="Hidden"
+                            Width="25" Height="25" HorizontalAlignment="Left" Panel.ZIndex="100" 
+                            Source="//Visuals/Images/BoardImages/Other/blackLock.png"/>
+
+                <Button Name ="PayBillBut" Width="500" Height="45" 
                         Background="{StaticResource MainGlobalColor}" 
                         BorderBrush="White" VerticalAlignment="Center"
                         HorizontalAlignment="Center" Content="Pay bill"
                         Foreground="White" VerticalContentAlignment="Center"
                         HorizontalContentAlignment="Center" FontSize="16"/>
+
+                <Button Name="GiveUpBut" Width="500" Height="45" Visibility="Hidden"
+                        Background="{StaticResource InActiveColor}" 
+                        BorderBrush="White" VerticalAlignment="Center"
+                        HorizontalAlignment="Center" Content="GiveUp"
+                        Foreground="Black" FontSize="16"/>
+
             </Grid>
 
         </Grid>

@@ -20,9 +20,27 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
     /// </summary>
     public partial class BuyBusiness : UserControl
     {
-        public BuyBusiness()
+        public bool _ifPlayerHasEnoughMoney = false;
+        private SolidColorBrush _inActiveColor = (SolidColorBrush)Application.Current.Resources["InActiveColor"];
+
+        public BuyBusiness(bool ifHasMoney)
         {
+            _ifPlayerHasEnoughMoney = ifHasMoney;
             InitializeComponent();
+
+            SetBuyButton(_ifPlayerHasEnoughMoney);
+        }
+
+        public void SetBuyButton(bool ifPlayerHasEnoughMoney)
+        {
+            if (ifPlayerHasEnoughMoney)
+            {
+                BuyBusBut.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
+                //LockImage.Visibility = Visibility.Hidden;
+                return;
+            }
+            BuyBusBut.Background = _inActiveColor;
+            LockImage.Visibility = Visibility.Visible;
         }
     }
 }

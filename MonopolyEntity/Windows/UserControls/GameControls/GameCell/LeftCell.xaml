@@ -4,6 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.GameCell"
+             
+             xmlns:DepoistCounter ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
+
              mc:Ignorable="d" 
              d:DesignHeight="65" d:DesignWidth="150"
              Height="65" Width="150">
@@ -34,6 +37,13 @@
 
             </Grid>
         </Canvas>
+
+        <Grid Grid.Column="1"
+              Width="45" Height="20" Background="Transparent" 
+              HorizontalAlignment="Right" Margin="0 0 -20 0">
+            <DepoistCounter:DepositCounter Height="20" 
+                                           x:Name="DepositObj" Visibility="Hidden"/>
+        </Grid>
 
     </Grid>
 </UserControl>

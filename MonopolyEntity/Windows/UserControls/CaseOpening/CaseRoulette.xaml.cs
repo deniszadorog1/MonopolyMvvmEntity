@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -17,7 +18,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
     {
         private List<Image> _imgs;
         private List<string> _names;
-        new List<SolidColorBrush> _colors;
+        private List<SolidColorBrush> _colors;
 
         public bool _animationIsDone = false;
 
