@@ -28,6 +28,18 @@ namespace MonopolyEntity.Windows.Pages
             SetDescRibeCards();
 
             SetUserImageEvent();
+
+            SetUserMenu();
+        }
+
+        public void SetUserMenu()
+        {
+            MainWindowHelper.SetUpperMenuParams(UpperMenuu, _system.LoggedUser);
+            UpperMenuu.UserAnim.ExitBut.Click += (sender, e) =>
+            {
+                _frame.Content = null;
+                ((WorkWindow)((Grid)_frame.Parent).Parent).Close();
+            };
         }
 
         public void SetUserImageEvent()
@@ -75,13 +87,9 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenGameField()
         {
+            _system.MonGame = new Game(_system.LoggedUser);
             SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
             setPlayers.ShowDialog();
-
-            
-            return;
-            GamePage page = new GamePage(_frame, _system);
-            _frame.Content = page;
         }
 
         public void OpenMainPage()

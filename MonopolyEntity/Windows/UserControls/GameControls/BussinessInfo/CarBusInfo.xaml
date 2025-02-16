@@ -14,10 +14,11 @@
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Open Sans"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="19"/>
             <Setter Property="Text" Value="xxxx"/>
             <Setter Property="Margin" Value="0 0 10 0"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="#5b5d67"/>
         </Style>
 
         <Style x:Key="PriceNames" TargetType="TextBlock">
@@ -31,9 +32,9 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="FontFamily" Value="Open Sans"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Margin" Value="0 0 2 0"/>
+            <Setter Property="FontSize" Value="19"/>
             <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="Foreground" Value="#a7adb5"/>
         </Style>
     </UserControl.Resources>
 
@@ -63,7 +64,8 @@
 
             <Grid Grid.Row="1" Margin="10 5 10 5">
                 <TextBlock Name ="BusDesc" TextWrapping="Wrap" 
-                           Text="There should be bus desc" FontSize="14"/>
+                           Text="Payment depends from amount of own car buses"
+                           FontSize="16" Margin="-4,0,4,0"/>
 
                 <Button Name ="RebuyBut" Width="200" Height="30" Visibility="Hidden"
                 Background="{StaticResource MainGlobalColor}" 

@@ -1,8 +1,10 @@
 ﻿using MonopolyEntity.VisualHelper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Runtime.Remoting.Channels;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,18 +32,60 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             InitializeComponent();
 
             SetTestCardImage();
-
-            //SetAnimation(new SolidColorBrush(Colors.Green), true);
         }
+
 
         public void SetTestCardImage()
         {
-            Image img = ThingForTest.GetCalivanBigCircleImage(70, 70);
+            const int imgSize = 70;
+            Image img = ThingForTest.GetCalivanBigCircleImage(imgSize, imgSize);
 
             img.VerticalAlignment = VerticalAlignment.Center;
             img.HorizontalAlignment = HorizontalAlignment.Center;
 
+            Canvas.SetZIndex(img, 10);
             UserImageGrid.Children.Add(img);
+        }
+
+        private SolidColorBrush _color;
+        public void SetCircleColors(SolidColorBrush color)
+        {
+            _color = color;
+            AddColorCircle();
+            AddEmptyColorCircle();
+        }
+
+        public void AddColorCircle()
+        {
+            const int circleSize = 77;
+
+            Ellipse colorCircle = new Ellipse()
+            {
+                Width = circleSize,
+                Height = circleSize,
+                Fill = _color,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+            UserImageGrid.Children.Add(colorCircle);
+        }
+
+        public void AddEmptyColorCircle()
+        {
+            const int circleSize = 73;
+
+            Ellipse colorCircle = new Ellipse()
+            {
+                Width = circleSize,
+                Height = circleSize,
+                Fill = _usualBrush ,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center
+            };
+
+            Canvas.SetZIndex(colorCircle, 9);
+
+            UserImageGrid.Children.Add(colorCircle);
         }
 
         private int _toMakeBigger = 20;

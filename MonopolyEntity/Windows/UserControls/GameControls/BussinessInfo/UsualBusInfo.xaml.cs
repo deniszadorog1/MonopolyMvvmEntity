@@ -24,5 +24,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo
         {
             InitializeComponent();
         }
+
     }
 }

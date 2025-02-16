@@ -5,28 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="600" 
-             Height="200">
+             d:DesignHeight="175" d:DesignWidth="600" 
+             Height="175">
     <Border Background="#E3E3E3" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="55"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="5">
-                <TextBlock Name="YourTurnText" Foreground="#696969" Text="Yout turn!"
-                           FontSize="24" Margin="10 10 0 0 "/>
+            <Grid Grid.Row="0" Margin="0 5 0 0" HorizontalAlignment="Center" 
+                  Width="525"> 
+                <TextBlock Name="YourTurnText" Foreground="#696969" 
+                           Text="Youк turn!" FontSize="26"/>
             </Grid>
 
-            <Grid Grid.Row="1" >
-                <TextBlock Name="GoodLuckText" Foreground="#696969" Text="Good luck!"
-                           FontSize="24" Margin="10 10 0 0 "/>
+            <Grid Grid.Row="1" HorizontalAlignment="Center" Width="525"> 
+                <TextBlock Name="GoodLuckText" Foreground="#696969" 
+                           Text="Good luck!" FontSize="24" />
             </Grid>
 
             <Grid Grid.Row ="2">
-                <Button Name ="ThroughCubesBut" Width="500" Height="40"
+                <Button Name ="ThroughCubesBut" Width="525" Height="40"
                         Background="{StaticResource MainGlobalColor}" 
                         BorderBrush="White" VerticalAlignment="Center"
                         HorizontalAlignment="Center" Content="Through cubes"

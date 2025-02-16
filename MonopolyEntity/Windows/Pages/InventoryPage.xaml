@@ -21,114 +21,114 @@
       PreviewMouseDown="Page_PreviewMouseDown"
       >
 
-    <Grid Background="#F4F4F5">
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="600"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="1000"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Row="0" Grid.Column="1" Name="UpperPart"
-              Background="White" Panel.ZIndex="100">
-            <AddedControls:UpperMenu x:Name="UpperMenuu" Width="1000" Panel.ZIndex="100"/>
-        </Grid>
-
-        <Grid Grid.Row="0" Grid.Column="0" Background="White"/>
-        <Grid Grid.Row="0" Grid.Column="2" Background="White"/>
-
-        <Line  X1="0" Y1="1" Grid.Row="1" Grid.Column="0"
-                  X2="{Binding ActualWidth, ElementName=AllGrid}" 
-                  Y2="1" Stroke="Gray"  StrokeThickness="1"/>
-
-        <Line  X1="0" Y1="1" Grid.Row="1" Grid.Column="1"
-                  X2="{Binding ActualWidth, ElementName=AllGrid}" 
-                  Y2="1" Stroke="Gray"  StrokeThickness="1"/>
-
-        <Line  X1="0" Y1="1" Grid.Row="1" Grid.Column="2"
-                  X2="{Binding ActualWidth, ElementName=AllGrid}" 
-                  Y2="1" Stroke="Gray"  StrokeThickness="1"/>
-
-        <Grid Grid.Row="1" Grid.Column="1">
+        <Grid Background="#F4F4F5" Name="MyGrid">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
                 <RowDefinition Height="50"/>
-                <RowDefinition/>
+                <RowDefinition Height="600"/>
+                <RowDefinition />
             </Grid.RowDefinitions>
 
-            <WrapPanel Grid.Row="0">
-                <Canvas Name="UserImage" Margin="10" Width="75" Height="75"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="1000" Name ="CenterColDef"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                <Button  Name ="UserLogin" Content="There sdhould be login" VerticalAlignment="Center"
+            <Grid Grid.Row="0" Grid.Column="1" Name="UpperPart" 
+              HorizontalAlignment="Left" 
+              Background="White" Panel.ZIndex="100"  Width="1000">
+                <AddedControls:UpperMenu x:Name="UpperMenuu" Width="1000" />
+            </Grid>
+
+            <Grid Grid.Row="0" Grid.Column="0" Background="White"/>
+            <Grid Grid.Row="0" Grid.Column="2" Background="White"/>
+
+            <Line  X1="0" Y1="1" Grid.Row="1" Grid.Column="0"
+                  X2="{Binding ActualWidth, ElementName=AllGrid}" 
+                  Y2="1" Stroke="Gray"  StrokeThickness="1"/>
+
+            <Line  X1="0" Y1="1" Grid.Row="1" Grid.Column="1"
+                  X2="{Binding ActualWidth, ElementName=AllGrid}"
+                  Y2="1" Stroke="Gray"  StrokeThickness="1"/>
+
+            <Line  X1="0" Y1="1" Grid.Row="1" Grid.Column="2"
+                  X2="{Binding ActualWidth, ElementName=AllGrid}" 
+                  Y2="1" Stroke="Gray"  StrokeThickness="1"/>
+
+            <Grid Grid.Row="1" Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <WrapPanel Grid.Row="0">
+                    <Canvas Name="UserImage" Margin="10" Width="75" Height="75"/>
+
+                    <Button  Name ="UserLogin" Content="There sdhould be login" VerticalAlignment="Center"
                            FontSize="38" Foreground="Gray" Height="75" Background="Transparent" BorderThickness="0"/>
 
-                <TextBlock Name ="UpperInventoryDevider" Text="> " VerticalAlignment="Center" 
+                    <TextBlock Name ="UpperInventoryDevider" Text="> " VerticalAlignment="Center" 
                            FontSize="36" Foreground="Gray"/>
 
-                <TextBlock Name ="InventoryStatement" Text="Inventory  " VerticalAlignment="Center"
+                    <TextBlock Name ="InventoryStatement" Text="Inventory  " VerticalAlignment="Center"
                            Foreground="Gray" FontSize="36"/>
 
-                <TextBlock Name="AmountOfItems" Text="999" VerticalAlignment="Center"
+                    <TextBlock Name="AmountOfItems" Text="999" VerticalAlignment="Center"
                            Foreground="Gray" FontSize="36"/>
-            </WrapPanel>
+                </WrapPanel>
 
-            <WrapPanel Grid.Row="1">
+                <WrapPanel Grid.Row="1">
 
-                <Border BorderBrush="Gray" BorderThickness="1" Margin="10 10 0 0"  
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="10 10 0 0"  
                         CornerRadius="5" Height="35" Width="450">
-                    <TextBox FontSize="16" 
+                        <TextBox FontSize="16" 
                     MaxLength="32"
                     materialDesign:HintAssist.Hint="Enter Text"
                     materialDesign:TextFieldAssist.UnderlineBrush="Transparent" />
-                </Border>
+                    </Border>
 
 
-                <Border Height="40" Width="200" Margin="20 10 0 0" CornerRadius="5" 
+                    <Border Height="40" Width="200" Margin="20 10 0 0" CornerRadius="5" 
                         BorderBrush="Gray" BorderThickness="1">
-                    <ComboBox VerticalAlignment="Top"
+                        <ComboBox VerticalAlignment="Top"
                     Background="Transparent" Height="40"
                     materialDesign:HintAssist.Hint="All Items"
                     VerticalContentAlignment="Center">
-                        <ComboBoxItem Content="All Items" />
-                        <ComboBoxItem Content="Keys" />
-                        <ComboBoxItem Content="Pins" />
-                        <ComboBoxItem Content="Stickers"/>
-                        <ComboBoxItem Content="Other"/>
-                    </ComboBox>
-                </Border>
+                            <ComboBoxItem Content="All Items" />
+                            <ComboBoxItem Content="Keys" />
+                            <ComboBoxItem Content="Pins" />
+                            <ComboBoxItem Content="Stickers"/>
+                            <ComboBoxItem Content="Other"/>
+                        </ComboBox>
+                    </Border>
 
-                <Border Height="40" Width="200" Margin="20 10 0 0" CornerRadius="5" 
+                    <Border Height="40" Width="200" Margin="20 10 0 0" CornerRadius="5" 
                         BorderBrush="Gray" BorderThickness="1">
-                    <ComboBox VerticalAlignment="Top"
+                        <ComboBox VerticalAlignment="Top"
                     Background="Transparent" Height="40"
                     materialDesign:HintAssist.Hint="By Time"
                     VerticalContentAlignment="Center">
-                        <ComboBoxItem Content="By Class" />
-                        <ComboBoxItem Content="By Monopoly" />
-                        <ComboBoxItem Content="By Time" />
-                        <ComboBoxItem Content="By Type"/>
-                    </ComboBox>
-                </Border>
-
-            </WrapPanel>
-
-            <ScrollViewer  Grid.Row="2" VerticalScrollBarVisibility="Auto">
-                <WrapPanel Background="White" Margin="10" Name="ItemsPanel">
-
+                            <ComboBoxItem Content="By Class" />
+                            <ComboBoxItem Content="By Monopoly" />
+                            <ComboBoxItem Content="By Time" />
+                            <ComboBoxItem Content="By Type"/>
+                        </ComboBox>
+                    </Border>
 
                 </WrapPanel>
-            </ScrollViewer>
+
+                <ScrollViewer  Grid.Row="2" VerticalScrollBarVisibility="Auto" 
+                               Width="900" HorizontalAlignment="Left" Margin="0 10 0 0" >
+                    <WrapPanel Background="Transparent" Width="850" Margin="10" 
+                               Name="ItemsPanel" HorizontalAlignment="Left">
+
+
+                    </WrapPanel>
+                </ScrollViewer>
+            </Grid>
+
         </Grid>
-
-
-
-
-    </Grid>
 </Page>

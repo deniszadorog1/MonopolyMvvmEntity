@@ -26,6 +26,7 @@ using System.Security.Cryptography.X509Certificates;
 using MonopolyDLL.Monopoly.TradeAction;
 using MahApps.Metro.Controls;
 using System.Text;
+using MahApps.Metro.Actions;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -69,7 +70,27 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             SetCellsStars();
 
-            SetOwnerToAllCells();
+            //SetOwnerToAllCells();
+            AddHandCursorToBusses();
+        }
+
+        public void AddHandCursorToBusses()
+        {
+            for(int i = 0; i < _cells.Count; i++)
+            {
+                if (_system.MonGame.IfCellIndexIsBusiness(i))
+                {     
+                    _cells[i].MouseEnter += (sender, e) =>
+                    {
+                        Cursor = Cursors.Hand;
+                    };
+
+                    _cells[i].MouseLeave += (sender, e) =>
+                    {
+                        Cursor = null;
+                    };
+                }
+            }
         }
 
         public void SetOwnerToAllCells()
@@ -229,12 +250,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         List<SolidColorBrush> _colors = new List<SolidColorBrush>();
         public void SetUsersColorsInList()
         {
-            List<SolidColorBrush> temp = new List<SolidColorBrush>();
-            temp.Add((SolidColorBrush)Application.Current.Resources["FirstUserColor"]);
-            temp.Add((SolidColorBrush)Application.Current.Resources["SecondUserColor"]);
-            temp.Add((SolidColorBrush)Application.Current.Resources["ThirdUserColor"]);
-            temp.Add((SolidColorBrush)Application.Current.Resources["FourthUserColor"]);
-            temp.Add((SolidColorBrush)Application.Current.Resources["FifthUserColor"]);
+            List<SolidColorBrush> temp = Helper.GetColorsQueue();
+    
 
             for (int i = 0; i < _system.MonGame.Players.Count; i++)
             {
@@ -634,7 +651,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             for (int i = 0; i < _cards.Count; i++)
             {
                 if (i > _system.MonGame.Players.Count - 1) return;
-                _cards[i].UserMoney.Text = GetConvertedPrice(_system.MonGame.GetPlayersMoney(i));
+                _cards[i].UserMoney.Text = GetConvertedStringWithoutLastK(_system.MonGame.GetPlayersMoney(i));
             }
         }
 
@@ -903,7 +920,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             PaintCellInColor(position, _colors[_system.MonGame.StepperIndex]);
 
             _cards[_system.MonGame.StepperIndex].UserMoney.Text = 
-                GetConvertedPrice(_system.MonGame.GetSteppersMoney());
+                GetConvertedStringWithoutLastK(_system.MonGame.GetSteppersMoney());
 
             _system.MonGame.SetStartLevelOfBusinessForStepper();
             int startRent = _system.MonGame.GetStartPriceOfBoughtBusinessByStepper();
@@ -1157,16 +1174,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             info.BusNameText.Text = bus.Name;
             info.BusType.Text = bus.BusType.ToString();
 
-            info.BusDesc.Text = "This is car business";
+            info.OneFieldMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[0]);
+            info.TwoFieldMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[1]);
+            info.ThreeFieldMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[2]);
+            info.FourFieldMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[3]);
 
-            info.OneFieldMoney.Text = bus.PayLevels[0].ToString();
-            info.TwoFieldMoney.Text = bus.PayLevels[1].ToString();
-            info.ThreeFieldMoney.Text = bus.PayLevels[2].ToString();
-            info.FourFieldMoney.Text = bus.PayLevels[3].ToString();
-
-            info.FieldPrice.Text = bus.Price.ToString();
-            info.DepositPriceText.Text = bus.DepositPrice.ToString();
-            info.RebuyPrice.Text = bus.RebuyPrice.ToString();
+            info.FieldPrice.Text = GetConvertedStringWithoutLastK(bus.Price);
+            info.DepositPriceText.Text = GetConvertedStringWithoutLastK(bus.DepositPrice);
+            info.RebuyPrice.Text = GetConvertedStringWithoutLastK(bus.RebuyPrice);
 
             info.CarBusHeader.Background = (SolidColorBrush)Application.Current.Resources["CarColor"];
 
@@ -1272,12 +1287,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 "Result bill si multiplication of bought game buses and got " +
                 "cube ribs amount";
 
-            info.OneFieldMoney.Text = bus.PayLevels[0].ToString();
-            info.TwoFieldMoney.Text = bus.PayLevels[1].ToString();
+            info.OneFieldMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[0]);
+            info.TwoFieldMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[1]);
 
-            info.FieldPrice.Text = bus.Price.ToString();
-            info.DepositPriceText.Text = bus.DepositPrice.ToString();
-            info.RebuyPrice.Text = bus.RebuyPrice.ToString();
+            info.FieldPrice.Text = GetConvertedStringWithoutLastK(bus.Price);
+            info.DepositPriceText.Text = GetConvertedStringWithoutLastK(bus.DepositPrice);
+            info.RebuyPrice.Text = GetConvertedStringWithoutLastK(bus.RebuyPrice);
 
             info.GameBusHeader.Background = (SolidColorBrush)Application.Current.Resources["GameColor"];
 
@@ -1384,24 +1399,31 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             info.BusName.Text = bus.Name;
             info.BusType.Text = bus.BusType.ToString();
 
-            //info.DescriptionText.Text = "Build houses to get bigger payment";
+            //info.DescriptionText.Text = "Build houses to get bigger payment";            
 
-            info.BaseRentMoney.Text = bus.PayLevels[0].ToString();
-            info.OneStarRentMoney.Text = bus.PayLevels[1].ToString();
-            info.TwoStarRentMoney.Text = bus.PayLevels[2].ToString();
-            info.ThreeStarRentMoney.Text = bus.PayLevels[3].ToString();
-            info.FourStarRentMoney.Text = bus.PayLevels[4].ToString();
-            info.YellowStarRentMoney.Text = bus.PayLevels[4].ToString();
+            info.BaseRentMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[0]);
+            info.OneStarRentMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[1]);
+            info.TwoStarRentMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[2]);
+            info.ThreeStarRentMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[3]);
+            info.FourStarRentMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[4]);
+            info.YellowStarRentMoney.Text = GetConvertedStringWithoutLastK(bus.PayLevels[5]);
 
-            info.BusPriceMoney.Text = bus.Price.ToString();
-            info.DepositPriceMoney.Text = bus.DepositPrice.ToString();
-            info.RebuyPriceMoney.Text = bus.RebuyPrice.ToString();
-            info.HousePriceMoney.Text = bus.BuySellHouse.ToString();
+            info.BusPriceMoney.Text = GetConvertedStringWithoutLastK(bus.Price);
+            info.DepositPriceMoney.Text = GetConvertedStringWithoutLastK(bus.DepositPrice);
+            info.RebuyPriceMoney.Text = GetConvertedStringWithoutLastK(bus.RebuyPrice);
+            info.HousePriceMoney.Text = GetConvertedStringWithoutLastK(bus.BuySellHouse);
 
             info.NameBusBorder.Background = GetColorForUsualBusHeader(bus);
 
             SetEventsForUsualBusInfo(info);
             SetHouseButtonsForBusInfo(info);
+        }
+
+        public string GetConvertedStringWithoutLastK(int price) 
+        {
+            string str = GetConvertedPrice(price);
+            str = str.Remove(str.Length - 1);
+            return str;
         }
 
         private void SetHouseButtonsForBusInfo(UsualBusInfo info)
@@ -2675,10 +2697,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         public void IfSomeOneWon()
         {
-            if (_system.MonGame.IfSomeOneWon())
-            {
-                MessageBox.Show("Game is ended");
-            }
+            if (!_system.MonGame.IfSomeOneWon()) return;
+            
+            Console.WriteLine("Game ended");
+
         }
 
         public void RepaintAllPlayersCells()

@@ -30,7 +30,7 @@
         
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="1000"/>
+                <ColumnDefinition Width="1000" Name ="CenterColDef"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
         

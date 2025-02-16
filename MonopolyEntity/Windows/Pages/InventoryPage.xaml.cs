@@ -42,6 +42,21 @@ namespace MonopolyEntity.Windows.Pages
             SetInventoryItems();
 
             SetUserParamsText();
+
+            SetUserMenu();
+            Height = 10000;
+        }
+
+        
+
+        public void SetUserMenu()
+        {
+            MainWindowHelper.SetUpperMenuParams(UpperMenuu, _system.LoggedUser);
+            UpperMenuu.UserAnim.ExitBut.Click += (sender, e) =>
+            {
+                _frame.Content = null;
+                ((WorkWindow)((Grid)_frame.Parent).Parent).Close();
+            };
         }
 
         public void ResetItemsAndUserInventory()
@@ -135,7 +150,7 @@ namespace MonopolyEntity.Windows.Pages
             res.CardImage.Source = img.Source;
             res.CardImage.Width = 100;
             res.CardImage.Height = 100;
-            res.CardImage.Stretch = Stretch.Fill;
+            res.CardImage.Stretch = Stretch.Uniform;
             res.CardImage.VerticalAlignment = VerticalAlignment.Center;
             res.CardImage.HorizontalAlignment = HorizontalAlignment.Center;
 
@@ -410,18 +425,19 @@ namespace MonopolyEntity.Windows.Pages
         public void SetUpperLineSettings()
         {
             //Set bg
-            UpperMenuu.CanvasBg.Background = new SolidColorBrush(Colors.Transparent);
-            UpperMenuu.Background = new SolidColorBrush(Colors.Transparent);
+            UpperMenuu.CanvasBg.Background = new SolidColorBrush(Colors.White);
+            UpperMenuu.Background = new SolidColorBrush(Colors.White);
 
             //Set buttons colors
             UpperMenuu.MainLogoBut.Foreground = new SolidColorBrush(Colors.Gray);
 
             UpperMenuu.StartGameBut.Foreground = new SolidColorBrush(Colors.White);
-            UpperMenuu.StartGameBut.Background = (Brush)System.Windows.Application.Current.Resources["MainGlobalColor"];
+            UpperMenuu.StartGameBut.Background = (Brush)Application.Current.Resources["MainGlobalColor"];
 
             UpperMenuu.InventoryBut.Foreground = new SolidColorBrush(Colors.Gray);
 
             UpperMenuu.UserAnim.UserIcon.Foreground = new SolidColorBrush(Colors.Gray);
+            UpperMenuu.AllPanelGrid.Width = CenterColDef.Width.Value;
         }
 
         private bool _ifJustBlured = false;

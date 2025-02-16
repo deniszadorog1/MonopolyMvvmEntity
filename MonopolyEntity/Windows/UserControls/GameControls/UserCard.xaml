@@ -17,29 +17,29 @@
 
             <Grid Grid.Row="0" Name ="UserImageGrid">
 
-
             </Grid>
 
             <Grid Grid.Row="1" Name ="UserLoginCanvas">
-                <TextBlock Text="TestUserName" HorizontalAlignment="Center" VerticalAlignment="Center"
-                           Foreground="White" Name="UserLogin" FontSize="22" FontFamily="Open Sans"/>
+                <TextBlock Text="TestUserName" HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" Foreground="White" 
+                           Name="UserLogin" FontSize="22" FontFamily="Open Sans"/>
 
             </Grid>
 
             <StackPanel Grid.Row="2" Name="UserMoneyAmountCanvas" 
                         Orientation="Horizontal" HorizontalAlignment="Center">
-                
-                <TextBlock Text="$" VerticalAlignment="Center" FontSize="20" 
-                           Foreground="White" Margin="0 0 2 0" Opacity="0.8"
+                    
+                <TextBlock Text="$" VerticalAlignment="Center" FontSize="22" 
+                           Foreground="White" Margin="0 -3 0 0" Opacity="0.7"
                            FontFamily="Open Sans"/>
                 
                 <TextBlock Text="TestUserMoney"  VerticalAlignment="Center"
-                      Foreground="White" Name="UserMoney" FontSize="22"
+                      Foreground="White" Name="UserMoney" FontSize="26"
                            FontFamily="Open Sans"/>
                 
-               <!-- <TextBlock Text="k" VerticalAlignment="Center" FontSize="20" 
-                           Foreground="White" Margin="2 0 0 0" Opacity="0.8" 
-                           FontFamily="Open Sans"/> -->
+                <TextBlock Text="k" VerticalAlignment="Center" FontSize="26" 
+                           Foreground="White" Margin="0 0 0 0" Opacity="0.7" 
+                           FontFamily="Open Sans"/>
 
             </StackPanel>
         </Grid>

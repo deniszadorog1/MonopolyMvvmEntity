@@ -177,5 +177,15 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         {
             SetCubeSquares();
         }
+
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Cursor = null;
+        }
     }
 }

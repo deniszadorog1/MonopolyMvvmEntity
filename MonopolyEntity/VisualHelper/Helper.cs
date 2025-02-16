@@ -49,5 +49,17 @@ namespace MonopolyEntity.VisualHelper
 
             return location; 
         }
+
+        public static List<SolidColorBrush> GetColorsQueue()
+        {
+            List<SolidColorBrush> res = new List<SolidColorBrush>();
+            res.Add((SolidColorBrush)Application.Current.Resources["FirstUserColor"]);
+            res.Add((SolidColorBrush)Application.Current.Resources["SecondUserColor"]);
+            res.Add((SolidColorBrush)Application.Current.Resources["ThirdUserColor"]);
+            res.Add((SolidColorBrush)Application.Current.Resources["FourthUserColor"]);
+            res.Add((SolidColorBrush)Application.Current.Resources["FifthUserColor"]);
+
+            return res;
+        }
     }
 }

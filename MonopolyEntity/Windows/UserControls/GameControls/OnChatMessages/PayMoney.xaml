@@ -5,26 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
              mc:Ignorable="d" 
-             d:DesignHeight="220" d:DesignWidth="575"
-             Height="200" VerticalAlignment="Top">
+             d:DesignHeight="175" d:DesignWidth="575"
+             Height="175" VerticalAlignment="Top">
     <Border Background="#E3E3E3" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="55"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Margin="5">
+            <Grid Grid.Row="0" Margin="0 5 0 0">
                 <TextBlock Name="GotOnBusText" Foreground="#696969" 
                            Text="You got on the enemys business"
-                           FontSize="24" Margin="10 10 0 0 "/>
+                           FontSize="24" Margin="40 10 0 0 "/>
             </Grid>
 
             <Grid Grid.Row="1" >
                 <TextBlock Name="PayBillText" Foreground="#696969" 
                            Text="You need to pay the bill - xxxxK"
-                           FontSize="24" Margin="10 10 0 0 "/>
+                           FontSize="24" Margin="40 10 0 0 "/>
             </Grid>
 
             <Grid Grid.Row ="2">

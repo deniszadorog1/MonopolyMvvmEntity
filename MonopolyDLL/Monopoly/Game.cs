@@ -81,8 +81,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 2;// _rnd.Next(1, 7);
-            _secondCube = 3;// _rnd.Next(1, 7);
+            _firstCube = _rnd.Next(1, 7);
+            _secondCube = _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -1002,7 +1002,7 @@ namespace MonopolyDLL.Monopoly
 
         public bool IfStepperHasInventoryBusOnPosition()
         {
-            return Players[StepperIndex].IfHasInventoryOnPosition();            
+            return Players[StepperIndex].IfHasInventoryOnPosition();
         }
 
         public void SetPlayerSteppersBus()
@@ -1054,7 +1054,7 @@ namespace MonopolyDLL.Monopoly
         }
 
         public bool IfStepperOnEnemiesBus()
-        { 
+        {
             int position = Players[StepperIndex].Position;
             return GameBoard.IfPlayerIsOnEnemiesBus(StepperIndex, position);
         }

@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.AccessControl;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using MahApps.Metro.Actions;
-using MahApps.Metro.Controls;
 using MonopolyEntity;
 using MonopolyEntity.Windows.UserControls;
 using MonopolyEntity.Windows.UserControls.CaseOpening;
 
 using MonopolyDLL.Monopoly.InventoryObjs;
 using MonopolyEntity.VisualHelper;
-using MonopolyDLL.DBService;
-using System.CodeDom;
 using MonopolyDLL;
 
 
@@ -46,6 +41,10 @@ namespace MonopolyEntity.Windows.Pages
             Image img = BoardHelper.GetLotBoxImage(_caseBox.ImagePath);
             CheckToOpen.Box.CardName.Text = $"{_caseBox.Name} box";
             CheckToOpen.Box.CardImage.Source = img.Source;
+            
+            CheckToOpen.Box.CardImage.Stretch = Stretch.Uniform;
+            CheckToOpen.Box.CardImage.Width = 125;
+            CheckToOpen.Box.CardImage.Height = 125;
         }
 
         public void SetCaseDrops()
@@ -75,11 +74,13 @@ namespace MonopolyEntity.Windows.Pages
             };
 
             newCard.CardImage.Source = img.Source;
+            newCard.CardImage.Width = 125;
+            newCard.CardImage.Height = 125;
+
             newCard.CardName.Text = name;
             newCard.Margin = new System.Windows.Thickness(20);
 
             newCard.BorderBgColor.Background = BoardHelper.GetRearityColorForCard(item);
-
 
             newCard.BorderBase.Clip = new RectangleGeometry()
             {

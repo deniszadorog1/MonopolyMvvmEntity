@@ -503,7 +503,9 @@ namespace MonopolyEntity.VisualHelper
 
             Image img = new Image()
             {
-                Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute))
+                Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute)),
+                Stretch = Stretch.Uniform
+                    
             };
 
             return img;
@@ -518,7 +520,8 @@ namespace MonopolyEntity.VisualHelper
 
             return new Image()
             {
-                Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute))
+                Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute)),
+                Stretch = Stretch.Uniform
             };
         }
 

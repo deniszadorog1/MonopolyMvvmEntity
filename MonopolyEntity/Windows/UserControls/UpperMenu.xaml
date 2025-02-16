@@ -18,11 +18,13 @@
              FontFamily="{DynamicResource MaterialDesignFont}"     
              >
     <Grid>
-        <Canvas Name="CanvasBg" Background="{StaticResource MainGlobalColor}" Panel.ZIndex="100">
-
-            <WrapPanel Name="UpperPanelButtons" Orientation="Horizontal"
-               VerticalAlignment="Top" Width="800" Panel.ZIndex="100">
-                <Button Name="MainLogoBut" VerticalAlignment="Top"
+        <Canvas Name="CanvasBg" Background="{StaticResource MainGlobalColor}" 
+              Panel.ZIndex="100">
+            <Grid Name="AllPanelGrid">
+                <StackPanel Name="UpperPanelButtons" Orientation="Horizontal"
+               VerticalAlignment="Top" Width="750" Panel.ZIndex="100"
+                       HorizontalAlignment="Left">
+                    <Button Name="MainLogoBut" VerticalAlignment="Top"
                       BorderBrush="{StaticResource FifthGlobalColor}"
                       BorderThickness="0"
                       Background="Transparent"
@@ -34,7 +36,7 @@
                       ToolTip="Click to open case"
                         Click="MainLogoBut_Click"/>
 
-                <Button Name="StartGameBut" VerticalAlignment="Top"
+                    <Button Name="StartGameBut" VerticalAlignment="Top"
                       Foreground="{StaticResource MainGlobalColor}"
                       Background="#E1F5F0"
                       BorderThickness="0"
@@ -46,7 +48,7 @@
                       ToolTip="Click to open case" 
                         Click="StartGameBut_Click"/>
 
-                <Button Name="InventoryBut" VerticalAlignment="Top"
+                    <Button Name="InventoryBut" VerticalAlignment="Top"
                       BorderBrush="{StaticResource FifthGlobalColor}"
                       Background="Transparent"
                       BorderThickness="0"
@@ -57,13 +59,16 @@
                       Style="{StaticResource MaterialDesignRaisedDarkButton}"
                       ToolTip="Click to open case" 
                         Click="InventoryBut_Click"/>
+                </StackPanel>
 
-                <Grid Width="300" Height="150"  >
-                    <UserIconAnim:UserAnimated x:Name="UserAnim" Panel.ZIndex="100" 
-                                       Margin="100 5 0 0" MouseLeave="UserIcon_MouseLeave"/>
+                <Grid Width="300" Height="150"  HorizontalAlignment="Right"
+                      VerticalAlignment="Top" Panel.ZIndex="102" >
+                    <UserIconAnim:UserAnimated x:Name="UserAnim"  
+                                    Panel.ZIndex="102"   Margin="100 5 0 0" MouseLeave="UserIcon_MouseLeave"/>
                 </Grid>
-            </WrapPanel>
-        </Canvas>
 
+            </Grid>
+
+        </Canvas>
     </Grid>
 </UserControl>

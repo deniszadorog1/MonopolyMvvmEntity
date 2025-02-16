@@ -20,8 +20,8 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Name="ImageGrid" Background="Transparent">
-                <Image Name ="DescImage" Width="100" Height="100" 
-                       VerticalAlignment="Top" HorizontalAlignment="Left" Stretch="Fill" >
+                <Image Name ="DescImage" Width="100" Height="100" Margin="0 20 0 0"
+                       VerticalAlignment="Top" HorizontalAlignment="Left" Stretch="Uniform" >
                     
                 </Image>
             </Grid>

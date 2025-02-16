@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="600" 
-             Height="200" VerticalAlignment="Top">
+             d:DesignHeight="175" d:DesignWidth="600" 
+             Height="175" VerticalAlignment="Top">
     <Border Background="#E3E3E3" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -18,13 +18,13 @@
             <Grid Grid.Row="0" Margin="5">
                 <TextBlock Name="YourTurnText" Foreground="#696969" 
                            Text="You got on BusName!"
-                       FontSize="26" Margin="10 10 0 0 "/>
+                       FontSize="26" Margin="20 10 0 0 "/>
             </Grid>
 
             <Grid Grid.Row="1" >
                 <TextBlock Name="GoodLuckText" Foreground="#696969" 
                            Text="If you wont buy it, unit go to auction!"
-                       FontSize="24" Margin="10 10 0 0 "/>
+                       FontSize="24" Margin="20 10 0 0 "/>
             </Grid>
 
             <Grid Grid.Row ="2" HorizontalAlignment="Center">
@@ -35,7 +35,7 @@
                             Width="25" Height="25" HorizontalAlignment="Left" Panel.ZIndex="100" 
                             Source="//Visuals/Images/BoardImages/Other/blackLock.png"/>
 
-                        <Button Name ="BuyBusBut" Width="200" Height="45" 
+                        <Button Name ="BuyBusBut" Width="275" Height="45" 
                         Background="{StaticResource MainGlobalColor}" 
                         BorderBrush="White" VerticalAlignment="Center"
                         HorizontalAlignment="Center" Content="Buy Business"

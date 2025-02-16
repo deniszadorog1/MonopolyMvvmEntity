@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyEntity.Windows.UserControls;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+
+using MonopolyDLL.Monopoly;
 
 namespace MonopolyEntity.VisualHelper
 {
@@ -34,6 +37,13 @@ namespace MonopolyEntity.VisualHelper
             string addedImagesPath = Path.Combine(imagePath, "MainWindowImages");
 
             return addedImagesPath;
+        }
+
+        public static void SetUpperMenuParams(UpperMenu menu, User user)
+        {
+            menu.UserAnim.LoginText.Text = user.Login;
+            menu.UserAnim.MoneyText.Text = "No money";
+
         }
     }
 }

@@ -15,10 +15,11 @@
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Open Sans"/>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="19"/>
             <Setter Property="Text" Value="xxxx"/>
             <Setter Property="Margin" Value="0 0 30 0"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="#5b5d67"/>
         </Style>
 
         <Style x:Key="PriceNames" TargetType="TextBlock">
@@ -32,13 +33,21 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
             <Setter Property="FontFamily" Value="Open Sans"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Margin" Value="0 0 22 0"/>
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="Margin" Value="0 0 20 0"/>
             <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="Foreground" Value="#a7adb5"/>
+        </Style>
+
+        <Style x:Key="LittleStar" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#656D78"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Text" Value="★"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
         </Style>
     </UserControl.Resources>
-
-
+    
+    
     <Border Background="White" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
@@ -143,13 +152,12 @@
                 <Grid Grid.Row="0">
                     <TextBlock Name="BaseRentText" Text="Base rent" Style="{StaticResource PriceNames}"/>
                     <TextBlock Name="BaseRentMoney" Style="{StaticResource PaymentNumber}"/>
-                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                    <TextBlock Text="k" Name="OneStarK" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="1" Margin="20 0 0 0">
-                    <Image  Name ="OneStarRentImage" Width="25" Height="25" 
-                            HorizontalAlignment="Left" 
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+
+                    <TextBlock Style="{StaticResource LittleStar}"/>
 
                     <TextBlock Name="OneStarRentMoney" Style="{StaticResource PaymentNumber}"/>
                     <TextBlock Text="k" Style="{StaticResource KLetter}"/>
@@ -157,13 +165,10 @@
 
                 <Grid Grid.Row="2">
                     <WrapPanel Name="WrapPanelTwoStars" Margin="20 0 0 0">
-                        <Image  Name ="TwoStarRentImmgeOne" Width="25" Height="25" 
-                            HorizontalAlignment="Left" 
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}"/>
 
-                        <Image  Name ="TwoStarRentImmgeTwo" Width="25" Height="25" 
-                            HorizontalAlignment="Left" Margin="5 0 0 0"
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
                     </WrapPanel>
 
                     <TextBlock Name="TwoStarRentMoney" 
@@ -173,17 +178,13 @@
 
                 <Grid Grid.Row="3">
                     <WrapPanel Name="WrapPanelThreeStars" Margin="20 0 0 0">
-                        <Image  Name ="ThreeStarRentImmgeOne" Width="25" Height="25" 
-                            HorizontalAlignment="Left" 
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}"/>
 
-                        <Image  Name ="ThreeStarRentImmgeTwo" Width="25" Height="25" 
-                            HorizontalAlignment="Left" Margin="5 0 0 0"
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
 
-                        <Image  Name ="ThreeStarRentImmgeThree" Width="25" Height="25" 
-                            HorizontalAlignment="Left" Margin="5 0 0 0"
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
                     </WrapPanel>
 
                     <TextBlock Name="ThreeStarRentMoney"
@@ -193,21 +194,16 @@
 
                 <Grid Grid.Row="4">
                     <WrapPanel Name="WrapPanelFourStars" Margin="20 0 0 0">
-                        <Image  Name ="FourStarRentImmgeOne" Width="25" Height="25" 
-                            HorizontalAlignment="Left" 
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}"/>
 
-                        <Image  Name ="FourStarRentImmgeTwo" Width="25" Height="25" 
-                            HorizontalAlignment="Left" Margin="5 0 0 0"
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
 
-                        <Image  Name ="FourStarRentImmgeThree" Width="25" Height="25" 
-                            HorizontalAlignment="Left" Margin="5 0 0 0"
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
 
-                        <Image  Name ="FourStarRentImmgeFor" Width="25" Height="25" 
-                            HorizontalAlignment="Left" Margin="5 0 0 0"
-                            Source="/Visuals/Images/BoardImages/Other/whiteStar.png"/>
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
                     </WrapPanel>
 
                     <TextBlock Name="FourStarRentMoney" 
@@ -217,9 +213,9 @@
                 </Grid>
 
                 <Grid Grid.Row="5" Margin="20 0 0 0">
-                    <Image  Name ="YellowStarRentImage" Width="25" Height="25" 
-                            HorizontalAlignment="Left" 
-                            Source="/Visuals/Images/BoardImages/Other/yellowStar.png"/>
+
+                    <TextBlock Text="★" Margin="0 0 0 0" FontSize="20" 
+                               Foreground="#F6BB43"/>
 
                     <TextBlock Name="YellowStarRentMoney" 
                                Style="{StaticResource PaymentNumber}"/>

@@ -47,8 +47,8 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.Row="0" Foreground="Black" Text="There can be your login"/>
-                        <TextBlock Grid.Row="1" Foreground="Gray" Text="There can be your money"/>
+                        <TextBlock Grid.Row="0" Name="LoginText" Foreground="Black" Text="There can be your login"/>
+                        <TextBlock Grid.Row="1" Name="MoneyText"  Foreground="Gray" Text="There can be your money"/>
                     </Grid>
                 </StackPanel>
                 <Line X1="0" Y1="40" X2="200" Y2="40" Stroke="Black" StrokeThickness="1"/>

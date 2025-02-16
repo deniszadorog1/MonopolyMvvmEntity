@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
              mc:Ignorable="d" 
-             d:DesignHeight="250" d:DesignWidth="600" 
-             Height="200" VerticalAlignment="Top">
+             d:DesignHeight="175" d:DesignWidth="600" 
+             Height="175" VerticalAlignment="Top">
     <Border Background="#E3E3E3" CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
+                <RowDefinition Height="55"/>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
@@ -30,7 +30,7 @@
             <Grid Grid.Row ="2" HorizontalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Name="ActiveButs" Visibility="Visible">
 
-                    <Button Name ="PayBut" Width="200" Height="45"
+                    <Button Name ="PayBut" Width="275" Height="45"
                     Background="{StaticResource MainGlobalColor}" 
                     BorderBrush="White" VerticalAlignment="Center"
                     HorizontalAlignment="Center" Content="Pay 500 to play"

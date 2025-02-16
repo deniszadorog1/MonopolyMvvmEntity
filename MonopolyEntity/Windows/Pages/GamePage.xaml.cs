@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using MonopolyDLL.Monopoly;
+using MonopolyEntity.VisualHelper;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -62,7 +63,7 @@ namespace MonopolyEntity.Windows.Pages
             for (int i = 0; i < _system.MonGame.Players.Count; i++)
             {
                 _userCards[i].UserLogin.Text = _system.MonGame.Players[i].Login;
-                _userCards[i].UserMoney.Text = _field.GetConvertedPrice(_system.MonGame.Players[i].AmountOfMoney);
+                _userCards[i].UserMoney.Text = _field.GetConvertedStringWithoutLastK(_system.MonGame.Players[i].AmountOfMoney);
             }
         }
 
@@ -76,9 +77,11 @@ namespace MonopolyEntity.Windows.Pages
             _userCards.Add(FifthPlayerOrangeControl);
 
             List<UserCard> res = new List<UserCard>();
-            for(int i = 0; i < _system.MonGame.Players.Count; i++)
+            List<SolidColorBrush> colors = Helper.GetColorsQueue();
+            for (int i = 0; i < _system.MonGame.Players.Count; i++)
             {
                 res.Add(_userCards[i]);
+                _userCards[i].SetCircleColors(colors[i]);
             }
 
             for (int i = 0; i < _userCards.Count; i++)
@@ -91,8 +94,6 @@ namespace MonopolyEntity.Windows.Pages
             }
             _userCards = res;    
         }
-
-        
 
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
