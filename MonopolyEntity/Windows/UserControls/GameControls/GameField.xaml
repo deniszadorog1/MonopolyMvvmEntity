@@ -14,8 +14,6 @@
              
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             TextElement.FontWeight="Regular"
-             TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
@@ -103,7 +101,10 @@
                 </Grid>
 
 
-                <TextBox Grid.Row="1" Margin="10 10 0 10" Width="500" Name ="MessageWriter"/>
+                <TextBox Grid.Row="1" Margin="10 10 0 10" Width="500" Name ="MessageWriter"
+                         Foreground="White" 
+                         materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainGlobalColor}"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Visible" CaretBrush="White"/>
 
                 
             </Grid>

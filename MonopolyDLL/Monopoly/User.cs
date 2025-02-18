@@ -30,13 +30,15 @@ namespace MonopolyDLL.Monopoly
         public bool IfLost { get; set; }
         public int DoubleCounter { get; set; }
 
-        public List<BusinessType> BuiltHousesInRowType { get; set; }         
+        public List<BusinessType> BuiltHousesInRowType { get; set; }
         private List<BusinessType> _collectedMonopolies = new List<BusinessType>();
 
         private int Id;
         private int _maxDoubles = 3;
+        private int? _pictureId;
 
-        public User(string login, int id)
+
+        public User(string login, int id, int? picId)
         {
             Login = login;
             Id = id;
@@ -48,7 +50,9 @@ namespace MonopolyDLL.Monopoly
             IfLost = false;
             DoubleCounter = 0;
             GameBusses = new List<InventoryObjs.BoxItem>();
+            SetPictureId(picId);
         }
+
 
         public User()
         {
@@ -155,6 +159,11 @@ namespace MonopolyDLL.Monopoly
             return _maxDoubles <= DoubleCounter;
         }
 
+        public bool IfDoublesMoreThenZero()
+        {
+            return DoubleCounter != 0;
+        }
+
         public void ClearDoubleCounter()
         {
             DoubleCounter = 0;
@@ -165,7 +174,7 @@ namespace MonopolyDLL.Monopoly
             return GameBusses.Any(x => x.StationId == stationId);
         }
 
-        public InventoryObjs.BoxItem GetItemWhichUsesInGameById(int id)
+        public BoxItem GetItemWhichUsesInGameById(int id)
         {
             return GameBusses.Any(x => x.StationId == id) ?
                 GameBusses.Find(x => x.StationId == id) : null;
@@ -176,7 +185,7 @@ namespace MonopolyDLL.Monopoly
             return GameBusses.Any(x => x.Name == name);
         }
 
-        public InventoryObjs.BoxItem GetItemByName(string name)
+        public BoxItem GetItemByName(string name)
         {
             return GameBusses.Find(x => x.Name == name);
         }
@@ -191,7 +200,7 @@ namespace MonopolyDLL.Monopoly
             GameBusses.Remove(GameBusses.Find(x => x.Name == item.Name));
         }
 
-        public InventoryObjs.BoxItem GetUsingItemByIndex(int index)
+        public BoxItem GetUsingItemByIndex(int index)
         {
             return GameBusses[index];
         }
@@ -211,22 +220,22 @@ namespace MonopolyDLL.Monopoly
             BoxItem item = GameBusses.Where(x => x.StationId == position).First();
 
             const int usCounter = 15;
-            
+
             if (item.Type == BusinessType.Cars)
             {
-                return new CarBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice, 
-                    ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels), 
+                return new CarBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
+                    ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
                     usCounter, 0, newOwnerIndex, item.Type, false, ususalPosBus.GetId());
             }
             if (item.Type == BusinessType.Games)
             {
-                return new GameBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice, 
-                    ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels), 
+                return new GameBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
+                    ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
                     usCounter, 0, newOwnerIndex, item.Type, false, ususalPosBus.GetId());
             }
-            return new UsualBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice, 
-                ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels), 
-                usCounter, 0, ((UsualBus)ususalPosBus).BuySellHouse, newOwnerIndex, 
+            return new UsualBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
+                ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
+                usCounter, 0, ((UsualBus)ususalPosBus).BuySellHouse, newOwnerIndex,
                 item.Type, false, ususalPosBus.GetId());
         }
 
@@ -236,5 +245,24 @@ namespace MonopolyDLL.Monopoly
             return item;
         }
 
+        public string GetLogin()
+        {
+            return Login;
+        }
+
+        public int? GetPictureId()
+        {
+            return _pictureId;
+        }
+
+        public void SetPictureId(int? picId)
+        {
+            _pictureId = picId;
+        }
+
+        public void RemoveAddedBusWithGivenId(int id)
+        {
+            GameBusses.Remove(GameBusses.Where(x => x.StationId == id).FirstOrDefault());
+        }
     }
 }

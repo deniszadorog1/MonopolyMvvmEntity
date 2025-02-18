@@ -53,6 +53,11 @@ namespace MonopolyDLL.Monopoly
         {
             LoggedUser.RemoveBoxItemFromList(item);
         }
+
+        public void RemoveBoxItemByStationId(int index)
+        {
+            LoggedUser.RemoveAddedBusWithGivenId(index);
+        }
         
         public BoxItem GetUserInventoryItemByIndex(int index)
         {

@@ -58,6 +58,11 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
                 (chosenRibs.Count == 3 && ifWon) ? _wonLevels[2] : 0;
         }
 
+        public int GetWinValue()
+        {
+            return _winValue;
+        }
+
         public string GetResultMessage(int wonMoney)
         {
             string noWon = $"You lost( Won number - {_winValue}";

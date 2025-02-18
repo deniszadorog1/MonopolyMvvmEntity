@@ -104,10 +104,6 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         {
             if (!(_resCard is null))
             {
-                Console.WriteLine(_resCard.CardName);
-
-                CustomMessageBoxWonPrize prize = new CustomMessageBoxWonPrize();
-                prize.ShowDialog();
                 CloseRoulette();
                 return;
             }

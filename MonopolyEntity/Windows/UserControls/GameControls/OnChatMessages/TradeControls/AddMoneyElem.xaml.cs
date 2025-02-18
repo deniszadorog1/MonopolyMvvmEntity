@@ -25,10 +25,27 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
         {
             InitializeComponent();
         }
-
         private void AmountOfMoneyBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !Regex.IsMatch(e.Text, "^[0-9]+$");
+        }
+
+        private int _maxMoney;
+        private string _prevAcceptedMoney = string.Empty;
+        private void AmountOfMoneyBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int.TryParse(AmountOfMoneyBox.Text, out int money);
+
+            if (_maxMoney < money)
+            {
+                AmountOfMoneyBox.Text = _prevAcceptedMoney;
+            }
+            else _prevAcceptedMoney = AmountOfMoneyBox.Text;
+        }
+
+        public void SetMaxMoney(int money)
+        {
+            _maxMoney = money;
         }
     }
 }

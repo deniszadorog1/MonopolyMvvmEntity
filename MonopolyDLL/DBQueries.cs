@@ -15,6 +15,7 @@ using System.Data;
 using System.Dynamic;
 using System.Security.Policy;
 using System.Diagnostics;
+using System.Security.Permissions;
 
 namespace MonopolyDLL
 {
@@ -89,7 +90,17 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var staff in model.InventoryStaffs)
+                int id = item.GetInventoryIdInDB();
+                var staff = model.InventoryStaffs.FirstOrDefault(s => s.Id == id);
+
+                if (staff != null)
+                {
+                    staff.IfEnabled = false;
+                    staff.StationId = null;
+                    model.SaveChanges();
+                }
+
+           /*     foreach (var staff in model.InventoryStaffs)
                 {
                     if (staff.Id == item.GetInventoryIdInDB())
                     {
@@ -98,10 +109,9 @@ namespace MonopolyDLL
                         model.SaveChanges();
                         return;
                     }
-                }
+                }*/
             }
         }
-
 
         public static BoxItem GetBoxItemByName(string name)
         {
@@ -193,7 +203,10 @@ namespace MonopolyDLL
                 {
                     if (player.Id == id)
                     {
-                        return new User(player.Login, player.Id);
+                        int? picId = null;
+                        if (!(player.PictureFile is null)) picId = player.PictureFile.Id;
+
+                        return new User(player.Login, player.Id, picId);
                     }
                 }
             }
@@ -539,6 +552,7 @@ namespace MonopolyDLL
                 {
                     Login = user.Login,
                     Password = user.Password,
+                    PictureId = user.GetPictureId()
                 });
 
                 model.SaveChanges();
@@ -549,15 +563,48 @@ namespace MonopolyDLL
         {
             List<User> res = new List<User>();
 
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-                foreach(var user in model.Players)
+                foreach (var user in model.Players)
                 {
-                    User addUser = new User(user.Login, user.Id);
+                    int? picId = null; 
+                    if (!(user.PictureFile is null)) picId = user.PictureFile.Id;
+ 
+                    User addUser = new User(user.Login, user.Id, picId);
                     res.Add(addUser);
                 }
             }
             return res;
+        }
+
+        public static void AddPicture(string picPath)
+        {
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                model.PictureFiles.Add(new PictureFile()
+                {
+                    Name = picPath,
+                    Path = picPath
+                });
+                model.SaveChanges();
+            }
+        }
+
+        public static string GetPictureNameById(int? picId)
+        {
+            if (picId is null) return null;
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                return model.PictureFiles.Where(x => x.Id == picId).FirstOrDefault().Path;
+            };
+        }
+
+        public static int GetLastPicId()
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+               return model.PictureFiles.OrderByDescending(p => p.Id).FirstOrDefault().Id;
+            }
         }
     }
 }

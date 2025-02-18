@@ -34,7 +34,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetTestCardImage();
         }
 
-
         public void SetTestCardImage()
         {
             const int imgSize = 70;
@@ -45,6 +44,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             Canvas.SetZIndex(img, 10);
             UserImageGrid.Children.Add(img);
+        }
+
+        public void SetNewCardImage(Image img)
+        {
+            if (img is null) return;
+            Image tempImg = UserImageGrid.Children.OfType<Image>().FirstOrDefault();
+            if (tempImg is null) return;
+            tempImg.Source = img.Source;
         }
 
         private SolidColorBrush _color;

@@ -1,5 +1,6 @@
 ﻿using MonopolyDLL;
 using MonopolyDLL.Monopoly;
+using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.Pages;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
 
 namespace MonopolyEntity.Windows
 {
@@ -38,7 +38,6 @@ namespace MonopolyEntity.Windows
             _frame = frame;
 
             InitializeComponent();
-
             FillStartListBoxes();
         }
 
@@ -67,8 +66,20 @@ namespace MonopolyEntity.Windows
         {
             for (int i = 0; i < users.Count; i++)
             {
+                WrapPanel panel = new WrapPanel()
+                {
+                    Orientation = Orientation.Horizontal
+                };
+
+                panel.Children.Add(MainWindowHelper.GetCircleImage(50, 50, DBQueries.GetPictureNameById(users[i].GetPictureId())));
+
                 TextBlock block = GetTextBlock(users[i].Login);
-                box.Items.Add(block);
+                block.VerticalAlignment = VerticalAlignment.Center;
+                block.Margin = new Thickness(5, 0, 0, 0);
+   
+                panel.Children.Add(block);
+                
+                box.Items.Add(panel);
             }
         }
 
@@ -76,7 +87,8 @@ namespace MonopolyEntity.Windows
         {
             return new TextBlock()
             {
-                Text = name
+                Text = name,
+                FontSize = 16
             };
         }
 
@@ -88,21 +100,25 @@ namespace MonopolyEntity.Windows
         private void RemovePlayerBut_Click(object sender, RoutedEventArgs e)
         {
             if (PlayersInGame.SelectedItem is null) return;
-            TextBlock block = ((TextBlock)PlayersInGame.SelectedItem);
+            TextBlock block = ((WrapPanel)PlayersInGame.SelectedItem).Children.OfType<TextBlock>().FirstOrDefault();
+            WrapPanel panel = ((WrapPanel)PlayersInGame.SelectedItem);
             User toRemove = _playersInGame.Where(x => x.Login == block.Text).First();
 
             PlayersInGame.Items.Remove(PlayersInGame.SelectedItem);
             _playersInGame.Remove(toRemove);
 
             _notAddedPlayers.Add(toRemove);
-            PlayersThatCanBeAdd.Items.Add(block);
+            PlayersThatCanBeAdd.Items.Add(panel);
         }
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
-            const int leastAmountOfPlayers = 2;
+/*            const int leastAmountOfPlayers = 2;
             if (!_users.Any(x => x.Login == _system.LoggedUser.Login) ||
-                _users.Count < leastAmountOfPlayers) return;
+                _playersInGame.Count < leastAmountOfPlayers) return;
+
+
+            _system.MonGame.Players = _playersInGame;*/
 
             GamePage page = new GamePage(_frame, _system);
             _frame.Content = page;
@@ -113,13 +129,14 @@ namespace MonopolyEntity.Windows
         private void AddPlayerInGameBut_Click(object sender, RoutedEventArgs e)
         {
             if (PlayersThatCanBeAdd.SelectedItem is null) return;
-            TextBlock block = ((TextBlock)PlayersThatCanBeAdd.SelectedItem);
+            TextBlock block = ((WrapPanel)PlayersThatCanBeAdd.SelectedItem).Children.OfType<TextBlock>().FirstOrDefault();
+            WrapPanel panel = ((WrapPanel)PlayersThatCanBeAdd.SelectedItem);
             User toRemove = _notAddedPlayers.Where(x => x.Login == block.Text).First();
 
             _notAddedPlayers.Remove(toRemove);
-            PlayersThatCanBeAdd.Items.Remove(block);
+            PlayersThatCanBeAdd.Items.Remove(panel);
 
-            PlayersInGame.Items.Add(block);
+            PlayersInGame.Items.Add(panel);
             _playersInGame.Add(toRemove);
         }
     }

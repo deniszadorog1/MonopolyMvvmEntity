@@ -85,7 +85,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0">
-                <TextBlock Text="xxxxK" VerticalAlignment="Center" Name="SenderTotalMoney"
+                <TextBlock Text="0K" VerticalAlignment="Center" Name="SenderTotalMoney"
                            HorizontalAlignment="Center" FontSize ="22" Foreground="#696969"/>
             </Grid>
             
@@ -95,7 +95,7 @@
             </Grid>
 
             <Grid Grid.Column="2">
-                <TextBlock Text="xxxxK" VerticalAlignment="Center" Name ="ReciverTotalMoney"
+                <TextBlock Text="0K" VerticalAlignment="Center" Name ="ReciverTotalMoney"
                            HorizontalAlignment="Center" FontSize ="22" Foreground="#696969"/>
             </Grid>
         </Grid>

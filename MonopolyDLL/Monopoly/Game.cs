@@ -11,6 +11,7 @@ using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 
 using MonopolyDLL.Monopoly.TradeAction;
+using System.Security.Policy;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -29,8 +30,8 @@ namespace MonopolyDLL.Monopoly
         {
             Players = new List<User>()
             {
-               new User("One", 150000, 0, false),
-               //loggedUser,
+               //new User("One", 150000, 0, false),
+               loggedUser,
                new User("Two", 15000, 0, false),
                new User("Three", 15000, 0, false),
                new User("Four", 15000, 0, false),
@@ -81,8 +82,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = _rnd.Next(1, 7);
-            _secondCube = _rnd.Next(1, 7);
+            _firstCube = 3;// _rnd.Next(1, 7);
+            _secondCube = 3;// _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -291,6 +292,7 @@ namespace MonopolyDLL.Monopoly
 
         public bool ChangeStepper()
         {
+
             bool ifCircle = false;
             do
             {
@@ -351,14 +353,20 @@ namespace MonopolyDLL.Monopoly
             return Players[_bidderIndex].Login;
         }
 
+        public int GetBidderIndex()
+        {
+            return _bidderIndex;
+        }
+
         public bool RemoveAuctionBidderIfItsWasLast()
         {
             _prevBidderIndex = _bidderIndex;
             int tempIndex = _playerIndxesForAuction.FindIndex(x => x == _bidderIndex);
 
             _playerIndxesForAuction.Remove(_bidderIndex);
-            if (_playerIndxesForAuction.Count == 0)
+            if (_playerIndxesForAuction.Count <= 1)
             {
+                _bidderIndex = _playerIndxesForAuction.First();
                 return true;
             }
 
@@ -585,6 +593,16 @@ namespace MonopolyDLL.Monopoly
             _trade = new TradeClass();
 
             _trade.SetSenderIndex(StepperIndex);
+        }
+
+        public int GetTradeSenderMaxMoney()
+        {
+            return Players[_trade.SenderIndex].AmountOfMoney;
+        }
+
+        public int GetTradeReciverMaxMoney()
+        {
+            return Players[_trade.ReciverIndex].AmountOfMoney;
         }
 
         public void SetTradeReciverIndex(int reciverIndex)
@@ -997,7 +1015,12 @@ namespace MonopolyDLL.Monopoly
         {
             return item.Type == BusinessType.Games ? GameBoard.GetAllGameBuses() :
                 item.Type == BusinessType.Cars ? GameBoard.GetAllCarBuses() :
-                GameBoard.GetUsualBussesToChangeOn(item);
+                GameBoard.GetBusesByType(item.Type);
+        }
+
+        public void RemoveAddBusById(int index)
+        {
+
         }
 
         public bool IfStepperHasInventoryBusOnPosition()
@@ -1079,5 +1102,28 @@ namespace MonopolyDLL.Monopoly
         {
             return GameBoard.GetPrisonPrice();
         }
+
+        public bool IfStepperHasEnoughMoney(int money)
+        {
+            return Players[StepperIndex].IfPlayerHasEnoughMoney(money);
+        }
+
+        public bool IfTradersHasEnoughMoney()
+        {
+            return Players[_trade.ReciverIndex].IfPlayerHasEnoughMoney(_trade.ReciverMoney) &&
+                Players[_trade.SenderIndex].IfPlayerHasEnoughMoney(_trade.SenderMoney);
+        }
+
+        public int GetCasinoWinValue()
+        {
+            return GameBoard.GetCasinoWinValue();
+        }
+
+        public int GetStepperBusPositionBusIndex()
+        {
+            int position = Players[StepperIndex].Position;
+            return ((ParentBus)GameBoard.Cells[position]).OwnerIndex;
+        }
+
     }
 }

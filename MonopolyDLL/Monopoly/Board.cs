@@ -127,6 +127,11 @@ namespace MonopolyDLL.Monopoly
             return (winMoney, resultMessage);
         }
 
+        public int GetCasinoWinValue()
+        {
+            return ((Casino)Cells[_casinoIndex]).GetWinValue();
+        }
+
         public int GetCasinoGamePrice()
         {
             return ((Casino)Cells[_casinoIndex]).GetGamePrice();
@@ -554,6 +559,7 @@ namespace MonopolyDLL.Monopoly
         private const int _bigStrickBusType = 2;
         public List<ParentBus> GetUsualBussesToChangeOn(InventoryObjs.BoxItem item)
         {
+            
             List<ParentBus> res = new List<ParentBus>();
 
             List<UsualBus> buses = Cells.OfType<UsualBus>().Where(x => x.BusType == item.Type).ToList();

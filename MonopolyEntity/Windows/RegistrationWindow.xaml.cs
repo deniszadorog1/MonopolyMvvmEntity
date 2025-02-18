@@ -11,8 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using MonopolyDLL;
 using MonopolyDLL.Monopoly;
+using MonopolyEntity.VisualHelper;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MonopolyEntity.Windows
 {
@@ -26,14 +29,15 @@ namespace MonopolyEntity.Windows
             InitializeComponent();
         }
 
+        private User _newUser = new User();
         private void RegBut_Click(object sender, RoutedEventArgs e)
         {
             //check if one of the fields is empty
+            _newUser.Login = LoginBox.Text;
+            _newUser.Password = PasswordBox.Text;
 
-            User newUser = new User();
-
-            if (DBQueries.IfUserExistByLogin(newUser.Login)) return;
-            DBQueries.AddNewUserInDB(newUser);
+            if (DBQueries.IfUserExistByLogin(_newUser.Login)) return;
+            DBQueries.AddNewUserInDB(_newUser);
         }
 
         private void LoginBox_GotFocus(object sender, RoutedEventArgs e)
@@ -69,6 +73,28 @@ namespace MonopolyEntity.Windows
             {
                 PasswordBox.Text = "Password";
                 PasswordBox.Foreground = Brushes.Gray;
+            }
+        }
+
+        private void ChoseImgBut_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*",
+                Title = "Choose file"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string fullImgPath = openFileDialog.FileName;
+                UserImg.Source = new BitmapImage(new Uri(fullImgPath));
+                
+                string newImagePath = System.IO.Path.Combine(MainWindowHelper.GetUserImagePath(), openFileDialog.SafeFileName);
+                DBQueries.AddPicture(openFileDialog.SafeFileName);
+                _newUser.SetPictureId(DBQueries.GetLastPicId());
+
+                System.IO.File.Copy(fullImgPath, newImagePath, true);
+                UserImg.Source = new BitmapImage(new Uri(newImagePath));
             }
         }
     }

@@ -33,10 +33,18 @@ namespace MonopolyEntity.Windows
 
         public void SetStartPage()
         {
-            //WorkFrame.Content = new OpenCase();
-
+            SetWindowSize();
             MainPage mainPage = new MainPage(WorkFrame, _monSystem);
             WorkFrame.Content = mainPage;   
+        }
+
+        public void SetWindowSize()
+        {
+            Window parentWindow = Window.GetWindow(this);
+            if (parentWindow != null)
+            {
+                parentWindow.WindowState = WindowState.Maximized; 
+            }
         }
 
         public void ClearVisiableItems()

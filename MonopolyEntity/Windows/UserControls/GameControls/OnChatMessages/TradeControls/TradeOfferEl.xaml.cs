@@ -44,14 +44,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
             return false;
         }
 
-        public void UpdateSenderTotalMoney(int money)
+        public void UpdateSenderTotalMoney(string money)
         {
-            SenderTotalMoney.Text = money.ToString();
+            SenderTotalMoney.Text = money;
         }
 
-        public void UpdateReciverTotalMoney(int money)
+        public void UpdateReciverTotalMoney(string money)
         {
-            ReciverTotalMoney.Text = money.ToString();
+            ReciverTotalMoney.Text = money;
         }
 
         public int GetSenderTradeMoney()

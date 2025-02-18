@@ -631,5 +631,18 @@ namespace MonopolyEntity.VisualHelper
             if (cell is BottomCell bottom) bottom.DepositObj.Counter.Text = value.ToString();
             if (cell is LeftCell left)  left.DepositObj.Counter.Text = value.ToString();
         }
+    
+        public static Image GetKeyImage()
+        {
+            string addedImagesPath = GetAddedImagePath();
+            string keyPath = Path.Combine(addedImagesPath, "Keys");
+            string imagePath = Path.Combine(keyPath, "dragon.png");
+
+            return new Image()
+            {
+                Source = new BitmapImage(new Uri(imagePath, UriKind.Absolute)),
+                Stretch = Stretch.Uniform
+            };
+        }
     }
 }

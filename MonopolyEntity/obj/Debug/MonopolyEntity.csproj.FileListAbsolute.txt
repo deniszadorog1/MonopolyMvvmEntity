@@ -87,7 +87,6 @@ C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f59
 C:\Users\denis\OneDrive\Рабочий стол\MonopolyMvvmEntity-f359c0d941f590c09a98750169eb31fc8b9eb537\MonopolyEntity\obj\Debug\MonopolyEntity.pdb
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.csproj.AssemblyReference.cache
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MainWindow.g.cs
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\CustomMessageBoxWonPrize.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\GamePage.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\InventoryPage.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\MainPageWind.g.cs
@@ -156,7 +155,6 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\WpfAnimatedGif.pdb
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\WpfAnimatedGif.xml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\App.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MainWindow.baml
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\CustomMessageBoxWonPrize.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\GamePage.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\InventoryPage.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\MainPageWind.baml

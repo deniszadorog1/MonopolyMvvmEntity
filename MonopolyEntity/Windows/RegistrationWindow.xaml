@@ -35,7 +35,15 @@
                          Name ="PasswordBox" Foreground="Gray" Text="Password"
                          GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
 
+                <WrapPanel Grid.Row="3" Orientation="Horizontal">
 
+                    <Image Name="UserImg" Width="50" Height="50" Margin="5"/>
+
+                    <Button Content="Chose image" Background="{StaticResource MainGlobalColor}"
+                            BorderThickness="0" Name="ChoseImgBut" Click="ChoseImgBut_Click"/>
+
+                </WrapPanel>
+                
             </Grid>
         </Border>
     </Grid>

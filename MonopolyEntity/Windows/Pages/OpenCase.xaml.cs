@@ -10,6 +10,8 @@ using MonopolyEntity.Windows.UserControls.CaseOpening;
 using MonopolyDLL.Monopoly.InventoryObjs;
 using MonopolyEntity.VisualHelper;
 using MonopolyDLL;
+using System.Windows.Input;
+using System.Windows.Media.Effects;
 
 
 namespace MonopolyEntity.Windows.Pages
@@ -41,10 +43,15 @@ namespace MonopolyEntity.Windows.Pages
             Image img = BoardHelper.GetLotBoxImage(_caseBox.ImagePath);
             CheckToOpen.Box.CardName.Text = $"{_caseBox.Name} box";
             CheckToOpen.Box.CardImage.Source = img.Source;
-            
+
             CheckToOpen.Box.CardImage.Stretch = Stretch.Uniform;
             CheckToOpen.Box.CardImage.Width = 125;
             CheckToOpen.Box.CardImage.Height = 125;
+
+            Image key = BoardHelper.GetKeyImage();
+            CheckToOpen.KeyToBox.CardImage.Source = key.Source;
+            CheckToOpen.KeyToBox.CardImage.Width = 100;
+            CheckToOpen.KeyToBox.CardImage.Height = 100;
         }
 
         public void SetCaseDrops()
@@ -56,7 +63,7 @@ namespace MonopolyEntity.Windows.Pages
                     BoardHelper.GetAddedItemImage(_caseBox.ItemsThatCanDrop[i].ImagePath, _caseBox.ItemsThatCanDrop[i].Type),
                     _caseBox.ItemsThatCanDrop[i]));
             }
-            
+
             cards = BoardHelper.SetCardsInRightPosition(cards);
 
             for (int i = 0; i < cards.Count; i++)
@@ -64,7 +71,7 @@ namespace MonopolyEntity.Windows.Pages
                 CanBeDropedPanel.Children.Add(cards[i]);
             }
         }
-      
+
         public static CaseCard GetCaseCards(string name, Image img, MonopolyDLL.Monopoly.InventoryObjs.Item item)
         {
             CaseCard newCard = new CaseCard()
@@ -93,10 +100,10 @@ namespace MonopolyEntity.Windows.Pages
 
         private (List<Image>, List<string>, List<SolidColorBrush>) GetParamsForCaseRoulette()
         {
-            (List<Image> images, List<string> names, List<SolidColorBrush> colors) res = 
+            (List<Image> images, List<string> names, List<SolidColorBrush> colors) res =
                 (new List<Image>(), new List<string>(), new List<SolidColorBrush>());
 
-            for(int i = 0; i < _caseBox.ItemsThatCanDrop.Count; i++)
+            for (int i = 0; i < _caseBox.ItemsThatCanDrop.Count; i++)
             {
                 res.names.Add(_caseBox.ItemsThatCanDrop[i].Name);
                 res.images.Add(BoardHelper.GetAddedItemImage(
@@ -112,7 +119,7 @@ namespace MonopolyEntity.Windows.Pages
             OpenCaseBut.Visibility = Visibility.Hidden;
             CheckToOpen.Visibility = Visibility.Hidden;
 
-            (List<Image> images, List<string> names, List<SolidColorBrush> colors) 
+            (List<Image> images, List<string> names, List<SolidColorBrush> colors)
                 rouletteParams = GetParamsForCaseRoulette();
             _rol = new CaseRoulette(rouletteParams.images, rouletteParams.names, rouletteParams.colors)
             {
@@ -128,14 +135,15 @@ namespace MonopolyEntity.Windows.Pages
             {
                 if (!_rol._animationIsDone) return;
 
-                 MonopolyDLL.Monopoly.InventoryObjs.BoxItem prize = 
+                BoxItem prize =
                 DBQueries.GetBoxItemByName(_rol._resCard.CardName.Text);
 
                 DBQueries.AddBoxItemInUserInventory(_loggedUserLogin, prize.Name);
 
                 _rol._animationIsDone = false;
-            };
 
+                AddPrizeControl(prize);
+            };
 
             _rol.SetChosenLine();
 
@@ -143,13 +151,41 @@ namespace MonopolyEntity.Windows.Pages
             OpenGrid.Children.Add(_rol);
         }
 
+        private void AddPrizeControl(BoxItem prize)
+        {
+            ShowGotPrize prizeControl = new ShowGotPrize(prize, _rol._resCard.CardImage);
+
+            prizeControl.VerticalAlignment = VerticalAlignment.Center;
+            prizeControl.HorizontalAlignment = HorizontalAlignment.Center;
+
+            prizeControl.AcceptBut.Click += (sender, e) =>
+            {
+                OpenCaseGrid.Effect = null;
+                PrizeGrid.Children.Clear();
+            };
+
+            PrizeGrid.Children.Add(prizeControl);
+            SetBlurEffect();
+        }
+
+        private void SetBlurEffect()
+        {
+            const int fullBlur = 100;
+            OpenCaseGrid.Effect = new BlurEffect
+            {
+                Radius = fullBlur
+            };
+        }
+
         private void ExitBut_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
+            Cursor = Cursors.Hand;
             ExitBut.Foreground = Brushes.LightGray;
         }
 
         private void ExitBut_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
+            Cursor = null;
             ExitBut.Foreground = Brushes.Gray;
         }
 

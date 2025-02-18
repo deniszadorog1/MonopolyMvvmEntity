@@ -34,10 +34,8 @@ namespace MonopolyEntity
         private void LoginBut_Click(object sender, RoutedEventArgs e)
         {
             //Set logged user here
-
             WorkWindow window = new WorkWindow(_monopolySys);
             window.ShowDialog();
-
         }
 
         private void RegistrationBut_Click(object sender, RoutedEventArgs e)

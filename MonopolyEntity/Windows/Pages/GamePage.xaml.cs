@@ -18,6 +18,8 @@ using System.Windows.Shapes;
 
 using MonopolyDLL.Monopoly;
 using MonopolyEntity.VisualHelper;
+using System.Data.Entity.Infrastructure;
+using MonopolyDLL;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -41,6 +43,7 @@ namespace MonopolyEntity.Windows.Pages
             AddGameField();
 
             SetStartValuesInUserCards();
+
         }
 
         GameField _field;
@@ -64,6 +67,8 @@ namespace MonopolyEntity.Windows.Pages
             {
                 _userCards[i].UserLogin.Text = _system.MonGame.Players[i].Login;
                 _userCards[i].UserMoney.Text = _field.GetConvertedStringWithoutLastK(_system.MonGame.Players[i].AmountOfMoney);
+                _userCards[i].SetNewCardImage(MainWindowHelper.GetUserImage(
+                    DBQueries.GetPictureNameById(_system.MonGame.Players[i].GetPictureId())));
             }
         }
 
@@ -82,6 +87,9 @@ namespace MonopolyEntity.Windows.Pages
             {
                 res.Add(_userCards[i]);
                 _userCards[i].SetCircleColors(colors[i]);
+
+                _userCards[i].MouseEnter += UserCard_MouseEnter;
+                _userCards[i].MouseLeave += UserCard_MouseLeave;
             }
 
             for (int i = 0; i < _userCards.Count; i++)
@@ -93,6 +101,16 @@ namespace MonopolyEntity.Windows.Pages
 
             }
             _userCards = res;    
+        }
+
+        private void UserCard_MouseEnter(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
+        private void UserCard_MouseLeave(object sender, EventArgs e)
+        {
+            Cursor = null;
         }
 
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)

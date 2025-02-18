@@ -18,6 +18,7 @@ using MonopolyDLL.Monopoly.Cell.Bus;
 using MonopolyDLL;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
+using MonopolyDLL.DBService;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -46,9 +47,6 @@ namespace MonopolyEntity.Windows.Pages
             SetUserMenu();
             Height = 10000;
         }
-
-        
-
         public void SetUserMenu()
         {
             MainWindowHelper.SetUpperMenuParams(UpperMenuu, _system.LoggedUser);
@@ -97,16 +95,6 @@ namespace MonopolyEntity.Windows.Pages
                     _cards.Add(card);
                     boxItem.SetCaseCardId(_cards.Count() - 1);
 
-                    card.IfTicked.Unchecked += (sender, e) =>
-                    {
-                        BoxItem toRemove = _system.GetUserInventoryItemByName(card.CardName.Text);
-                        _system.RemoveBoxItemFromUsingList(toRemove);
-
-                        DBQueries.ClearInventoryItemById(toRemove.GetInventoryIdInDB());
-
-                        card.IfTicked.IsChecked = true;
-                        card.IfTicked.Visibility = Visibility.Hidden;
-                    };
 
                     card.MouseDown += (sender, e) =>
                     {
@@ -118,11 +106,12 @@ namespace MonopolyEntity.Windows.Pages
                     if (IfBoxCardIsTicked(boxItem))
                     {
                         card.IfTicked.Visibility = Visibility.Visible;
+                        boxItem.SetTick(true);
                     }
                 }
             }
             SetCardsInItemsPanel();
-        }   
+        }
 
         private bool IfBoxCardIsTicked(BoxItem item)
         {
@@ -161,29 +150,6 @@ namespace MonopolyEntity.Windows.Pages
             return res;
         }
 
-        /*        public void SetTestInventoryItems()
-                {
-                    CaseCard testCard = ThingForTest.GetDragonBoxCard();
-                    testCard.PreviewMouseDown += InventoryItem_MouseDown;
-                    ItemsPanel.Children.Add(testCard);
-                }
-
-                private void InventoryItem_MouseDown(object sender, EventArgs e)
-                {
-                    //Make Description animation here
-
-                    if (sender is CaseCard card)
-                    {
-                        //Point wrapLoc = Helper.GetElementLocation(card, ItemsPanel);
-
-                        Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
-
-                        SetAnimationForCaseBox(pagePoint, card.CardImage);
-
-                        //MakeImageDescriptionAnimation(card.CardImage);
-                    }
-                }*/
-
         private BussinessDescription _busDesc;
         public void SetAnimationForInventoryBusiness(Point cardLocation, Image busImg, BoxItem bus)
         {
@@ -221,38 +187,92 @@ namespace MonopolyEntity.Windows.Pages
         /// Set buttons for bus description
         /// to change busses in game
         /// </summary>
+
+        private readonly SolidColorBrush _ususalCellBrush = new SolidColorBrush(Color.FromRgb(167, 175, 187));
         public List<BusDescButton> GetButtonForUsualBus(BoxItem item)
         {
+           
             List<BusDescButton> res = new List<BusDescButton>();
             List<ParentBus> busesToGetButsFor = _system.MonGame.GetBusWithGivenBoxItem(item);
+
+            const string changeText = "Change";
+            const string getBackText = "Get back";
+
 
             for (int i = 0; i < busesToGetButsFor.Count; i++)
             {
                 BoxItem usingItem = _system.LoggedUser.GetItemWhichUsesInGameById(busesToGetButsFor[i].GetId());
 
                 BusDescButton but = new BusDescButton();
+
                 if (usingItem is null)
                 {
-                    but = GetBusForBusinessDescription(
-                        busesToGetButsFor[i].Name, new SolidColorBrush(Color.FromRgb(76, 180, 219)));
+                    but = GetBusForBusinessDescription(busesToGetButsFor[i].Name, _ususalCellBrush, changeText);
                     SetButMouseDownEventChangedWithParentBus(but, busesToGetButsFor[i], item);
                 }
-                else
+                else if (usingItem.GetInventoryIdInDB() != item.GetInventoryIdInDB() && !usingItem.IsTicked() && 
+                     usingItem.Name == item.Name)
                 {
-                    but = GetBusForBusinessDescription(usingItem.Name,
-                        BoardHelper.GetColorFromSystemColorName(usingItem.Rearity.ToString()));
+                    TextBlock block = new TextBlock()
+                    {
+                        Text = "Already chosen",
+                        FontSize = 16
+                    };
+                    _busDesc.ButtonsPanel.Children.Add(block);
+                    res.Clear();
+                    return res;
+                }
+                else if (usingItem.GetInventoryIdInDB() == item.GetInventoryIdInDB())
+                {
+                    but = GetBusForBusinessDescription(busesToGetButsFor[i].Name, _ususalCellBrush, getBackText);
+
+                    GetUsualBuyBack(but, item);
+
+                    res.Clear();
+                    res.Add(but);
+                    return res;
+                }
+                else
+                {              
+                    but = GetBusForBusinessDescription(usingItem.Name, GetBrushByBoxItem(usingItem), getBackText);
                     SetButMouseDownEventChangeWithBoxItem(but, usingItem, item);
+
+                    //GetUsualBuyBack(but, item);
                 }
                 res.Add(but);
             }
             return res;
         }
 
+        public SolidColorBrush GetBrushByBoxItem(BoxItem item)
+        {
+            return new SolidColorBrush(Color.FromRgb(item.GetRParam(), item.GetGParam(), item.GetBParam()));
+        }
+
+        public void GetUsualBuyBack(BusDescButton but, BoxItem item)
+        {
+            but.MouseDown += (sender, e) =>
+            {
+                BoxItem toRemove = _system.GetUserInventoryItemByName(item.Name);
+                _system.RemoveBoxItemFromUsingList(toRemove);
+
+                DBQueries.ClearInventoryItemById(toRemove.GetInventoryIdInDB());
+
+                _busDesc.ButtonsPanel.Children.Clear();
+                SetButtonsInBusDescription(item);
+
+                RemoveTickForCaseCard(item);
+            };
+        }
+
         private void SetButMouseDownEventChangedWithParentBus(BusDescButton but, ParentBus oldItem, BoxItem newItem)
         {
             but.MouseDown += (sender, e) =>
             {
-                if (_system.IfBussWithSuchNameIsUsing(newItem.Name)) return;
+                // if (_system.IfBussWithSuchNameIsUsing(newItem.Name)) return;
+
+                _system.RemoveBoxItemByStationId(oldItem.GetId());
+
 
                 newItem.StationId = oldItem.GetId();
                 _system.AddUsingBusInList(newItem);
@@ -261,7 +281,7 @@ namespace MonopolyEntity.Windows.Pages
 
                 AddTickForCaseCard(newItem);
 
-                DBQueries.SetBoxItemWhichUserStartsToUse(newItem);         
+                DBQueries.SetBoxItemWhichUserStartsToUse(newItem);
             };
         }
 
@@ -297,11 +317,11 @@ namespace MonopolyEntity.Windows.Pages
             card.IfTicked.Visibility = Visibility.Hidden;
         }
 
-        public BusDescButton GetBusForBusinessDescription(string busName, SolidColorBrush color)
+        public BusDescButton GetBusForBusinessDescription(string busName, SolidColorBrush color, string actionText)
         {
             BusDescButton res = new BusDescButton();
 
-            res.ActionNameText.Text = "Change";
+            res.ActionNameText.Text = actionText;
             res.BusName.Text = busName;
             res.RearityColor.Background = color;
 
@@ -404,6 +424,10 @@ namespace MonopolyEntity.Windows.Pages
         public void SetUserImage()
         {
             Image img = ThingForTest.GetCalivanBigCircleImage(65, 65);
+
+            Image userImg = MainWindowHelper.GetUserImage(DBQueries.GetPictureNameById(_system.LoggedUser.GetPictureId()));
+            if (!(userImg is null)) img.Source = userImg.Source;
+
             UserImage.Children.Add(img);
 
             Canvas.SetLeft(img, 10);

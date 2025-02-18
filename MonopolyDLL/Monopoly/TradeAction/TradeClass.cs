@@ -88,5 +88,16 @@ namespace MonopolyDLL.Monopoly.TradeAction
         {
             ReciverMoney = money;
         }
+
+        public int GetSenderIndex()
+        {
+            return SenderIndex;
+        }
+
+        public int GetReciverIndex()
+        {
+            return ReciverIndex;
+        }
+        
     }
 }

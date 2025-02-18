@@ -5,36 +5,47 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.CaseOpening"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="400">
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
+             d:DesignHeight="500" d:DesignWidth="600"
+             Height="500" Width="600">
 
-        <Grid Grid.Row="0" Name="HeadCan">
-            <TextBlock Name="HeadText" HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Text="Congrats you got a prize " FontSize="17"/>
-        </Grid>
-        
-        <Grid Grid.Row="1" Name="BodyGrid">
+    <Border CornerRadius="20" Background="White">
+        <Grid Background="White" Margin="20">
             <Grid.RowDefinitions>
-                <RowDefinition Name="ImageRow" Height="3*"/>
-                <RowDefinition Name ="TextRow"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <Grid Name="ImageGrid" Grid.Row="0"/>
-            <Grid Name="NameText" Grid.Row="1"/>
+            <Grid Grid.Row="0" Name="HeadCan">
+                <TextBlock Name="HeadText" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Text="Congrats you got a prize " FontSize="20"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Name="BodyGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Name="ImageRow" Height="3*"/>
+                    <RowDefinition Name ="TextRow"/>
+                </Grid.RowDefinitions>
+
+                <Grid Name="ImageGrid" Grid.Row="0">
+                    <Image Name="PrizeImg" Width="250" Margin="5" Stretch="Uniform" />
+                </Grid>
+
+                <Grid Name="NameTextGrid" Grid.Row="1">
+                    <TextBlock Name ="NameText"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           FontSize="24"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2" Name="ButtonsGrid">
+                <Button Name="AcceptBut" Content="Accept"
+                    Margin="10 0 10 0"  Height="50" FontSize="20"
+                    Background="{StaticResource MainGlobalColor}"
+                    BorderThickness="0"/>
+            </Grid>
 
         </Grid>
-
-        <Grid Grid.Row="2" Name="ButtonsGrid">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-        </Grid>
-
-    </Grid>
+    </Border>
 </UserControl>

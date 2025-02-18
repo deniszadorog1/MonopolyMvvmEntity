@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyDLL.Monopoly.InventoryObjs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
     /// </summary>
     public partial class ShowGotPrize : UserControl
     {
-        public ShowGotPrize()
+        private BoxItem _prize;
+        private Image _prizeImg;
+        
+        public ShowGotPrize(BoxItem item, Image img)
         {
+            _prize = item;
+            _prizeImg = img;
             InitializeComponent();
+
+            FillParams();
+        }
+
+        public void FillParams()
+        {
+            PrizeImg.Source = _prizeImg.Source;
+            NameText.Text = $"Congrats you won {_prize.Name}";
         }
     }
 }

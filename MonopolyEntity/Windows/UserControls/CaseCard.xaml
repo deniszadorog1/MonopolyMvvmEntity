@@ -6,12 +6,13 @@
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="200" Padding="0"             
-             >
+             
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+            TextOptions.TextFormattingMode="Ideal"
+            TextOptions.TextRenderingMode="Auto">
     <Grid >
         <Border x:Name="BorderBase" CornerRadius="10" Background="#ffffff" ClipToBounds="True">
-            <!-- <Border.Clip>
-                <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,200,200"/>
-            </Border.Clip> -->
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Name="UpperRow" Height="2.5*"/>
@@ -19,10 +20,11 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" Name="UpPart">
-                    <CheckBox Name="IfTicked"
-                              VerticalAlignment="Top" HorizontalAlignment="Right" Panel.ZIndex="100"
-                              Margin="0 5 5 0" IsChecked="True" Visibility="Hidden"/>
-
+                    <materialDesign:PackIcon Kind="CheckCircle" Name="IfTicked" 
+                                             Foreground="{StaticResource MainGlobalColor}"
+                                             VerticalAlignment="Top" HorizontalAlignment="Right" 
+                                             Panel.ZIndex="100" Margin="0 5 5 0" Visibility="Hidden"/>
+                    
                     <Image Name="CardImage"          
                            Stretch ="Uniform"
                            Width="{Binding ActualWidth, ElementName=UpPart}" 
