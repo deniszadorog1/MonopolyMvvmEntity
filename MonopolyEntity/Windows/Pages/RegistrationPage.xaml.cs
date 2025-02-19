@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using MonopolyDLL.Monopoly;
+using MonopolyDLL;
+using MonopolyEntity.VisualHelper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,22 +14,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Win32;
-using MonopolyDLL;
-using MonopolyDLL.Monopoly;
-using MonopolyEntity.VisualHelper;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace MonopolyEntity.Windows
+namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для RegistrationWindow.xaml
+    /// Логика взаимодействия для RegistrationPage.xaml
     /// </summary>
-    public partial class RegistrationWindow : Window
+    public partial class RegistrationPage : Page
     {
-        public RegistrationWindow()
+        private Frame _frame;
+        public RegistrationPage(Frame frame)
         {
+            _frame = frame;
             InitializeComponent();
         }
 
@@ -45,7 +47,7 @@ namespace MonopolyEntity.Windows
             if (LoginBox.Text == "Login")
             {
                 LoginBox.Text = string.Empty;
-                LoginBox.Foreground = Brushes.Black; 
+                LoginBox.Foreground = Brushes.Black;
             }
         }
 
@@ -54,7 +56,7 @@ namespace MonopolyEntity.Windows
             if (string.IsNullOrWhiteSpace(LoginBox.Text))
             {
                 LoginBox.Text = "Login";
-                LoginBox.Foreground = Brushes.Gray; 
+                LoginBox.Foreground = Brushes.Gray;
             }
         }
 
@@ -88,7 +90,7 @@ namespace MonopolyEntity.Windows
             {
                 string fullImgPath = openFileDialog.FileName;
                 UserImg.Source = new BitmapImage(new Uri(fullImgPath));
-                
+
                 string newImagePath = System.IO.Path.Combine(MainWindowHelper.GetUserImagePath(), openFileDialog.SafeFileName);
                 DBQueries.AddPicture(openFileDialog.SafeFileName);
                 _newUser.SetPictureId(DBQueries.GetLastPicId());
@@ -97,5 +99,6 @@ namespace MonopolyEntity.Windows
                 UserImg.Source = new BitmapImage(new Uri(newImagePath));
             }
         }
+
     }
 }

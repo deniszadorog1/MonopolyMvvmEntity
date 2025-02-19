@@ -125,7 +125,6 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\MainP
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\MainPageWindow\DescribeBox.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\MainPageWindow\UserAnimated.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\UpperMenu.g.cs
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\WorkWindow.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\App.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\GeneratedInternalTypeHelper.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity_MarkupCompile.cache
@@ -193,7 +192,6 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\MainP
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\MainPageWindow\DescribeBox.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\MainPageWindow\UserAnimated.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\UpperMenu.baml
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\WorkWindow.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.g.resources
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.Properties.Resources.resources
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.csproj.GenerateResource.cache
@@ -203,7 +201,17 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.exe
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity.pdb
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BusDescButton.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\InventoryControls\BusDescButton.baml
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\RegistrationWindow.g.cs
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\RegistrationWindow.baml
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\SetPlayersForGame.g.cs
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\SetPlayersForGame.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\ProfileSettings.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\ProfileSettings.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\UserSettingsFolder\UserSettings.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\UserSettingsFolder\UserSettings.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\UserSettingsFolder\ParamToCorrect.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\UserSettingsFolder\ParamToCorrect.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\StartPage.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\StartPage.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\RegistrationPage.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\RegistrationPage.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\SetPlayersInGame.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\WorkPage.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\SetPlayersInGame.baml
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\WorkPage.baml

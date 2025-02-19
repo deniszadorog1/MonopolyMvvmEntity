@@ -191,7 +191,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void ExitBut_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            WorkWindow window = (WorkWindow)Window.GetWindow(this);
+            MainWindow window = (MainWindow)Window.GetWindow(this);
             if (window != null)
             {
                 window.CaseFrame.Content = null;

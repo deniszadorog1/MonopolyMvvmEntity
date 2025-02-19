@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 
 using MonopolyEntity.Windows;
 using MonopolyDLL.Monopoly;
+
+using MonopolyEntity.Windows.Pages;
 namespace MonopolyEntity
 {
     /// <summary>
@@ -23,28 +25,121 @@ namespace MonopolyEntity
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MonopolySystem _monopolySys;
         public MainWindow()
         {
-            _monopolySys = new MonopolySystem();
-
             InitializeComponent();
+            SetStartPage();
         }
 
-        private void LoginBut_Click(object sender, RoutedEventArgs e)
+        private MonopolySystem _system = new MonopolySystem();
+        public void SetStartPage()
         {
-            //Set logged user here
-            WorkWindow window = new WorkWindow(_monopolySys);
-            window.ShowDialog();
+            MainFrame.Content = new StartPage(MainFrame, _system);
         }
 
-        private void RegistrationBut_Click(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            RegistrationWindow reg = new RegistrationWindow();
+            if (MainFrame.Content is StartPage start)
+            {
 
-            this.Visibility = Visibility.Hidden;
-            reg.ShowDialog();
-            this.Visibility = Visibility.Visible;
+            }
+            else if (MainFrame.Content is RegistrationPage reg)
+            {
+                this.Hide();
+                MainFrame.Content = new StartPage(MainFrame, _system);
+                e.Cancel = true;
+            }
+            else if (MainFrame.Content is WorkPage workPage)
+            {
+                this.Hide();
+                MainFrame.Content = new StartPage(MainFrame, _system);
+                e.Cancel = true;
+            }
+            else if (MainFrame.Content is MainPage main)
+            {
+                this.Hide();
+                MainFrame.Content = new StartPage(MainFrame, _system);
+                e.Cancel = true;
+            }
+            else if (MainFrame.Content is SetPlayersInGame playersInGame || 
+                MainFrame.Content is GamePage game || 
+                MainFrame.Content is InventoryPage inventory ||
+                MainFrame.Content is ProfileSettings settings) 
+            {
+                ClearCaseOpenEffect();
+
+                this.Hide();
+                MainFrame.Content = new MainPage(MainFrame, _system);
+                e.Cancel = true;
+            }
+        }
+
+        public void ClearCaseOpenEffect()
+        {
+            VisiableItems.Children.Clear();
+            CaseFrame.Content = null;
+            
+            MainFrame.Effect = null;
+            VisiableItems.Effect = null;
+
+            CaseFrame.Visibility = Visibility.Hidden;
+        }
+
+        public void SetWindowSize(Page page)
+        {
+            if (page is WorkPage || page is MainPage || page is GamePage || 
+                page is InventoryPage || page is ProfileSettings)
+            {
+                SetMaxSizeOfPage(page);
+                return;
+            }
+            this.MaxWidth = page.MaxWidth;
+            this.MaxHeight = page.MaxHeight;
+
+            this.Width = this.MaxWidth;
+            this.Height = this.MaxHeight;
+
+            SetInLittleWindow();
+        }
+
+        private void SetMaxSizeOfPage(Page page)
+        {
+            this.MaxWidth = SystemParameters.PrimaryScreenWidth;
+            this.MaxHeight = SystemParameters.PrimaryScreenHeight;
+
+            this.Width = this.MaxWidth;
+            this.Height = this.MaxHeight;
+
+            this.Top = 0;
+            this.Left = 0;
+        }
+
+        public void SetInLittleWindow()
+        {
+           this.WindowState = WindowState.Normal;
+
+            double screenWidth = SystemParameters.PrimaryScreenWidth;
+            double screenHeight = SystemParameters.PrimaryScreenHeight;
+
+            this.Left = (screenWidth - this.Width) / 2;
+            this.Top = (screenHeight - this.Height) / 2;
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void MainFrame_ContentRendered(object sender, EventArgs e)
+        {
+            SetWindowSize((Page)MainFrame.Content);
+
+            this.Show();
+        }
+
+        public void ClearVisiableItems()
+        {
+            VisiableItems.Children.Clear();
         }
     }
 }

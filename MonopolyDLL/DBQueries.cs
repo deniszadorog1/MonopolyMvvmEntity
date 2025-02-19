@@ -206,7 +206,7 @@ namespace MonopolyDLL
                         int? picId = null;
                         if (!(player.PictureFile is null)) picId = player.PictureFile.Id;
 
-                        return new User(player.Login, player.Id, picId);
+                        return new User(player.Login, player.Id, picId, player.Password);
                     }
                 }
             }
@@ -570,7 +570,7 @@ namespace MonopolyDLL
                     int? picId = null; 
                     if (!(user.PictureFile is null)) picId = user.PictureFile.Id;
  
-                    User addUser = new User(user.Login, user.Id, picId);
+                    User addUser = new User(user.Login, user.Id, picId, user.Password);
                     res.Add(addUser);
                 }
             }
@@ -604,6 +604,42 @@ namespace MonopolyDLL
             using(MonopolyModel model = new MonopolyModel())
             {
                return model.PictureFiles.OrderByDescending(p => p.Id).FirstOrDefault().Id;
+            }
+        }
+
+        public static void UpdateUserLogin(string oldOne, string newOne)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                Player user = model.Players.Where(x => x.Login == oldOne).FirstOrDefault();
+
+                if (user is null) return;
+                user.Login = newOne;
+                model.SaveChanges();
+            }
+        }
+
+        public static void UpdateUserPassword(string login, string newPassword)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                Player user = model.Players.Where(x => x.Login == login).FirstOrDefault();
+
+                if (user is null) return;
+                user.Password = newPassword;
+                model.SaveChanges();
+            }
+        }
+
+        public static void SetToPlayerLastPicId(string userLogin)
+        {
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                Player user = model.Players.Where(x => x.Login == userLogin).FirstOrDefault();
+
+                if (user is null) return;
+                user.PictureId = GetLastPicId();
+                model.SaveChanges();
             }
         }
     }

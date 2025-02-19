@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MonopolyDLL.Monopoly;
+using MonopolyEntity.Windows.UserControls;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,81 @@ namespace MonopolyEntity.Windows.Pages
     /// </summary>
     public partial class ProfileSettings : Page
     {
-        public ProfileSettings()
+        private MonopolySystem _system;
+        private Frame _frame;
+
+        public ProfileSettings(MonopolySystem system, Frame frame)
         {
+            _system = system;
+            _frame = frame;
             InitializeComponent();
+
+            AddControlParam();
+            SetUpperMenuStyle();
+
+            SetUpperMenuEvents();
         }
+
+        private void SetUpperMenuEvents()
+        {
+            UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
+            {
+                _frame.Content = new UserPage(_frame, _system);
+            };
+        }
+        
+        public void OpenInventoryPage()
+        {
+            InventoryPage page = new InventoryPage(_frame, _system);
+            _frame.Content = page;
+        }
+
+        public void OpenMainPage()
+        {
+            MainPage page = new MainPage(_frame, _system);
+            _frame.Content = page;
+        }
+
+        public void OpenGameField()
+        {
+/*            _system.MonGame = new Game(_system.LoggedUser);
+            SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
+            setPlayers.ShowDialog();*/
+        }
+
+        private void SetUpperMenuStyle()
+        {
+            //Set bg
+            UpperMenuu.CanvasBg.Background = new SolidColorBrush(Colors.White);
+            UpperMenuu.Background = new SolidColorBrush(Colors.White);
+
+            //Set buttons colors
+            UpperMenuu.MainLogoBut.Foreground = new SolidColorBrush(Colors.Gray);
+
+            UpperMenuu.StartGameBut.Foreground = new SolidColorBrush(Colors.White);
+            UpperMenuu.StartGameBut.Background = (Brush)Application.Current.Resources["MainGlobalColor"];
+
+            UpperMenuu.InventoryBut.Foreground = new SolidColorBrush(Colors.Gray);
+
+            UpperMenuu.UserAnim.UserIcon.Foreground = new SolidColorBrush(Colors.Gray);
+            UpperMenuu.AllPanelGrid.Width = CenterColDef.Width.Value;
+        }
+
+        private UserSettings _settings;
+        public void AddControlParam()
+        {
+            const int _size = 800;
+            _settings = new UserSettings(_system, _frame)
+            {
+                Width = _size,
+                Name = "ToCorrectControl"
+            };
+            SettignsParamGrid.Children.Add(_settings);
+        }
+
+
+
+
+
     }
 }

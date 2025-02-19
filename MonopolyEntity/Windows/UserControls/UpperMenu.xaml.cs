@@ -25,7 +25,7 @@ namespace MonopolyEntity.Windows.UserControls
     public partial class UpperMenu : UserControl
     {
         private Page _page;
-        
+
         public UpperMenu()
         {
             InitializeComponent();
@@ -51,14 +51,18 @@ namespace MonopolyEntity.Windows.UserControls
             _page = Helper.FindParent<Page>(this);
             if (_page is null) return;
 
-            if(_page is UserPage page)
+            if (_page is UserPage page)
             {
                 page.OpenInventoryPage();
                 return;
             }
-            else if(_page is Pages.MainPage mainPage)
+            else if (_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenInventoryPage();
+            }
+            else if (_page is Pages.ProfileSettings settings)
+            {
+                settings.OpenInventoryPage();
             }
         }
 
@@ -67,18 +71,22 @@ namespace MonopolyEntity.Windows.UserControls
             _page = _page = Helper.FindParent<Page>(this);
             if (_page is null) return;
 
-            if(_page is Pages.MainPage mainPage)
+            if (_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenMainPage();
             }
-            else if(_page is InventoryPage invPage)
+            else if (_page is InventoryPage invPage)
             {
                 invPage.OpenMainPage();
             }
-            else if(_page is UserPage userPage)
+            else if (_page is UserPage userPage)
             {
                 userPage.OpenMainPage();
-            } 
+            }
+            else if (_page is ProfileSettings settings)
+            {
+                settings.OpenMainPage();
+            }
         }
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
@@ -86,17 +94,21 @@ namespace MonopolyEntity.Windows.UserControls
             _page = _page = Helper.FindParent<Page>(this);
             if (_page is null) return;
 
-            if(_page is Pages.MainPage mainPage)
+            if (_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenGameField();
             }
-            else if(_page is InventoryPage invPage)
+            else if (_page is InventoryPage invPage)
             {
                 invPage.OpenGameField();
             }
-            else if(_page is UserPage userPage)
+            else if (_page is UserPage userPage)
             {
                 userPage.OpenGameField();
+            }
+            else if (_page is ProfileSettings settigns)
+            {
+                settigns.OpenGameField();
             }
         }
     }

@@ -1,10 +1,8 @@
-﻿using MonopolyDLL;
-using MonopolyDLL.Monopoly;
+﻿using MonopolyDLL.Monopoly;
+using MonopolyDLL;
 using MonopolyEntity.VisualHelper;
-using MonopolyEntity.Windows.Pages;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,29 +13,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MonopolyEntity.Windows
+namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для SetPlayersForGame.xaml
+    /// Логика взаимодействия для SetPlayersInGame.xaml
     /// </summary>
-    public partial class SetPlayersForGame : Window
-    {
+    public partial class SetPlayersInGame : Page
+    {        
         List<User> _users;
         MonopolySystem _system;
         Frame _frame;
 
         List<User> _playersInGame;
         List<User> _notAddedPlayers;
-
-        public SetPlayersForGame(MonopolySystem system, Frame frame)
+        public SetPlayersInGame(MonopolySystem system, Frame frame)
         {
             _users = DBQueries.GetAllPlayers();
             _system = system;
             _frame = frame;
-
             InitializeComponent();
+            
             FillStartListBoxes();
         }
 
@@ -76,9 +74,9 @@ namespace MonopolyEntity.Windows
                 TextBlock block = GetTextBlock(users[i].Login);
                 block.VerticalAlignment = VerticalAlignment.Center;
                 block.Margin = new Thickness(5, 0, 0, 0);
-   
+
                 panel.Children.Add(block);
-                
+
                 box.Items.Add(panel);
             }
         }
@@ -94,7 +92,7 @@ namespace MonopolyEntity.Windows
 
         private void GetBackBut_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            //Close();
         }
 
         private void RemovePlayerBut_Click(object sender, RoutedEventArgs e)
@@ -113,17 +111,17 @@ namespace MonopolyEntity.Windows
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
-/*            const int leastAmountOfPlayers = 2;
-            if (!_users.Any(x => x.Login == _system.LoggedUser.Login) ||
-                _playersInGame.Count < leastAmountOfPlayers) return;
+            /*            const int leastAmountOfPlayers = 2;
+                        if (!_users.Any(x => x.Login == _system.LoggedUser.Login) ||
+                            _playersInGame.Count < leastAmountOfPlayers) return;
 
 
-            _system.MonGame.Players = _playersInGame;*/
+                        _system.MonGame.Players = _playersInGame;*/
 
             GamePage page = new GamePage(_frame, _system);
             _frame.Content = page;
 
-            Close();
+            //Close();
         }
 
         private void AddPlayerInGameBut_Click(object sender, RoutedEventArgs e)

@@ -8,6 +8,7 @@ using MonopolyEntity.Windows.UserControls.MainPage;
 
 using MonopolyDLL.Monopoly;
 using MonopolyEntity.VisualHelper;
+using System.Windows;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -38,12 +39,18 @@ namespace MonopolyEntity.Windows.Pages
             UpperMenuu.UserAnim.ExitBut.Click += (sender, e) =>
             {
                 _frame.Content = null;
-                ((WorkWindow)((Grid)_frame.Parent).Parent).Close();
+                ((MainWindow)((Grid)_frame.Parent).Parent).Close();
+            };
+
+            UpperMenuu.UserAnim.SettingsBut.Click += (sender, e) =>
+            {
+                _frame.Content = new ProfileSettings(_system, _frame);
             };
         }
 
         public void SetUserImageEvent()
         {
+            return;
             UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
             {
                 _frame.Content = new UserPage(_frame, _system);
@@ -87,9 +94,13 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenGameField()
         {
-            _system.MonGame = new Game(_system.LoggedUser);
-            SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
-            setPlayers.ShowDialog();
+            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
+            _frame.Content = page;
+
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize(page);
+            /*            _system.MonGame = new Game(_system.LoggedUser);
+                        SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
+                        setPlayers.ShowDialog();*/
         }
 
         public void OpenMainPage()
@@ -97,5 +108,6 @@ namespace MonopolyEntity.Windows.Pages
             MainPage page = new MainPage(_frame, _system);
             _frame.Content = page;
         }
+
     }
 }

@@ -53,7 +53,7 @@ namespace MonopolyEntity.Windows.Pages
             UpperMenuu.UserAnim.ExitBut.Click += (sender, e) =>
             {
                 _frame.Content = null;
-                ((WorkWindow)((Grid)_frame.Parent).Parent).Close();
+                ((MainWindow)((Grid)_frame.Parent).Parent).Close();
             };
         }
 
@@ -155,7 +155,7 @@ namespace MonopolyEntity.Windows.Pages
         {
             if (_frame.Opacity == _inActiveOpacity) return;
 
-            WorkWindow window = Helper.FindParent<WorkWindow>(_frame);
+            MainWindow window = Helper.FindParent<MainWindow>(_frame);
             Canvas items = window.VisiableItems;
 
             _busDesc = new BussinessDescription(bus);
@@ -339,8 +339,11 @@ namespace MonopolyEntity.Windows.Pages
         {
             if (_frame.Opacity == _inActiveOpacity) return;
 
-            WorkWindow window = Helper.FindParent<WorkWindow>(_frame);
+            MainWindow window = Helper.FindParent<MainWindow>(_frame);
             Canvas items = window.VisiableItems;
+
+            Console.WriteLine(window.CaseFrame.Visibility);
+            Console.WriteLine(items.Visibility);
 
             _boxDescript = new BoxDescription(_frame, box, _system.LoggedUser.Login);
             SetBoxDescriptionParams(cardLocation, caseImg);
@@ -415,6 +418,7 @@ namespace MonopolyEntity.Windows.Pages
 
         public void SetUserImageEvent()
         {
+            return;
             UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
             {
                 _frame.Content = new UserPage(_frame, _system);
@@ -436,8 +440,10 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenGameField()
         {
-            GamePage page = new GamePage(_frame, _system);
-            _frame.Content = page;
+            return;
+/*            _system.MonGame = new MonopolyDLL.Monopoly.Game(_system.LoggedUser);
+            SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
+            setPlayers.ShowDialog();*/
         }
 
         public void OpenMainPage()
@@ -486,8 +492,9 @@ namespace MonopolyEntity.Windows.Pages
 
         private void ClearDescription()
         {
-            WorkWindow window = Helper.FindParent<WorkWindow>(_frame);
+            MainWindow window = Helper.FindParent<MainWindow>(_frame);
             window.ClearVisiableItems();
+            window.CaseFrame.Visibility = Visibility.Hidden;
         }
     }
 }

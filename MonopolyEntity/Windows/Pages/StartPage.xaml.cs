@@ -1,0 +1,52 @@
+﻿using MonopolyDLL.Monopoly;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Core.Mapping;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Policy;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace MonopolyEntity.Windows.Pages
+{
+    /// <summary>
+    /// Логика взаимодействия для StartPage.xaml
+    /// </summary>
+    public partial class StartPage : Page
+    {
+        private MonopolySystem _monopolySys;
+
+        private Frame _frame;
+        public StartPage(Frame frame, MonopolySystem system)
+        {
+            _frame = frame;
+            _monopolySys = system;
+
+            InitializeComponent();
+        }
+
+        private void LoginBut_Click(object sender, RoutedEventArgs e)
+        {
+            WorkPage page = new WorkPage(_monopolySys, _frame);
+            //_frame.Content = page;
+        }
+
+        private void RegistrationBut_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationPage page = new RegistrationPage(_frame);
+            _frame.Content = page;
+        }
+
+    }
+}

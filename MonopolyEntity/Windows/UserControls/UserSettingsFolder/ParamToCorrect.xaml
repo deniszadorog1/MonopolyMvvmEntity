@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.UserSettingsFolder.ParamToCorrect"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.UserSettingsFolder"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="800"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             >
+    <Grid Name ="Check">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="ParamName" Foreground="Gray" Name ="ParamNameBlock"
+                   FontSize="32" Width="{Binding ActualWidth, ElementName=Check}"/>
+
+        <Grid Grid.Row="1" >
+            <TextBox HorizontalAlignment="Left" Background="Transparent"
+                 FontSize="24" BorderBrush="Black" BorderThickness="0.5"
+                 Width="{Binding ActualWidth, ElementName=Check}" 
+                 
+                 materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainGlobalColor}"
+                 materialDesign:TextFieldAssist.DecorationVisibility="Visible" CaretBrush="Black"
+                 
+                 Name ="ParamNameBox" 
+                 GotFocus="ParamNameBox_GotFocus"
+                 LostFocus="ParamNameBox_LostFocus"/>
+
+
+            <PasswordBox Name="ParamPasswordBox" PasswordChar="*" 
+                          HorizontalAlignment="Left" Background="Transparent"
+                         FontSize="24" BorderBrush="Black" BorderThickness="0.5"
+                         Width="{Binding ActualWidth, ElementName=Check}" 
+                 
+                         materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainGlobalColor}"
+                         materialDesign:TextFieldAssist.DecorationVisibility="Visible" CaretBrush="Black"
+                 
+                         GotFocus="ParamNameBox_GotFocus"
+                         LostFocus="ParamNameBox_LostFocus"
+                         Visibility="Hidden"/>
+
+            <materialDesign:PackIcon Kind="CheckboxMarked" Width="50" Height="50"  
+                                     Foreground="Green" VerticalAlignment="Center" 
+                                     HorizontalAlignment="Right" Name ="SaveBox" 
+                                     MouseEnter="SaveBox_MouseEnter" 
+                                     MouseLeave="SaveBox_MouseLeave"
+                                     Visibility="Hidden"/>
+
+            <materialDesign:PackIcon Kind="CloseBox" Width="50" Height="50"  
+                                     Foreground="Red" VerticalAlignment="Center" 
+                                     HorizontalAlignment="Right" Name ="CrossBox"
+                                     Visibility="Hidden"/>
+            
+        </Grid>
+    </Grid>
+</UserControl>

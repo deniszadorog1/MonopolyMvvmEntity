@@ -38,9 +38,10 @@ namespace MonopolyDLL.Monopoly
         private int? _pictureId;
 
 
-        public User(string login, int id, int? picId)
+        public User(string login, int id, int? picId, string password)
         {
             Login = login;
+            Password = password;
             Id = id;
             GameBusses = new List<InventoryObjs.BoxItem>();
             AmountOfMoney = 15000;

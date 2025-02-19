@@ -102,14 +102,20 @@
     <Compile Include="Windows\Pages\ProfileSettings.xaml.cs">
       <DependentUpon>ProfileSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Pages\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Pages\SetPlayersInGame.xaml.cs">
+      <DependentUpon>SetPlayersInGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Pages\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Pages\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\RegistrationWindow.xaml.cs">
-      <DependentUpon>RegistrationWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\SetPlayersForGame.xaml.cs">
-      <DependentUpon>SetPlayersForGame.xaml</DependentUpon>
+    <Compile Include="Windows\Pages\WorkPage.xaml.cs">
+      <DependentUpon>WorkPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UserControls\CaseCard.xaml.cs">
       <DependentUpon>CaseCard.xaml</DependentUpon>
@@ -213,8 +219,11 @@
     <Compile Include="Windows\UserControls\UpperMenu.xaml.cs">
       <DependentUpon>UpperMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\WorkWindow.xaml.cs">
-      <DependentUpon>WorkWindow.xaml</DependentUpon>
+    <Compile Include="Windows\UserControls\UserSettingsFolder\ParamToCorrect.xaml.cs">
+      <DependentUpon>ParamToCorrect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UserControls\UserSettingsFolder\UserSettings.xaml.cs">
+      <DependentUpon>UserSettings.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -248,15 +257,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\Pages\RegistrationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Pages\SetPlayersInGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Pages\StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Pages\UserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\RegistrationWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\SetPlayersForGame.xaml">
+    <Page Include="Windows\Pages\WorkPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -396,7 +413,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\WorkWindow.xaml">
+    <Page Include="Windows\UserControls\UserSettingsFolder\ParamToCorrect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\UserSettingsFolder\UserSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

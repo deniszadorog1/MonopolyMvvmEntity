@@ -1,0 +1,107 @@
+﻿<Page x:Class="MonopolyEntity.Windows.Pages.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MonopolyEntity.Windows.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="450"
+      Height="450" Width="450"
+      MinHeight="450" MaxHeight="450"
+      MinWidth="450" MaxWidth="450"
+      Title="StartPage"
+      
+      xmlns:gif="http://wpfanimatedgif.codeplex.com"
+
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"      
+      >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.22*"/>
+        </Grid.ColumnDefinitions>
+
+        <Canvas Grid.Column="0" Width="200" Name="LeftPart" Background="{StaticResource FifthGlobalColor}">
+            <StackPanel  HorizontalAlignment="Right" 
+                 Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Canvas}}">
+
+                <TextBlock Margin="0 40 0 0" FontSize="26" Foreground="{StaticResource SixGlobalColor}"
+                        Text="Monopoly "  TextAlignment="Center" />
+
+                <TextBlock Margin="0 20 0 0" FontSize="16" Text="You can login" TextAlignment="Center"/>
+
+                <TextBlock FontSize="16" Text="Or register here" TextAlignment="Center"/>
+
+                <Image x:Name="Gif" Margin="0 100 5 0" Width="180" 
+             gif:ImageBehavior.RepeatBehavior="Forever"
+             gif:ImageBehavior.AnimatedSource="/Visuals/Gifs/Dude.gif"
+                    />
+
+            </StackPanel>
+        </Canvas>
+
+        <Canvas Grid.Column="1" Name="RightPart" Background="#EBEBEB">
+
+            <Grid Name ="RightObjects" Margin="5 80 0 0" Width="220">
+                <StackPanel Name="FillBoxes" Orientation="Vertical"
+                 VerticalAlignment="Center"  Width="250">
+
+                    <TextBox Name="LogginBox"
+                   VerticalAlignment="Center"
+                   materialDesign:HintAssist.Hint="Login"
+                   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                   materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource ThirdGlobalColor}"
+                   materialDesign:HintAssist.Foreground="{StaticResource ThirdGlobalColor}"
+                   FontSize="16"
+                 />
+
+                    <PasswordBox Name="PasswordBox"
+                   VerticalAlignment="Center"
+                   materialDesign:HintAssist.Hint="Password"
+                   Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                   Margin="0 15 0 0"
+                   materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource ThirdGlobalColor}"
+                   materialDesign:HintAssist.Foreground="{StaticResource ThirdGlobalColor}"
+                   FontSize="16"
+                 />
+                </StackPanel>
+
+                <StackPanel Name ="RightButtons" VerticalAlignment="Center" 
+                         Margin="0 180 0 0" Orientation="Horizontal">
+                    <Button Name="LoginBut"
+                     BorderBrush="{StaticResource ThirdGlobalColor}"
+                       Background="{StaticResource ThirdGlobalColor}"
+                       Width="110" HorizontalAlignment="Left" Margin="0 0 0 0"
+                       Content="Log in" HorizontalContentAlignment="Center"
+                       IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                       Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                       ToolTip="Login"
+                       materialDesign:RippleAssist.Feedback="{StaticResource ThirdGlobalColor}"
+                       Click="LoginBut_Click"  
+                       />
+
+                    <Button  Foreground="{StaticResource ThirdGlobalColor}"
+                       Name ="RegistrationBut" 
+                       Margin="5 0 0 0"
+                       Width="110"
+                       Content="Registration" HorizontalContentAlignment="Center"
+                       IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                       Style="{StaticResource MaterialDesignFlatButton}"
+                       ToolTip="Registration"
+                       materialDesign:RippleAssist.Feedback="{StaticResource ThirdGlobalColor}"
+                       Click="RegistrationBut_Click"/>
+                </StackPanel>
+
+            </Grid>
+
+        </Canvas>
+    </Grid>
+</Page>

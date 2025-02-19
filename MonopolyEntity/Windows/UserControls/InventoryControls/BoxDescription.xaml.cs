@@ -52,8 +52,8 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
         private void OpenCaseBut_Click(object sender, RoutedEventArgs e)
         {
             //return;
-            WorkWindow obj = 
-                Helper.FindParent<WorkWindow>(_frame);
+            MainWindow obj = 
+                Helper.FindParent<MainWindow>(_frame);
 
             OpenCase inventory = new OpenCase(_caseBox, _loggedUserLogin);
             //_frame.Content = inventory;

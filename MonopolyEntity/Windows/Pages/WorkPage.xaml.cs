@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyDLL.Monopoly;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,22 +11,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using MonopolyEntity.Windows.Pages;
-using MonopolyDLL.Monopoly;
-
-namespace MonopolyEntity.Windows
+namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для WorkWindow.xaml
+    /// Логика взаимодействия для WorkPage.xaml
     /// </summary>
-    public partial class WorkWindow : Window
+    public partial class WorkPage : Page
     {
         private MonopolySystem _monSystem;
-        public WorkWindow(MonopolySystem monSystem)
+
+        private Frame _frame;
+        public WorkPage(MonopolySystem monSystem, Frame frmae)
         {
             _monSystem = monSystem;
+            _frame = frmae;
+
             InitializeComponent();
 
             SetStartPage();
@@ -34,16 +37,17 @@ namespace MonopolyEntity.Windows
         public void SetStartPage()
         {
             SetWindowSize();
-            MainPage mainPage = new MainPage(WorkFrame, _monSystem);
-            WorkFrame.Content = mainPage;   
+            MainPage mainPage = new MainPage(_frame, _monSystem);
+            _frame.Content = mainPage;
         }
 
         public void SetWindowSize()
         {
+            return;
             Window parentWindow = Window.GetWindow(this);
             if (parentWindow != null)
             {
-                parentWindow.WindowState = WindowState.Maximized; 
+                parentWindow.WindowState = WindowState.Maximized;
             }
         }
 
@@ -52,5 +56,9 @@ namespace MonopolyEntity.Windows
             VisiableItems.Children.Clear();
         }
 
+
+
     }
+
+
 }
