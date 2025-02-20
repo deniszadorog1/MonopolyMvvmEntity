@@ -31,8 +31,8 @@ namespace MonopolyEntity.Windows.UserControls.MainPage
         {
             var animation = new DoubleAnimation
             {
-                To = 0, // Новое положение (150 - 100 = 50)
-                Duration = TimeSpan.FromSeconds(0.2) // Длительность анимации
+                To = 0,
+                Duration = TimeSpan.FromSeconds(0.2)
             };
 
             animation.Completed -= Animation_Complited;
@@ -47,25 +47,18 @@ namespace MonopolyEntity.Windows.UserControls.MainPage
             ElemBorder.Background = new SolidColorBrush(Colors.White);
         }
 
-        private void UserIcon_MouseLeave(object sender, MouseEventArgs e)
+        private void UserMenu_MouseLeave(object sender, MouseEventArgs e)
         {
             return;
-            var animation = new DoubleAnimation
+            if (UserMenu.Visibility == Visibility.Visible)
             {
-                To = 150, 
-                Duration = TimeSpan.FromSeconds(0.2)
-            };
-            UserIcon.BeginAnimation(Canvas.LeftProperty, animation);
-
-            UserMenu.Visibility = Visibility.Hidden;
-            ElemBorder.Background = new SolidColorBrush(Colors.Transparent);
+                UserMenu.Visibility = Visibility.Hidden;
+            }
         }
-
-
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
-            if(sender is Button but)
+            if (sender is Button but)
             {
                 but.Foreground = new SolidColorBrush(Colors.White);
                 but.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#37BC9D"));
@@ -80,5 +73,6 @@ namespace MonopolyEntity.Windows.UserControls.MainPage
                 but.Background = new SolidColorBrush(Colors.White);
             }
         }
+
     }
 }

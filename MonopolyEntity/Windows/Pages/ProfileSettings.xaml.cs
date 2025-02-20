@@ -1,4 +1,5 @@
 ﻿using MonopolyDLL.Monopoly;
+using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.UserControls;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,23 @@ namespace MonopolyEntity.Windows.Pages
             SetUpperMenuStyle();
 
             SetUpperMenuEvents();
+
+            SetUserMenu();
+        }
+
+        public void SetUserMenu()
+        {
+            MainWindowHelper.SetUpperMenuParams(UpperMenuu, _system.LoggedUser);
+            UpperMenuu.UserAnim.ExitBut.Click += (sender, e) =>
+            {
+                _frame.Content = null;
+                ((MainWindow)((Grid)_frame.Parent).Parent).Close();
+            };
+
+            UpperMenuu.UserAnim.SettingsBut.Click += (sender, e) =>
+            {
+                _frame.Content = new ProfileSettings(_system, _frame);
+            };
         }
 
         private void SetUpperMenuEvents()
@@ -60,9 +78,8 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenGameField()
         {
-/*            _system.MonGame = new Game(_system.LoggedUser);
-            SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
-            setPlayers.ShowDialog();*/
+            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
+            _frame.Content = page;
         }
 
         private void SetUpperMenuStyle()

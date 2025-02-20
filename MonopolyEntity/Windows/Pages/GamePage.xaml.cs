@@ -49,7 +49,7 @@ namespace MonopolyEntity.Windows.Pages
         GameField _field;
         private void AddGameField()
         {
-            _field = new GameField(_system, _userCards)
+            _field = new GameField(_system, _userCards, _frame)
             {
                 Height = 950,
                 Width = 950, 

@@ -26,13 +26,15 @@
                  materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainGlobalColor}"
                  materialDesign:TextFieldAssist.DecorationVisibility="Visible" CaretBrush="Black"
                  
+                 VerticalContentAlignment="Top"
+                     
                  Name ="ParamNameBox" 
                  GotFocus="ParamNameBox_GotFocus"
                  LostFocus="ParamNameBox_LostFocus"/>
 
 
-            <PasswordBox Name="ParamPasswordBox" PasswordChar="*" 
-                          HorizontalAlignment="Left" Background="Transparent"
+            <PasswordBox Name="ParamPasswordBox" PasswordChar="*" VerticalContentAlignment="Top"
+                         HorizontalAlignment="Left" Background="Transparent"
                          FontSize="24" BorderBrush="Black" BorderThickness="0.5"
                          Width="{Binding ActualWidth, ElementName=Check}" 
                  
@@ -54,7 +56,7 @@
                                      Foreground="Red" VerticalAlignment="Center" 
                                      HorizontalAlignment="Right" Name ="CrossBox"
                                      Visibility="Hidden"/>
-            
+
         </Grid>
     </Grid>
 </UserControl>

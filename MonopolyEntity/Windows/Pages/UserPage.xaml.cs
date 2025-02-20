@@ -56,9 +56,8 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenGameField()
         {
-/*            _system.MonGame = new Game(_system.LoggedUser);
-            SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
-            setPlayers.ShowDialog();*/
+            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
+            _frame.Content = page;
         }
 
 

@@ -23,8 +23,8 @@ namespace MonopolyDLL.Monopoly
         public int DoublesCounter { get; set; }
 
 
-        private int _firstCube = 1;
-        private int _secondCube = 1;
+        private int _firstCube = -1;
+        private int _secondCube = -1;
 
         public Game(User loggedUser)
         {
@@ -82,8 +82,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 3;// _rnd.Next(1, 7);
-            _secondCube = 3;// _rnd.Next(1, 7);
+            _firstCube =  _rnd.Next(1, 7);
+            _secondCube =  _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -993,7 +993,7 @@ namespace MonopolyDLL.Monopoly
 
         public bool IfCubeDropsAreEqual()
         {
-            return _firstCube == _secondCube;
+            return _firstCube == _secondCube && _firstCube != -1  && _secondCube != -1;
         }
 
         public void AddToDoubleCounter()
@@ -1123,6 +1123,11 @@ namespace MonopolyDLL.Monopoly
         {
             int position = Players[StepperIndex].Position;
             return ((ParentBus)GameBoard.Cells[position]).OwnerIndex;
+        }
+
+        public string GetBusOnStepperName()
+        {
+            return ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).Name;
         }
 
     }

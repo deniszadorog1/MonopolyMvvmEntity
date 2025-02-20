@@ -1,4 +1,5 @@
 ﻿using MonopolyEntity.VisualHelper;
+using MonopolyEntity.Windows.UserControls.GameControls.Other;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -110,6 +111,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             int horValue = ifStepper ? translateMove : 0;
             UserCardGrid.Background = brush is null ? _usualBrush : brush;
 
+            SetTimer(brush);
+
             var widthAnimation = new DoubleAnimation
             {
                 From = UserCardGrid.Width,
@@ -139,7 +142,58 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);
             UserCardGrid.BeginAnimation(HeightProperty, heightAnimation);
-        }        
+        }    
+        
+        public void SetTimer(SolidColorBrush brush)
+        {
+            if (brush is null)
+            {
+                StopTimer();
+                return;
+            }
+            ShowTimer(brush);
+        }
+
+        public void ShowTimer(SolidColorBrush brush)
+        {
+            UserTimer.Visibility = Visibility.Visible;
+            UserTimer.SetTimer();
+
+            SetTimerBgColor(brush);
+        }
+
+        private readonly SolidColorBrush _firstUserTimerColor = 
+            new SolidColorBrush(Color.FromRgb(188, 66, 70));
+
+        private readonly SolidColorBrush _secondUserTimerColor =
+            new SolidColorBrush(Color.FromRgb(54, 152, 199));
+
+        private readonly SolidColorBrush _thirdUserTimerColor =
+            new SolidColorBrush(Color.FromRgb(111, 168, 73));
+
+        private readonly SolidColorBrush _fourthUserTimerColor =
+            new SolidColorBrush(Color.FromRgb(115, 111, 198));
+
+        private readonly SolidColorBrush _fifthUserTimerColor =
+            new SolidColorBrush(Color.FromRgb(185, 131, 57));
+
+        public void SetTimerBgColor(SolidColorBrush brush)
+        {
+            UserTimer.BgBorder.Background =
+                brush == (SolidColorBrush)Application.Current.Resources["FirstUserColor"] ? _firstUserTimerColor :
+                brush == (SolidColorBrush)Application.Current.Resources["SecondUserColor"] ? _secondUserTimerColor :
+                brush == (SolidColorBrush)Application.Current.Resources["ThirdUserColor"] ? _thirdUserTimerColor :
+                brush == (SolidColorBrush)Application.Current.Resources["FourthUserColor"] ? _fourthUserTimerColor : _fifthUserTimerColor;
+        }
+
+        public void StopTimer()
+        {
+            UserTimer.Visibility = Visibility.Hidden;
+            UserTimer.StopTimer();
+        }
+       
+
+
 
         public void HorizAnim_Complited(object sender, EventArgs e)
         {

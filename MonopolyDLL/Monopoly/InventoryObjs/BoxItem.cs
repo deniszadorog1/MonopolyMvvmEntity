@@ -38,6 +38,11 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
             bColor = b;
         }
 
+        public BoxItem()
+        {
+
+        }
+
         public void SetTick(bool? tick)
         {
             if (tick is null) return;

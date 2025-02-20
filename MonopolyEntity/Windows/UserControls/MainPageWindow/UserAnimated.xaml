@@ -28,7 +28,7 @@
 
             <Grid Name ="UserMenu"  Height="150" Width="200" 
                   Visibility="Hidden" Panel.ZIndex="100" 
-                  MouseLeave="UserIcon_MouseLeave" >
+                  MouseLeave="UserMenu_MouseLeave" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition/>

@@ -85,36 +85,40 @@
                     <Border BorderBrush="Gray" BorderThickness="1" Margin="10 10 0 0"  
                         CornerRadius="5" Height="35" Width="450">
                         <TextBox FontSize="16" 
-                    MaxLength="32"
-                    materialDesign:HintAssist.Hint="Enter Text"
-                    materialDesign:TextFieldAssist.UnderlineBrush="Transparent" />
+                            MaxLength="32"
+                            Name ="FilterByBameBox"
+                                 TextChanged="FilterByBameBox_TextChanged"
+                            materialDesign:HintAssist.Hint="Enter Text"
+                            materialDesign:TextFieldAssist.UnderlineBrush="Transparent" />
                     </Border>
 
 
                     <Border Height="40" Width="200" Margin="20 10 0 0" CornerRadius="5" 
                         BorderBrush="Gray" BorderThickness="1">
                         <ComboBox VerticalAlignment="Top"
-                    Background="Transparent" Height="40"
-                    materialDesign:HintAssist.Hint="All Items"
-                    VerticalContentAlignment="Center">
-                            <ComboBoxItem Content="All Items" />
-                            <ComboBoxItem Content="Keys" />
-                            <ComboBoxItem Content="Pins" />
-                            <ComboBoxItem Content="Stickers"/>
-                            <ComboBoxItem Content="Other"/>
-                        </ComboBox>
+                            Background="Transparent" Height="40" Name ="TypeChooseBox"
+                            SelectionChanged="TypeChooseBox_SelectionChanged"
+                            materialDesign:HintAssist.Hint="All Items"
+                            VerticalContentAlignment="Center">
+                            <ComboBoxItem Content="Items" />
+                            <ComboBoxItem Content="Box" />
+                            <ComboBoxItem Content="All" Name="BaseChooseType"/>
+                    </ComboBox>
                     </Border>
 
                     <Border Height="40" Width="200" Margin="20 10 0 0" CornerRadius="5" 
                         BorderBrush="Gray" BorderThickness="1">
-                        <ComboBox VerticalAlignment="Top"
+                        <ComboBox VerticalAlignment="Top" SelectionChanged="RareFilter_SelectionChanged"
+                                  Name ="RareFilter" 
                     Background="Transparent" Height="40"
-                    materialDesign:HintAssist.Hint="By Time"
+                    materialDesign:HintAssist.Hint="All Rearities"
                     VerticalContentAlignment="Center">
-                            <ComboBoxItem Content="By Class" />
-                            <ComboBoxItem Content="By Monopoly" />
-                            <ComboBoxItem Content="By Time" />
-                            <ComboBoxItem Content="By Type"/>
+                            <ComboBoxItem Content="Usual" />
+                            <ComboBoxItem Content="Rare" />
+                            <ComboBoxItem Content="VeryRare" />
+                            <ComboBoxItem Content="ExtrimlyRare"/>
+                            <ComboBoxItem Content="Legend"/>
+                            <ComboBoxItem Content="All" Name ="BaseChooseRare"/>
                         </ComboBox>
                     </Border>
 

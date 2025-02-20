@@ -42,7 +42,7 @@ namespace MonopolyEntity.Windows.UserControls
             };
             UserAnim.UserIcon.BeginAnimation(Canvas.LeftProperty, animation);
 
-            UserAnim.UserMenu.Visibility = System.Windows.Visibility.Hidden;
+            UserAnim.UserMenu.Visibility = Visibility.Hidden;
             UserAnim.ElemBorder.Background = new SolidColorBrush(Colors.Transparent);
         }
 

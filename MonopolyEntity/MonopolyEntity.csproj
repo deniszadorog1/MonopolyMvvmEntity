@@ -195,6 +195,9 @@
     <Compile Include="Windows\UserControls\GameControls\Other\Dice.xaml.cs">
       <DependentUpon>Dice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\UserControls\GameControls\Other\UserTimer.xaml.cs">
+      <DependentUpon>UserTimer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\UserControls\GameControls\UserCard.xaml.cs">
       <DependentUpon>UserCard.xaml</DependentUpon>
     </Compile>
@@ -378,6 +381,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\UserControls\GameControls\Other\Dice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UserControls\GameControls\Other\UserTimer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

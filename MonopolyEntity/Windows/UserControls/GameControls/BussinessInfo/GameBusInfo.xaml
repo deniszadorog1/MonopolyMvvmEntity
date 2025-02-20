@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo"
              mc:Ignorable="d" 
-             d:DesignHeight="320" d:DesignWidth="260" MaxWidth="260">
+             d:DesignHeight="320" d:DesignWidth="270" MaxWidth="270">
 
     <UserControl.Resources>
         <Style x:Key="PaymentNumber" TargetType="TextBlock">
@@ -53,17 +53,18 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Name="BusName" 
-                               Foreground="White"  Margin="10 10 0 0"
-                               Text="There should bus name" FontSize="20"/>
+                    <TextBlock Grid.Row="0" Name="BusName" VerticalAlignment="Bottom"
+                               Foreground="White" Margin="12 0 0 0"
+                               Text="There should bus name" FontSize="22"
+                               FontFamily="Open Sans" FontWeight="SemiBold"/>
 
-                    <TextBlock Grid.Row="1" Name="BusType" Margin="10 5 0 0" 
-                               Foreground="White" 
+                    <TextBlock Grid.Row="1" Name="BusType" Margin="12 0 0 0" 
+                               Foreground="White" FontFamily="Open Sans"
                                Text="There should bus type" FontSize="16"/>
                 </Grid>
             </Border>
 
-            <Grid Grid.Row="1" Margin="10 5 20 5">
+            <Grid Grid.Row="1" Margin="12 5 20 5">
                 <TextBlock Name="BusDescription"
                            Text="There should be bus type description" 
                            FontSize="16" TextWrapping="Wrap"/>
@@ -84,27 +85,27 @@
                 
             </Grid>
 
-            <Grid Grid.Row="2" Margin="10 5 20 5">
+            <Grid Grid.Row="2" Margin="12 5 20 5">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <TextBlock Text="One field - "  Style="{StaticResource PriceNames}"/>
+                    <TextBlock Text="One field"  Style="{StaticResource PriceNames}"/>
                     <TextBlock Name ="OneFieldMoney" Style="{StaticResource PaymentNumber}"/>
                     <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <TextBlock Text="Two field - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Text="Two field" Style="{StaticResource PriceNames}"/>
                     <TextBlock Name ="TwoFieldMoney"
                                Style="{StaticResource PaymentNumber}"/>
                     <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
             </Grid>
 
-            <Grid Grid.Row="3" Margin="10 15 20 5">
+            <Grid Grid.Row="3" Margin="12 15 20 5">
 
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -113,19 +114,19 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <TextBlock Text="Field price - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Text="Field price" Style="{StaticResource PriceNames}"/>
                     <TextBlock Name ="FieldPrice" Style="{StaticResource PaymentNumber}"/>
                     <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
-                    <TextBlock Text="Deposit price - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Text="Deposit price" Style="{StaticResource PriceNames}"/>
                     <TextBlock Name ="DepositPriceText" Style="{StaticResource PaymentNumber}"/>
                     <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
-                    <TextBlock Text="Rebuy price - " Style="{StaticResource PriceNames}"/>
+                    <TextBlock Text="Rebuy price" Style="{StaticResource PriceNames}"/>
                     <TextBlock Name ="RebuyPrice" Style="{StaticResource PaymentNumber}"/>
                     <TextBlock Text="k" Style="{StaticResource KLetter}"/>
                 </Grid>

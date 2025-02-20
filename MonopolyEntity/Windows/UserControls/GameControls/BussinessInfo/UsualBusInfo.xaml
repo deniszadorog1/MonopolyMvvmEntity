@@ -65,7 +65,7 @@
 
                     <TextBlock Name= "BusType" Text="Busness type" 
                                FontSize="16" Foreground="White"
-                               FontFamily="Open Sans"/>
+                               FontFamily="Open Sans" />
                 </StackPanel>
             </Border>
 

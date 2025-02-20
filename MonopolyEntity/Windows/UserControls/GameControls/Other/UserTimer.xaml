@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.GameControls.Other.UserTimer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100">
+    <Border Name="BgBorder"  Background="Gray" CornerRadius="360">
+        <TextBlock Name ="TimerTextBlock"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Foreground="White" FontSize="16" Text="99"/>
+
+    </Border>
+</UserControl>
