@@ -25,9 +25,11 @@ namespace MonopolyEntity.Windows.Pages
     public partial class RegistrationPage : Page
     {
         private Frame _frame;
-        public RegistrationPage(Frame frame)
+        private MonopolySystem _system;
+        public RegistrationPage(Frame frame, MonopolySystem system)
         {
             _frame = frame;
+            _system = system;
             InitializeComponent();
         }
 
@@ -40,6 +42,8 @@ namespace MonopolyEntity.Windows.Pages
 
             if (DBQueries.IfUserExistByLogin(_newUser.Login)) return;
             DBQueries.AddNewUserInDB(_newUser);
+
+            _frame.Content = new StartPage(_frame, _system);
         }
 
         private void LoginBox_GotFocus(object sender, RoutedEventArgs e)

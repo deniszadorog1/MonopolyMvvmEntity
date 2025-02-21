@@ -20,6 +20,8 @@ using MonopolyDLL.Monopoly;
 using MonopolyEntity.VisualHelper;
 using System.Data.Entity.Infrastructure;
 using MonopolyDLL;
+using MonopolyDLL.DBService;
+using System.Media;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -44,6 +46,16 @@ namespace MonopolyEntity.Windows.Pages
 
             SetStartValuesInUserCards();
 
+
+            TestSound();
+        }
+
+        public void TestSound()
+        {
+            var player = new SoundPlayer();
+            player.SoundLocation = MainWindowHelper.GetSoundLocation("bababooey.wav");
+            player.Load();
+            player.Play();
         }
 
         GameField _field;

@@ -34,7 +34,7 @@
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <ListBox Name="PlayersInGame" Margin="10"/>
+                    <ListBox Name="PlayersInGame" Margin="10" AllowDrop="True"/>
                 </ScrollViewer>
 
                 <Grid Grid.Row="2">
@@ -57,7 +57,7 @@
                        Text="Players that can be add"/>
 
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <ListBox Name="PlayersThatCanBeAdd" Margin="10"/>
+                    <ListBox Name="PlayersThatCanBeAdd" Margin="10" AllowDrop="True"/>
                 </ScrollViewer>
 
                 <Button Grid.Row="2" VerticalAlignment="Top" Margin="10"

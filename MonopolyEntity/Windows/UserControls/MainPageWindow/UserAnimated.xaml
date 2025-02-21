@@ -26,7 +26,7 @@
                 MouseEnter="UserIcon_MouseEnter"
                               />
 
-            <Grid Name ="UserMenu"  Height="150" Width="200" 
+            <Grid Name ="UserMenu"  Height="100" Width="200" 
                   Visibility="Hidden" Panel.ZIndex="100" 
                   MouseLeave="UserMenu_MouseLeave" >
                 <Grid.RowDefinitions>
@@ -56,46 +56,8 @@
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
-
-
-                    <Button Grid.Row="0" Name="FirstBut"
-                      Foreground="Gray"
-                      Background="White"
-                      Margin="2"
-                      HorizontalAlignment="Center"
-                      BorderThickness="0"
-                      HorizontalContentAlignment="Left"
-                      Padding="10 0 0 0"
-                      Width="198" Height="20" FontSize="12"
-                      Content="First Button" 
-                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                      Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                      ToolTip="FirstBut"
-                     
-                      MouseEnter="Button_MouseEnter"
-                      MouseLeave="Button_MouseLeave"/>
-
-                    <Button Grid.Row="1" Name="SecondBut"
-                      Foreground="Gray"
-                      Background="White"
-                      Margin="2"
-                      BorderThickness="0"
-                      HorizontalAlignment="Center"
-                      HorizontalContentAlignment="Left"
-                      Padding="10 0 0 0"
-                      Width="198" Height="20" FontSize="12"
-                      Content="Second Button" 
-                      IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-                      Style="{StaticResource MaterialDesignRaisedDarkButton}"
-                      ToolTip="SecondBut"           
-                            
-                      MouseEnter="Button_MouseEnter"
-                      MouseLeave="Button_MouseLeave"/>
-
-                    <Button Grid.Row="2" Name="SettingsBut"
+                    <Button Grid.Row="0" Name="SettingsBut"
                       Foreground="Gray"
                       Background="White"
                       Margin="2"

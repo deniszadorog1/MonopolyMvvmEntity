@@ -95,5 +95,16 @@ namespace MonopolyEntity.VisualHelper
 
             return image;
         }
+
+        public static string GetSoundLocation(string soundName)
+        {
+            DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            string parentPath = baseDirectoryInfo.Parent.Parent.FullName;
+            string visPath = Path.Combine(parentPath, "Visuals");
+            string soundPath = Path.Combine(visPath, "Sounds");
+            string resPath = Path.Combine(soundPath, soundName);
+
+            return resPath;
+        }
     }
 }

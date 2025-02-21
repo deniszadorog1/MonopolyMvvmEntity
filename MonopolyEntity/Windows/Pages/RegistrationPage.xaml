@@ -32,7 +32,7 @@
         </Grid>
 
         <Grid Grid.Row ="1" Margin="10 0 0 0">
-            <TextBlock TextWrapping="Wrap" Text="You can register here to enter in sysyem and play"
+            <TextBlock TextWrapping="Wrap" Text="You can register here to enter in sysyem and play games and etc..."
                        FontSize="16" Foreground="#5b5d67"/>
 
         </Grid>

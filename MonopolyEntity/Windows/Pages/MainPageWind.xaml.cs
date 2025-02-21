@@ -84,10 +84,6 @@ namespace MonopolyEntity.Windows.Pages
 
         public void OpenInventoryPage()
         {
-/*            OpenCase open = new OpenCase();
-            _frame.Content = open;
-
-            return;*/
             InventoryPage page = new InventoryPage(_frame, _system);
             _frame.Content = page;
         }
@@ -98,9 +94,6 @@ namespace MonopolyEntity.Windows.Pages
             _frame.Content = page;
 
             ((MainWindow)Window.GetWindow(_frame)).SetWindowSize(page);
-            /*            _system.MonGame = new Game(_system.LoggedUser);
-                        SetPlayersForGame setPlayers = new SetPlayersForGame(_system, _frame);
-                        setPlayers.ShowDialog();*/
         }
 
         public void OpenMainPage()
@@ -109,5 +102,12 @@ namespace MonopolyEntity.Windows.Pages
             _frame.Content = page;
         }
 
+        private void StartGameButSecRow_Click(object sender, RoutedEventArgs e)
+        {
+            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
+            _frame.Content = page;
+
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize(page);
+        }
     }
 }

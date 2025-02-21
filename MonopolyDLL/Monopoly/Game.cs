@@ -82,7 +82,7 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube =  _rnd.Next(1, 7);
+            _firstCube = _rnd.Next(1, 7);
             _secondCube =  _rnd.Next(1, 7);
         }
 
@@ -1127,6 +1127,7 @@ namespace MonopolyDLL.Monopoly
 
         public string GetBusOnStepperName()
         {
+            
             return ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).Name;
         }
 

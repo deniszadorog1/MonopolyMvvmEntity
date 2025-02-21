@@ -48,6 +48,8 @@
                                   HorizontalAlignment="Center"
                                   BorderThickness="0"
                                   
+                                  Click="StartGameButSecRow_Click"
+                            
                                   Width="130" Height="40" FontSize="18"
                                   Margin="10 35 0 0"
                                   Content="Start Game" 

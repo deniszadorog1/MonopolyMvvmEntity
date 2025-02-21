@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
+using System.Data.OleDb;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -22,7 +24,7 @@ namespace MonopolyEntity.Windows.Pages
     /// Логика взаимодействия для SetPlayersInGame.xaml
     /// </summary>
     public partial class SetPlayersInGame : Page
-    {        
+    {
         List<User> _users;
         MonopolySystem _system;
         Frame _frame;
@@ -35,7 +37,7 @@ namespace MonopolyEntity.Windows.Pages
             _system = system;
             _frame = frame;
             InitializeComponent();
-            
+
             FillStartListBoxes();
         }
 
@@ -62,12 +64,17 @@ namespace MonopolyEntity.Windows.Pages
 
         private void AddLoginsInBox(List<User> users, ListBox box)
         {
+            box.Drop += ListBox_Drop;
             for (int i = 0; i < users.Count; i++)
             {
                 WrapPanel panel = new WrapPanel()
                 {
+                    Width = this.Width / 2,
+                    Background = Brushes.Transparent,
                     Orientation = Orientation.Horizontal
                 };
+
+                panel.MouseMove += DragItem_MouseMove;
 
                 panel.Children.Add(MainWindowHelper.GetCircleImage(50, 50, DBQueries.GetPictureNameById(users[i].GetPictureId())));
 
@@ -78,6 +85,52 @@ namespace MonopolyEntity.Windows.Pages
                 panel.Children.Add(block);
 
                 box.Items.Add(panel);
+            }
+        }
+
+        private void ListBox_Drop(object sender, DragEventArgs e)
+        {
+            SetDraggedPlayerInList(GetListToWorkWith(_panelOwner), GetListToWorkWith((ListBox)sender));
+
+      
+            _panelOwner.Items.Remove(_toDragDrop);
+            ((ListBox)sender).Items.Add(_toDragDrop);
+        }
+
+        public List<User> GetListToWorkWith(ListBox box)
+        {
+            return box == PlayersInGame ? _playersInGame : _notAddedPlayers;
+        }
+
+        public void SetDraggedPlayerInList(List<User> toRemoveFrom, List<User> toAddIn)
+        {
+            TextBlock block = _toDragDrop.Children.OfType<TextBlock>().FirstOrDefault();
+
+            if (_panelOwner == PlayersInGame)
+            {
+                User inGame = toRemoveFrom.Where(x => x.Login == block.Text).First();
+                toRemoveFrom.Remove(inGame);
+                toAddIn.Add(inGame);
+                return;
+            }
+            //owner is PlayersThatCanBeAdd
+            User notInGame = toRemoveFrom.Where(x => x.Login == block.Text).First();
+            toRemoveFrom.Remove(notInGame);
+            toAddIn.Add(notInGame);
+        }
+
+
+        private WrapPanel _toDragDrop;
+        private ListBox _panelOwner;
+
+        private void DragItem_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                _toDragDrop = (WrapPanel)sender;
+                _panelOwner = (ListBox)((WrapPanel)sender).Parent;
+
+                DragDrop.DoDragDrop((WrapPanel)sender, (WrapPanel)sender, DragDropEffects.Move);
             }
         }
 
@@ -111,12 +164,14 @@ namespace MonopolyEntity.Windows.Pages
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
-            /*            const int leastAmountOfPlayers = 2;
-                        if (!_users.Any(x => x.Login == _system.LoggedUser.Login) ||
-                            _playersInGame.Count < leastAmountOfPlayers) return;
+            const int leastAmountOfPlayers = 2;
+            const int _maxAmountofPlayers = 5;
+            if (!_users.Any(x => x.Login == _system.LoggedUser.Login) ||
+                _playersInGame.Count < leastAmountOfPlayers ||
+                _playersInGame.Count > _maxAmountofPlayers) return;
 
 
-                        _system.MonGame.Players = _playersInGame;*/
+            _system.MonGame.Players = _playersInGame;
 
             GamePage page = new GamePage(_frame, _system);
             _frame.Content = page;

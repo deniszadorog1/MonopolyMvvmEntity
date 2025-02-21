@@ -6,10 +6,13 @@
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
-    <Border Name="BgBorder"  Background="Gray" CornerRadius="360">
-        <TextBlock Name ="TimerTextBlock"
+    <Grid>
+        <Border Name="BgBorder"  Background="Gray" CornerRadius="360">
+            <TextBlock Name ="TimerTextBlock"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
                    Foreground="White" FontSize="16" Text="99"/>
 
-    </Border>
+        </Border>
+
+    </Grid>
 </UserControl>

@@ -83,10 +83,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetEndTimerEvents();
         }
 
-        //public delegate void CustomEventHandler(object sender, string message);
-
-
-
         public void SetEndTimerEvents()
         {
             for (int i = 0; i < _cards.Count; i++)
@@ -347,6 +343,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     _system.MonGame.ReverseStepperSitInPrison();
                     _system.MonGame.ClearStepperDoublesCounter();
                     _goToPrisonByDouble = true;
+
+                    AddMessageTextBlock("3 same drops, goes to prison", _system.MonGame.StepperIndex);
                     //return;
                 }
             }
@@ -444,6 +442,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private bool _ifWithoutGoingThrugh = false;
         public void SetGotOnGotToPrison()
         {
+            AddMessageTextBlock("3 same drops, goes to prison", _system.MonGame.StepperIndex);
             int stepperPosition = _system.MonGame.GetStepperPosition();
             int prisonCellIndex = _system.MonGame.GetPrisonIndex();
             _ifWithoutGoingThrugh = true;
@@ -457,6 +456,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetVisitPrison()
         {
+            AddMessageTextBlock("Visits a prison", _system.MonGame.StepperIndex);
+
             ChangeStepper();
         }
 
@@ -473,6 +474,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void SetGotOnChance()
         {
+            AddMessageTextBlock("Got on chance", _system.MonGame.StepperIndex);
 
             ChanceAction action = /*ChanceAction.GoToPrison;// */_system.MonGame.GetChanceAction();
 
@@ -737,8 +739,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     SetBuyingBusiness();
                     ChatMessages.Children.Clear();
 
-                    ChangeStepper();
                     AddMessageTextBlock($"bought business {_system.MonGame.GetBusOnStepperName()}", _system.MonGame.StepperIndex);
+                    ChangeStepper();
                 }
                 else
                 {

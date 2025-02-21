@@ -44,8 +44,45 @@ namespace MonopolyEntity.Windows.Pages
 
         private void RegistrationBut_Click(object sender, RoutedEventArgs e)
         {
-            RegistrationPage page = new RegistrationPage(_frame);
+            RegistrationPage page = new RegistrationPage(_frame, _monopolySys);
             _frame.Content = page;
+        }
+
+        private void LoginBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (LoginTextBox.Text == "Login")
+            {
+                //LoginTextBox.Text = string.Empty;
+                LoginTextBox.Foreground = Brushes.Black;
+            }
+            LoginTextBox.BorderBrush = Brushes.Green;
+        }
+        private void LoginBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(LoginTextBox.Text))
+            {
+                //LoginTextBox.Text = "Login";
+                LoginTextBox.Foreground = Brushes.Gray;
+            }
+            LoginTextBox.BorderBrush = Brushes.Transparent;
+        }
+
+        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (PasswordTextBox.Password == "Password")
+            {
+                //PasswordTextBox.Password = string.Empty;
+                PasswordTextBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(PasswordTextBox.Password))
+            {
+                //PasswordTextBox.Password = "Password";
+                PasswordTextBox.Foreground = Brushes.Gray;
+            }
         }
 
     }
