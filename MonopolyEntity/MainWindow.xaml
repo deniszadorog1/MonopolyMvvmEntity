@@ -23,6 +23,7 @@
         WindowStartupLocation="CenterScreen"
         
         Closing="Window_Closing"
+        SizeChanged="Window_SizeChanged"
         >
     <Grid>
         <Frame x:Name="MainFrame" VerticalAlignment="Stretch" 

@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 
 using MonopolyDLL.Monopoly;
 using System.Windows.Media;
+using System.Windows;
 
 namespace MonopolyEntity.VisualHelper
 {
@@ -84,16 +85,25 @@ namespace MonopolyEntity.VisualHelper
 
         public static Image GetCircleImage(Image image)
         {
-            EllipseGeometry clip = new EllipseGeometry
+            int width = (int)image.Width;
+            int height = (int)image.Height;
+
+            DrawingVisual drawingVisual = new DrawingVisual();
+            using (DrawingContext context = drawingVisual.RenderOpen())
             {
-                Center = new System.Windows.Point(image.Width / 2, image.Height / 2),
-                RadiusX = image.Width / 2,
-                RadiusY = image.Height / 2
-            };
+                EllipseGeometry clip = new EllipseGeometry(new System.Windows.Point(width / 2, height / 2), width / 2, height / 2);
 
-            image.Clip = clip;
+                context.PushClip(clip);
+                context.DrawImage(image.Source, new Rect(0, 0, width, height));
+                context.Pop();
+            }
 
-            return image;
+            RenderTargetBitmap targetBitmap = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
+            targetBitmap.Render(drawingVisual);
+
+            Image clippedImage = new Image { Source = targetBitmap, Width = width, Height = height };
+
+            return clippedImage;
         }
 
         public static string GetSoundLocation(string soundName)

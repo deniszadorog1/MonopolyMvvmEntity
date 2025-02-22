@@ -40,7 +40,9 @@ namespace MonopolyEntity.Windows.Pages
             _newUser.Login = LoginBox.Text;
             _newUser.Password = PasswordBox.Text;
 
-            if (DBQueries.IfUserExistByLogin(_newUser.Login)) return;
+            if (DBQueries.IfUserExistByLogin(_newUser.Login) || 
+                LoginBox.Text == string.Empty ||
+                PasswordBox.Text == string.Empty) return;
             DBQueries.AddNewUserInDB(_newUser);
 
             _frame.Content = new StartPage(_frame, _system);

@@ -571,6 +571,9 @@ namespace MonopolyDLL
                     if (!(user.PictureFile is null)) picId = user.PictureFile.Id;
  
                     User addUser = new User(user.Login, user.Id, picId, user.Password);
+
+                    addUser.GameBusses = GetItemsToUseInGame(user.Id);
+
                     res.Add(addUser);
                 }
             }
@@ -641,6 +644,21 @@ namespace MonopolyDLL
                 user.PictureId = GetLastPicId();
                 model.SaveChanges();
             }
+        }
+
+        public static User GetUserByLoginAndPassword(string login, string password)
+        {
+            using(MonopolyModel model = new MonopolyModel())
+            {
+                Player player = model.Players.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
+            
+                if(!(player is null))
+                {
+                    return new User(player.Login, player.Id, player.PictureId, player.Password);
+                }
+            }
+
+            return null;
         }
     }
 }

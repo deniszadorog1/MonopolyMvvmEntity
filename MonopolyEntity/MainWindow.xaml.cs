@@ -67,6 +67,7 @@ namespace MonopolyEntity
                 MainFrame.Content is ProfileSettings settings) 
             {
                 ClearCaseOpenEffect();
+                ClearGame();
 
                 this.Hide();
                 MainFrame.Content = new MainPage(MainFrame, _system);
@@ -74,6 +75,10 @@ namespace MonopolyEntity
             }
         }
 
+        public void ClearGame()
+        {
+            _system.MonGame = new Game(_system.LoggedUser);
+        }
         public void ClearCaseOpenEffect()
         {
             VisiableItems.Children.Clear();
@@ -140,6 +145,14 @@ namespace MonopolyEntity
         public void ClearVisiableItems()
         {
             VisiableItems.Children.Clear();
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(MainFrame.Content is GamePage)
+            {
+
+            }
         }
     }
 }

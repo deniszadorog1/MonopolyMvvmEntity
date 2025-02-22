@@ -1,6 +1,8 @@
-﻿using MonopolyDLL.Monopoly;
+﻿using MonopolyDLL;
+using MonopolyDLL.Monopoly;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity.Core.Mapping;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -26,7 +28,6 @@ namespace MonopolyEntity.Windows.Pages
     public partial class StartPage : Page
     {
         private MonopolySystem _monopolySys;
-
         private Frame _frame;
         public StartPage(Frame frame, MonopolySystem system)
         {
@@ -38,8 +39,11 @@ namespace MonopolyEntity.Windows.Pages
 
         private void LoginBut_Click(object sender, RoutedEventArgs e)
         {
+/*            User user = DBQueries.GetUserByLoginAndPassword(LoginTextBox.Text, PasswordTextBox.Password);
+
+            if (user is null) return;
+            _monopolySys.LoggedUser = user;*/
             WorkPage page = new WorkPage(_monopolySys, _frame);
-            //_frame.Content = page;
         }
 
         private void RegistrationBut_Click(object sender, RoutedEventArgs e)
@@ -84,6 +88,5 @@ namespace MonopolyEntity.Windows.Pages
                 PasswordTextBox.Foreground = Brushes.Gray;
             }
         }
-
     }
 }

@@ -35,13 +35,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetTestCardImage();
         }
 
+        public int _imgSize = 70;
+
         public void SetTestCardImage()
         {
-            const int imgSize = 70;
-            Image img = ThingForTest.GetCalivanBigCircleImage(imgSize, imgSize);
+            Image img = MainWindowHelper.GetCircleImage(_imgSize, _imgSize, null);
 
-            img.VerticalAlignment = VerticalAlignment.Center;
-            img.HorizontalAlignment = HorizontalAlignment.Center;
+            //img.VerticalAlignment = VerticalAlignment.Center;
+            //img.HorizontalAlignment = HorizontalAlignment.Center;
 
             Canvas.SetZIndex(img, 10);
             UserImageGrid.Children.Add(img);
@@ -160,6 +161,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             UserTimer.SetTimer();
 
             SetTimerBgColor(brush);
+        }
+
+        public void UpdateTimer()
+        {
+            if (UserTimer.Visibility == Visibility.Hidden) return;
+            UserTimer.UpdateTimeOnTimer();
         }
 
         private readonly SolidColorBrush _firstUserTimerColor = 

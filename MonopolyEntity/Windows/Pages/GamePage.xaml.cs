@@ -79,7 +79,8 @@ namespace MonopolyEntity.Windows.Pages
             {
                 _userCards[i].UserLogin.Text = _system.MonGame.Players[i].Login;
                 _userCards[i].UserMoney.Text = _field.GetConvertedStringWithoutLastK(_system.MonGame.Players[i].AmountOfMoney);
-                _userCards[i].SetNewCardImage(MainWindowHelper.GetUserImage(
+                _userCards[i].SetNewCardImage(MainWindowHelper.GetCircleImage(
+                    _userCards[i]._imgSize, _userCards[i]._imgSize,
                     DBQueries.GetPictureNameById(_system.MonGame.Players[i].GetPictureId())));
             }
         }

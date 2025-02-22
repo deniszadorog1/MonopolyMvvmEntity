@@ -19,9 +19,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
     {
         public UserTimer()
         {
-            InitializeComponent();
-
-          
+            InitializeComponent();     
         }
 
         private const int _timeForMove = 75;
@@ -40,6 +38,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             _timer.AutoReset = true;
             _timer.Start();
 
+            TimerTextBlock.Text = _timeLeft.ToString();
+        }
+
+        public void UpdateTimeOnTimer()
+        {
+            if (_timer is null) return;
+
+            _timeLeft = _timeForMove;
             TimerTextBlock.Text = _timeLeft.ToString();
         }
 

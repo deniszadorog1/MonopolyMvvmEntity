@@ -48,7 +48,7 @@
         </Grid>
 
         <TextBlock Grid.Row="1" Text="This is authorization page you can enter in your account here"
-                   FontSize="20" TextWrapping="Wrap" Foreground="#5b5d67" Margin="10 0 25 0"/>
+                   FontSize="18" TextWrapping="Wrap" Foreground="#5b5d67" Margin="10 0 25 0"/>
 
         <StackPanel Grid.Row="2" Orientation="Vertical" Margin="10 0 30 0">
 
@@ -58,6 +58,7 @@
                       GotFocus="LoginBox_GotFocus" LostFocus="LoginBox_LostFocus"
                       materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainGlobalColor}"
                       materialDesign:TextFieldAssist.DecorationVisibility="Hidden" 
+
 
                       Background="Transparent"
 

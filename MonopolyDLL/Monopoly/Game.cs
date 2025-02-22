@@ -82,8 +82,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = _rnd.Next(1, 7);
-            _secondCube =  _rnd.Next(1, 7);
+            _firstCube = 4;// _rnd.Next(1, 7);
+            _secondCube = 5;// _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -91,7 +91,7 @@ namespace MonopolyDLL.Monopoly
             return (1, 2);// (_rnd.Next(1, 7), _rnd.Next(1, 7));
         }
 
-        public int GetFirstCubes()
+        public int GetFirstCube()
         {
             return _firstCube;
         }
@@ -522,9 +522,7 @@ namespace MonopolyDLL.Monopoly
 
         public ChanceAction GetChanceAction()
         {
-            ChanceAction action = GameBoard.GetChanceAction(Players[StepperIndex].Position);
-
-            return action;
+            return GameBoard.GetChanceAction(Players[StepperIndex].Position);
         }
 
         public void GetMoneyFromChance(int money)
@@ -1018,10 +1016,6 @@ namespace MonopolyDLL.Monopoly
                 GameBoard.GetBusesByType(item.Type);
         }
 
-        public void RemoveAddBusById(int index)
-        {
-
-        }
 
         public bool IfStepperHasInventoryBusOnPosition()
         {
@@ -1126,9 +1120,23 @@ namespace MonopolyDLL.Monopoly
         }
 
         public string GetBusOnStepperName()
-        {
-            
+        {          
             return ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).Name;
+        }
+
+        public string GetSteppersBusPrice()
+        {
+            return ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).Price.ToString();
+        }
+
+        public string GetAuctionPrice()
+        {
+            return (_tempBusPriceAuction - _stepInAuction).ToString();
+        }
+
+        public string GetBusNameOnGivenIndex(int index)
+        {
+            return ((ParentBus)GameBoard.Cells[index]).Name;
         }
 
     }
