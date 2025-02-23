@@ -13,7 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Xml.Serialization;
 using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.Pages;
 
@@ -40,10 +40,17 @@ namespace MonopolyEntity.Windows.UserControls
                 To = 150,
                 Duration = TimeSpan.FromSeconds(0.2)
             };
-            UserAnim.UserIcon.BeginAnimation(Canvas.LeftProperty, animation);
 
+            animation.Completed += Anim_Complite;
             UserAnim.UserMenu.Visibility = Visibility.Hidden;
             UserAnim.ElemBorder.Background = new SolidColorBrush(Colors.Transparent);
+
+            UserAnim.AnimImage.BeginAnimation(Canvas.LeftProperty, animation);
+        }
+
+        private void Anim_Complite(object sender, EventArgs e)
+        {
+            Canvas.SetZIndex(UserAnim.AnimImage, 0);
         }
 
         private void InventoryBut_Click(object sender, RoutedEventArgs e)

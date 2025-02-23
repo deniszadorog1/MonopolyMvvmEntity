@@ -22,6 +22,8 @@ using System.Data.Entity.Infrastructure;
 using MonopolyDLL;
 using MonopolyDLL.DBService;
 using System.Media;
+using System.CodeDom;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -59,17 +61,18 @@ namespace MonopolyEntity.Windows.Pages
         }
 
         GameField _field;
+        private readonly Size _baseFieldSize = new Size(950, 950);
         private void AddGameField()
         {
+            const string fieldName = "GameField";
             _field = new GameField(_system, _userCards, _frame)
             {
-                Height = 950,
-                Width = 950, 
-                Name = "GameField",
+                Height = _baseFieldSize.Width,
+                Width = _baseFieldSize.Height, 
+                Name = fieldName,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top
             };
-
             FieldGrid.Children.Add(_field);
         }
 
@@ -141,18 +144,23 @@ namespace MonopolyEntity.Windows.Pages
 
         private void GetContextMenu()
         {
+            const int popupWidth = 220;
+            const int vertMove = -10;
             _dropdownMenuPopup = new Popup
             {
                 Placement = PlacementMode.Bottom,
                 //StaysOpen = false,
                 AllowsTransparency = true,
-                Width = 220,
-                VerticalOffset = -10,
+                Width = popupWidth,
+                VerticalOffset = vertMove,
             };
 
+            const int lastXPoint = 500;
+            const int thickness = 1;
+            const string bgColor = "#E6E9ED";
             var popupContent = new Border
             {
-                Background = (SolidColorBrush)new BrushConverter().ConvertFromString("#E6E9ED"),
+                Background = (SolidColorBrush)new BrushConverter().ConvertFromString(bgColor),
                 //BorderBrush = Brushes.Gray,
                 BorderThickness = new Thickness(0),
                 //CornerRadius = new CornerRadius(5),
@@ -161,7 +169,8 @@ namespace MonopolyEntity.Windows.Pages
                     Children =
                     {
                         CreateMenuItem("Test first"),
-                        new Line(){X1 = 0, Y1 = 0, X2 = 500, Y2 = 0, Stroke = Brushes.Black, StrokeThickness = 1},
+                        new Line(){X1 = 0, Y1 = 0, X2 = lastXPoint, Y2 = 0, 
+                            Stroke = Brushes.Black, StrokeThickness = thickness},
                         CreateMenuItem("Test second"),
                     }
                 }
@@ -171,13 +180,14 @@ namespace MonopolyEntity.Windows.Pages
 
         private Button CreateMenuItem(string content)
         {
+            const int butWidth = 220;
             var button = new Button
             {
                 Content = content,
                 //Padding = new Thickness(10, 5, 10, 5),
                 Margin = new Thickness(0),
                 Background = Brushes.Transparent,
-                Width = 220,
+                Width = butWidth,
                 Foreground = Brushes.Black,
                 BorderThickness = new Thickness(0),
             };
@@ -251,6 +261,17 @@ namespace MonopolyEntity.Windows.Pages
             };
 
             return button;
+        }
+
+        private Size _firstStep = new Size(1500, 900);
+        private Size _zeroStep = new Size(1920, 1080);
+        private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(this.ActualWidth < _firstStep.Width &&
+                this.ActualHeight < _firstStep.Height)
+            {
+                Console.WriteLine();
+            }
         }
     }
 }

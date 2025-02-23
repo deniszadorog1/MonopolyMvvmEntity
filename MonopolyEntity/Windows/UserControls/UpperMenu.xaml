@@ -61,7 +61,7 @@
                         Click="InventoryBut_Click"/>
                 </StackPanel>
 
-                <Grid Width="300" Height="100"  HorizontalAlignment="Right"
+                <Grid Width="300" Height="130"  HorizontalAlignment="Right"
                       VerticalAlignment="Top" Panel.ZIndex="102" >
                     <UserIconAnim:UserAnimated x:Name="UserAnim"  
                                     Panel.ZIndex="102" Margin="100 5 0 0" MouseLeave="UserIcon_MouseLeave"/>

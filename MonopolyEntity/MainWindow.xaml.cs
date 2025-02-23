@@ -147,11 +147,19 @@ namespace MonopolyEntity
             VisiableItems.Children.Clear();
         }
 
+        private readonly Size _baseSize = new Size(450, 450);
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(MainFrame.Content is GamePage)
+            if(MainFrame.Content is GamePage game)
             {
-
+                MinHeight = 900;
+                MinWidth = 1500;
+                e.Handled = true;
+            }
+            else
+            {
+                MinHeight = _baseSize.Height;
+                MinWidth = _baseSize.Width;
             }
         }
     }

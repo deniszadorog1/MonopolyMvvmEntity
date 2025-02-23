@@ -12,6 +12,7 @@
       xmlns:BoardControls ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls" 
       
       PreviewMouseDown="Page_PreviewMouseDown"
+      SizeChanged="Page_SizeChanged"
       >
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" 

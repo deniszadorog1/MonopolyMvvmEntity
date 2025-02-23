@@ -701,6 +701,7 @@
     <Folder Include="Visuals\Images\UserImages\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Visuals\Images\face.png" />
     <Content Include="Visuals\Sounds\bababooey.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

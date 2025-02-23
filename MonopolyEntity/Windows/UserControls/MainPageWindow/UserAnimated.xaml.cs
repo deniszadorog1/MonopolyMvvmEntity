@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -14,6 +15,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using MonopolyEntity.VisualHelper;
 
 namespace MonopolyEntity.Windows.UserControls.MainPage
 {
@@ -25,35 +28,37 @@ namespace MonopolyEntity.Windows.UserControls.MainPage
         public UserAnimated()
         {
             InitializeComponent();
+            AnimImage.Source =
+                MainWindowHelper.GetCircleImageFace(
+                    new Size(AnimImage.Width, AnimImage.Height)).Source;
         }
 
+        private DoubleAnimation _anim;
         private void UserIcon_MouseEnter(object sender, MouseEventArgs e)
         {
-            var animation = new DoubleAnimation
+
+            _anim = new DoubleAnimation
             {
                 To = 0,
                 Duration = TimeSpan.FromSeconds(0.2)
             };
 
-            animation.Completed -= Animation_Complited;
-            animation.Completed += Animation_Complited;
-
-            UserIcon.BeginAnimation(Canvas.LeftProperty, animation);
+            _anim.Completed += Animation_Complited;
+            AnimImage.BeginAnimation(Canvas.LeftProperty, _anim);
         }
 
         private void Animation_Complited(object sender, EventArgs e)
         {
             UserMenu.Visibility = Visibility.Visible;
             ElemBorder.Background = new SolidColorBrush(Colors.White);
+            Canvas.SetZIndex(AnimImage, 150);
         }
 
         private void UserMenu_MouseLeave(object sender, MouseEventArgs e)
         {
             return;
-            if (UserMenu.Visibility == Visibility.Visible)
-            {
-                UserMenu.Visibility = Visibility.Hidden;
-            }
+            UserMenu.Visibility = Visibility.Hidden;
+
         }
 
         private void Button_MouseEnter(object sender, MouseEventArgs e)
@@ -65,14 +70,24 @@ namespace MonopolyEntity.Windows.UserControls.MainPage
             }
         }
 
+        private bool _check = false;
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (sender is Button but)
+            if (_check || sender is Button)
             {
-                but.Foreground = new SolidColorBrush(Colors.Gray);
-                but.Background = new SolidColorBrush(Colors.White);
+                ((Button)sender).Foreground = new SolidColorBrush(Colors.Gray);
+                ((Button)sender).Background = new SolidColorBrush(Colors.White);
             }
         }
 
+        private void UserControl_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
+        private void UserControl_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Cursor = null;
+        }
     }
 }

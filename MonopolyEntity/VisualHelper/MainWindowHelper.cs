@@ -116,5 +116,30 @@ namespace MonopolyEntity.VisualHelper
 
             return resPath;
         }
+
+        public static Image GetCircleImageFace(Size size)
+        {
+            Image img = GetFaceImage();
+
+            img.Width = size.Width;
+            img.Height = size.Height;
+
+            return GetCircleImage(img);
+        }
+
+        public static Image GetFaceImage()
+        {
+            DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            string parentPath = baseDirectoryInfo.Parent.Parent.FullName;
+            string visPath = Path.Combine(parentPath, "Visuals");
+            string soundPath = Path.Combine(visPath, "Images");
+            string resPath = Path.Combine(soundPath, "face.png");
+
+            Image img = new Image()
+            {
+                Source = new BitmapImage(new Uri(resPath, UriKind.Absolute))
+            };
+            return img;
+        }
     }
 }

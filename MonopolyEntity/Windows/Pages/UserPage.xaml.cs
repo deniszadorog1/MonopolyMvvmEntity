@@ -75,7 +75,7 @@ namespace MonopolyEntity.Windows.Pages
 
             UpperMenuu.InventoryBut.Foreground = new SolidColorBrush(Colors.Gray);
             
-            UpperMenuu.UserAnim.UserIcon.Foreground = new SolidColorBrush(Colors.Gray);
+            //UpperMenuu.UserAnim.UserIcon.Foreground = new SolidColorBrush(Colors.Gray);
             UpperMenuu.AllPanelGrid.Width = CenterColDef.Width.Value;
         }
 

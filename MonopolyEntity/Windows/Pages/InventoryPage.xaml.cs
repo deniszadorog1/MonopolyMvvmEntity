@@ -19,6 +19,7 @@ using MonopolyDLL;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 using MonopolyDLL.Monopoly.Enums;
+using System.Reflection;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -38,14 +39,11 @@ namespace MonopolyEntity.Windows.Pages
             SetUpperLineSettings();
 
             SetUserImage();
-            SetUserImageEvent();
-
             SetInventoryItems();
 
             SetUserParamsText();
 
             SetUserMenu();
-            Height = 10000;
         }
         public void SetUserMenu()
         {
@@ -100,7 +98,6 @@ namespace MonopolyEntity.Windows.Pages
                     _cards.Add(card);
                     boxItem.SetCaseCardId(_cards.Count() - 1);
 
-
                     card.MouseDown += (sender, e) =>
                     {
                         if (_ifJustBlured) { _ifJustBlured = !_ifJustBlured; return; }
@@ -131,19 +128,22 @@ namespace MonopolyEntity.Windows.Pages
             }
         }
 
+        private readonly Size _baseCardSize = new Size(150, 175);
         public CaseCard SetLootBoxCard(Item item, Image img)
         {
-            string name = item.Name;
+            const int baseMargin = 10;
+            const int baseImageSizeParam = 100;
+
             CaseCard res = new CaseCard()
             {
-                Width = 150,
-                Height = 175,
-                Margin = new Thickness(10)
+                Width = _baseCardSize.Width,
+                Height = _baseCardSize.Height,
+                Margin = new Thickness(baseMargin)
             };
 
             res.CardImage.Source = img.Source;
-            res.CardImage.Width = 100;
-            res.CardImage.Height = 100;
+            res.CardImage.Width = baseImageSizeParam;
+            res.CardImage.Height = baseImageSizeParam;
             res.CardImage.Stretch = Stretch.Uniform;
             res.CardImage.VerticalAlignment = VerticalAlignment.Center;
             res.CardImage.HorizontalAlignment = HorizontalAlignment.Center;
@@ -196,13 +196,13 @@ namespace MonopolyEntity.Windows.Pages
         private readonly SolidColorBrush _ususalCellBrush = new SolidColorBrush(Color.FromRgb(167, 175, 187));
         public List<BusDescButton> GetButtonForUsualBus(BoxItem item)
         {
-
             List<BusDescButton> res = new List<BusDescButton>();
             List<ParentBus> busesToGetButsFor = _system.MonGame.GetBusWithGivenBoxItem(item);
 
             const string changeText = "Change";
             const string getBackText = "Get back";
-
+            const string sameItemIsChosen = "Already chosen";
+            const int textBlockFz = 16;
 
             for (int i = 0; i < busesToGetButsFor.Count; i++)
             {
@@ -220,8 +220,8 @@ namespace MonopolyEntity.Windows.Pages
                 {
                     TextBlock block = new TextBlock()
                     {
-                        Text = "Already chosen",
-                        FontSize = 16
+                        Text = sameItemIsChosen,
+                        FontSize = textBlockFz
                     };
                     _busDesc.ButtonsPanel.Children.Add(block);
                     res.Clear();
@@ -241,8 +241,6 @@ namespace MonopolyEntity.Windows.Pages
                 {
                     but = GetBusForBusinessDescription(usingItem.Name, GetBrushByBoxItem(usingItem), changeText);
                     SetButMouseDownEventChangeWithBoxItem(but, usingItem, item);
-
-                    //GetUsualBuyBack(but, item);
                 }
                 res.Add(but);
             }
@@ -274,10 +272,7 @@ namespace MonopolyEntity.Windows.Pages
         {
             but.MouseDown += (sender, e) =>
             {
-                // if (_system.IfBussWithSuchNameIsUsing(newItem.Name)) return;
-
                 _system.RemoveBoxItemByStationId(oldItem.GetId());
-
 
                 newItem.StationId = oldItem.GetId();
                 _system.AddUsingBusInList(newItem);
@@ -330,10 +325,7 @@ namespace MonopolyEntity.Windows.Pages
             res.BusName.Text = busName;
             res.RearityColor.Background = color;
 
-            res.PreviewMouseDown += (sender, e) =>
-            {
-
-            };
+            res.PreviewMouseDown += (sender, e) => { };
             return res;
         }
 
@@ -421,17 +413,12 @@ namespace MonopolyEntity.Windows.Pages
             ImageScaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleYAnimation);
         }
 
-        public void SetUserImageEvent()
-        {
-            return;
-            UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
-            {
-                _frame.Content = new UserPage(_frame, _system);
-            };
-        }
 
         public void SetUserImage()
         {
+            const int xLoc = 10;
+            const int yLoc = 5;
+
             Image img = ThingForTest.GetCalivanBigCircleImage(65, 65);
 
             Image userImg = MainWindowHelper.GetUserImage(DBQueries.GetPictureNameById(_system.LoggedUser.GetPictureId()));
@@ -439,8 +426,8 @@ namespace MonopolyEntity.Windows.Pages
 
             UserImage.Children.Add(img);
 
-            Canvas.SetLeft(img, 10);
-            Canvas.SetTop(img, 5);
+            Canvas.SetLeft(img, xLoc);
+            Canvas.SetTop(img, yLoc);
         }
 
         public void OpenGameField()
@@ -469,7 +456,6 @@ namespace MonopolyEntity.Windows.Pages
 
             UpperMenuu.InventoryBut.Foreground = new SolidColorBrush(Colors.Gray);
 
-            UpperMenuu.UserAnim.UserIcon.Foreground = new SolidColorBrush(Colors.Gray);
             UpperMenuu.AllPanelGrid.Width = CenterColDef.Width.Value;
         }
 
@@ -492,7 +478,6 @@ namespace MonopolyEntity.Windows.Pages
                 FilterByBameBox.Text = string.Empty;
                 TypeChooseBox.SelectedItem = BaseChooseType;
                 RareFilter.SelectedItem = BaseChooseRare;
-
                 return;
             }
             _ifJustBlured = false;
@@ -530,10 +515,11 @@ namespace MonopolyEntity.Windows.Pages
         private BusRearity? _rearity;
         private void RareFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            const string clearFilterStr = "All";
             ItemsPanel.Children.Clear();
             string res = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
 
-            if (res == "All") _rearity = null;
+            if (res == clearFilterStr) _rearity = null;
             else SetRearity(res);
 
             SetCardsByName();

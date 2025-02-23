@@ -14,34 +14,37 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"      
+           
+             MouseEnter="UserControl_MouseEnter"
+             MouseLeave="UserControl_MouseLeave"
              >
     <Border Name="ElemBorder" CornerRadius="5" Background="Transparent">
         <Canvas>
-            <materialDesign:PackIcon 
-                Visibility="Visible"
-                Name="UserIcon" Kind="Account"                           
-                Height="45" Width="45" 
-                Foreground="AliceBlue"
-                Canvas.Left="150" Canvas.Top="0"
-                MouseEnter="UserIcon_MouseEnter"
-                              />
 
-            <Grid Name ="UserMenu"  Height="100" Width="200" 
-                  Visibility="Hidden" Panel.ZIndex="100" 
-                  MouseLeave="UserMenu_MouseLeave" >
+            <Image Name ="AnimImage"
+                   Visibility="Visible"
+                   Height="40" Width="40" 
+                   Margin="5 5 0 0"
+                   Canvas.Left="150" Canvas.Top="0"
+                   MouseEnter="UserIcon_MouseEnter"/>
+
+              
+            <Grid Name ="UserMenu"  Height="130" Width="200" 
+                  Visibility="Hidden" Panel.ZIndex="100" Background="White"
+                  MouseLeave="UserMenu_MouseLeave">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="40"/>
-                    <RowDefinition/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
 
                 <StackPanel Orientation="Horizontal" Name="UpperRowUserName">
                     <materialDesign:PackIcon Visibility="Visible"
-                              Name="UserMenuIcon" Kind="Account"
-                              Height="40" Width="40" 
-                              Foreground="Gray" />
+                              Name="UserMenuIcon" Kind="AccountCircle"
+                              Height="45" Width="45" 
+                              Foreground="Transparent" />
 
-                    <Grid>
+                    <Grid Margin="10 5 0 0">
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition/>
@@ -51,8 +54,6 @@
                         <TextBlock Grid.Row="1" Name="MoneyText"  Foreground="Gray" Text="There can be your money"/>
                     </Grid>
                 </StackPanel>
-                <Line X1="0" Y1="40" X2="200" Y2="40" Stroke="Black" StrokeThickness="1"/>
-
                 <Grid Grid.Row="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -65,7 +66,7 @@
                       HorizontalAlignment="Center"
                       HorizontalContentAlignment="Left"
                       Padding="10 0 0 0"
-                      Width="198" Height="20" FontSize="12"
+                      Width="198" Height="30" FontSize="14"
                       Content="Settings" 
                       IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                       Style="{StaticResource MaterialDesignRaisedDarkButton}"
@@ -73,8 +74,6 @@
                                                  
                       MouseEnter="Button_MouseEnter"
                       MouseLeave="Button_MouseLeave"/>
-
-                    <Line Grid.Row="2" X1="0" Y1="27" X2="200" Y2="27" Stroke="Gray" StrokeThickness="2"/>
                 </Grid>
 
                 <Grid Grid.Row="2">
@@ -87,7 +86,7 @@
                       VerticalAlignment="Top"
                       HorizontalContentAlignment="Left"
                       Padding="10 0 0 0"
-                      Width="198" Height="20" FontSize="12"
+                      Width="198" Height="30" FontSize="14"
                       Content="Exit " 
                       IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                       Style="{StaticResource MaterialDesignRaisedDarkButton}"
