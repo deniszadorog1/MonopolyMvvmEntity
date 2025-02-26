@@ -24,6 +24,7 @@ using MonopolyDLL.DBService;
 using System.Media;
 using System.CodeDom;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using MonopolyDLL.Monopoly.Enums;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -68,10 +69,11 @@ namespace MonopolyEntity.Windows.Pages
             _field = new GameField(_system, _userCards, _frame)
             {
                 Height = _baseFieldSize.Width,
-                Width = _baseFieldSize.Height, 
+                Width = _baseFieldSize.Height,
                 Name = fieldName,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                VerticalAlignment = VerticalAlignment.Top
+                VerticalAlignment = VerticalAlignment.Top,
+                Margin = new Thickness(0, 25, 0, 0)
             };
             FieldGrid.Children.Add(_field);
         }
@@ -142,17 +144,19 @@ namespace MonopolyEntity.Windows.Pages
             GetContextMenu();
         }
 
+        private const int _horOffset = 10;
+        private const int _vertOffset = -10;
         private void GetContextMenu()
         {
             const int popupWidth = 220;
-            const int vertMove = -10;
             _dropdownMenuPopup = new Popup
             {
                 Placement = PlacementMode.Bottom,
                 //StaysOpen = false,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 AllowsTransparency = true,
                 Width = popupWidth,
-                VerticalOffset = vertMove,
+                VerticalOffset = _vertOffset,
             };
 
             const int lastXPoint = 500;
@@ -228,7 +232,11 @@ namespace MonopolyEntity.Windows.Pages
 
         private void SetSendTradeButton(StackPanel panel, int traderIndex)
         {
-            Button but = GetButtonForUserCardMenu("Send trade");
+            _dropdownMenuPopup.Width = _userCards[traderIndex].UserCardGrid.Width;
+            _dropdownMenuPopup.HorizontalOffset = 0;
+            _dropdownMenuPopup.VerticalOffset = _vertOffset;
+
+            Button but = GetButtonForUserCardMenu("Send trade", traderIndex);
 
             but.Click += (sender, e) =>
             {
@@ -239,7 +247,11 @@ namespace MonopolyEntity.Windows.Pages
 
         private void SetGiveUpButton(StackPanel panel)
         {
-            Button but = GetButtonForUserCardMenu("Give up");
+            _dropdownMenuPopup.Width = _userCards[_system.MonGame.StepperIndex].ActualWidth;
+            _dropdownMenuPopup.HorizontalOffset = _horOffset;
+            _dropdownMenuPopup.VerticalOffset = 0;
+
+            Button but = GetButtonForUserCardMenu("Give up", _system.MonGame.StepperIndex);
             but.Click += (sender, e) =>
             {
                 _field.PlayerGaveUp();
@@ -248,29 +260,31 @@ namespace MonopolyEntity.Windows.Pages
             panel.Children.Add(but);
         }
 
-        private Button GetButtonForUserCardMenu(string content)
+        private Button GetButtonForUserCardMenu(string content, int playerIndex)
         {
             var button = new Button
             {
                 Content = content,
-                Margin = new Thickness(0),
+                //Margin = new Thickness(10, 0, 0, 0),
                 Background = Brushes.Transparent,
-                Width = 220,
+                Width = _userCards[playerIndex].UserCardGrid.Width,
                 Foreground = Brushes.Black,
                 BorderThickness = new Thickness(0),
+                HorizontalContentAlignment = HorizontalAlignment.Center
             };
 
             return button;
         }
 
-        private Size _firstStep = new Size(1500, 900);
-        private Size _zeroStep = new Size(1920, 1080);
+        private Size _firstStep = new Size(1500, 950);
+        private Size _zeroStep = new Size(1500, 1000);
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(this.ActualWidth < _firstStep.Width &&
+            if(this.ActualWidth < _firstStep.Width ||
                 this.ActualHeight < _firstStep.Height)
             {
-                Console.WriteLine();
+                return;
+                _field.UpdateFieldSize(GamePageSize.MediumWindow);
             }
         }
     }

@@ -73,14 +73,14 @@
                 Background="{StaticResource MainGlobalColor}" 
                 BorderBrush="White" VerticalAlignment="Center"
                 HorizontalAlignment="Center" Content="Rebuy business"
-                Foreground="White" VerticalContentAlignment="Top"
+                Foreground="White" VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center" FontSize="14"/>
 
                 <Button Name ="DepositBut" Width="200" Height="30" Visibility="Hidden"
                 Background="{StaticResource DenyGlobalColor}" 
                 BorderBrush="White" VerticalAlignment="Center"
                 HorizontalAlignment="Center" Content="Deposit business"
-                Foreground="White" VerticalContentAlignment="Top"
+                Foreground="White" VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center" FontSize="14"/>
                 
             </Grid>

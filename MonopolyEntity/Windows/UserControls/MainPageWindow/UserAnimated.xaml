@@ -25,10 +25,9 @@
                    Visibility="Visible"
                    Height="40" Width="40" 
                    Margin="5 5 0 0"
-                   Canvas.Left="150" Canvas.Top="0"
+                   Canvas.Left="150" Canvas.Top="0" 
                    MouseEnter="UserIcon_MouseEnter"/>
-
-              
+        
             <Grid Name ="UserMenu"  Height="130" Width="200" 
                   Visibility="Hidden" Panel.ZIndex="100" Background="White"
                   MouseLeave="UserMenu_MouseLeave">

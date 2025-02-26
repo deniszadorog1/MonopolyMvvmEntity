@@ -19,3 +19,5 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\WpfAnimatedGif.xml
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\Monopoly.0804DE45.Up2Date
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.dll
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.pdb
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.Resource1.resources
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.csproj.GenerateResource.cache

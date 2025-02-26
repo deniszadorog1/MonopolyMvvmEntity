@@ -45,6 +45,7 @@ namespace MonopolyEntity.Windows.Pages
 
             SetUserMenu();
         }
+
         public void SetUserMenu()
         {
             MainWindowHelper.SetUpperMenuParams(UpperMenuu, _system.LoggedUser);

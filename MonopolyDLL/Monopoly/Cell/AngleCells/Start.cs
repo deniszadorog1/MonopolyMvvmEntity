@@ -8,8 +8,8 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
 {
     public class Start : CellParent
     {
-        private const int _paymentToGetOn = 2000;
-        private const int _paymentToGetThrough = 1000;
+        private const int _paymentToGetOn = 3000;
+        private const int _paymentToGetThrough = 2000;
 
         public Start(string name, int id)
         {

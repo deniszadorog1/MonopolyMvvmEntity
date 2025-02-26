@@ -93,7 +93,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
                 {
                     border.Opacity = _basicOpacity;
                     border.BorderBrush = Brushes.Black;
-                    _chosenRibs.Remove((index - 1));
+                    _chosenRibs.Remove((index + 1));
                 }
                 else if (border.BorderBrush != brush &&
                     GetAmountOfChosenBorders(brush) < maxAllowedChosenRib)

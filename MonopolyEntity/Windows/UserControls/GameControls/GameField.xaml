@@ -25,6 +25,38 @@
 
     <!-- Width  835  Height 835 -->
 
+    <UserControl.Resources>
+        <Style x:Key="UpperCellStyle" TargetType="CellTypeControl:UpperCell">
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Width" Value="65"/>
+            <Setter Property="Margin" Value="1 0 0 0"/>
+        </Style>
+
+        <Style x:Key="RightCellStyle" TargetType="CellTypeControl:RightCell">
+            <Setter Property="Height" Value="65"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="0 1 0 0"/>
+        </Style>
+
+        <Style x:Key="BottomCellStyle" TargetType="CellTypeControl:BottomCell">
+            <Setter Property="Height" Value="150"/>
+            <Setter Property="Width" Value="65"/>
+            <Setter Property="Margin" Value="1 0 0 0"/>
+        </Style>
+
+        <Style x:Key="LeftCellStyle" TargetType="CellTypeControl:LeftCell">
+            <Setter Property="Height" Value="65"/>
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Margin" Value="0 1 0 0"/>
+        </Style>
+
+        <Style x:Key="SquareSize" TargetType="CellTypeControl:SquareCell">
+            <Setter Property="Width" Value="125"/>
+        </Style>
+
+    </UserControl.Resources>
+
+
     <Grid >
 
         <Canvas Name="ChipMovePanel" Panel.ZIndex="100">
@@ -48,10 +80,9 @@
                 <ColumnDefinition Width="150"/>
             </Grid.ColumnDefinitions>
 
-
             <Grid Grid.Row="0" Grid.Column="0" Name="StartCellCanvas">
 
-                <CellTypeControl:SquareCell x:Name ="StartCell" Width="125" Height="125"
+                <CellTypeControl:SquareCell x:Name ="StartCell" Style="{StaticResource SquareSize}"
                                             VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
 
             </Grid>
@@ -59,22 +90,21 @@
             <StackPanel Grid.Row="0" Grid.Column="1" Name="FirstLinePanel" 
                         Orientation="Horizontal" VerticalAlignment="Bottom">
 
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="PerfumeFirstBus"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ChanceOne"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="PerfumeSecondBus"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="LittleTax"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="UpCar"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ClothesFirstBus"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ChanceTwo"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ClothesSeconBus"/>
-                <CellTypeControl:UpperCell Width="65" Height="150" Margin="1 0 0 0" x:Name="ClothesThirdBus"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="PerfumeFirstBus"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ChanceOne"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="PerfumeSecondBus"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="LittleTax"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="UpCar"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ClothesFirstBus"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ChanceTwo"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ClothesSeconBus"/>
+                <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ClothesThirdBus"/>
 
             </StackPanel>
 
             <Grid Grid.Row="0" Grid.Column="2" Name="PrisonCanvas" >
                 <CellTypeControl:PrisonCell x:Name="PrisonCell" Width="125" Height="125" 
                                             VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
-
             </Grid>
 
             <Grid  Name ="CenterPanel"  Grid.Column="1" Grid.Row="1" 
@@ -85,7 +115,6 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" >
-
                     <Grid x:Name="ChatMessages" Panel.ZIndex="100"/>
 
                     <!-- <DiceDrop:DicesDrop Visibility="Visible" x:Name="ThroughCubes3Ds"
@@ -102,78 +131,64 @@
                         </ListBox>
                     </ScrollViewer>
                 </Grid>
-
-
+                
                 <TextBox Grid.Row="1" Margin="10 10 0 10" Width="500" Name ="MessageWriter"
                          Foreground="White" 
                          materialDesign:TextFieldAssist.UnderlineBrush="{StaticResource MainGlobalColor}"
                          materialDesign:TextFieldAssist.DecorationVisibility="Visible" CaretBrush="White"/>
-
-                
             </Grid>
 
             <StackPanel Grid.Row="1" Grid.Column="2" Name="SecondLinePanel" 
                         Orientation="Vertical">
-
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="MessagerFirstBus"/>
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="GamesFirstBus"/>
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="MessagerSecondBus"/>
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="MessagerThirdBus"/>
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="RightCar"/>
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="DrinkFirstBus"/>
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="ChanceThree"/>
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="DrinkSecondBus"/>
-                <CellTypeControl:RightCell Width="150" Height="65" Margin="0 1 0 0" x:Name="DrinkThirdBus"/>
-
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="MessagerFirstBus"/>
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="GamesFirstBus"/>
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="MessagerSecondBus"/>
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="MessagerThirdBus"/>
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="RightCar"/>
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="DrinkFirstBus"/>
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="ChanceThree"/>
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="DrinkSecondBus"/>
+                <CellTypeControl:RightCell Style="{StaticResource RightCellStyle}" x:Name="DrinkThirdBus"/>
             </StackPanel>
 
             <Grid Grid.Row="2" Grid.Column="2" Name="JackpotCellCanvas" >
 
-                <CellTypeControl:SquareCell x:Name="JackPotCell" Width="125" Height="125"
+                <CellTypeControl:SquareCell x:Name="JackPotCell" Style="{StaticResource SquareSize}"
                                             VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             </Grid>
 
             <StackPanel Grid.Row="2" Grid.Column="1" Name="ThirdLinePanel" Orientation="Horizontal">
 
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="FoodThirdBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="GamesSecondBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="FoodSecondBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="FoodFirstBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="DownCars"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesThirdBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesSecondBus"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="ChanceFour"/>
-                <CellTypeControl:BottomCell  Width="65" Height="150" Margin="1 0 0 0" x:Name="PlanesFirstBus"/>
-
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="FoodThirdBus"/>
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="GamesSecondBus"/>
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="FoodSecondBus"/>
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="FoodFirstBus"/>
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="DownCars"/>
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="PlanesThirdBus"/>
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="PlanesSecondBus"/>
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="ChanceFour"/>
+                <CellTypeControl:BottomCell  Style="{StaticResource BottomCellStyle}" x:Name="PlanesFirstBus"/>
             </StackPanel>
 
 
             <Grid Grid.Row="2" Grid.Column="0" Name="GoToPrisonCellCanvas">
-
-                <CellTypeControl:SquareCell x:Name="GoToPrisonCell" Width="125" Height="125"
+                <CellTypeControl:SquareCell x:Name="GoToPrisonCell" Style="{StaticResource SquareSize}"
                                             VerticalAlignment="Top" HorizontalAlignment="Right"/>
-
             </Grid>
 
             <StackPanel Grid.Row="1" Grid.Column="0" Name ="FourthLinePanel" 
                         HorizontalAlignment="Right" Orientation="Vertical">
-
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="PhonesSecondBus"/>
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="ChanceSix"/>
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="PhonesFirstBus"/>
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="BigTax"/>
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="LeftCar"/>
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelThirdBus"/>
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="ChanceFive"/>
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelSecondBus"/>
-                <CellTypeControl:LeftCell  Width="150" Height="65" Margin="0 1 0 0" x:Name="HotelFirstBus"/>
-
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}" x:Name="PhonesSecondBus"/>
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}"  x:Name="ChanceSix"/>
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}"  x:Name="PhonesFirstBus"/>
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}"  x:Name="BigTax"/>
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}"  x:Name="LeftCar"/>
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}"  x:Name="HotelThirdBus"/>
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}"  x:Name="ChanceFive"/>
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}"  x:Name="HotelSecondBus"/>
+                <CellTypeControl:LeftCell  Style="{StaticResource LeftCellStyle}"  x:Name="HotelFirstBus"/>
             </StackPanel>
-
-
         </Grid>
-
-
     </Grid>
 </UserControl>

@@ -54,7 +54,6 @@ namespace MonopolyDLL.Monopoly
             SetPictureId(picId);
         }
 
-
         public User()
         {
             Login = string.Empty;
@@ -77,6 +76,21 @@ namespace MonopolyDLL.Monopoly
             IfLost = ifLost;
             DoubleCounter = 0;
             GameBusses = new List<InventoryObjs.BoxItem>();
+        }
+
+        public void ClearBuiltHousesInRowType()
+        {
+            BuiltHousesInRowType.Clear();
+        }
+
+        public void AddTypeInBuiltHousesInRowType(BusinessType type)
+        {
+            BuiltHousesInRowType.Add(type);
+        }
+
+        public bool IfTypeContainsInBuiltHouses(BusinessType type)
+        {
+            return BuiltHousesInRowType.Contains(type);
         }
 
         public void AddToDoubleCounter()

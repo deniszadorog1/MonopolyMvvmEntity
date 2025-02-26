@@ -59,7 +59,7 @@ namespace MonopolyDLL.Monopoly
             res.Add(new UsualBus("Chanel", 600, 300, 360, new List<int>() { 20, 100, 300, 900, 1600, 2500 }, 0, 0, 500, -1, BusinessType.Perfume, false, 1));
             res.Add(new Chance("Chance", 2));
             res.Add(new UsualBus("HugoBoss", 600, 300, 360, new List<int>() { 40, 200, 600, 1800, 3200, 4500 }, 0, 0, 500, -1, BusinessType.Perfume, false, 3));
-            res.Add(new Tax("LittleTax", 1000, 4));
+            res.Add(new Tax("LittleTax", 2000, 4));
             res.Add(new CarBus("Mercedes", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false, 5));
             res.Add(new UsualBus("Adidas", 1000, 500, 600, new List<int>() { 60, 300, 900, 2700, 4000, 5500 }, 0, 0, 500, -1, BusinessType.Clothes, false, 6));
             res.Add(new Chance("Chance", 7));
@@ -97,7 +97,7 @@ namespace MonopolyDLL.Monopoly
             res.Add(new Chance("Chance", 33));
             res.Add(new UsualBus("Novotel", 3200, 1600, 1920, new List<int>() { 280, 1500, 4500, 10000, 12000, 14000 }, 0, 0, 1750, -1, BusinessType.Hotels, false, 34));
             res.Add(new CarBus("LandRover", 2000, 1000, 1200, new List<int>() { 250, 500, 1000, 2000 }, 0, 0, -1, BusinessType.Cars, false, 35));
-            res.Add(new Tax("BigTax", 2000, 36));
+            res.Add(new Tax("BigTax", 1000, 36));
             res.Add(new UsualBus("Apple", 3500, 1750, 2100, new List<int>() { 360, 1750, 5000, 11000, 13000, 15000 }, 0, 0, 2000, -1, BusinessType.Phones, false, 37));
             res.Add(new Chance("Chance", 38));
             res.Add(new UsualBus("Nokia", 4000, 2000, 2400, new List<int>() { 500, 2000, 6000, 14000, 17000, 20000 }, 0, 0, 2000, -1, BusinessType.Phones, false, 39));
@@ -383,6 +383,11 @@ namespace MonopolyDLL.Monopoly
             ((ParentBus)Cells[cellIndex]).RebuyBus();
         }
 
+        public void SetMaxDepositCounter(int cellIndex)
+        {
+            ((ParentBus)Cells[cellIndex]).SetNewDepositCounter();
+        }
+
         public int GetRubyPrice(int cellIndex)
         {
             return ((ParentBus)Cells[cellIndex]).GetRubyPrice();
@@ -538,7 +543,7 @@ namespace MonopolyDLL.Monopoly
         {
             for(int i = 0; i < Cells.Length; i++)
             {
-                if(Cells[i] is ParentBus bus)
+                if(Cells[i] is ParentBus bus && bus.IfDeposited)
                 {
                     bus.NewCircleOfDeposit();
                 }

@@ -41,7 +41,7 @@
                     BorderBrush="White" Margin="10 0 0 0"
                     Width="{Binding ActualWidth, ElementName=PayBut}"
                     Height="{Binding ActualHeight, ElementName=PayBut}"
-                    Content="Sit one more round" Foreground="Black"
+                    Content="Throguh cubes" Foreground="Black"
                     HorizontalContentAlignment="Center"
                     VerticalContentAlignment="Center" FontSize="16"/>
 

@@ -12,6 +12,8 @@ using MahApps.Metro.Controls;
 using System;
 using MahApps.Metro.Native;
 using System.Diagnostics.Eventing.Reader;
+using System.Windows.Documents;
+using System.Windows.Shapes;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -60,7 +62,7 @@ namespace MonopolyEntity.Windows.Pages
         private const int _itemsCut = 100;
         private void AddLoginsInBox(List<User> users, Canvas box)
         {
-            box.PreviewDrop += ListBox_Drop;
+            //box.PreviewDrop += ListBox_Drop;
             for (int i = 0; i < users.Count; i++)
             {
                 WrapPanel panel = new WrapPanel()
@@ -71,30 +73,81 @@ namespace MonopolyEntity.Windows.Pages
                 };
 
                 panel.MouseDown += MoveWarpPanel_MouseDown;
+                panel.PreviewMouseMove += ToDrag_MouseMove;
+                panel.PreviewMouseUp += ToDrag_MouseUp;
 
                 panel.Children.Add(MainWindowHelper.GetCircleImage(50, 50, DBQueries.GetPictureNameById(users[i].GetPictureId())));
 
                 panel.Children.Add(GetTextBlockForCard(users[i].Login));
 
-                box.Children.Add(panel);
-
-                panel.MouseMove += Item_MouseMove;
+                box.Children.Add(panel);               
             }
-
             UppdateHeightLocForItems(box);
         }
 
-        private void Item_MouseMove(object sender, MouseEventArgs e)
+        private void MoveWarpPanel_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton is MouseButtonState.Pressed)
-            {
-                _toDragDrop = (WrapPanel)sender;
-                _panelOwner = (Canvas)((WrapPanel)sender).Parent;
+            _toDragDrop = (WrapPanel)sender;
+            _panelOwner = (Canvas)((WrapPanel)sender).Parent;
 
-                _toDragDrop.IsHitTestVisible = false;
-                DragDrop.DoDragDrop(_toDragDrop, new DataObject(DataFormats.Serializable, _toDragDrop), DragDropEffects.Move);
-                _toDragDrop.IsHitTestVisible = true;
+            Point point = _toDragDrop.TransformToAncestor(this).Transform(new Point(0, 0));
+
+            _panelOwner.Children.Remove(_toDragDrop);
+
+            DragCanvas.Children.Add(_toDragDrop);
+
+            Canvas.SetLeft(_toDragDrop, point.X);
+            Canvas.SetTop(_toDragDrop, point.Y);
+        }
+
+        private void ToDrag_MouseMove(object sedner, MouseEventArgs e)
+        {
+            if (_toDragDrop is null) return;
+            Point point = e.GetPosition(DragCanvas);
+
+            Canvas.SetLeft(_toDragDrop, point.X - 20);
+            Canvas.SetTop(_toDragDrop, point.Y - 20);
+        }
+
+        private void ToDrag_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (_toDragDrop is null || _panelOwner is null) return;
+            DragCanvas.Children.Remove(_toDragDrop);
+
+            PlayersInGame.Children.Clear();
+            PlayersThatCanBeAdd.Children.Clear();
+
+            Point point = e.GetPosition(this);
+            HitTestResult hitTestResult = VisualTreeHelper.HitTest(this, point);
+
+            if (hitTestResult.VisualHit is Canvas can)
+            {
+                if (can == PlayersInGame)
+                {
+                    PlayersInGame.Children.Add(_toDragDrop);
+                }
+                else if (can == PlayersThatCanBeAdd)
+                {
+                    PlayersThatCanBeAdd.Children.Add(_toDragDrop);
+                }
             }
+
+            if (_toDragDrop.Parent is null)
+            {
+                _panelOwner.Children.Add(_toDragDrop);
+            }
+
+            UppdateHeightLocForItems(PlayersInGame);
+            UppdateHeightLocForItems(PlayersThatCanBeAdd);
+
+
+            SetDraggedPlayerInList(GetListToWorkWith(_panelOwner), GetListToWorkWith((Canvas)_toDragDrop.Parent));
+
+            DragCanvas.Children.Clear();
+            SetLoginsInLists();
+
+            _toDragDrop = null;
+            _panelOwner = null;
         }
 
         private const int _userItemHeight = 55;
@@ -116,13 +169,8 @@ namespace MonopolyEntity.Windows.Pages
             return block;
         }
 
-
         private WrapPanel _checkWarpDarg;
-        private void MoveWarpPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            _toDragDrop = (WrapPanel)sender;
-            _panelOwner = (Canvas)((WrapPanel)sender).Parent;
-        }
+
 
         private void ListBox_Drop(object sender, DragEventArgs e)
         {
@@ -132,37 +180,9 @@ namespace MonopolyEntity.Windows.Pages
 
         }
 
-        private void PlayersInGame_DragOver(object sender, DragEventArgs e)
-        {
-            object obj = e.Data.GetData(DataFormats.Serializable);
-
-            if (obj is UIElement elem)
-            {
-                Point point = e.GetPosition((Canvas)sender);
-
-                Canvas.SetLeft(elem, point.X);
-                Canvas.SetTop(elem, point.Y);
-
-                if (!(((Canvas)(sender)).Children.Contains(elem)))
-                {
-                    ((Canvas)sender).Children.Add(elem);
-                }
-            }
-
-            //UppdateHeightLocForItems((Canvas)sender);
-        }
-
-
-
         public List<User> GetListToWorkWith(Canvas box)
         {
             return box == PlayersInGame ? _playersInGame : _notAddedPlayers;
-        }
-
-        public List<User> GetOtherListToWorkWith(Canvas box)
-        {
-            return box == PlayersInGame ? _notAddedPlayers : _playersInGame;
-
         }
 
         public void SetDraggedPlayerInList(List<User> toRemoveFrom, List<User> toAddIn)
@@ -182,11 +202,8 @@ namespace MonopolyEntity.Windows.Pages
             toAddIn.Add(notInGame);
         }
 
-
         private WrapPanel _toDragDrop;
         private Canvas _panelOwner;
-
-
 
         private TextBlock GetTextBlock(string name)
         {
@@ -202,20 +219,6 @@ namespace MonopolyEntity.Windows.Pages
             //Close();
         }
 
-        private void RemovePlayerBut_Click(object sender, RoutedEventArgs e)
-        {
-            return;
-            /*            if (PlayersInGame.SelectedItem is null) return;
-                        TextBlock block = ((WrapPanel)PlayersInGame.SelectedItem).Children.OfType<TextBlock>().FirstOrDefault();
-                        WrapPanel panel = ((WrapPanel)PlayersInGame.SelectedItem);
-                        User toRemove = _playersInGame.Where(x => x.Login == block.Text).First();
-
-                        PlayersInGame.Items.Remove(PlayersInGame.SelectedItem);
-                        _playersInGame.Remove(toRemove);
-
-                        _notAddedPlayers.Add(toRemove);
-                        PlayersThatCanBeAdd.Items.Add(panel);*/
-        }
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
@@ -234,41 +237,8 @@ namespace MonopolyEntity.Windows.Pages
             //Close();
         }
 
-        private void AddPlayerInGameBut_Click(object sender, RoutedEventArgs e)
-        {
-            return;
-            /*            if (PlayersThatCanBeAdd.SelectedItem is null) return;
-                        TextBlock block = ((WrapPanel)PlayersThatCanBeAdd.SelectedItem).Children.OfType<TextBlock>().FirstOrDefault();
-                        WrapPanel panel = ((WrapPanel)PlayersThatCanBeAdd.SelectedItem);
-                        User toRemove = _notAddedPlayers.Where(x => x.Login == block.Text).First();
-
-                        _notAddedPlayers.Remove(toRemove);
-                        PlayersThatCanBeAdd.Items.Remove(panel);
-
-                        PlayersInGame.Items.Add(panel);
-                        _playersInGame.Add(toRemove);*/
-        }
-
         private void Page_PreviewMouseUp(object sender, MouseButtonEventArgs e)
         {
-        }
-
-        private void PlayersThatCanBeAdd_Drop(object sender, DragEventArgs e)
-        {
-
-        }
-
-        private void PlayersThatCanBeAdd_DragLeave(object sender, DragEventArgs e)
-        {
-            //if (!(e.OriginalSource is Canvas)) return;
-            object obj = e.Data.GetData(DataFormats.Serializable);
-
-            if (obj is UIElement elem)
-            {
-                ((Canvas)sender).Children.Remove(elem);
-            }
-
-            UppdateHeightLocForItems((Canvas)sender);
         }
 
         private void Page_DragOver(object sender, DragEventArgs e)
@@ -276,22 +246,5 @@ namespace MonopolyEntity.Windows.Pages
 
         }
 
-        private void Page_Drop(object sender, DragEventArgs e)
-        {
-            object obj = e.Data.GetData(DataFormats.Serializable);
-
-            if (obj is WrapPanel elem)
-            {
-                if (!(elem.Parent is null)) return;
-
-                if (!(_panelOwner.Children.Contains(elem)))
-                {
-                    if(sender is Canvas) SetDraggedPlayerInList(GetListToWorkWith(_panelOwner), GetListToWorkWith((Canvas)sender));
-                    _panelOwner.Children.Add(elem);
-                }
-            }
-            UppdateHeightLocForItems(_panelOwner);
-
-        }
     }
 }

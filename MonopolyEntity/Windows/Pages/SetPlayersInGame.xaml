@@ -12,9 +12,6 @@
       MaxHeight="670" MinHeight="630"
       Background="Transparent"
       Title="SetPlayersInGame"
-      AllowDrop="True"
-      DragOver="Page_DragOver"
-      Drop="Page_Drop" 
       >
     <Grid>
         <Grid.RowDefinitions>
@@ -22,29 +19,28 @@
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
+        <Canvas Name="DragCanvas"  Panel.ZIndex="100"/>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="75"/>
+                    <RowDefinition Height="75" Name ="NmaeListCol"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0" Text="Players in game" FontSize="32"
                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <Canvas Name="PlayersInGame" Margin="10" AllowDrop="True"
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Auto">
+                    <Canvas Name="PlayersInGame" Margin="10 10 0 10" 
                             Background="Transparent" 
-                            DragOver="PlayersInGame_DragOver"
-                            Drop="PlayersThatCanBeAdd_Drop"
-                            DragLeave="PlayersThatCanBeAdd_DragLeave"
-                            />
+                            ClipToBounds="False"/>
                 </ScrollViewer>
             </Grid>
 
@@ -59,11 +55,9 @@
                        Text="Players that can be add"/>
 
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
-                    <Canvas Name="PlayersThatCanBeAdd" Background="Transparent"
-                            Margin="10" AllowDrop="True"
-                            DragOver="PlayersInGame_DragOver"
-                            Drop="PlayersThatCanBeAdd_Drop"
-                            DragLeave="PlayersThatCanBeAdd_DragLeave"/>
+                        <Canvas Name="PlayersThatCanBeAdd" Background="Transparent"
+                            Margin="10 10 10 10"
+                            ClipToBounds="False"/>
                 </ScrollViewer>
             </Grid>
         </Grid>
@@ -76,4 +70,5 @@
 
 
     </Grid>
+
 </Page>

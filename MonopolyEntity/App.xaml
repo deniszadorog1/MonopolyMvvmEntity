@@ -36,7 +36,6 @@
             <SolidColorBrush x:Key="PhoneColor" Color="#656D78"/>
             <SolidColorBrush x:Key="GameColor" Color="#7F1F0F"/>
 
-
             <SolidColorBrush x:Key="FirstUserColor" Color="#EA5F5B"/>
             <SolidColorBrush x:Key="SecondUserColor" Color="#31A2E6"/>
             <SolidColorBrush x:Key="ThirdUserColor" Color="#9DD766"/>
