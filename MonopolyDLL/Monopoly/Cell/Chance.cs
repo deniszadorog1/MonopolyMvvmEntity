@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 using MonopolyDLL.Monopoly.Enums;
+using MonopolyDLL.Services;
 
 namespace MonopolyDLL.Monopoly.Cell
 {
@@ -25,11 +27,13 @@ namespace MonopolyDLL.Monopoly.Cell
             Id = id;
         }
 
-        private Random _rnd = new Random();
+        public ChanceAction _resChance;
         public ChanceAction GetRandomChanceAction()
         {
-            ChanceAction res = (ChanceAction)_rnd.Next(1, ((int)ChanceAction.GoToPrison + 1));
-            return res;
+            const int startVal = 1;
+            const int moveBordValue = 1;
+            _resChance = (ChanceAction)GetRandomServese.GetRandom(startVal, (int)ChanceAction.GoToPrison + moveBordValue);
+            return _resChance;
         }
 
         public int GetLittleWinMoney()

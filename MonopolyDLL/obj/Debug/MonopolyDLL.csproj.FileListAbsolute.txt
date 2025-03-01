@@ -21,3 +21,5 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.dll
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.pdb
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.Resource1.resources
 B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\obj\Debug\MonopolyDLL.csproj.GenerateResource.cache
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\Newtonsoft.Json.dll
+B:\GitHub\MonopolyMvvmEntity\MonopolyDLL\bin\Debug\Newtonsoft.Json.xml

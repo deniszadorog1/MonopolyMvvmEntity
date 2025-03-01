@@ -61,8 +61,8 @@ namespace MonopolyEntity.Windows.Pages
             player.Play();
         }
 
-        GameField _field;
-        private readonly Size _baseFieldSize = new Size(950, 950);
+        GameField _field = null;
+        private readonly Size _baseFieldSize = new Size(895, 895);
         private void AddGameField()
         {
             const string fieldName = "GameField";
@@ -138,14 +138,14 @@ namespace MonopolyEntity.Windows.Pages
             _dropdownMenuPopup.PlacementTarget = null;
         }
 
-        private Popup _dropdownMenuPopup;
+        public Popup _dropdownMenuPopup;
         private void SetPopupsForUserCards()
         {
             GetContextMenu();
         }
 
-        private const int _horOffset = 10;
-        private const int _vertOffset = -10;
+        private const int _horOffset = 0;
+        private const int _vertOffset = 0;
         private void GetContextMenu()
         {
             const int popupWidth = 220;
@@ -233,8 +233,8 @@ namespace MonopolyEntity.Windows.Pages
         private void SetSendTradeButton(StackPanel panel, int traderIndex)
         {
             _dropdownMenuPopup.Width = _userCards[traderIndex].UserCardGrid.Width;
-            _dropdownMenuPopup.HorizontalOffset = 0;
-            _dropdownMenuPopup.VerticalOffset = _vertOffset;
+            _dropdownMenuPopup.HorizontalOffset = (_userCards[traderIndex].Width - _userCards[traderIndex].UserCardGrid.Width) / 2;
+            _dropdownMenuPopup.VerticalOffset = -(_userCards[traderIndex].Height - _userCards[traderIndex].UserCardGrid.Height) / 2;
 
             Button but = GetButtonForUserCardMenu("Send trade", traderIndex);
 
@@ -247,9 +247,14 @@ namespace MonopolyEntity.Windows.Pages
 
         private void SetGiveUpButton(StackPanel panel)
         {
-            _dropdownMenuPopup.Width = _userCards[_system.MonGame.StepperIndex].ActualWidth;
-            _dropdownMenuPopup.HorizontalOffset = _horOffset;
-            _dropdownMenuPopup.VerticalOffset = 0;
+            _dropdownMenuPopup.Width = _userCards[_system.MonGame.StepperIndex].UserCardGrid.Width ;
+            _dropdownMenuPopup.HorizontalOffset = 
+                (_userCards[_system.MonGame.StepperIndex].Width - 
+                _userCards[_system.MonGame.StepperIndex].UserCardGrid.Width) / 2;
+
+            _dropdownMenuPopup.VerticalOffset =
+                -Math.Abs((_userCards[_system.MonGame.StepperIndex].Height -
+                _userCards[_system.MonGame.StepperIndex].UserCardGrid.Height) / 2); 
 
             Button but = GetButtonForUserCardMenu("Give up", _system.MonGame.StepperIndex);
             but.Click += (sender, e) =>
@@ -270,22 +275,47 @@ namespace MonopolyEntity.Windows.Pages
                 Width = _userCards[playerIndex].UserCardGrid.Width,
                 Foreground = Brushes.Black,
                 BorderThickness = new Thickness(0),
-                HorizontalContentAlignment = HorizontalAlignment.Center
+                HorizontalContentAlignment = HorizontalAlignment.Center,
             };
-
             return button;
         }
 
         private Size _firstStep = new Size(1500, 950);
-        private Size _zeroStep = new Size(1500, 1000);
+        private GamePageSize _windowSizeType = GamePageSize.BigWindow;
+
+        private readonly Size _middleWindowSize = new Size(835, 835);
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(this.ActualWidth < _firstStep.Width ||
-                this.ActualHeight < _firstStep.Height)
+            IfPageIsRendered();
+            if (!_ifPageIsRendered) return;
+
+            if ((this.ActualWidth < _firstStep.Width ||
+                this.ActualHeight < _firstStep.Height) &&
+                _windowSizeType != GamePageSize.MediumWindow)
             {
-                return;
-                _field.UpdateFieldSize(GamePageSize.MediumWindow);
+                _windowSizeType = GamePageSize.MediumWindow;
+                _field.UpdateFieldSize(_windowSizeType, _middleWindowSize);
             }
+            else if(this.ActualWidth > _firstStep.Width &&
+                this.ActualHeight > _firstStep.Height &&
+                _windowSizeType != GamePageSize.BigWindow)
+            {
+                _windowSizeType = GamePageSize.BigWindow;
+                _field.UpdateFieldSize(_windowSizeType, _baseFieldSize);
+            }
+        }
+
+        private bool _ifPageIsRendered = false;
+        private void IfPageIsRendered()
+        {
+            if (_ifPageIsRendered) return;
+            Window parentWindow = Window.GetWindow(_frame);
+
+            if(parentWindow is MainWindow window)
+            {
+                _ifPageIsRendered = window._ifGamePageIsRendered;
+            }
+
         }
     }
 }

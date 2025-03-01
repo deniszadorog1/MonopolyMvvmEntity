@@ -44,7 +44,7 @@ namespace MonopolyDLL.Monopoly
             Password = password;
             Id = id;
             GameBusses = new List<InventoryObjs.BoxItem>();
-            AmountOfMoney = 15000;
+            AmountOfMoney = 10000;
             Position = 0;
             IfSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();
@@ -57,7 +57,7 @@ namespace MonopolyDLL.Monopoly
         public User()
         {
             Login = string.Empty;
-            AmountOfMoney = 15000;
+            AmountOfMoney = 10000;
             Position = 0;
             IfSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();
@@ -232,7 +232,7 @@ namespace MonopolyDLL.Monopoly
 
         public ParentBus GetInventoryItemById(int position, ParentBus ususalPosBus, int newOwnerIndex)
         {
-            BoxItem item = GameBusses.Where(x => x.StationId == position).First();
+            BoxItem item = GameBusses.Where(x => x.StationId == position).FirstOrDefault();
 
             const int usCounter = 15;
 
@@ -256,7 +256,7 @@ namespace MonopolyDLL.Monopoly
 
         public BoxItem GetBoxItemByPosition(int position)
         {
-            BoxItem item = GameBusses.Where(x => x.StationId == position).First();
+            BoxItem item = GameBusses.Where(x => x.StationId == position).FirstOrDefault();
             return item;
         }
 

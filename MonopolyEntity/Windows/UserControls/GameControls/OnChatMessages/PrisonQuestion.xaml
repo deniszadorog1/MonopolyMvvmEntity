@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages"
              mc:Ignorable="d" 
              d:DesignHeight="175" d:DesignWidth="600" 
-             Height="175" VerticalAlignment="Top">
-    <Border Background="#E3E3E3" CornerRadius="10">
+             Height="175" VerticalAlignment="Top"
+             
+             SizeChanged="UserControl_SizeChanged"
+             >
+    <Border Background="#E3E3E3" CornerRadius="10" Name ="MainBorder">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>
@@ -24,21 +27,23 @@
             <Grid Grid.Row="1" >
                 <TextBlock Name="DescriptionBLock" Foreground="#696969" 
                            Text="Choose what you gona do with it. Pay 500 or sit"
-                       FontSize="24" Margin="20 10 0 0 "/>
+                       FontSize="21" Margin="25 10 0 0 "/>
             </Grid>
 
-            <Grid Grid.Row ="2" HorizontalAlignment="Center">
+            <Grid Grid.Row ="2" HorizontalAlignment="Center" Margin="20 0 20 0"
+                  Name ="ButsGrid">
                 <StackPanel Orientation="Horizontal" Name="ActiveButs" Visibility="Visible">
 
-                    <Button Name ="PayBut" Width="275" Height="45"
+                    <Button Name ="PayBut" Height="45" Width="275" 
                     Background="{StaticResource MainGlobalColor}" 
                     BorderBrush="White" VerticalAlignment="Center"
                     HorizontalAlignment="Center" Content="Pay 500 to play"
                     Foreground="White" VerticalContentAlignment="Center"
-                    HorizontalContentAlignment="Center" FontSize="16"/>
+                    HorizontalContentAlignment="Center" FontSize="16"
+                            Margin="0 0 5 0"/>
 
                     <Button Name ="ContinueSitting" Background="#ECEEF1" 
-                    BorderBrush="White" Margin="10 0 0 0"
+                    BorderBrush="White" Margin="5 0 0 0"
                     Width="{Binding ActualWidth, ElementName=PayBut}"
                     Height="{Binding ActualHeight, ElementName=PayBut}"
                     Content="Throguh cubes" Foreground="Black"
@@ -47,17 +52,23 @@
 
                 </StackPanel>
 
-                <Button Name ="GiveUpBut" Width="410" Height="45"  
+                <Button Name ="GiveUpBut" Height="45"
+                        Width="{Binding ActualWidth, ElementName=ButsGrid}"
+                        Margin="25 0 25 0"
+                        Padding="0 0 50 0"
                         Background="{StaticResource InActiveColor}"
                         BorderBrush="White" Content="Give up" FontSize="16"
                         Foreground="Black" Visibility="Hidden"/>
 
-                <Button Name ="LastPay" Width="400" Height="45" Visibility="Hidden"
-                    Background="{StaticResource MainGlobalColor}" 
-                    BorderBrush="White" VerticalAlignment="Center"
-                    HorizontalAlignment="Center" Content="You should pay 500"
-                    Foreground="White" VerticalContentAlignment="Center"
-                    HorizontalContentAlignment="Center" FontSize="16"/>
+                <Button Name ="LastPay" Height="45" Visibility="Hidden"
+                        Width="{Binding ActualWidth, ElementName=ButsGrid}"                    
+                        Margin="10 0 10 0"
+                        Padding="0 0 20 0"
+                        Background="{StaticResource MainGlobalColor}" 
+                        BorderBrush="White" VerticalAlignment="Center"
+                        HorizontalAlignment="Center" Content="You should pay 500"
+                        Foreground="White" VerticalContentAlignment="Center"
+                        HorizontalContentAlignment="Center" FontSize="16"/>
 
             </Grid>
 

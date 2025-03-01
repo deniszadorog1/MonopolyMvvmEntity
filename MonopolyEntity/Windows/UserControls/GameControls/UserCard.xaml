@@ -7,16 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="250" 
              
-             xmlns:Timer ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
-             
+             xmlns:Timer ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"   
              >
-    <Grid>
+    <Grid Background="Transparent">
 
-        <Grid Height="165" Width="220" Name="UserCardGrid" Background="#161A1B" >
+        <Grid Height="165" Width="215" Name="UserCardGrid" Background="#161A1B" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="90"/>
-                <RowDefinition Height="30"/>
-                <RowDefinition />
+                <RowDefinition Height="18*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="9*"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Name ="UserImageGrid">

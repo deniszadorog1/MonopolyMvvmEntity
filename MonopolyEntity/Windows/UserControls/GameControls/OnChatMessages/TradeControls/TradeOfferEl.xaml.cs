@@ -84,5 +84,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
             if (res.Length == 0) res.Append("0");
             return res.ToString();
         }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            SenderScroll.Height = TradeRow.ActualHeight -
+                GiverItem.ActualHeight - SenderMoney.ActualHeight;
+
+            RecieverScroll.Height = SenderScroll.Height;
+        }
     }
 }

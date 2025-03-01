@@ -26,7 +26,5 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
         {
             return _paymentToGetThrough;
         }
-
-
     }
 }

@@ -40,7 +40,5 @@
                 NavigationUIVisibility="Hidden">
 
         </Frame>
-
-
     </Grid>
 </Window>

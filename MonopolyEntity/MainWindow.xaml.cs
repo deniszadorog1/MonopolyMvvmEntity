@@ -66,6 +66,8 @@ namespace MonopolyEntity
                 MainFrame.Content is InventoryPage inventory ||
                 MainFrame.Content is ProfileSettings settings) 
             {
+                ClosePopupIfGame();
+
                 ClearCaseOpenEffect();
                 ClearGame();
 
@@ -75,10 +77,20 @@ namespace MonopolyEntity
             }
         }
 
+        private void ClosePopupIfGame()
+        {
+            if(MainFrame.Content is GamePage game)
+            {
+                game._dropdownMenuPopup.IsOpen = false;
+                _ifGamePageIsRendered = false;
+            }
+        }
+
         public void ClearGame()
         {
             _system.MonGame = new Game(_system.LoggedUser);
         }
+
         public void ClearCaseOpenEffect()
         {
             VisiableItems.Children.Clear();
@@ -135,9 +147,15 @@ namespace MonopolyEntity
             this.Hide();
         }
 
+        public bool _ifGamePageIsRendered = false;
         private void MainFrame_ContentRendered(object sender, EventArgs e)
         {
             SetWindowSize((Page)MainFrame.Content);
+
+            if(MainFrame.Content is GamePage)
+            {
+                _ifGamePageIsRendered = true;
+            }
 
             this.Show();
         }
@@ -155,12 +173,14 @@ namespace MonopolyEntity
                 MinHeight = 900;
                 MinWidth = 1500;
                 e.Handled = true;
+                game._dropdownMenuPopup.IsOpen = false;
             }
             else
             {
                 MinHeight = _baseSize.Height;
                 MinWidth = _baseSize.Width;
             }
+           
         }
     }
 }

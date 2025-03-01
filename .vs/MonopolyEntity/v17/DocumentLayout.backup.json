@@ -3,11 +3,23 @@
   "WorkspaceRootPath": "B:\\GitHub\\MonopolyMvvmEntity\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\cell\\chance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\cell\\chance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\enums\\chanceaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\enums\\chanceaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|b:\\github\\monopolymvvmentity\\monopolydll\\monopoly\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -15,300 +27,128 @@
       "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\params.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\params.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\mainpagewind.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\mainpagewind.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\buybusiness.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\buybusiness.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\usualbusinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\usualbusinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\usualbusinfo.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\usualbusinfo.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\gamebusinfo.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\gamebusinfo.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\gamebusinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\gamebusinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\carbusinfo.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\carbusinfo.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\carbusinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\carbusinfo.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:2:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:2:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\jackpotelem.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\jackpotelem.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\systemparamsserveses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\systemparamsserveses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\mainpagewindow\\useranimated.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\mainpagewindow\\useranimated.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\carbusinfo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\bussinessinfo\\carbusinfo.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|b:\\github\\monopolymvvmentity\\monopolydll\\monopoly\\enums\\gamepagesize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\enums\\gamepagesize.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\cell\\bus\\parentbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\cell\\bus\\parentbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\gamepage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\gamepage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\gamepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\gamepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\inventorypage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\inventorypage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\throughcubes.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\throughcubes.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\dicesdrop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\dicesdrop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\monopolysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\monopolysystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\auctionbid.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\auctionbid.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\jackpotelem.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\jackpotelem.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\other\\usertimer.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\other\\usertimer.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\other\\dice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\other\\dice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\other\\depositcounter.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\other\\depositcounter.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\throughcubes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\throughcubes.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\prisonquestion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\prisonquestion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\paymoney.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\paymoney.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\buybusiness.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\buybusiness.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\cell\\anglecells\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\cell\\anglecells\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\visualhelper\\boardhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\visualhelper\\boardhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\mainpagewind.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\mainpagewind.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\setplayersingame.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\setplayersingame.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:2:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:2:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\registrationpage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\registrationpage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:1:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\windows\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:1:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:1:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\registrationpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:1:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\registrationpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\prisonquestion.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\prisonquestion.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\buybusiness.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\buybusiness.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\paymoney.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\paymoney.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\setplayersingame.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\setplayersingame.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\setplayersingame.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\setplayersingame.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\prisonquestion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\prisonquestion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\registrationpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\registrationpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\mainpagewindow\\useranimated.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\mainpagewindow\\useranimated.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\userpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\userpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\uppermenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\uppermenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\visualhelper\\mainwindowhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\visualhelper\\mainwindowhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\inventorypage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\inventorypage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\uppermenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\uppermenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\mainpagewindow\\useranimated.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\mainpagewindow\\useranimated.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\uppermenu.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\uppermenu.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\profilesettings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\profilesettings.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\usersettingsfolder\\usersettings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\usersettingsfolder\\usersettings.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\mainpagewindow\\describebox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\mainpagewindow\\describebox.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\mainwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\startpage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\startpage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\other\\usertimer.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\other\\usertimer.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\resource1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\resource1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\dbqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\dbqueries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\startpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\startpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\params.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\params.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\dbservice\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\dbservice\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\cell\\anglecells\\casino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\cell\\anglecells\\casino.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\cell\\anglecells\\gotoprison.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\cell\\anglecells\\gotoprison.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\mainpagewind.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\mainpagewind.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\visualhelper\\mainwindowhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\visualhelper\\mainwindowhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:1:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\startpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:1:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\startpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\cell\\anglecells\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\cell\\anglecells\\start.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:2:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\startpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:2:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\startpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolydll\\monopoly\\cell\\anglecells\\prison.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{89B589B4-51C0-4856-AACF-61957F75CCD7}|MonopolyDLL\\MonopolyDLL.csproj|solutionrelative:monopolydll\\monopoly\\cell\\anglecells\\prison.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:1:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|b:\\github\\monopolymvvmentity\\monopolyentity\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:1:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\gamepage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\gamepage.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:2:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\registrationpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:2:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\registrationpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\usercard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\gamepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\gamepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\addmoneyelem.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\addmoneyelem.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\tradeofferel.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\tradeofferel.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\tradeitem.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\tradeitem.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\tradeofferel.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\tradeofferel.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\addmoneyelem.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\addmoneyelem.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\tradeitem.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\onchatmessages\\tradecontrols\\tradeitem.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\usercontrols\\gamecontrols\\gamefield.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\mainwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|B:\\GitHub\\MonopolyMvvmEntity\\monopolyentity\\windows\\pages\\setplayersingame.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBE4EC3F-6985-4B3E-9404-7CEA45B70577}|MonopolyEntity\\MonopolyEntity.csproj|solutionrelative:monopolyentity\\windows\\pages\\setplayersingame.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -318,31 +158,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "User.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\User.cs",
-              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\User.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\User.cs",
-              "RelativeToolTip": "MonopolyDLL\\Monopoly\\User.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAewC0AAAAgAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "GamePage.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAIBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T10:12:17.945Z",
+              "WhenOpened": "2025-02-26T16:58:44.128Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "GameField.xaml.cs",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml.cs",
               "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml.cs",
-              "ViewState": "AgIAAGwLAAAAAAAAAAAewH0LAAA9AAAAAAAAAA==",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml.cs*",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml.cs*",
+              "ViewState": "AgIAADwMAAAAAAAAAAAnwFAMAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-04T23:56:14.587Z",
               "IsPinned": true,
@@ -350,13 +190,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "User.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\User.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\User.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\User.cs",
+              "RelativeToolTip": "MonopolyDLL\\Monopoly\\User.cs",
+              "ViewState": "AgIAAPIAAAAAAAAAAAAnwAQBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T10:12:17.945Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "Game.cs",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Game.cs",
               "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Game.cs",
               "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Game.cs",
               "RelativeToolTip": "MonopolyDLL\\Monopoly\\Game.cs",
-              "ViewState": "AgIAAGEEAAAAAAAAAAAewHIEAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAC4EAAAAAAAAAAAuwEAEAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-05T23:36:12.009Z",
               "IsPinned": true,
@@ -367,909 +221,271 @@
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "StartPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAAAFkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T22:04:52.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "RegistrationPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACsAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T22:04:40.265Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
-              "Title": "App.config",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.config",
-              "RelativeDocumentMoniker": "MonopolyEntity\\App.config",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.config",
-              "RelativeToolTip": "MonopolyEntity\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-02-21T00:43:24.417Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "UserTimer.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-20T18:06:39.555Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "InventoryPage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-25T00:35:20.842Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "JackpotElem.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T21:24:01.157Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "DicesDrop.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\DicesDrop.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\DicesDrop.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\DicesDrop.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\DicesDrop.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T20:10:56.205Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "PrisonQuestion.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T18:29:18.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
-              "Title": "SetPlayersInGame.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-20T01:12:18.615Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "BuyBusiness.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAewBkAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-12T19:05:38.533Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 50,
-              "Title": "PrisonQuestion.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAkwCgAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-13T01:12:48.727Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "params.json",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\params.json",
-              "RelativeDocumentMoniker": "MonopolyDLL\\params.json",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\params.json",
-              "RelativeToolTip": "MonopolyDLL\\params.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-02-24T20:58:43.324Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MainPageWind.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAuwB8AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T00:50:02.809Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "GameField.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T21:24:52.199Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UsualBusInfo.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\UsualBusInfo.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\UsualBusInfo.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\UsualBusInfo.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\UsualBusInfo.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-25T16:25:10.455Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "GameBusInfo.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\GameBusInfo.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\GameBusInfo.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\GameBusInfo.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\GameBusInfo.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T00:49:36.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CarBusInfo.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T00:49:38.148Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
               "Title": "Board.cs",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Board.cs",
               "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Board.cs",
               "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Board.cs",
               "RelativeToolTip": "MonopolyDLL\\Monopoly\\Board.cs",
-              "ViewState": "AgIAAKMBAAAAAAAAAAAewLgBAABqAAAAAAAAAA==",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAnwAsBAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-23T10:15:16.785Z",
+              "WhenOpened": "2025-02-28T22:55:25.797Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "GamePage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
-              "ViewState": "AgIAAAwBAAAAAAAAAAAwwB4BAAAQAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Chance.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\Chance.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Cell\\Chance.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\Chance.cs*",
+              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Cell\\Chance.cs*",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB8AAABRAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T17:55:56.438Z",
+              "WhenOpened": "2025-02-28T22:36:42.459Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "JackpotElem.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAwwD4AAAAJAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "ChanceAction.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Enums\\ChanceAction.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Enums\\ChanceAction.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Enums\\ChanceAction.cs",
+              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Enums\\ChanceAction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAnwA4AAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T01:16:01.726Z",
+              "WhenOpened": "2025-02-28T22:10:45.491Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "UserCard.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-22T00:47:33.075Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "UserAnimated.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T00:41:57.509Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "CarBusInfo.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T16:28:30.832Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ParentBus.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\Bus\\ParentBus.cs",
-              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Cell\\Bus\\ParentBus.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\Bus\\ParentBus.cs",
-              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Cell\\Bus\\ParentBus.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAewG0AAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T21:08:25.533Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "GamePage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-22T18:00:20.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 73,
-              "Title": "StartPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAAAFkAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T22:04:52.176Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "UserSettings.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\UserSettingsFolder\\UserSettings.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\UserSettingsFolder\\UserSettings.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\UserSettingsFolder\\UserSettings.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\UserSettingsFolder\\UserSettings.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-22T21:43:21.883Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 63,
-              "Title": "DescribeBox.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\DescribeBox.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\DescribeBox.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\DescribeBox.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\DescribeBox.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-22T21:35:43.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 67,
-              "Title": "DBQueries.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\DBQueries.cs",
-              "RelativeDocumentMoniker": "MonopolyDLL\\DBQueries.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\DBQueries.cs",
-              "RelativeToolTip": "MonopolyDLL\\DBQueries.cs",
-              "ViewState": "AgIAADECAAAAAAAAAADwvz4CAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T21:14:50.151Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "GamePageSize.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Enums\\GamePageSize.cs",
-              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Enums\\GamePageSize.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Enums\\GamePageSize.cs",
-              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Enums\\GamePageSize.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-25T20:44:49.139Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 61,
-              "Title": "ProfileSettings.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\ProfileSettings.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\ProfileSettings.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\ProfileSettings.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\ProfileSettings.xaml.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAD4v2IAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T22:24:57.761Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 68,
-              "Title": "StartPage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-20T21:46:26.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 75,
-              "Title": "RegistrationPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAACsAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T22:04:40.265Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 71,
-              "Title": "MainPageWind.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T00:50:00.924Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 70,
-              "Title": "App.config",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.config",
-              "RelativeDocumentMoniker": "MonopolyEntity\\App.config",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.config",
-              "RelativeToolTip": "MonopolyEntity\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-02-21T00:43:24.417Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "UserTimer.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-20T18:06:39.555Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "InventoryPage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-25T00:35:20.842Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "JackpotElem.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\JackpotElem.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T21:24:01.157Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "DicesDrop.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\DicesDrop.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\DicesDrop.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\DicesDrop.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\DicesDrop.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T20:10:56.205Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 10,
               "Title": "AuctionBid.xaml",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\AuctionBid.xaml",
               "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\AuctionBid.xaml",
               "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\AuctionBid.xaml",
               "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\AuctionBid.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T21:23:49.564Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T20:41:08.556Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "PrisonQuestion.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T18:29:18.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "ThroughCubes.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\ThroughCubes.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\ThroughCubes.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\ThroughCubes.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\ThroughCubes.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T20:11:00.196Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "BuyBusiness.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T19:53:19.934Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "Start.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Start.cs",
-              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Start.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Start.cs",
-              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Start.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAewBoAAAAfAAAAAAAAAA==",
+              "DocumentIndex": 16,
+              "Title": "DBQueries.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\DBQueries.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\DBQueries.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\DBQueries.cs",
+              "RelativeToolTip": "MonopolyDLL\\DBQueries.cs",
+              "ViewState": "AgIAACcBAAAAAAAAAAAnwDUBAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T21:16:29.692Z"
+              "WhenOpened": "2025-02-28T16:19:56.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "Dice.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\Dice.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\Dice.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\Dice.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\Dice.xaml",
+              "DocumentIndex": 24,
+              "Title": "UserCard.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T21:24:20.655Z",
+              "WhenOpened": "2025-02-28T02:02:37.122Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "DepositCounter.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\DepositCounter.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\DepositCounter.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\DepositCounter.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\DepositCounter.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T21:24:19.382Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "PayMoney.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PayMoney.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PayMoney.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PayMoney.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PayMoney.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T21:24:03.912Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "App.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\App.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\App.xaml",
-              "RelativeToolTip": "MonopolyEntity\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T20:55:01.451Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "BoardHelper.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\VisualHelper\\BoardHelper.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\VisualHelper\\BoardHelper.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\VisualHelper\\BoardHelper.cs",
-              "RelativeToolTip": "MonopolyEntity\\VisualHelper\\BoardHelper.cs",
-              "ViewState": "AgIAAGECAAAAAAAAAAAewHICAAAbAAAAAAAAAA==",
+              "DocumentIndex": 15,
+              "Title": "Resource1.Designer.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Resource1.Designer.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Resource1.Designer.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Resource1.Designer.cs",
+              "RelativeToolTip": "MonopolyDLL\\Resource1.Designer.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAB2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-24T20:23:32.869Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T16:01:25.307Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
-              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-22T02:05:17.091Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "SetPlayersInGame.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAewEIAAAANAAAAAAAAAA==",
+              "DocumentIndex": 9,
+              "Title": "MonopolySystem.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\MonopolySystem.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\MonopolySystem.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\MonopolySystem.cs",
+              "RelativeToolTip": "MonopolyDLL\\Monopoly\\MonopolySystem.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T13:08:34.471Z"
+              "WhenOpened": "2025-02-28T20:25:30.958Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "GamePage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml.cs",
-              "ViewState": "AgIAANMAAAAAAAAAAAAewOYAAAAxAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "SystemParamsServeses.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\SystemParamsServeses.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\SystemParamsServeses.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\SystemParamsServeses.cs",
+              "RelativeToolTip": "MonopolyDLL\\SystemParamsServeses.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T17:55:56.438Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T16:02:23.526Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "MainPageWind.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\MainPageWind.xaml.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAQAAAAAAAAAA==",
+              "DocumentIndex": 17,
+              "Title": "params.json",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\params.json",
+              "RelativeDocumentMoniker": "MonopolyDLL\\params.json",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\params.json",
+              "RelativeToolTip": "MonopolyDLL\\params.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-02-28T16:01:05.122Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Casino.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Casino.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Casino.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Casino.cs",
+              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Casino.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T00:50:20.37Z"
+              "WhenOpened": "2025-02-28T16:00:09.784Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAwwKEAAAAqAAAAAAAAAA==",
+              "DocumentIndex": 19,
+              "Title": "GoToPrison.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\GoToPrison.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\GoToPrison.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\GoToPrison.cs",
+              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\GoToPrison.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T01:42:35.5Z"
+              "WhenOpened": "2025-02-28T16:00:44.336Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "RegistrationPage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml",
-              "ViewState": "AgIAABcAAAAAAAAAAAAuwCcAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-20T20:39:21.21Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "PrisonQuestion.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACsAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T18:29:26.267Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "RegistrationPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml.cs",
-              "ViewState": "AgIAABoAAAAAAAAAAAAewCsAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T22:04:40.265Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "SetPlayersInGame.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml",
-              "ViewState": "AgIAABwAAAAAAAAAAABBwDoAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-20T20:39:06.445Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 74,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAHgAAAAAAAAAAADwv6EAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T01:42:35.5Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 64,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
-              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-22T02:05:47.884Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 52,
-              "Title": "UserAnimated.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml",
-              "ViewState": "AgIAABAAAAAAAAAAAABBwBsAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T00:41:59.336Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
-              "Title": "UpperMenu.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml",
-              "ViewState": "AgIAACsAAAAAAAAAAABBwD8AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T00:43:27.3Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 65,
-              "Title": "StartPage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-20T21:46:36.639Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 51,
-              "Title": "RegistrationPage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\RegistrationPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-20T20:39:19.776Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 53,
-              "Title": "UserPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\UserPage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\UserPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\UserPage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\UserPage.xaml.cs",
-              "ViewState": "AgIAAEIAAAAAAAAAAAD4v00AAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T22:23:31.803Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 54,
-              "Title": "UpperMenu.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-21T00:43:24.864Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "UserAnimated.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\MainPageWindow\\UserAnimated.xaml.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAkwB0AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T00:41:55.737Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 58,
-              "Title": "UpperMenu.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\UpperMenu.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T21:41:49.512Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 55,
-              "Title": "MainWindowHelper.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\VisualHelper\\MainWindowHelper.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\VisualHelper\\MainWindowHelper.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\VisualHelper\\MainWindowHelper.cs",
-              "RelativeToolTip": "MonopolyEntity\\VisualHelper\\MainWindowHelper.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAApwH4AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T20:05:04.861Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 11,
               "Title": "UserCard.xaml.cs",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml.cs",
               "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml.cs",
               "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml.cs",
               "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAwwCIAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAADYAAAAAAAAAAAAnwD8AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T22:42:34.462Z"
+              "WhenOpened": "2025-02-27T20:55:58.275Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "InventoryPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\InventoryPage.xaml.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAvwC8AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 20,
+              "Title": "MainWindowHelper.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\VisualHelper\\MainWindowHelper.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\VisualHelper\\MainWindowHelper.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\VisualHelper\\MainWindowHelper.cs",
+              "RelativeToolTip": "MonopolyEntity\\VisualHelper\\MainWindowHelper.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-22T22:25:14.853Z"
+              "WhenOpened": "2025-02-28T20:22:17.083Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
-              "Title": "StartPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\StartPage.xaml.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAABRwFkAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 21,
+              "Title": "Start.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Start.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Start.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Start.cs",
+              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Start.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T22:04:52.176Z"
+              "WhenOpened": "2025-02-28T16:00:48.753Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
-              "Title": "UserTimer.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml.cs",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml.cs",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\Other\\UserTimer.xaml.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAwwD4AAAAMAAAAAAAAAA==",
+              "DocumentIndex": 22,
+              "Title": "Prison.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Prison.cs",
+              "RelativeDocumentMoniker": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Prison.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Prison.cs",
+              "RelativeToolTip": "MonopolyDLL\\Monopoly\\Cell\\AngleCells\\Prison.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-20T16:11:55.266Z"
+              "WhenOpened": "2025-02-28T16:00:46.153Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
-              "Title": "Board.cs",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\DBService\\Board.cs",
-              "RelativeDocumentMoniker": "MonopolyDLL\\DBService\\Board.cs",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\DBService\\Board.cs",
-              "RelativeToolTip": "MonopolyDLL\\DBService\\Board.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAoAAAAAAAAAA==",
+              "DocumentIndex": 25,
+              "Title": "GamePage.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-28T01:07:43.012Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "AddMoneyElem.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\AddMoneyElem.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\AddMoneyElem.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\AddMoneyElem.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\AddMoneyElem.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-28T01:38:55.061Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
+              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-28T00:20:39.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "SetPlayersInGame.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\SetPlayersInGame.xaml.cs",
+              "ViewState": "AgIAANUAAAAAAAAAAAAAAOgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-21T16:43:44.512Z"
+              "WhenOpened": "2025-02-28T00:19:15.906Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "TradeItem.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeItem.xaml.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeItem.xaml.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeItem.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeItem.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T01:41:21.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAnwFQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T00:02:52.389Z"
             }
           ]
         }
@@ -1281,8 +497,8 @@
       "FloatingWindowState": {
         "Id": "7828650e-aa00-42c1-8806-bc887c1b83c8",
         "Display": 0,
-        "X": 1125,
-        "Y": 292,
+        "X": 1668,
+        "Y": 298,
         "Width": 800,
         "Height": 600,
         "WindowState": 0
@@ -1290,111 +506,140 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "CarBusInfo.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\CarBusInfo.xaml",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAAAFIAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-25T21:40:33.194Z",
-              "EditorCaption": ""
+              "DocumentIndex": 14,
+              "Title": "App.config",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\App.config",
+              "RelativeDocumentMoniker": "MonopolyDLL\\App.config",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyDLL\\App.config",
+              "RelativeToolTip": "MonopolyDLL\\App.config",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAMAAABxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-02-28T20:28:08.052Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UsualBusInfo.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\UsualBusInfo.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\UsualBusInfo.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\UsualBusInfo.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\UsualBusInfo.xaml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAFAAAABEAAAAAAAAAA==",
+              "DocumentIndex": 26,
+              "Title": "AddMoneyElem.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\AddMoneyElem.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\AddMoneyElem.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\AddMoneyElem.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\AddMoneyElem.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-25T21:42:04.462Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "GameBusInfo.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\GameBusInfo.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\GameBusInfo.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\GameBusInfo.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\BussinessInfo\\GameBusInfo.xaml",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAAAFIAAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-25T21:41:45.057Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BuyBusiness.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\BuyBusiness.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T19:53:21.773Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-28T01:38:56.618Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GameField.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAcwH0AAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-25T15:58:33.165Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
               "Title": "UserCard.xaml",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
               "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
               "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
               "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\UserCard.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAEwDkAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-25T00:34:56.428Z",
+              "WhenOpened": "2025-02-28T00:50:09.586Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "ThroughCubes.xaml",
-              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\ThroughCubes.xaml",
-              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\ThroughCubes.xaml",
-              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\ThroughCubes.xaml",
-              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\ThroughCubes.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-24T20:11:01.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "GamePage.xaml",
               "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
               "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
               "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
               "RelativeToolTip": "MonopolyEntity\\Windows\\Pages\\GamePage.xaml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADQAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-02-22T18:00:22.662Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-22T18:00:22.662Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "PrisonQuestion.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PrisonQuestion.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-27T13:25:32.126Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PayMoney.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PayMoney.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PayMoney.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PayMoney.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\PayMoney.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-27T13:17:43.329Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml.cs",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml.cs",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml.cs",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAgwFwAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T01:31:23.323Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "TradeItem.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeItem.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeItem.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeItem.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeItem.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-28T01:42:34.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "TradeOfferEl.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\OnChatMessages\\TradeControls\\TradeOfferEl.xaml",
+              "ViewState": "AgIAADYAAAAAAAAAAAAEwEsAAABhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-28T01:25:16.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "GameField.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
+              "RelativeToolTip": "MonopolyEntity\\Windows\\UserControls\\GameControls\\GameField.xaml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAcwH0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-25T15:58:33.165Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MonopolyEntity\\MainWindow.xaml",
+              "ToolTip": "B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity\\MainWindow.xaml",
+              "RelativeToolTip": "MonopolyEntity\\MainWindow.xaml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACkAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-02-28T00:20:42.318Z"
             }
           ]
         }

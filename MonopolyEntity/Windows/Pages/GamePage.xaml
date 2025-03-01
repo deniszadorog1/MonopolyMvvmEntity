@@ -15,6 +15,13 @@
       SizeChanged="Page_SizeChanged"
       >
 
+    <Page.Resources>
+        <Style x:Key="UserCardSize" TargetType="BoardControls:UserCard">
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="200"/>
+        </Style>
+    </Page.Resources>
+
     <ScrollViewer HorizontalScrollBarVisibility="Auto" 
                   VerticalScrollBarVisibility="Auto">
         <Grid>
@@ -27,32 +34,36 @@
             <Grid Grid.Row="0" Name="UserCards" Margin="0 20 0 0">
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="185"/>
-                    <RowDefinition Height="185"/>
-                    <RowDefinition Height="185"/>
-                    <RowDefinition Height="185"/>
-                    <RowDefinition Height="185"/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
-             
-                <BoardControls:UserCard Grid.Row="0" x:Name="FirstPlayerRedControl" 
+
+                <BoardControls:UserCard Style="{StaticResource UserCardSize}"
+                                    Grid.Row="0" x:Name="FirstPlayerRedControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
                                     MouseDown="UserCardPopup_PreviewMouseDown"/>
 
-                <BoardControls:UserCard Grid.Row="1" x:Name="SecondPlayerBlueControl" 
+                <BoardControls:UserCard Style="{StaticResource UserCardSize}" 
+                                    Grid.Row="1" x:Name="SecondPlayerBlueControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
                                     MouseDown="UserCardPopup_PreviewMouseDown"/>
 
-                <BoardControls:UserCard Grid.Row="2" x:Name="ThirdPlayerGreenControl" 
+                <BoardControls:UserCard Style="{StaticResource UserCardSize}"
+                                    Grid.Row="2" x:Name="ThirdPlayerGreenControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
                                     MouseDown="UserCardPopup_PreviewMouseDown"/>
 
-                <BoardControls:UserCard Grid.Row="3" x:Name="FourthPlayerPurpleControl" 
+                <BoardControls:UserCard Style="{StaticResource UserCardSize}"
+                                    Grid.Row="3" x:Name="FourthPlayerPurpleControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
                                     MouseDown="UserCardPopup_PreviewMouseDown"/>
 
-                <BoardControls:UserCard Grid.Row="4" x:Name="FifthPlayerOrangeControl" 
+                <BoardControls:UserCard  Style="{StaticResource UserCardSize}"
+                                    Grid.Row="4" x:Name="FifthPlayerOrangeControl" 
                                     HorizontalAlignment="Right" Margin="0 0 20 0"
                                     MouseDown="UserCardPopup_PreviewMouseDown"/>
 

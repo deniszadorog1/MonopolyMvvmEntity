@@ -13,6 +13,7 @@ using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 using MonopolyDLL.Monopoly.TradeAction;
 using System.Security.Policy;
 using MonopolyDLL.DBService;
+using System.Xml.Serialization;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -31,11 +32,11 @@ namespace MonopolyDLL.Monopoly
         {
             Players = new List<User>()
             {
-               new User("One", 1000, 0, false),
+               new User("One", 100, 0, false),
                //loggedUser,
-               new User("Two", 1000, 0, false),
-               new User("Three", 1000, 0, false),
-               new User("Four", 1000, 0, false),
+               new User("Two", 100, 0, false),
+               new User("Three", 100, 0, false),
+               new User("Four", 100, 0, false),
                //new User("Five", 15000, 0, false)
             };
             GameBoard = new Board();
@@ -83,13 +84,16 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 5;// _rnd.Next(1, 7);
-            _secondCube = 4;// _rnd.Next(1, 7);
+            _firstCube = 10;// _rnd.Next(1, 7);
+            _secondCube = 10;// _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
         {
-            return (2, 2);// (_rnd.Next(1, 7), _rnd.Next(1, 7));
+            return (_rnd.Next(SystemParamsServeses.GetNumByName("minCubeRib"),
+                SystemParamsServeses.GetNumByName("maxCubeRub")), 
+                _rnd.Next(SystemParamsServeses.GetNumByName("minCubeRib"),
+                SystemParamsServeses.GetNumByName("maxCubeRub")));
         }
 
         public void SetCubes(int firstCube, int secondCube)
@@ -264,8 +268,22 @@ namespace MonopolyDLL.Monopoly
         public bool IfPlayerHasEnoughMoneyToPayBusBill()
         {
             int amount = GetBillForBusinessCell();
-
             return Players[StepperIndex].IfPlayerHasEnoughMoney(amount);
+        }
+
+        public bool IfPlayerHasEnoughMoneyToPayTax()
+        {
+            if (GameBoard.Cells[Players[StepperIndex].Position] is ParentBus)
+            {
+                return IfPlayerHasEnoughMoneyToPayBusBill();
+            }
+            else if (GameBoard.Cells[Players[StepperIndex].Position] is Chance chance)
+            {
+                int bill = chance._resChance == ChanceAction.Pay500 ? 
+                    chance.GetLittleLoseMoney() : chance.GetBigloseMoney();
+                return Players[StepperIndex].IfPlayerHasEnoughMoney(bill);
+            }
+            return Players[StepperIndex].IfPlayerHasEnoughMoney(GetBillFromTaxStepperPosition());
         }
 
         public bool IfStepperHasEnoughMoneyToPayBill(int money)
@@ -373,6 +391,7 @@ namespace MonopolyDLL.Monopoly
             _playerIndxesForAuction.Remove(_bidderIndex);
             if (_playerIndxesForAuction.Count <= 1)
             {
+                if (_playerIndxesForAuction.Count == 0) return true;
                 _bidderIndex = _playerIndxesForAuction.First();
                 return true;
             }
@@ -522,6 +541,11 @@ namespace MonopolyDLL.Monopoly
             Players[StepperIndex].AmountOfMoney -= GameBoard.GetCasinoGamePrice();
         }
 
+        public int GetCasinoPrice()
+        {
+            return GameBoard.GetCasinoGamePrice();
+        }
+
         public int GetCasinoPlayerPrice()
         {
             return GameBoard.GetCasinoGamePrice();
@@ -563,6 +587,12 @@ namespace MonopolyDLL.Monopoly
         public bool IfCellIndexIsBusiness(int cellIndex)
         {
             return GameBoard.Cells[cellIndex] is ParentBus;
+        }
+
+        public bool IfCellIsGameOrCar(int cellIndex)
+        {
+            return GameBoard.Cells[cellIndex] is CarBus ||
+                GameBoard.Cells[cellIndex] is GameBus;
         }
 
         public bool IfCellIsSteppersBusiness(int cellIndex)
@@ -783,10 +813,9 @@ namespace MonopolyDLL.Monopoly
             return true;
         }
 
-        public UsualBusInfoVisual GetButsTypeVisibility(int cellIndex)
+        public UsualBusInfoVisual? GetButsTypeVisibility(int cellIndex)
         {
             BusinessType type = GameBoard.GetBusTypeByIndex(cellIndex);
-
 
             //If cell IS deposited
             if (GameBoard.IfBusinessIsDeposited(cellIndex)) return UsualBusInfoVisual.Rebuy;
@@ -803,7 +832,9 @@ namespace MonopolyDLL.Monopoly
             if (GameBoard.IfBusDoesNotHaveHoueses(cellIndex) &&
                 !IfTypeContainsInBuiltCells(type)) return UsualBusInfoVisual.BuyHouse;
 
-            UsualBusInfoVisual vis = GameBoard.GetVisualBySettingNewAmountOfHouses(cellIndex);
+            bool ifBuilt = IfTypeContainsInBuiltCells(GameBoard.GetBusTypeByIndex(cellIndex));
+
+            UsualBusInfoVisual? vis = GameBoard.GetVisualBySettingNewAmountOfHouses(cellIndex, ifBuilt);
 
             return vis;
 
@@ -1043,7 +1074,7 @@ namespace MonopolyDLL.Monopoly
 
         public void SetInventoryItemForPlayer(int playerIndex, int cellIndex)
         {
-            ParentBus newBus = Players[StepperIndex].GetInventoryItemById(cellIndex, GameBoard.GetBusByIndex(cellIndex), StepperIndex);
+            ParentBus newBus = Players[playerIndex].GetInventoryItemById(cellIndex, GameBoard.GetBusByIndex(cellIndex), playerIndex);
             GameBoard.ChangeBoardItemOnInventory(newBus, cellIndex);
         }
 
@@ -1053,10 +1084,9 @@ namespace MonopolyDLL.Monopoly
             return GameBoard.GetBusByIndex(position);
         }
 
-        public InventoryObjs.BoxItem GetUserInventoryItem()
+        public InventoryObjs.BoxItem GetUserInventoryItem(int playerIndex, int id)
         {
-            int position = Players[StepperIndex].Position;
-            return Players[StepperIndex].GetBoxItemByPosition(position);
+            return Players[playerIndex].GetBoxItemByPosition(id);
         }
 
         public void SetBasicBusBack(int cellIndex)
@@ -1183,5 +1213,24 @@ namespace MonopolyDLL.Monopoly
             return GameBoard.Cells[Players[StepperIndex].Position] is CarBus;
         }
 
+        public bool IfCellIsCarBus(int cellIndex)
+        {
+            return GameBoard.Cells[cellIndex] is CarBus;
+        }
+
+        public bool IfCellIsCarGame(int cellIndex)
+        {
+            return GameBoard.Cells[cellIndex] is GameBus;
+        }
+
+        public bool IfOneOfTheBusesContainsHouse(int cellIndex)
+        {
+            if (!(GameBoard.Cells[cellIndex] is UsualBus)) return false;
+
+            BusinessType type = ((UsualBus)GameBoard.Cells[cellIndex]).BusType;
+            List<UsualBus> toCheck = GameBoard.Cells.OfType<UsualBus>().Where(x => x.BusType == type).ToList();
+
+            return toCheck.Any(x => x.Level != 0);
+        }
     }
 }

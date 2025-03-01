@@ -1,4 +1,14 @@
 ﻿{
-  "text": "Hello world!",
-  "asd": "asd"
+  "minCubeRib": "1",
+  "maxCubeRub": "7",
+
+  "CasinoWonNumberMessage": "Won number was  ",
+  "CasinoWon": "You won - ",
+  "CasinoLost": "You lost( Won number - ",
+
+  "MoneyLastCur": "k",
+  "MoneyDevider": "," 
+
+  "MaxDepositCounter": "15"
+
 }

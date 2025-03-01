@@ -275,19 +275,23 @@ namespace MonopolyDLL.Monopoly
             return Cells.OfType<ParentBus>().Where(x => x.BusType == type && x.OwnerIndex == playerIndex).ToList();
         }
 
-        public UsualBusInfoVisual GetVisualBySettingNewAmountOfHouses(int cellIndex)
+        public UsualBusInfoVisual? GetVisualBySettingNewAmountOfHouses(int cellIndex, bool ifBuilt)
         {
             const int checkAmount = 1;
             //set +1 house and -1
             bool ifCanBeAdded = IfAmountOfHousesIsOk(cellIndex,
-                ((ParentBus)Cells[cellIndex]).GetAddedHousesAmount(checkAmount));
+                ((ParentBus)Cells[cellIndex]).GetAddedHousesAmount(checkAmount)) && !ifBuilt;
 
             bool ifCanBeTaken = IfAmountOfHousesIsOk(cellIndex,
-                ((ParentBus)Cells[cellIndex]).GetTakenHousesAmount(checkAmount));
+                ((ParentBus)Cells[cellIndex]).GetTakenHousesAmount(checkAmount)) &&
+                            !(((ParentBus)Cells[cellIndex]).Level == 0);
+
+
+            if (!ifCanBeAdded && !ifCanBeTaken) return null;
 
             return ifCanBeAdded && ifCanBeTaken ? UsualBusInfoVisual.Combine :
                    ifCanBeAdded && !ifCanBeTaken ? UsualBusInfoVisual.BuyHouse : UsualBusInfoVisual.SellHouse;
-            //!ifCanBeAdded && ifCanBeTaken ? UsualBusVisual.SellHouse 
+                   //!ifCanBeAdded && ifCanBeTaken ? UsualBusInfoVisual.SellHouse : null;
         }
 
         public bool IfAmountOfHousesIsOk(int cellIndex, int amountOfHouses)

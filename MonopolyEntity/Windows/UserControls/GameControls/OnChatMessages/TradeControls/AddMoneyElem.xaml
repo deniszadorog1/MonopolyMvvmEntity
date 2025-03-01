@@ -15,11 +15,14 @@
     <Grid Background="#E3E3E3">
         <WrapPanel VerticalAlignment="Center">
 
-            <Image Name ="Money" Width="45" Height="45" Margin="5 0 0 0"
+            <Image Name ="Money" 
+                   Width="40"
+                   Height="40" 
+                   Margin="5 0 0 0"
                    Source="/Visuals/Images/BoardImages/Other/tradeMoney.png"/>
          
 
-            <Grid Width="175"  Margin="10 0 0 0">
+            <Grid Width="150"  Margin="10 0 0 0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>

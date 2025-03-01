@@ -230,9 +230,7 @@ namespace MonopolyEntity.Windows.Pages
 
 
             _system.MonGame.Players = _playersInGame;
-
-            GamePage page = new GamePage(_frame, _system);
-            _frame.Content = page;
+            _frame.Content = new GamePage(_frame, _system);;
 
             //Close();
         }

@@ -27,7 +27,8 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
         private Random _rnd = new Random();
         public void SetCasinoWinValue()
         {
-            _winValue = _rnd.Next(1, 7);
+            _winValue = _rnd.Next(SystemParamsServeses.GetNumByName("minCubeRib"), 
+                SystemParamsServeses.GetNumByName("maxCubeRub"));
         }
 
         public bool IfPlayerWonInCasino(List<int> chosenVals)
@@ -65,14 +66,38 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
 
         public string GetResultMessage(int wonMoney)
         {
-            string noWon = $"You lost( Won number - {_winValue}";
-            string bigWin = $"You won - {_wonLevels.First()}, Won number - {_winValue}";
-            string middleWin = $"You won - {_wonLevels[1]}, Won number - {_winValue}";
-            string littleWin = $"You won - {_wonLevels.Last()}, Won number - {_winValue}";
+            string noWon = $"{SystemParamsServeses.GetStringByName("CasinoLost")}{GetConvertedPrice(_winValue)}";
+            string bigWin = $"{SystemParamsServeses.GetStringByName("CasinoWon")}{GetConvertedPrice(_wonLevels.First())}," +
+                $" {SystemParamsServeses.GetStringByName("CasinoWonNumberMessage")}{_winValue}";
+            string middleWin = $"{SystemParamsServeses.GetStringByName("CasinoWon")}{GetConvertedPrice(_wonLevels[1])}, " +
+                $"{SystemParamsServeses.GetStringByName("CasinoWonNumberMessage")}{_winValue}";
+            string littleWin = $"{SystemParamsServeses.GetStringByName("CasinoWon")}{GetConvertedPrice(_wonLevels.Last())}, " +
+                $"{SystemParamsServeses.GetStringByName("CasinoWonNumberMessage")}{_winValue}";
 
             return _wonLevels.First() == wonMoney ? bigWin :
                    _wonLevels[1] == wonMoney ? middleWin :
                    _wonLevels.Last() == wonMoney ? littleWin : noWon;
+        }
+
+        public string GetConvertedPrice(int price)
+        {
+            StringBuilder build = new StringBuilder();
+
+            for (int i = 0; i < price.ToString().Length; i++)
+            {
+                build.Append(price.ToString()[i]);
+            }
+
+            for (int i = price.ToString().Length; i >= 0; i--)
+            {
+                if (i % 3 == 0 && i != 0 && i != price.ToString().Length)
+                {
+                    build.Insert(price.ToString().Length - i, SystemParamsServeses.GetStringByName("MoneyDevider"));
+                }
+            }
+
+            build.Append(SystemParamsServeses.GetStringByName("MoneyLastCur"));
+            return build.ToString();
         }
 
         public int GetGamePrice()

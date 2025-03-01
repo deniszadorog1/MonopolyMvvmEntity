@@ -69,15 +69,15 @@
 
         <Grid >
             <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
-                <RowDefinition Height="595"/>
-                <RowDefinition Height="150"/>
+                <RowDefinition Height="150" Name="UpperRow" />
+                <RowDefinition Height="595" Name="MiddleRow"/>
+                <RowDefinition Height="150" Name="BottomRow"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition Width="595"/>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150" Name="LeftColumn"/>
+                <ColumnDefinition Width="595" Name="MiddleColumn"/>
+                <ColumnDefinition Width="150" Name="RightColumn"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="0" Grid.Column="0" Name="StartCellCanvas">
@@ -89,7 +89,6 @@
 
             <StackPanel Grid.Row="0" Grid.Column="1" Name="FirstLinePanel" 
                         Orientation="Horizontal" VerticalAlignment="Bottom">
-
                 <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="PerfumeFirstBus"/>
                 <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ChanceOne"/>
                 <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="PerfumeSecondBus"/>
@@ -99,7 +98,6 @@
                 <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ChanceTwo"/>
                 <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ClothesSeconBus"/>
                 <CellTypeControl:UpperCell Style="{StaticResource UpperCellStyle}" x:Name="ClothesThirdBus"/>
-
             </StackPanel>
 
             <Grid Grid.Row="0" Grid.Column="2" Name="PrisonCanvas" >

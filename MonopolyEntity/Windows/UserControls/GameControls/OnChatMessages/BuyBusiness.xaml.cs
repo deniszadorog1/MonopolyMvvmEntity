@@ -42,5 +42,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             BuyBusBut.Background = _inActiveColor;
             LockImage.Visibility = Visibility.Visible;
         }
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            BuyBusBut.Width = this.ActualWidth / 2.25;
+        }
     }
 }

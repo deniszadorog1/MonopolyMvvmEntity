@@ -218,3 +218,5 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\WorkPage.bam
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\Other\UserTimer.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\GameControls\Other\UserTimer.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\MonopolyEntity_Content.g.cs
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\Newtonsoft.Json.dll
+B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\bin\Debug\Newtonsoft.Json.xml

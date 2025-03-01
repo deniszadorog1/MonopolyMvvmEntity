@@ -11,7 +11,6 @@ namespace MonopolyDLL.Monopoly.Cell
         public string Name { get; set; }
         protected int Id { get; set; }
 
-
         public int GetId()
         {
             return Id;

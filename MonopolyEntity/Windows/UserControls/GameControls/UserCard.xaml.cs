@@ -97,8 +97,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             UserImageGrid.Children.Add(colorCircle);
         }
 
-        private int _toMakeBigger = 20;
-        private int _toMakeThinner = -20;
+        public int _toMakeBigger = 20;
+        public int _toMakeThinner = -20;
 
         const int translateMove = 10;
 
@@ -109,7 +109,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             UserCardGrid.RenderTransform = transform;
 
             int value = ifStepper ? _toMakeBigger : _toMakeThinner;
-            int horValue = ifStepper ? translateMove : 0;
+            int horValue = /*ifStepper ? translateMove :*/ 0;
             UserCardGrid.Background = brush is null ? _usualBrush : brush;
 
             SetTimer(brush);
@@ -135,16 +135,21 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 From = 0,
                 To = horValue,
                 Duration = TimeSpan.FromSeconds(0.5),
-                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+               // EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
             _horizAnim.Completed += HorizAnim_Complited;
 
             transform.BeginAnimation(TranslateTransform.XProperty, _horizAnim);
 
-            UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);
+            UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);         
             UserCardGrid.BeginAnimation(HeightProperty, heightAnimation);
         }    
-        
+
+        public bool IfUserCardBgIsUsual()
+        {
+            return ((SolidColorBrush)UserCardGrid.Background).Color == _usualBrush.Color;
+        }
+
         public void SetTimer(SolidColorBrush brush)
         {
             if (brush is null)
@@ -199,9 +204,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             UserTimer.StopTimer();
         }
        
-
-
-
         public void HorizAnim_Complited(object sender, EventArgs e)
         {
             

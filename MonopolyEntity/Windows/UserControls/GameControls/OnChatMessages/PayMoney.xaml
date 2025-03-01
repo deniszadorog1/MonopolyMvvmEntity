@@ -7,24 +7,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="175" d:DesignWidth="575"
              Height="175" VerticalAlignment="Top">
-    <Border Background="#E3E3E3" CornerRadius="10">
+    <Border Background="#E3E3E3" CornerRadius="10" Name="MainBorder">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="55"/>
                 <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Name="ButGrid"/>
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0" Margin="0 5 0 0">
                 <TextBlock Name="GotOnBusText" Foreground="#696969" 
                            Text="You got on the enemys business"
-                           FontSize="24" Margin="40 10 0 0 "/>
+                           FontSize="24" Margin="30 10 0 0 "/>
             </Grid>
 
             <Grid Grid.Row="1" >
                 <TextBlock Name="PayBillText" Foreground="#696969" 
                            Text="You need to pay the bill - xxxxK"
-                           FontSize="24" Margin="40 10 0 0 "/>
+                           FontSize="24" Margin="30 10 0 0 "/>
             </Grid>
 
             <Grid Grid.Row ="2">
@@ -33,7 +33,9 @@
                             Width="25" Height="25" HorizontalAlignment="Left" Panel.ZIndex="100" 
                             Source="//Visuals/Images/BoardImages/Other/blackLock.png"/>
 
-                <Button Name ="PayBillBut" Width="500" Height="45" 
+                <Button Name ="PayBillBut" 
+                        Width="{Binding ActualWidth, ElementName=MainBorder}"
+                        Height="45" Margin="25 0 25 0"
                         Background="{StaticResource MainGlobalColor}" 
                         BorderBrush="White" VerticalAlignment="Center"
                         HorizontalAlignment="Center" Content="Pay bill"
