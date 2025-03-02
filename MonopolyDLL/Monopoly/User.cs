@@ -37,14 +37,13 @@ namespace MonopolyDLL.Monopoly
         private int _maxDoubles = 3;
         private int? _pictureId;
 
-
         public User(string login, int id, int? picId, string password)
         {
             Login = login;
             Password = password;
             Id = id;
             GameBusses = new List<InventoryObjs.BoxItem>();
-            AmountOfMoney = 10000;
+            AmountOfMoney = 15000;
             Position = 0;
             IfSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();
@@ -57,7 +56,7 @@ namespace MonopolyDLL.Monopoly
         public User()
         {
             Login = string.Empty;
-            AmountOfMoney = 10000;
+            AmountOfMoney = 15000;
             Position = 0;
             IfSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();

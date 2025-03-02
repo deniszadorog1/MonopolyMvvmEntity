@@ -85,7 +85,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     int index = i;
                     _cards[index].UserTimer._timer.Elapsed += (sender, e) =>
                     {
-                        if (_cards[index].UserTimer._timer.Enabled || _gameEnded) return;
+                        if (_cards[index].UserTimer._timer is null ||
+                        _cards[index].UserTimer._timer.Enabled || _gameEnded) return;
                         Application.Current.Dispatcher.Invoke(() =>
                         {
                             PlayerGaveUp();
@@ -172,15 +173,15 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             _cards[_system.MonGame.StepperIndex].SetAnimation(_colors[_system.MonGame.StepperIndex], true);
         }
 
-        private void SetActionAfterStepperChanged()
+        private void SetActionAfterStepperChanged(bool ifSatInPrison = false)
         {
-            _system.MonGame.ClearStepperBoughtHouseTypes();
+            if(!ifSatInPrison)_system.MonGame.ClearStepperBoughtHouseTypes();
             ActionAfterStepperChanged action = _system.MonGame.GetActionAfterStepperChanged();
 
             switch (action)
             {
                 case ActionAfterStepperChanged.ThrowCubes:
-                    AddThroughCubesControl();
+                    AddThroughCubesControl(ifSatInPrison);
                     break;
                 case ActionAfterStepperChanged.PrisonQuerstion:
                     SetPrisonQuestion();
@@ -213,7 +214,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             SetPayEventInPrison(question.PayBut);
             SetPayEventInPrison(question.LastPay);
-
 
             question.ContinueSitting.Click += (sender, e) =>
             {
@@ -252,7 +252,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
                     _system.MonGame.ClearStepperDoublesCounter();
                     //MakeAMoveAfterCubesDroped();
-                    SetActionAfterStepperChanged();
+
+                    MoveChipFromSitTiExcursInPrison();
+                    _chipMoveAnimation.Completed += (send, ev) =>
+                    {
+                        SetActionAfterStepperChanged(true);
+                    };
                     return;
                 }
                 _system.MonGame.MakeStepperPrisonCounterHigher();
@@ -292,11 +297,25 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
                     UpdatePlayersMoney();
 
-                    SetActionAfterStepperChanged();
+                    MoveChipFromSitTiExcursInPrison();
+                    _chipMoveAnimation.Completed += (send, ev) =>
+                    {
+                        SetActionAfterStepperChanged(true);
+                    };
                     return;
                 }
-                //AddWrapPanelToChatBox("Not enough money to pay prison price", _system.MonGame.StepperIndex);
             };
+        }
+
+        private void MoveChipFromSitTiExcursInPrison()
+        {
+            Image img = _imgs[_system.MonGame.StepperIndex];
+
+            PrisonCell pris = (PrisonCell)_cells[_system.MonGame.GetPrisonIndex()];
+            pris.ChipsPlacerSitters.Children.Remove(img);
+            pris.ChipsPlacerVisit.Children.Add(img);
+
+            UpdatePrisonCanvases(_system.MonGame.GetPrisonIndex());
         }
 
         private void SetPrisonButtonsVisibility(PrisonQuestion question)
@@ -321,9 +340,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             }
         }
 
-        private void AddThroughCubesControl()
+        private void AddThroughCubesControl(bool ifSatInPrison = false)
         {
-            _system.MonGame.ClearStepperBoughtHouseTypes();
+            if(!ifSatInPrison)_system.MonGame.ClearStepperBoughtHouseTypes();
 
             ThroughCubes cubes = new ThroughCubes();
             cubes.VerticalAlignment = VerticalAlignment.Top;
@@ -655,11 +674,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             JackpotElem jackpot = new JackpotElem(_system.MonGame.IfPlayerHasEnoughMoneyToPlayCasino());
 
-            bool ifClicked = false;
             jackpot.MakeBidBut.Click += (sender, e) =>
             {
-                if (ifClicked) return;
-                ifClicked = true;
+                if (!jackpot.DeclineBut.IsEnabled) return;
                 if (_system.MonGame.IfPlayerHasEnoughMoneyToPlayCasino() &&
                 jackpot._chosenRibs.Count > 0)
                 {
@@ -672,9 +689,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     UpdatePlayersMoney();
 
                     AddCubeToCasinoAction(_system.MonGame.GetCasinoWinValue());
+                    jackpot.DeclineBut.IsEnabled = false;
 
                     _casinoDice._horizontalAnimation.Completed += (send, ev) =>
                     {
+                        Thread.Sleep(1000);
                         jackpot.MakeBidBut.IsEnabled = true;
                         string casinoRes = winString;
                         AddWrapPanelToChatBox(casinoRes, _system.MonGame.StepperIndex);
@@ -691,8 +710,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             jackpot.DeclineBut.Click += (sender, e) =>
             {
-                if (ifClicked) return;
-                ifClicked = true;
                 AddWrapPanelToChatBox("Does not want to play casino", _system.MonGame.StepperIndex);
 
                 ChatMessages.Children.Remove(ChatMessages.Children.
@@ -961,7 +978,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
                 _cards[_toAnumCardIndex]._horizAnim.Completed += (sender, e) =>
                 {
-                    ChangeStepAfterAuction();
+                    ChangeStepper();
+                    _cards[_system.MonGame.StepperIndex].SetAnimation(_colors[_system.MonGame.StepperIndex], true);
+
+                    //ChangeStepAfterAuction();
                     _toAnumCardIndex = -1;
                 };
                 return true;
@@ -990,7 +1010,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
                 _cards[_toAnumCardIndex]._horizAnim.Completed += (sender, e) =>
                 {
-                    ChangeStepAfterAuction();
+                    ChangeStepper();
+                    _cards[_system.MonGame.StepperIndex].SetAnimation(_colors[_system.MonGame.StepperIndex], true);
+
+                    //ChangeStepAfterAuction();
                     _toAnumCardIndex = -1;
                 };
                 return true;
@@ -2224,6 +2247,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             string canvasName = GetCanvasNameToStepOn(img, el);
 
+            if(el is SquareCell square)
+            {
+                return square.ChipsPlacer;
+            }
+
             var chipsPlacerField = el.GetType().GetField(
                 canvasName,
                 BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
@@ -2807,8 +2835,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             }
         }
 
-
-
         private const int _textFontSize = 20;
         public void AddMessageWithTwoPlayers(int firstPlayerIndex, int secondPlayerIndex,
             string firstStr, string secondStr)
@@ -2835,7 +2861,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void AddWrapPanelToChatBox(string message, int playerIndex = -1, bool ifPlayerWrote = false)
         {
-
             WrapPanel panel = new WrapPanel();
             if (playerIndex != -1) panel = GetWrapPanelForMessage(playerIndex);
 
@@ -3435,7 +3460,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     BoardHelper.SetValueForDepositCounter(_cells[i], _system.MonGame.GetDepositCounter(i));
                     if (_system.MonGame.IfBusDepositCounterIsZero(i))
                     {
-                        AddWrapPanelToChatBox($"{_system.MonGame.GetBusNameOnGivenIndex(i)} goes to bank");
+                        GameChat.Items.Add(GetTextBlockForMessage($"{_system.MonGame.GetBusNameOnGivenIndex(i)} goes to bank"));
 
                         ClearCell(_cells[i], i);
                         _system.MonGame.ClearBusiness(i);

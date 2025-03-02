@@ -11,6 +11,8 @@ using System.Windows.Media.Imaging;
 using MonopolyDLL.Monopoly;
 using System.Windows.Media;
 using System.Windows;
+using System.CodeDom;
+using MonopolyDLL;
 
 namespace MonopolyEntity.VisualHelper
 {
@@ -42,9 +44,9 @@ namespace MonopolyEntity.VisualHelper
         }
 
         public static void SetUpperMenuParams(UpperMenu menu, User user)
-        {
+        {            
             menu.UserAnim.LoginText.Text = user.Login;
-            menu.UserAnim.MoneyText.Text = "No money";
+            menu.UserAnim.MoneyText.Text = SystemParamsServeses.GetStringByName("UpperMoneyMoney");
         }
 
         public static string GetUserImagePath()
@@ -83,22 +85,25 @@ namespace MonopolyEntity.VisualHelper
             return GetCircleImage(img);
         }
 
+        private static readonly int _centerDevider = 2;
+        private static readonly int _dpiInBitmap = 96;
         public static Image GetCircleImage(Image image)
-        {
+        {           
             int width = (int)image.Width;
             int height = (int)image.Height;
 
             DrawingVisual drawingVisual = new DrawingVisual();
             using (DrawingContext context = drawingVisual.RenderOpen())
             {
-                EllipseGeometry clip = new EllipseGeometry(new System.Windows.Point(width / 2, height / 2), width / 2, height / 2);
+                EllipseGeometry clip = new EllipseGeometry(new System.Windows.Point(width / _centerDevider, height / _centerDevider), 
+                    width / _centerDevider, height / _centerDevider);
 
                 context.PushClip(clip);
                 context.DrawImage(image.Source, new Rect(0, 0, width, height));
                 context.Pop();
             }
 
-            RenderTargetBitmap targetBitmap = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
+            RenderTargetBitmap targetBitmap = new RenderTargetBitmap(width, height, _dpiInBitmap, _dpiInBitmap, PixelFormats.Pbgra32);
             targetBitmap.Render(drawingVisual);
 
             Image clippedImage = new Image { Source = targetBitmap, Width = width, Height = height };

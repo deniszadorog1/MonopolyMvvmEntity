@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,9 +44,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             LockImage.Visibility = Visibility.Visible;
         }
 
+        private const double _middleDevider = 2.25;
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            BuyBusBut.Width = this.ActualWidth / 2.25;
+            BuyBusBut.Width = this.ActualWidth / _middleDevider;
         }
     }
 }

@@ -65,6 +65,7 @@ namespace MonopolyEntity.Windows.Pages
         private readonly Size _baseFieldSize = new Size(895, 895);
         private void AddGameField()
         {
+            const int fromUpperBorderMargin = 25;
             const string fieldName = "GameField";
             _field = new GameField(_system, _userCards, _frame)
             {
@@ -73,7 +74,7 @@ namespace MonopolyEntity.Windows.Pages
                 Name = fieldName,
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Top,
-                Margin = new Thickness(0, 25, 0, 0)
+                Margin = new Thickness(0, fromUpperBorderMargin, 0, 0)
             };
             FieldGrid.Children.Add(_field);
         }
@@ -188,7 +189,6 @@ namespace MonopolyEntity.Windows.Pages
             var button = new Button
             {
                 Content = content,
-                //Padding = new Thickness(10, 5, 10, 5),
                 Margin = new Thickness(0),
                 Background = Brushes.Transparent,
                 Width = butWidth,
@@ -196,6 +196,7 @@ namespace MonopolyEntity.Windows.Pages
                 BorderThickness = new Thickness(0),
             };
 
+            //Its test Misha!!!
             button.Click += (s, e) =>
             {
                 MessageBox.Show($"You choosed: {content}");
@@ -236,7 +237,8 @@ namespace MonopolyEntity.Windows.Pages
             _dropdownMenuPopup.HorizontalOffset = (_userCards[traderIndex].Width - _userCards[traderIndex].UserCardGrid.Width) / 2;
             _dropdownMenuPopup.VerticalOffset = -(_userCards[traderIndex].Height - _userCards[traderIndex].UserCardGrid.Height) / 2;
 
-            Button but = GetButtonForUserCardMenu("Send trade", traderIndex);
+            Button but = GetButtonForUserCardMenu(
+                SystemParamsServeses.GetStringByName("SendTradePopup"), traderIndex);
 
             but.Click += (sender, e) =>
             {
@@ -245,18 +247,19 @@ namespace MonopolyEntity.Windows.Pages
             panel.Children.Add(but);
         }
 
+        private const int _centerDevider = 2;
         private void SetGiveUpButton(StackPanel panel)
         {
             _dropdownMenuPopup.Width = _userCards[_system.MonGame.StepperIndex].UserCardGrid.Width ;
             _dropdownMenuPopup.HorizontalOffset = 
                 (_userCards[_system.MonGame.StepperIndex].Width - 
-                _userCards[_system.MonGame.StepperIndex].UserCardGrid.Width) / 2;
+                _userCards[_system.MonGame.StepperIndex].UserCardGrid.Width) / _centerDevider;
 
             _dropdownMenuPopup.VerticalOffset =
                 -Math.Abs((_userCards[_system.MonGame.StepperIndex].Height -
-                _userCards[_system.MonGame.StepperIndex].UserCardGrid.Height) / 2); 
+                _userCards[_system.MonGame.StepperIndex].UserCardGrid.Height) / _centerDevider); 
 
-            Button but = GetButtonForUserCardMenu("Give up", _system.MonGame.StepperIndex);
+            Button but = GetButtonForUserCardMenu(SystemParamsServeses.GetStringByName("GiveUpPopup"), _system.MonGame.StepperIndex);
             but.Click += (sender, e) =>
             {
                 _field.PlayerGaveUp();
@@ -282,8 +285,8 @@ namespace MonopolyEntity.Windows.Pages
 
         private Size _firstStep = new Size(1500, 950);
         private GamePageSize _windowSizeType = GamePageSize.BigWindow;
-
         private readonly Size _middleWindowSize = new Size(835, 835);
+
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             IfPageIsRendered();
@@ -315,7 +318,6 @@ namespace MonopolyEntity.Windows.Pages
             {
                 _ifPageIsRendered = window._ifGamePageIsRendered;
             }
-
         }
     }
 }

@@ -7,13 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Net.Mail;
-using MahApps.Metro.Controls;
-using System;
-using MahApps.Metro.Native;
-using System.Diagnostics.Eventing.Reader;
-using System.Windows.Documents;
-using System.Windows.Shapes;
+using System.CodeDom;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -60,14 +54,16 @@ namespace MonopolyEntity.Windows.Pages
         }
 
         private const int _itemsCut = 100;
+        private const int _centerDevider = 2;
         private void AddLoginsInBox(List<User> users, Canvas box)
         {
             //box.PreviewDrop += ListBox_Drop;
+            const int imageSizeParam = 50;
             for (int i = 0; i < users.Count; i++)
             {
                 WrapPanel panel = new WrapPanel()
                 {
-                    Width = this.Width / 2 - _itemsCut,
+                    Width = this.Width / _centerDevider - _itemsCut,
                     Background = Brushes.Transparent,
                     Orientation = Orientation.Horizontal,
                 };
@@ -76,7 +72,8 @@ namespace MonopolyEntity.Windows.Pages
                 panel.PreviewMouseMove += ToDrag_MouseMove;
                 panel.PreviewMouseUp += ToDrag_MouseUp;
 
-                panel.Children.Add(MainWindowHelper.GetCircleImage(50, 50, DBQueries.GetPictureNameById(users[i].GetPictureId())));
+                panel.Children.Add(MainWindowHelper.GetCircleImage(imageSizeParam, imageSizeParam,
+                    DBQueries.GetPictureNameById(users[i].GetPictureId())));
 
                 panel.Children.Add(GetTextBlockForCard(users[i].Login));
 
@@ -100,13 +97,14 @@ namespace MonopolyEntity.Windows.Pages
             Canvas.SetTop(_toDragDrop, point.Y);
         }
 
+        private const int _mouseMoveParam = 20;
         private void ToDrag_MouseMove(object sedner, MouseEventArgs e)
         {
             if (_toDragDrop is null) return;
             Point point = e.GetPosition(DragCanvas);
 
-            Canvas.SetLeft(_toDragDrop, point.X - 20);
-            Canvas.SetTop(_toDragDrop, point.Y - 20);
+            Canvas.SetLeft(_toDragDrop, point.X - _mouseMoveParam);
+            Canvas.SetTop(_toDragDrop, point.Y - _mouseMoveParam);
         }
 
         private void ToDrag_MouseUp(object sender, MouseEventArgs e)
@@ -140,8 +138,8 @@ namespace MonopolyEntity.Windows.Pages
             UppdateHeightLocForItems(PlayersInGame);
             UppdateHeightLocForItems(PlayersThatCanBeAdd);
 
-
-            SetDraggedPlayerInList(GetListToWorkWith(_panelOwner), GetListToWorkWith((Canvas)_toDragDrop.Parent));
+            SetDraggedPlayerInList(GetListToWorkWith(_panelOwner), 
+                GetListToWorkWith((Canvas)_toDragDrop.Parent));
 
             DragCanvas.Children.Clear();
             SetLoginsInLists();
@@ -162,22 +160,19 @@ namespace MonopolyEntity.Windows.Pages
 
         private TextBlock GetTextBlockForCard(string userLogin)
         {
+            const int blockLeftMargin = 5;
             TextBlock block = GetTextBlock(userLogin);
             block.VerticalAlignment = VerticalAlignment.Center;
-            block.Margin = new Thickness(5, 0, 0, 0);
+            block.Margin = new Thickness(blockLeftMargin, 0, 0, 0);
 
             return block;
         }
-
-        private WrapPanel _checkWarpDarg;
-
 
         private void ListBox_Drop(object sender, DragEventArgs e)
         {
             UppdateHeightLocForItems((Canvas)sender);
 
             SetDraggedPlayerInList(GetListToWorkWith(_panelOwner), GetListToWorkWith((Canvas)sender));
-
         }
 
         public List<User> GetListToWorkWith(Canvas box)
@@ -219,7 +214,6 @@ namespace MonopolyEntity.Windows.Pages
             //Close();
         }
 
-
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
             const int leastAmountOfPlayers = 2;
@@ -228,11 +222,8 @@ namespace MonopolyEntity.Windows.Pages
                 _playersInGame.Count < leastAmountOfPlayers ||
                 _playersInGame.Count > _maxAmountofPlayers) return;
 
-
             _system.MonGame.Players = _playersInGame;
             _frame.Content = new GamePage(_frame, _system);;
-
-            //Close();
         }
 
         private void Page_PreviewMouseUp(object sender, MouseButtonEventArgs e)

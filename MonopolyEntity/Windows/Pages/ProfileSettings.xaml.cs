@@ -36,8 +36,6 @@ namespace MonopolyEntity.Windows.Pages
             AddControlParam();
             SetUpperMenuStyle();
 
-            SetUpperMenuEvents();
-
             SetUserMenu();
         }
 
@@ -53,14 +51,6 @@ namespace MonopolyEntity.Windows.Pages
             UpperMenuu.UserAnim.SettingsBut.Click += (sender, e) =>
             {
                 _frame.Content = new ProfileSettings(_system, _frame);
-            };
-        }
-
-        private void SetUpperMenuEvents()
-        {
-            UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
-            {
-                _frame.Content = new UserPage(_frame, _system);
             };
         }
         
@@ -111,10 +101,5 @@ namespace MonopolyEntity.Windows.Pages
             };
             SettignsParamGrid.Children.Add(_settings);
         }
-
-
-
-
-
     }
 }

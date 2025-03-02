@@ -67,9 +67,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             LastPay.Visibility = Visibility.Visible;
         }
 
+        private const double _middleDevider = 2.25;
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            PayBut.Width = this.ActualWidth / 2.25;
+            PayBut.Width = this.ActualWidth / _middleDevider;
         }
     }
 }

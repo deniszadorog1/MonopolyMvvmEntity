@@ -7,8 +7,38 @@
   "CasinoLost": "You lost( Won number - ",
 
   "MoneyLastCur": "k",
-  "MoneyDevider": "," 
+  "MoneyDevider": ",",
 
-  "MaxDepositCounter": "15"
+  "MaxDepositCounter": "15",
+  "UpperMoneyMoney": "NoMoney",
+
+  "SendTradePopup": "Send trade",
+  "GiveUpPopup": "Give up",
+
+  "ChangeItemInventory": "Change",
+  "GetBackItemInventory": "Get back",
+  "ItemChosenInventory": "Already chosen",
+  "SetAllInFilterInventory": "All",
+
+  "FirstMainWindowName": "One",
+  "FirstMainWindowDesc": "This is first",
+  "SecondMainWindowName": "Two",
+  "SecondMainWindowDesc": "This is second",
+  "ThirdMainWindowName": "Three",
+  "ThirdMainWindowDesc": "This is third",
+  "FourthMainWindowName": "Four",
+  "FourthMainWindowDesc": "This is fourth",
+  "FifthMainWindowName": "Five",
+  "FifthMainWindowDesc": "This is fifth",
+  "SixthMainWindowName": "Six",
+  "SixthMainWindowDesc": "This is sixth",
+
+  "CaseOpenKeyName": "Key",
+  "CaseOpenToOpenBox": "box",
+
+  "RegistrationChooseImage": "Choose file",
+
+  "CaseOpenPriszeMessage": "Congrats you won"
+
 
 }

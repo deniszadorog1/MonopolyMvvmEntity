@@ -91,7 +91,6 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\GamePage.g.c
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\InventoryPage.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\MainPageWind.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\OpenCase.g.cs
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\UserPage.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseCard.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\CaseRoulette.g.cs
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\CaseToOpen.g.cs
@@ -158,7 +157,6 @@ B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\GamePage.bam
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\InventoryPage.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\MainPageWind.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\OpenCase.baml
-B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\Pages\UserPage.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseCard.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\CaseRoulette.baml
 B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\Windows\UserControls\CaseOpening\CaseToOpen.baml

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -74,8 +75,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         public List<int> _chosenRibs = new List<int>();
         private void RibBorder_PreviewMouseDown(object sender, MouseEventArgs e)
         {
+            const int indexAdder = 1;
             int index = -1;
-
             for (int i = 0; i < _ribBorders.Count; i++)
             {
                 if (_ribBorders[i] == sender)
@@ -93,14 +94,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
                 {
                     border.Opacity = _basicOpacity;
                     border.BorderBrush = Brushes.Black;
-                    _chosenRibs.Remove((index + 1));
+                    _chosenRibs.Remove((index + indexAdder));
                 }
                 else if (border.BorderBrush != brush &&
                     GetAmountOfChosenBorders(brush) < maxAllowedChosenRib)
                 {
                     border.Opacity = 1;
                     border.BorderBrush = brush;
-                    if (index != -1) _chosenRibs.Add((index + 1));
+                    if (index != -1) _chosenRibs.Add((index + indexAdder));
                 }
             }
         }
@@ -112,12 +113,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
 
         const int _cubeSize = 100;
         const int _circleSize = 8;
+        private const int _centerDevider = 2;
         private void SetCubeSquares()
         {
             const int distFromBorder = 10;
 
-            Point center = new Point(OneRibGrid.ActualWidth / 2 - _circleSize / 2,
-                OneRibGrid.ActualHeight / 2 - _circleSize / 2);
+            Point center = new Point(OneRibGrid.ActualWidth / _centerDevider - _circleSize / _centerDevider,
+                OneRibGrid.ActualHeight / _centerDevider - _circleSize / _centerDevider);
 
             Point upLeft = new Point(distFromBorder, distFromBorder);
             Point upRight = new Point(OneRibGrid.ActualWidth - _circleSize - distFromBorder, distFromBorder);
@@ -126,8 +128,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             Point downRight = new Point(OneRibGrid.ActualWidth - _circleSize - distFromBorder,
                 OneRibGrid.ActualHeight - _circleSize - distFromBorder);
 
-            Point centerLeft = new Point(distFromBorder, OneRibGrid.ActualHeight / 2 - _circleSize / 2);
-            Point centerRight = new Point(OneRibGrid.ActualWidth - _circleSize - distFromBorder, OneRibGrid.ActualHeight / 2 - _circleSize / 2);
+            Point centerLeft = new Point(distFromBorder, 
+                OneRibGrid.ActualHeight / _centerDevider - _circleSize / _centerDevider);
+            Point centerRight = new Point(OneRibGrid.ActualWidth - _circleSize - distFromBorder,
+                OneRibGrid.ActualHeight / _centerDevider - _circleSize / _centerDevider);
 
 
             OneRibGrid.Children.Add(GetElipseInRib(center));

@@ -22,7 +22,6 @@ namespace MonopolyEntity.Windows.Pages
     public partial class WorkPage : Page
     {
         private MonopolySystem _monSystem;
-
         private Frame _frame;
         public WorkPage(MonopolySystem monSystem, Frame frmae)
         {
@@ -30,7 +29,6 @@ namespace MonopolyEntity.Windows.Pages
             _frame = frmae;
 
             InitializeComponent();
-
             SetStartPage();
         }
 
@@ -55,10 +53,5 @@ namespace MonopolyEntity.Windows.Pages
         {
             VisiableItems.Children.Clear();
         }
-
-
-
     }
-
-
 }

@@ -9,6 +9,9 @@ using MonopolyEntity.Windows.UserControls.MainPage;
 using MonopolyDLL.Monopoly;
 using MonopolyEntity.VisualHelper;
 using System.Windows;
+using MonopolyDLL;
+using System.CodeDom;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -28,8 +31,6 @@ namespace MonopolyEntity.Windows.Pages
             SetGameWindowImg();
             SetDescRibeCards();
 
-            SetUserImageEvent();
-
             SetUserMenu();
         }
 
@@ -48,30 +49,34 @@ namespace MonopolyEntity.Windows.Pages
             };
         }
 
-        public void SetUserImageEvent()
-        {
-            return;
-            UpperMenuu.UserAnim.UpperRowUserName.MouseDown += (sender, e) =>
-            {
-                _frame.Content = new UserPage(_frame, _system);
-            };
-        }
-
         public void SetDescRibeCards()
         {
             //return;
-            SetParamsToCard(OneDesc,"One", "This is first", MainWindowHelper.GetImagePyName("okay.png"));
-            SetParamsToCard(TwoDesc, "Two", "This is second", MainWindowHelper.GetImagePyName("dices.png"));
-            SetParamsToCard(ThreeDesc, "Three", "This is third", MainWindowHelper.GetImagePyName("cup.png"));
-            SetParamsToCard(FourDesc, "Four", "This is fourth", MainWindowHelper.GetImagePyName("rating-positive.png"));
-            SetParamsToCard(FiveDesc, "Five", "This is fifth", MainWindowHelper.GetImagePyName("delivery.png"));
-            SetParamsToCard(SixDesc, "Six", "This is sixth", MainWindowHelper.GetImagePyName("planet.png"));
+            SetParamsToCard(OneDesc, SystemParamsServeses.GetStringByName("FirstMainWindowName"),
+                SystemParamsServeses.GetStringByName("FirstMainWindowDesc"), MainWindowHelper.GetImagePyName("okay.png"));
+            
+            SetParamsToCard(TwoDesc, SystemParamsServeses.GetStringByName("SecondMainWindowName"),
+                SystemParamsServeses.GetStringByName("SecondMainWindowDesc"), MainWindowHelper.GetImagePyName("dices.png"));
+            
+            SetParamsToCard(ThreeDesc, SystemParamsServeses.GetStringByName("ThirdMainWindowName"),
+                SystemParamsServeses.GetStringByName("ThirdMainWindowDesc"), MainWindowHelper.GetImagePyName("cup.png"));
+            
+            SetParamsToCard(FourDesc, SystemParamsServeses.GetStringByName("FourthMainWindowName"),
+                SystemParamsServeses.GetStringByName("FourthMainWindowDesc"), MainWindowHelper.GetImagePyName("rating-positive.png"));
+            
+            SetParamsToCard(FiveDesc, SystemParamsServeses.GetStringByName("FifthMainWindowName"),
+                SystemParamsServeses.GetStringByName("FifthMainWindowDesc"), MainWindowHelper.GetImagePyName("delivery.png"));
+            
+            SetParamsToCard(SixDesc, SystemParamsServeses.GetStringByName("SixthMainWindowName"),
+                SystemParamsServeses.GetStringByName("SixthMainWindowDesc"), MainWindowHelper.GetImagePyName("planet.png"));
         }
 
         public void SetParamsToCard(DescribeBox box, string nameText, string descText, Image img)
         {
-            box.Height = 200;
-            box.Width = 250;
+            Size baseInvCardSize = new Size(250, 200);
+
+            box.Height = baseInvCardSize.Height;
+            box.Width = baseInvCardSize.Width;
             box.CardImg.Source = img.Source;
             box.NameText.Text = nameText;
             box.DescribeText.Text = descText;
@@ -79,7 +84,7 @@ namespace MonopolyEntity.Windows.Pages
 
         public void SetGameWindowImg()
         {
-            GameWindowImg.Source = MainWindowHelper.GetImagePyName("BoardImg.png").Source; //ThingForTest.GetCalivanImage().Source;
+            GameWindowImg.Source = MainWindowHelper.GetImagePyName("BoardImg.png").Source;
         }
 
         public void OpenInventoryPage()

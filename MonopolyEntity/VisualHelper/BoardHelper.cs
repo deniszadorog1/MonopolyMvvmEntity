@@ -11,10 +11,8 @@ using System.Windows.Media.Imaging;
 
 using MonopolyDLL.Monopoly.InventoryObjs;
 using MonopolyEntity.Windows.UserControls;
-using MonopolyDLL.Monopoly;
 using MonopolyDLL;
-using MonopolyEntity.Windows.UserControls.GameControls.Other;
-using System.Diagnostics;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace MonopolyEntity.VisualHelper
 {
@@ -161,10 +159,12 @@ namespace MonopolyEntity.VisualHelper
             List<List<Point>> res = new List<List<Point>>();
 
             const int distFromBorder = 5;
+            const int centerDevider = 2;
 
             double chipRadius = _chipSize / 2;
 
-            Point center = new Point(squareSize.Width / 2 - chipRadius, squareSize.Height / 2 - chipRadius);
+            Point center = new Point(squareSize.Width / centerDevider - chipRadius, 
+                squareSize.Height / centerDevider - chipRadius);
 
             Point leftUp = new Point(distFromBorder, distFromBorder);
             Point rightUp = new Point(squareSize.Width - _chipSize - distFromBorder, leftUp.Y);
@@ -226,11 +226,11 @@ namespace MonopolyEntity.VisualHelper
 
         public static List<Point> GetPointsForChips(Size cellSize, int amountOfChipsInCell, bool ifInMove)
         {
+            const int toGetPrevPoint = -1;
             List<List<Point>> allPoints = GetChipsPoints(cellSize);
 
             if (amountOfChipsInCell == 0) return allPoints.First();
-
-            int ifChipIsInMove = ifInMove ? 0 : -1;
+            int ifChipIsInMove = ifInMove ? 0 : toGetPrevPoint;
 
             return allPoints[amountOfChipsInCell + ifChipIsInMove];
         }
@@ -387,10 +387,14 @@ namespace MonopolyEntity.VisualHelper
 
         public static bool IfChipGoesThroughCorner(int startIndex, int endPointIndex)
         {
-            return ((startIndex < 10 && endPointIndex > 10) ||
-                    (startIndex < 20 && endPointIndex > 20) ||
-                    (startIndex < 30 && endPointIndex > 30) ||
-                    (startIndex > 30 && endPointIndex > 40) ||
+            const int firstLineLasCellIndex = 10;
+            const int secondLineLasCellIndex = 20;
+            const int thirdLineLasCellIndex = 30;
+            const int fourthLineLasCellIndex = 40;
+            return ((startIndex < firstLineLasCellIndex && endPointIndex > firstLineLasCellIndex) ||
+                    (startIndex < secondLineLasCellIndex && endPointIndex > secondLineLasCellIndex) ||
+                    (startIndex < thirdLineLasCellIndex && endPointIndex > thirdLineLasCellIndex) ||
+                    (startIndex > thirdLineLasCellIndex && endPointIndex > fourthLineLasCellIndex) ||
                     startIndex > endPointIndex);
         }
 
@@ -398,16 +402,18 @@ namespace MonopolyEntity.VisualHelper
         {
             int cubesVal = GetAmountOfSetpsFromEndToStartIndexes(startIndex, endIndex);
             List<int> res = new List<int>();
+            const int squareDevider = 10;
+            const int lastCell = 40;
             do
             {
                 startIndex++;
                 cubesVal--;
 
-                if (startIndex == 40) startIndex = 0;
-                if (startIndex % 10 == 0) res.Add(startIndex);
+                if (startIndex == lastCell) startIndex = 0;
+                if (startIndex % squareDevider == 0) res.Add(startIndex);
                 if (cubesVal == 0)
                 {
-                    if (endIndex % 10 != 0) res.Add(endIndex);
+                    if (endIndex % squareDevider != 0) res.Add(endIndex);
                     return res;
                 }
             } while (true);
@@ -417,12 +423,13 @@ namespace MonopolyEntity.VisualHelper
         {
             int res = 0;
             int counter = endIndex;
+            const int lastCellIndex = 39;
             do
             {
                 counter--;
                 if (counter < 0)
                 {
-                    counter = 39;
+                    counter = lastCellIndex;
                 }
                 res++;
 
@@ -433,40 +440,44 @@ namespace MonopolyEntity.VisualHelper
             } while (true);
         }
 
+        private const int _centerDevider = 2;
         public static Point GetCenterOfTheSquareCellForImage(SquareCell cell, Image img)
-        {
-            return new Point(cell.ActualWidth / 2 - img.Width / 2, cell.ActualHeight / 2 - img.Height / 2);
+        {           
+            return new Point(cell.ActualWidth / _centerDevider - img.Width / _centerDevider, 
+                cell.ActualHeight / _centerDevider - img.Height / _centerDevider);
         }
 
         public static Point GetCenterOfTheSquareForIamge(Image img, UIElement cell)
         {
             if (cell is SquareCell square)
             {
-                return new Point(square.ActualWidth / 2 - img.Width / 2, square.ActualHeight / 2 - img.Height / 2);
+                return new Point(square.ActualWidth / _centerDevider  - img.Width / _centerDevider, 
+                    square.ActualHeight / _centerDevider - img.Height / _centerDevider);
             }
             if (cell is PrisonCell prison)
             {
-                return new Point(prison.ActualWidth / 2 - img.Width / 2, prison.ActualHeight / 2 - img.Height / 2);
+                return new Point(prison.ActualWidth / _centerDevider - img.Width / _centerDevider, 
+                    prison.ActualHeight / _centerDevider - img.Height / _centerDevider);
             }
             if (cell is UpperCell upper)
             {
-                return new Point(upper.ChipsPlacer.ActualWidth / 2 - img.Width / 2,
-                    upper.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
+                return new Point(upper.ChipsPlacer.ActualWidth / _centerDevider - img.Width / _centerDevider,
+                    upper.ChipsPlacer.ActualHeight / _centerDevider  - img.Height / _centerDevider);
             }
             if (cell is RightCell right)
             {
-                return new Point(right.ChipsPlacer.ActualWidth / 2 - img.Width / 2,
-                    right.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
+                return new Point(right.ChipsPlacer.ActualWidth / _centerDevider - img.Width / _centerDevider,
+                    right.ChipsPlacer.ActualHeight / _centerDevider - img.Height / _centerDevider);
             }
             if (cell is BottomCell bottom)
             {
-                return new Point(bottom.ChipsPlacer.ActualWidth / 2 - img.Width / 2,
-                    bottom.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
+                return new Point(bottom.ChipsPlacer.ActualWidth / _centerDevider - img.Width / _centerDevider,
+                    bottom.ChipsPlacer.ActualHeight / _centerDevider - img.Height / _centerDevider);
             }
             if (cell is LeftCell left)
             {
-                return new Point(left.ChipsPlacer.ActualWidth / 2 - img.Width / 2,
-                    left.ChipsPlacer.ActualHeight / 2 - img.Height / 2);
+                return new Point(left.ChipsPlacer.ActualWidth / _centerDevider - img.Width / _centerDevider,
+                    left.ChipsPlacer.ActualHeight / _centerDevider - img.Height / _centerDevider);
             }
             return new Point(0, 0);
         }
@@ -480,7 +491,6 @@ namespace MonopolyEntity.VisualHelper
             {
                 res.Add(new Point(Canvas.GetLeft(img[i]), Canvas.GetTop(img[i])));
             }
-
             return res;
         }
 
@@ -504,10 +514,8 @@ namespace MonopolyEntity.VisualHelper
             Image img = new Image()
             {
                 Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute)),
-                Stretch = Stretch.Uniform
-                    
+                Stretch = Stretch.Uniform                
             };
-
             return img;
         }
 
@@ -550,9 +558,10 @@ namespace MonopolyEntity.VisualHelper
                 case BusinessType.Phones:
                     return Path.Combine(boxFolderPath, "Phones"); ;
             }
-
             throw new Exception("No such type");
         }
+
+        private static readonly Color _basicReartyColor = Color.FromRgb(76, 180, 219);
 
         public static SolidColorBrush GetRearityColorForCard(Item item)
         {
@@ -561,7 +570,7 @@ namespace MonopolyEntity.VisualHelper
                 return new SolidColorBrush(Color.FromRgb(
                     boxItem.GetRParam(), boxItem.GetGParam(), boxItem.GetBParam()));
             }
-            return new SolidColorBrush(Color.FromRgb(76, 180, 219));
+            return new SolidColorBrush(_basicReartyColor);
         }
 
         public static List<CaseCard> SetCardsInRightPosition(List<CaseCard> cards)

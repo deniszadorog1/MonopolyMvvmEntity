@@ -38,7 +38,8 @@ namespace MonopolyDLL.Monopoly
 
         private void SetBasicBoard()
         {
-            Cells = new CellParent[40];
+            const int amountofCells = 40;
+            Cells = new CellParent[amountofCells];
 
             List<CellParent> basicGamesCells = SetBasicBoardCells();
 
@@ -47,7 +48,6 @@ namespace MonopolyDLL.Monopoly
                 Cells[i] = basicGamesCells[i];
             }
         }
-
 
         private readonly List<CellParent> _basicBoardCells = SetBasicBoardCells();
         public static List<CellParent> SetBasicBoardCells()
@@ -115,7 +115,8 @@ namespace MonopolyDLL.Monopoly
 
         public int GetBusinessPrice(int index)
         {
-            return !(Cells[index] is ParentBus) ? -1 :
+            const int emptyPrice = -1;
+            return !(Cells[index] is ParentBus) ? emptyPrice :
                 ((ParentBus)Cells[index]).Price;
         }
 
@@ -299,10 +300,12 @@ namespace MonopolyDLL.Monopoly
             BusinessType type = GetBusTypeByIndex(cellIndex);
             List<ParentBus> buses = GetBusesByType(type);
 
+            const int maxHouseDiffer = 1;
+
             for (int i = 0; i < buses.Count; i++)
             {
                 int differ = buses[i].Level - amountOfHouses;
-                if (differ < -1 || differ > 1)
+                if (differ < -maxHouseDiffer || differ > maxHouseDiffer)
                 {
                     return false;
                 }
@@ -565,10 +568,8 @@ namespace MonopolyDLL.Monopoly
         }
 
         private const int _littleStrickBusType = 2;
-        private const int _bigStrickBusType = 2;
         public List<ParentBus> GetUsualBussesToChangeOn(InventoryObjs.BoxItem item)
-        {
-            
+        {          
             List<ParentBus> res = new List<ParentBus>();
 
             List<UsualBus> buses = Cells.OfType<UsualBus>().Where(x => x.BusType == item.Type).ToList();

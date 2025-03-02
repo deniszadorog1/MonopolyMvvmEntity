@@ -58,12 +58,7 @@ namespace MonopolyEntity.Windows.UserControls
             _page = Helper.FindParent<Page>(this);
             if (_page is null) return;
 
-            if (_page is UserPage page)
-            {
-                page.OpenInventoryPage();
-                return;
-            }
-            else if (_page is Pages.MainPage mainPage)
+            if (_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenInventoryPage();
             }
@@ -86,10 +81,6 @@ namespace MonopolyEntity.Windows.UserControls
             {
                 invPage.OpenMainPage();
             }
-            else if (_page is UserPage userPage)
-            {
-                userPage.OpenMainPage();
-            }
             else if (_page is ProfileSettings settings)
             {
                 settings.OpenMainPage();
@@ -108,10 +99,6 @@ namespace MonopolyEntity.Windows.UserControls
             else if (_page is InventoryPage invPage)
             {
                 invPage.OpenGameField();
-            }
-            else if (_page is UserPage userPage)
-            {
-                userPage.OpenGameField();
             }
             else if (_page is ProfileSettings settigns)
             {

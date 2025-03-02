@@ -40,7 +40,6 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
 
         public BoxItem()
         {
-
         }
 
         public void SetTick(bool? tick)
@@ -97,9 +96,11 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
 
         public List<int> GetNewPaymentList(List<int> payments)
         {
+            const int paymetMult = 100;
+            const int paymentAdder = 1;
             List<int> res = new List<int>();
 
-            double mult = Multiplier / 100 + 1;
+            double mult = Multiplier / paymetMult + paymentAdder;
 
             for(int i = 0; i < payments.Count; i++)
             {

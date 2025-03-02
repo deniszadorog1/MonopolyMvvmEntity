@@ -89,7 +89,7 @@ namespace MonopolyEntity.Windows.Pages
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*",
-                Title = "Choose file"
+                Title = SystemParamsServeses.GetStringByName("RegistrationChooseImage")
             };
 
             if (openFileDialog.ShowDialog() == true)

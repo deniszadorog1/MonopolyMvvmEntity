@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,11 +42,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
 
         private void CreateCubes()
         {
+            const int cubesTopThickness = 20;
             _first3dCube = GetDice(HorizontalAlignment.Right,
-                new Thickness(0, -20, 0, 0), _firstCube);
+                new Thickness(0, -cubesTopThickness, 0, 0), _firstCube);
 
             _second3dCube = GetDice(HorizontalAlignment.Left,
-                new Thickness(0, 20, 0, 0), _secondCube);
+                new Thickness(0, cubesTopThickness, 0, 0), _secondCube);
         }
 
         public void SetCubesIdGrids()
@@ -56,10 +58,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
 
         public Dice GetDice(HorizontalAlignment alinment, Thickness thick ,int cubeRes)
         {
+            const int cubeSizeParam = 175;
             Dice dice = new Dice(cubeRes)
             {
-                Width = 175,
-                Height = 175,
+                Width = cubeSizeParam,
+                Height = cubeSizeParam,
                 HorizontalAlignment = alinment,
                 Margin = thick
             };

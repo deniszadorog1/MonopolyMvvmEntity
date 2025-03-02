@@ -49,7 +49,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             TimerTextBlock.Text = _timeLeft.ToString();
         }
 
-        private int asd = 100;
         private void TimerElapsed(object sender, ElapsedEventArgs e)
         {
             if (_timeLeft > 0)

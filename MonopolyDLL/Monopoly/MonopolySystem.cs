@@ -24,7 +24,6 @@ namespace MonopolyDLL.Monopoly
         public User LoggedUser { get; set; }
         public Game MonGame { get; set; }
 
-
         private const int _checkId = 1; //before making right login form
         public MonopolySystem()
         {

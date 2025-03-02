@@ -1,4 +1,5 @@
-﻿using MonopolyDLL.Monopoly.InventoryObjs;
+﻿using MonopolyDLL;
+using MonopolyDLL.Monopoly.InventoryObjs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,8 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         public void FillParams()
         {
             PrizeImg.Source = _prizeImg.Source;
-            NameText.Text = $"Congrats you won {_prize.Name}";
+            NameText.Text = $"{SystemParamsServeses.GetStringByName("CaseOpenPriszeMessage")}" +
+                $" {_prize.Name}";
         }
     }
 }

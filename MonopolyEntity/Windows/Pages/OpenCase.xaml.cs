@@ -13,7 +13,6 @@ using MonopolyDLL;
 using System.Windows.Input;
 using System.Windows.Media.Effects;
 
-
 namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
@@ -38,10 +37,11 @@ namespace MonopolyEntity.Windows.Pages
 
         public void FillCheckToOpen()
         {
-            CheckToOpen.KeyToBox.CardName.Text = "Key";
+            CheckToOpen.KeyToBox.CardName.Text = SystemParamsServeses.GetStringByName("CaseOpenKeyName");
 
             Image img = BoardHelper.GetLotBoxImage(_caseBox.ImagePath);
-            CheckToOpen.Box.CardName.Text = $"{_caseBox.Name} box";
+            CheckToOpen.Box.CardName.Text = $"{_caseBox.Name} " +
+                $"{SystemParamsServeses.GetStringByName("CaseOpenToOpenBox")}";
             CheckToOpen.Box.CardImage.Source = img.Source;
 
             CheckToOpen.Box.CardImage.Stretch = Stretch.Uniform;
@@ -72,28 +72,34 @@ namespace MonopolyEntity.Windows.Pages
             }
         }
 
-        public static CaseCard GetCaseCards(string name, Image img, MonopolyDLL.Monopoly.InventoryObjs.Item item)
+        public static CaseCard GetCaseCards(string name, Image img, Item item)
         {
+            Size cardSize = new Size(175, 175);
+            Size cardImageSize = new Size(125, 125);
+            const int cardMargin = 20;
+            const int baseRadius = 10;
+
             CaseCard newCard = new CaseCard()
             {
-                Width = 175,
-                Height = 175
+                Width = cardSize.Width,
+                Height = cardSize.Height
             };
 
             newCard.CardImage.Source = img.Source;
-            newCard.CardImage.Width = 125;
-            newCard.CardImage.Height = 125;
+            newCard.CardImage.Width = cardImageSize.Width;
+            newCard.CardImage.Height = cardImageSize.Height;
+
 
             newCard.CardName.Text = name;
-            newCard.Margin = new System.Windows.Thickness(20);
+            newCard.Margin = new Thickness(cardMargin);
 
             newCard.BorderBgColor.Background = BoardHelper.GetRearityColorForCard(item);
 
             newCard.BorderBase.Clip = new RectangleGeometry()
             {
-                RadiusX = 10,
-                RadiusY = 10,
-                Rect = new System.Windows.Rect(0, 0, newCard.Width, newCard.Height)
+                RadiusX = baseRadius,
+                RadiusY = baseRadius,
+                Rect = new Rect(0, 0, newCard.Width, newCard.Height)
             };
             return newCard;
         }
@@ -115,6 +121,8 @@ namespace MonopolyEntity.Windows.Pages
 
         private void OpenCaseBut_Click(object sender, RoutedEventArgs e)
         {
+            Size rouletteSize = new Size(600, 175);
+
             ExitBut.IsEnabled = false;
             OpenCaseBut.Visibility = Visibility.Hidden;
             CheckToOpen.Visibility = Visibility.Hidden;
@@ -124,12 +132,11 @@ namespace MonopolyEntity.Windows.Pages
             _rol = new CaseRoulette(rouletteParams.images, rouletteParams.names, rouletteParams.colors)
             {
                 Background = new SolidColorBrush(Colors.Transparent),
-                Width = 600,
-                Height = 175,
+                Width = rouletteSize.Width,
+                Height = rouletteSize.Height,
                 VerticalAlignment = VerticalAlignment.Top,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
-
 
             _rol._animation.Completed += (obj, ev) =>
             {
@@ -196,7 +203,6 @@ namespace MonopolyEntity.Windows.Pages
             {
                 window.CaseFrame.Content = null;
                 window.CaseFrame.Visibility = Visibility.Hidden;
-                //window.WorkFrame.Effect = null;
                 window.VisiableItems.Effect = null;
             }
         }

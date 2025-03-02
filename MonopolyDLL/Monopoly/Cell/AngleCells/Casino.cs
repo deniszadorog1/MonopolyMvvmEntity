@@ -37,8 +37,8 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
         }
 
         private int _firstLevel = 6000;
-        private int _secondLevel = 3000;
-        private int _thirdLevel = 1000;
+        private int _secondLevel = 4000;
+        private int _thirdLevel = 2000;
 
         public void SetWonLevels()
         {

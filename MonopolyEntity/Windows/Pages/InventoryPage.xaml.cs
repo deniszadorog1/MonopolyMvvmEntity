@@ -19,7 +19,6 @@ using MonopolyDLL;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 using MonopolyDLL.Monopoly.Enums;
-using System.Reflection;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -200,16 +199,16 @@ namespace MonopolyEntity.Windows.Pages
             List<BusDescButton> res = new List<BusDescButton>();
             List<ParentBus> busesToGetButsFor = _system.MonGame.GetBusWithGivenBoxItem(item);
 
-            const string changeText = "Change";
-            const string getBackText = "Get back";
-            const string sameItemIsChosen = "Already chosen";
-            const int textBlockFz = 16;
+             string changeText = SystemParamsServeses.GetStringByName("ChangeItemInventory");
+             string getBackText = SystemParamsServeses.GetStringByName("GetBackItemInventory");
+             string sameItemIsChosen = SystemParamsServeses.GetStringByName("ItemChosenInventory");
+             int textBlockFz = 16;
 
             for (int i = 0; i < busesToGetButsFor.Count; i++)
             {
                 BoxItem usingItem = _system.LoggedUser.GetItemWhichUsesInGameById(busesToGetButsFor[i].GetId());
 
-                BusDescButton but = new BusDescButton();
+                BusDescButton but;
 
                 if (usingItem is null)
                 {
@@ -390,30 +389,34 @@ namespace MonopolyEntity.Windows.Pages
 
         private void MakeImageDescriptionAnimation(Image img)
         {
-            img.RenderTransformOrigin = new Point(0.5, 0.5);
+            const double _centerOrigin = 0.5;
+            const double _movmentSpeed = 0.2;
+            const double scaleFrom = 1;
+            const double scaleTo = 1.5;
+
+            img.RenderTransformOrigin = new Point(_centerOrigin, _centerOrigin);
 
             ScaleTransform ImageScaleTransform = new ScaleTransform();
             img.RenderTransform = ImageScaleTransform;
 
             var scaleXAnimation = new DoubleAnimation
             {
-                From = 1,
-                To = 1.5,
-                Duration = TimeSpan.FromSeconds(0.2),
+                From = scaleFrom,
+                To =scaleTo,
+                Duration = TimeSpan.FromSeconds(_movmentSpeed),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
             var scaleYAnimation = new DoubleAnimation
             {
-                From = 1,
-                To = 1.5,
-                Duration = TimeSpan.FromSeconds(0.2),
+                From = scaleFrom,
+                To = scaleTo,
+                Duration = TimeSpan.FromSeconds(_movmentSpeed),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
             ImageScaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleXAnimation);
             ImageScaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleYAnimation);
         }
-
 
         public void SetUserImage()
         {
@@ -504,7 +507,8 @@ namespace MonopolyEntity.Windows.Pages
             for (int i = 0; i < _cards.Count; i++)
             {
                 if (_cards[i].CardName.Text.ToLower().Contains(_textFilter) &&
-                    ((!(_rearity is null) && _system.LoggedUser.Inventory.InventoryItems[i] is BoxItem boxItem && boxItem.Rearity == _rearity) || _rearity is null) &&
+                    ((!(_rearity is null) && _system.LoggedUser.Inventory.InventoryItems[i] is BoxItem boxItem && 
+                    boxItem.Rearity == _rearity) || _rearity is null) &&
                     ((_itemType is BoxItem && _system.LoggedUser.Inventory.InventoryItems[i] is BoxItem) ||
                     (_itemType is CaseBox && _system.LoggedUser.Inventory.InventoryItems[i] is CaseBox) || _itemType is null))
                 {
@@ -516,7 +520,7 @@ namespace MonopolyEntity.Windows.Pages
         private BusRearity? _rearity;
         private void RareFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            const string clearFilterStr = "All";
+             string clearFilterStr = SystemParamsServeses.GetStringByName("SetAllInFilterInventory");
             ItemsPanel.Children.Clear();
             string res = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
 
@@ -549,8 +553,6 @@ namespace MonopolyEntity.Windows.Pages
             else _itemType = null;
 
             SetCardsByName();
-
-
         }
     }
 }

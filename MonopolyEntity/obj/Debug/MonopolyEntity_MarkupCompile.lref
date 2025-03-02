@@ -1,4 +1,4 @@
-﻿B:\GitHub\MonopolyMvvmEntity\MonopolyEntity\obj\Debug\GeneratedInternalTypeHelper.g.cs
+﻿
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\App.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\MainWindow.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\Pages\GamePage.xaml;;
@@ -9,7 +9,6 @@ FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\Pages\ProfileSettings.xaml;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\Pages\RegistrationPage.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\Pages\SetPlayersInGame.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\Pages\StartPage.xaml;;
-FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\Pages\UserPage.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\Pages\WorkPage.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\CaseCard.xaml;;
 FB:\GitHub\MonopolyMvvmEntity\MonopolyEntity\Windows\UserControls\CaseOpening\CaseRoulette.xaml;;

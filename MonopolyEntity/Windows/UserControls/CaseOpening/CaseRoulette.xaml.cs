@@ -66,6 +66,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             int cardId = 1;
             const int endPoint = -10000;
             int completeAnimsCount = 1;
+            const int animDuration = 4;
 
             foreach (UIElement element in CaseRotator.Children)
             {
@@ -76,7 +77,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                 {
                     From = 0,
                     To = endPoint,
-                    Duration = TimeSpan.FromSeconds(4),
+                    Duration = TimeSpan.FromSeconds(animDuration),
                     EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
                 };
 
@@ -85,7 +86,6 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                     if (completeAnimsCount == amountOfItems)
                     {
                         Console.WriteLine(_resCard.CardName.Text);
-                        // need to add won message here 
                         ShowPrizeWindow();
                         completeAnimsCount = 1;
                         _animationIsDone = true;
@@ -107,7 +107,6 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                 CloseRoulette();
                 return;
             }
-            //Just how 
             throw new Exception("Prize card in case is null");
         }
 
@@ -127,7 +126,6 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         {
             if (!(_resCard is null)) return;
 
-
             CaseCard card = GetCardByXLocation(endPoint, tempCardId);
             if (_resCard is null && !(card is null))
             {
@@ -136,10 +134,8 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         }
 
         private const int _centerWidth = _cardWidth * 2 + _distBetweenCards * 2;
-
         public CaseCard GetCardByXLocation(int endPoint, int tempCardId)
         {
-            CaseCard res = new CaseCard();
             int tempXLoc = tempCardId * _cardWidth + tempCardId * _distBetweenCards;
 
             if (tempXLoc > endPoint + _centerWidth)
@@ -175,14 +171,15 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             }
         }
 
+        private const int _centerDevider = 2;
         public void SetChosenLine()
         {
             CaseView.Width = Width;
             CaseView.Height = Height;
 
-            ChoseLine.X1 = Width / 2;
+            ChoseLine.X1 = Width / _centerDevider;
             ChoseLine.Y1 = _distBetweenCards;
-            ChoseLine.X2 = Width / 2;
+            ChoseLine.X2 = Width / _centerDevider;
             ChoseLine.Y2 = _distBetweenCards + _cardHeight;
         }
 
