@@ -38,7 +38,80 @@
 
   "RegistrationChooseImage": "Choose file",
 
-  "CaseOpenPriszeMessage": "Congrats you won"
+  "CaseOpenPriszeMessage": "Congrats you won",
+
+  "InPrisonQustion": "In prison, what to do?",
+  "InPrisonPayMoney": "Must pay money to go out",
+  "InPisonGettginOut": "You are luck to go out of prison.",
+  "InPrisonDropped": "Droped",
+  "And": "and",
+  "ValsNotEqual": "Values are not equal.",
+  "YouGot": "you got",
+  "PaidStr": "Paid - ",
+  "ToOutOfPrison": "to go out of prison",
+  "GoesToPrison": "Goes to prison",
+  "PrisonVist": "Visits a prison",
+
+  "Droped": "Droped",
+  "ThreeSameDrops": "3 same drops, goes to prison",
+  "ThroughStart": "Went through start cell.",
+  "GetSmth": "Get - ",
+  "GotOnStart": "Got on start cell.",
+  "GotOnChance": "Got on Chance",
+  "NeedToPat": "Need to pay",
+  "PayMoneyOnChance": "You got on chance cell",
+
+  "ChangeLost": "Lost",
+  "ChanceLittleLost": "in csgo cases",
+  "ChanceBigLost": "for health insurance",
+  "ChanceMoneyGot": "Found",
+  "ChanceLittleMoneyGain": "bucks on the street",
+  "ChanceBigMoneyGain": "in winter jacket",
+
+  "GotOnCasino": "Got on Casino game",
+  "CasinoPlaceMoney": "Place",
+  "CasinoAndMakeBid": "and bidded on",
+  "CasinoNotToPlay": "Does not want to play casino",
+
+  "GotOnTax": "You got on Tax Cell - ",
+  "TaxNeedToPay": "You need to pay bill - ",
+  "TaxMessagePayMoney": "Got on tax cell. To pay - ",
+
+  "GotOnEnemysBus": "You got on enemys business - ",
+  "PayOnEnemysBus": "and should pay the bill - ",
+  "GetsOn": "gets on",
+  "Bus": "bus",
+
+  "GotOnDepositedBus": "Got on deposited business",
+  "GotOnOwnBus": "Got on his own Business",
+  "GotOn": "You got on ",
+  "BusTurns": "turning into",
+  "Bought": "bought",
+  "BoughtFor": "for",
+  "NotBuyBus": "Does not want to buy ",
+  "Business": "business",
+
+  "NooneHasMoneyBids": "No one has enough money to make bid",
+  "NooneWantsBus": "Noone wants this business",
+  "PlayerBuying": "is buying",
+  "AuctionFor": "Auction for",
+  "TempPriceAuction": "Temp price in auction is ",
+  "MadeBid": "bidded",
+
+  "RebuyBus": "Rebought bus on",
+  "DepositedBus": "Deposited",
+  "GameBusInfoDesc": "This is game business. Payment eqauls amount of game multed by cubes sum",
+  "SoldHouse": "Sold house on",
+  "BuyHouse": "Buies house on",
+
+  "TradeSenderLogin": "Sender login",
+  "TradeReciverLogin": "Reciver login",
+  "TradePlayerOffers": "Offers",
+  "TradeToSignOffer": "to sign an offer",
+  "TradeAccept": "Accept trade",
+  "TradeDecline": "Declined trade",
+
+  "BusGoesToBank": "goes to bank",
 
 
 }

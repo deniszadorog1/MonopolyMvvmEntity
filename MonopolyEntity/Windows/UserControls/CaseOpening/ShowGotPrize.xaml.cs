@@ -34,6 +34,16 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             FillParams();
         }
 
+        public ShowGotPrize(Image img)
+        {
+            _prizeImg = img;
+            InitializeComponent();
+
+            PrizeImg.Source = img.Source;
+            HeadText.Text = "We have a winner!";
+            AcceptBut.Content = "Close this window";
+        }
+
         public void FillParams()
         {
             PrizeImg.Source = _prizeImg.Source;

@@ -239,18 +239,18 @@ namespace MonopolyDLL.Monopoly
             {
                 return new CarBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
                     ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
-                    usCounter, 0, newOwnerIndex, item.Type, false, ususalPosBus.GetId());
+                    usCounter, 0, newOwnerIndex, item.Type, ususalPosBus.IfDeposited, ususalPosBus.GetId());
             }
             if (item.Type == BusinessType.Games)
             {
                 return new GameBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
                     ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
-                    usCounter, 0, newOwnerIndex, item.Type, false, ususalPosBus.GetId());
+                    usCounter, 0, newOwnerIndex, item.Type, ususalPosBus.IfDeposited, ususalPosBus.GetId());
             }
             return new UsualBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
                 ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
                 usCounter, 0, ((UsualBus)ususalPosBus).BuySellHouse, newOwnerIndex,
-                item.Type, false, ususalPosBus.GetId());
+                item.Type, ususalPosBus.IfDeposited, ususalPosBus.GetId());
         }
 
         public BoxItem GetBoxItemByPosition(int position)

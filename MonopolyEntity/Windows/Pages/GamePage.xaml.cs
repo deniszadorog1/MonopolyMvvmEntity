@@ -319,5 +319,10 @@ namespace MonopolyEntity.Windows.Pages
                 _ifPageIsRendered = window._ifGamePageIsRendered;
             }
         }
+
+        public void StopGmeTimers()
+        {
+            _field.StopTimers();
+        }
     }
 }

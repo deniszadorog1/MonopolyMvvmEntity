@@ -28,17 +28,12 @@
     <Grid>
         <Frame x:Name="MainFrame" VerticalAlignment="Stretch" 
            Navigated="MainFrame_Navigated" ContentRendered="MainFrame_ContentRendered"
-           HorizontalAlignment="Stretch" NavigationUIVisibility="Hidden">
+           HorizontalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
 
-        </Frame>
-
-        <Canvas x:Name="VisiableItems" >
-
-        </Canvas>
+        <Canvas x:Name="VisiableItems"/>
 
         <Frame Name ="CaseFrame" Background="Transparent" Visibility="Hidden"
-                NavigationUIVisibility="Hidden">
+                NavigationUIVisibility="Hidden"/>
 
-        </Frame>
     </Grid>
 </Window>

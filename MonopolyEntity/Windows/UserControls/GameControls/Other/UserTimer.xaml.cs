@@ -28,7 +28,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
 
         public void SetTimer()
         {
-            _timer = null;
+            if (_timer != null)
+            {
+                _timer.Stop();
+                _timer.Elapsed -= TimerElapsed; 
+                _timer.Dispose();
+                _timer = null;
+            }
+
             const int interval = 1000;
             _timeLeft = _timeForMove;
 
@@ -41,9 +48,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             TimerTextBlock.Text = _timeLeft.ToString();
         }
 
+        public void ToStopTimer()
+        {
+
+        }
+
         public void UpdateTimeOnTimer()
         {
             if (_timer is null) return;
+            SetTimer();
+            return;
 
             _timeLeft = _timeForMove;
             TimerTextBlock.Text = _timeLeft.ToString();
@@ -55,7 +69,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             {
                 _timeLeft--;
             }
-            else
+            else if(!(_timer is null))
             {
                 _timer.Stop();
             }

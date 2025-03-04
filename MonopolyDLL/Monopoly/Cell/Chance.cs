@@ -33,6 +33,8 @@ namespace MonopolyDLL.Monopoly.Cell
             const int startVal = 1;
             const int moveBordValue = 1;
             _resChance = (ChanceAction)GetRandomServese.GetRandom(startVal, (int)ChanceAction.GoToPrison + moveBordValue);
+
+            //_resChance = ChanceAction.Pay1500;
             return _resChance;
         }
 

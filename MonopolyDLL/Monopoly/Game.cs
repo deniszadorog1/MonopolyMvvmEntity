@@ -85,13 +85,13 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 15;// _rnd.Next(1, 7);
-            _secondCube = 15;//_rnd.Next(1, 7);
+            _firstCube = 2;// _rnd.Next(1, 7);
+            _secondCube = 3;// _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
         {
-            return (2, 2);
+           // return (2, 2);
             _rnd = new Random();
             return (_rnd.Next(SystemParamsServeses.GetNumByName("minCubeRib"),
                 SystemParamsServeses.GetNumByName("maxCubeRub")), 
@@ -302,7 +302,7 @@ namespace MonopolyDLL.Monopoly
         public int GetStartPaymentForBusByIndex(int index)
         {
             ParentBus bus = ((ParentBus)GameBoard.Cells[index]);
-            return bus.PayLevels[bus.Level];
+            return bus.IfDeposited ? 0 : bus.PayLevels[bus.Level];
         }
 
         public void SetStartLevelOfBusinessForStepper()
@@ -982,6 +982,11 @@ namespace MonopolyDLL.Monopoly
             return Players.Where(x => x.IfLost == false).Count() == amountOfPlayersToWin;
         }
 
+        public int GetWinnerIndex()
+        { 
+            return Players.IndexOf(Players.Where(x => x.IfLost == false).First());
+        }
+
         public int GetDepositCounter(int cellIndex)
         {
             return GameBoard.GetDepositCounter(cellIndex);
@@ -1179,6 +1184,11 @@ namespace MonopolyDLL.Monopoly
         {
             int pos = Players[StepperIndex].Position;
             return ((ParentBus)GameBoard.Cells[pos]).OwnerIndex;
+        }
+
+        public bool IfStepperIsBusOwner(int cellIndex)
+        {
+            return ((ParentBus)GameBoard.Cells[cellIndex]).OwnerIndex == StepperIndex;
         }
 
         public bool IfStepperPositionIsGame()

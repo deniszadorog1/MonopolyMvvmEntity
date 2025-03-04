@@ -89,6 +89,10 @@ namespace MonopolyEntity
         public void ClearGame()
         {
             _system.MonGame = new Game(_system.LoggedUser);
+            if(MainFrame.Content is GamePage game)
+            {
+                game.StopGmeTimers();
+            }
         }
 
         public void ClearCaseOpenEffect()

@@ -609,12 +609,18 @@ namespace MonopolyDLL.Monopoly
 
         public void ChangeBoardItemOnInventory(ParentBus bus, int id)
         {
+            bool ifDeposited = false;
+            if (Cells[id] is ParentBus oldBus) ifDeposited = bus.IfDeposited;
             Cells[id] = bus;
+            if (Cells[id] is ParentBus newBus) newBus.IfDeposited = ifDeposited;
         }
 
         public void GetBasicBusBack(int position)
         {
+            bool ifDeposited = false;
+            if (Cells[position] is ParentBus bus)ifDeposited = bus.IfDeposited;
             Cells[position] = _basicBoardCells[position];
+            if (Cells[position] is ParentBus newBus) newBus.IfDeposited = ifDeposited; 
         }
 
         public ParentBus GetBusByIndex(int index)

@@ -118,7 +118,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = UserCardGrid.Width,
                 To = UserCardGrid.Width + value,
-                Duration = TimeSpan.FromSeconds(0.5),
+                Duration = TimeSpan.FromSeconds(0.2),
                 // AutoReverse = true 
             };
 
@@ -126,7 +126,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = UserCardGrid.Height,
                 To = UserCardGrid.Height + value,
-                Duration = TimeSpan.FromSeconds(0.5),
+                Duration = TimeSpan.FromSeconds(0.2),
                 //AutoReverse = true 
             };
 
@@ -134,7 +134,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = 0,
                 To = horValue,
-                Duration = TimeSpan.FromSeconds(0.5),
+                Duration = TimeSpan.FromSeconds(0.2),
                // EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
             _horizAnim.Completed += HorizAnim_Complited;
