@@ -86,7 +86,7 @@
   "GotOnOwnBus": "Got on his own Business",
   "GotOn": "You got on ",
   "BusTurns": "turning into",
-  "Bought": "bought",
+  "Bought": "Bought",
   "BoughtFor": "for",
   "NotBuyBus": "Does not want to buy ",
   "Business": "business",
@@ -112,6 +112,18 @@
   "TradeDecline": "Declined trade",
 
   "BusGoesToBank": "goes to bank",
+
+  "LotBox": "LotBox",
+  "LotBoxDesc": "This is box which you can open",
+  "LotBoxColType": "The same as box name btw",
+  "LotBoxCanDroppedDesc": "Several items from the worst type to the best",
+
+  "BusDescCardErngs": "You will get more from this card in",
+  "BusDescItemDesc": "This is business card which you can use in game",
+
+  "SettignsNewPas": "new Password",
+  "SettingsOldPas": "old Password",
+  "SettignsUserLog": "User login"
 
 
 }

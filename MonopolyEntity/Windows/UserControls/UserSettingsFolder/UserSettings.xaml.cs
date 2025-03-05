@@ -54,7 +54,7 @@ namespace MonopolyEntity.Windows.UserControls
 
         public void SetNewPassword()
         {
-            UserNewPasswordParam.ParamNameBlock.Text = "new Password";
+            UserNewPasswordParam.ParamNameBlock.Text = SystemParamsServeses.GetStringByName("SettignsNewPas");
 
             UserNewPasswordParam.ParamNameBox.TextChanged += (sender, e) =>
             {
@@ -85,7 +85,7 @@ namespace MonopolyEntity.Windows.UserControls
 
         public void SetOldPassword()
         {
-            UserOldPasswordParam.ParamNameBlock.Text = "Old password";
+            UserOldPasswordParam.ParamNameBlock.Text = SystemParamsServeses.GetStringByName("SettingsOldPas");
             UserOldPasswordParam.ParamPasswordBox.Visibility = Visibility.Visible;
             UserOldPasswordParam.ParamNameBox.Visibility = Visibility.Hidden;
 
@@ -109,7 +109,7 @@ namespace MonopolyEntity.Windows.UserControls
 
         public void SetLoginParam()
         {
-            UserLoignParam.ParamNameBlock.Text = "User login";
+            UserLoignParam.ParamNameBlock.Text = SystemParamsServeses.GetStringByName("SettignsUserLog");
             UserLoignParam.ParamNameBox.Text = _system.LoggedUser.Login;
 
             UserLoignParam.ParamNameBox.TextChanged += (sender, e) =>

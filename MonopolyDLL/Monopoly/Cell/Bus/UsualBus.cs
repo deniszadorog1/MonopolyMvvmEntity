@@ -48,7 +48,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
 
         public int GetPriceForBuiltHouses()
         {
-            return (Level * Level);
+            return (BuySellHouse * Level);
         }
 
     }

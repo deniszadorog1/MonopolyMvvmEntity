@@ -49,8 +49,16 @@ namespace MonopolyEntity.Windows.Pages
 
             SetStartValuesInUserCards();
 
-
             TestSound();
+            SetFrameToTimers();
+        }
+
+        public void SetFrameToTimers()
+        {
+            for (int i = 0; i < _userCards.Count; i++)
+            {
+                _userCards[i].UserTimer.SetFrame(_frame);
+            }
         }
 
         public void TestSound()
@@ -61,7 +69,7 @@ namespace MonopolyEntity.Windows.Pages
             player.Play();
         }
 
-        GameField _field = null;
+        public GameField _field = null;
         private readonly Size _baseFieldSize = new Size(895, 895);
         private void AddGameField()
         {
@@ -207,7 +215,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void UserCardPopup_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(_system.MonGame.IfStepperLost()) return;
+            if(_system.MonGame.IfStepperLost() || _field._ifBlockMenus) return;
             if (_dropdownMenuPopup.PlacementTarget == null)
             {
                 SetPopopMenu((UserCard)sender);
@@ -263,7 +271,8 @@ namespace MonopolyEntity.Windows.Pages
             but.Click += (sender, e) =>
             {
                 _field.PlayerGaveUp();
-                _dropdownMenuPopup.IsOpen = !_dropdownMenuPopup.IsOpen;
+                //_dropdownMenuPopup.IsOpen = !_dropdownMenuPopup.IsOpen;
+                _dropdownMenuPopup.IsOpen = false;
             };
             panel.Children.Add(but);
         }

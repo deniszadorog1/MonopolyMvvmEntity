@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
@@ -89,12 +90,13 @@ namespace MonopolyEntity.Windows.UserControls
             return imagePath;
         }
 
+        private const int _centerDevider = 2;
         private void CardName_Loaded(object sender, RoutedEventArgs e)
         {
-            double upperPadding = DownRow.ActualHeight / 2 - CardName.FontSize / 2;
+            double upperPadding = DownRow.ActualHeight / _centerDevider - CardName.FontSize / _centerDevider;
             if (upperPadding < 0) return;
 
-            CardName.Padding = new Thickness(0, DownRow.ActualHeight / 2 - CardName.FontSize / 2, 0, 0);
+            CardName.Padding = new Thickness(0, DownRow.ActualHeight / _centerDevider - CardName.FontSize / _centerDevider, 0, 0);
         }
 
     }

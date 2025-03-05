@@ -36,7 +36,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         }
 
         public int _imgSize = 70;
-
+        private const int _zIndex = 10;
         public void SetTestCardImage()
         {
             Image img = MainWindowHelper.GetCircleImage(_imgSize, _imgSize, null);
@@ -44,7 +44,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             //img.VerticalAlignment = VerticalAlignment.Center;
             //img.HorizontalAlignment = HorizontalAlignment.Center;
 
-            Canvas.SetZIndex(img, 10);
+            Canvas.SetZIndex(img, _zIndex);
             UserImageGrid.Children.Add(img);
         }
 
@@ -67,7 +67,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         public void AddColorCircle()
         {
             const int circleSize = 77;
-
             Ellipse colorCircle = new Ellipse()
             {
                 Width = circleSize,
@@ -82,7 +81,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         public void AddEmptyColorCircle()
         {
             const int circleSize = 73;
-
             Ellipse colorCircle = new Ellipse()
             {
                 Width = circleSize,
@@ -100,9 +98,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         public int _toMakeBigger = 20;
         public int _toMakeThinner = -20;
 
-        const int translateMove = 10;
-
         public DoubleAnimation _horizAnim;
+        private const double _animDur = 0.2;
         public void SetAnimation(SolidColorBrush brush, bool ifStepper)
         {
             var transform = new TranslateTransform();
@@ -118,7 +115,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = UserCardGrid.Width,
                 To = UserCardGrid.Width + value,
-                Duration = TimeSpan.FromSeconds(0.2),
+                Duration = TimeSpan.FromSeconds(_animDur),
                 // AutoReverse = true 
             };
 
@@ -126,7 +123,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = UserCardGrid.Height,
                 To = UserCardGrid.Height + value,
-                Duration = TimeSpan.FromSeconds(0.2),
+                Duration = TimeSpan.FromSeconds(_animDur),
                 //AutoReverse = true 
             };
 
@@ -134,7 +131,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = 0,
                 To = horValue,
-                Duration = TimeSpan.FromSeconds(0.2),
+                Duration = TimeSpan.FromSeconds(_animDur),
                // EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
             _horizAnim.Completed += HorizAnim_Complited;
@@ -166,6 +163,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             UserTimer.SetTimer();
 
             SetTimerBgColor(brush);
+        }
+
+        public void SetVisableToTimer()
+        {
+            UserTimer.Visibility = Visibility.Visible;
+            UserTimer.SetTimer();
         }
 
         public void UpdateTimer()

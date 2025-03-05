@@ -9,6 +9,7 @@ using System.Timers;
 using System.Threading;
 using Timer = System.Timers.Timer;
 using System.Windows.Media;
+using MonopolyEntity.Windows.Pages;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls.Other
 {
@@ -17,9 +18,15 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
     /// </summary>
     public partial class UserTimer : UserControl
     {
+        Frame _frame = null;
         public UserTimer()
         {
             InitializeComponent();     
+        }
+
+        public void SetFrame(Frame frame)
+        {
+            _frame = frame;
         }
 
         private const int _timeForMove = 75;
@@ -72,6 +79,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             else if(!(_timer is null))
             {
                 _timer.Stop();
+
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (_frame.Content is GamePage game)
+                    {
+                        game._field.PlayerGaveUp();
+                    }
+                });
             }
             Application.Current.Dispatcher.Invoke(() =>
             {

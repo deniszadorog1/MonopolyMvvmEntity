@@ -377,8 +377,9 @@ namespace MonopolyDLL.Monopoly
 
         public bool IfAnyOfBussesIsDeposited(List<ParentBus> buses)
         {
-            return buses.Where(x => x.IfBusinessIsDeposited()).Any();
+            return buses.Where(x => x.IfBusinessIsDeposited()).Any() ;
         }
+
 
         public void DepositBus(int cellIndex)
         {
@@ -521,6 +522,9 @@ namespace MonopolyDLL.Monopoly
 
         public void ClearAllPlayersBuses(int playerIndex)
         {
+            //Clear Players bus deposit counter 
+            ClearDepositCounter(playerIndex);
+
             //UnDeposit all players busess
             UnDepositPlayersBuses(playerIndex);
 
@@ -529,6 +533,18 @@ namespace MonopolyDLL.Monopoly
 
             //Clear Buses Owner
             ClearPlayersBussesOwner(playerIndex);
+        }
+
+        public void ClearDepositCounter(int ownerIndex)
+        {
+            for(int i = 0; i < Cells.Length; i++)
+            {
+                if (Cells[i] is ParentBus bus && 
+                    bus.OwnerIndex == ownerIndex)
+                {
+                    bus.SetNewDepositCounter();
+                }
+            }
         }
 
         public int GetBusPrice(int busIndex)

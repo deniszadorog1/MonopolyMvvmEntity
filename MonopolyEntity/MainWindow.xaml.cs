@@ -135,6 +135,7 @@ namespace MonopolyEntity
             this.Left = 0;
         }
 
+        private const int _centerDevider = 2;
         public void SetInLittleWindow()
         {
            this.WindowState = WindowState.Normal;
@@ -142,8 +143,8 @@ namespace MonopolyEntity
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
 
-            this.Left = (screenWidth - this.Width) / 2;
-            this.Top = (screenHeight - this.Height) / 2;
+            this.Left = (screenWidth - this.Width) / _centerDevider;
+            this.Top = (screenHeight - this.Height) / _centerDevider;
         }
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
@@ -170,12 +171,13 @@ namespace MonopolyEntity
         }
 
         private readonly Size _baseSize = new Size(450, 450);
+        private readonly Size _minSize = new Size(1500, 900);
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if(MainFrame.Content is GamePage game)
             {
-                MinHeight = 900;
-                MinWidth = 1500;
+                MinHeight = _minSize.Height;
+                MinWidth = _minSize.Width;
                 e.Handled = true;
                 game._dropdownMenuPopup.IsOpen = false;
             }

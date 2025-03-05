@@ -85,8 +85,8 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 2;// _rnd.Next(1, 7);
-            _secondCube = 3;// _rnd.Next(1, 7);
+            _firstCube = _rnd.Next(1, 7);
+            _secondCube = _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -250,6 +250,7 @@ namespace MonopolyDLL.Monopoly
             Players[StepperIndex].AmountOfMoney -= price;
 
             ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).OwnerIndex = StepperIndex;
+            ((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).IfDeposited = false;
         }
 
         public bool IfStepperHasEnoughMoneyToPayBill()
@@ -846,11 +847,17 @@ namespace MonopolyDLL.Monopoly
             List<ParentBus> ownedBusesByType = GameBoard.GetBusesWhichPlayersOwnByType(type, StepperIndex);
             List<ParentBus> allBusesByType = GameBoard.GetBusesByType(type);
 
+            bool ifHouseWasBuilt = Players[StepperIndex].BuiltHousesInRowType.Contains(type);
+
             //Not all cells form monopoly
             if (ownedBusesByType.Count() != allBusesByType.Count()) return true;
 
             //If all cell from monopoly, and at least one is deposited
             if (GameBoard.IfAnyOfBussesIsDeposited(ownedBusesByType)) return true;
+
+            //House was built(than sold) + no houses in all buses by type
+            if (ifHouseWasBuilt && !allBusesByType.Where(x => x.Level != 0).Any()) return true;
+
             return false;
         }
 
@@ -1108,7 +1115,25 @@ namespace MonopolyDLL.Monopoly
             int ownerIndex = GameBoard.GetBusOwnerIndex(Players[StepperIndex].Position);
             if (ownerIndex == -1) return;
 
+            int billMoney = GetPlayersBillMoney();
+
+            if(allPlayersMoney >= billMoney)
+            {
+                allPlayersMoney = billMoney;
+            }
+
             Players[ownerIndex].GetMoney(allPlayersMoney);
+        }
+
+        public int GetPlayersBillMoney()
+        {
+            int position = Players[StepperIndex].Position;
+
+            if (GameBoard.Cells[position] is ParentBus bus)
+            {
+                return bus.PayLevels[bus.Level];
+            }
+            return 0;
         }
 
         public bool IfSteppersCanOnlyGiveUp(int bill)
@@ -1219,6 +1244,12 @@ namespace MonopolyDLL.Monopoly
             List<UsualBus> toCheck = GameBoard.Cells.OfType<UsualBus>().Where(x => x.BusType == type).ToList();
 
             return toCheck.Any(x => x.Level != 0);
+        }
+
+        public int GetRandomCellIndex()
+        {
+            _rnd = new Random();
+            return _rnd.Next(0, GameBoard.Cells.Length + 1);
         }
     }
 }

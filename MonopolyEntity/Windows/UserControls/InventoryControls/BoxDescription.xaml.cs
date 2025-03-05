@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using MonopolyDLL.Monopoly.InventoryObjs;
+using MonopolyDLL;
 
 namespace MonopolyEntity.Windows.UserControls.InventoryControls
 {
@@ -41,16 +42,17 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
         }
 
         public void SetTextParams()
-        {
+        {//SystemParamsServeses.GetStringByName("InPrisonQustion")
             ItemName.Text = _caseBox.Name;
-            ItemType.Text = "LotBox";
-            ItemDesctiption.Text = "This is box which you can open";
-            ColType.Text = "The same as box name btw";
-            CanBeDroppedDescription.Text = "Several items from the worst type to the best";
+            ItemType.Text = SystemParamsServeses.GetStringByName("LotBox");
+            ItemDesctiption.Text = SystemParamsServeses.GetStringByName("LotBoxDesc");
+            ColType.Text = SystemParamsServeses.GetStringByName("LotBoxColType");
+            CanBeDroppedDescription.Text = SystemParamsServeses.GetStringByName("LotBoxCanDroppedDesc");
         }
 
         private void OpenCaseBut_Click(object sender, RoutedEventArgs e)
         {
+            const int fullBlur = 100;
             //return;
             MainWindow obj = 
                 Helper.FindParent<MainWindow>(_frame);
@@ -62,7 +64,7 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
 
             BlurEffect blurEffect = new BlurEffect
             {
-                Radius = 100 
+                Radius = fullBlur 
             };
             obj.VisiableItems.Effect = blurEffect;
 
