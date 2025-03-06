@@ -27,6 +27,7 @@ using MonopolyDLL;
 using MonopolyEntity.Windows.Pages;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.CodeDom;
+using System.Security.Policy;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -76,7 +77,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             SetEndTimerEvents();
 
-            //SetOwnerToAllCells();
+           // SetOwnerToAllCells();
         }
 
         public void SetEndTimerEvents()
@@ -142,7 +143,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         private void ChangeStepper(bool ifAfterAuction = false)
         {
             //_cards[_system.MonGame.StepperIndex].UpdateTimer();
-            if (_system.MonGame.IfCubeDropsAreEqual() && !_system.MonGame.IfStepperSitsInPrison())
+            if (_system.MonGame.IfCubeDropsAreEqual() && !_system.MonGame.IfStepperSitsInPrison() && 
+                !_system.MonGame.IfPlayerLost())
             {
                 _cards[_system.MonGame.StepperIndex].UserTimer.SetTimer();
                 SetActionAfterStepperChanged();
@@ -425,6 +427,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             //Get enum action to show whats is happening
             _checkEvent += (compSender, eve) =>
             {
+                int tempPost = _system.MonGame.Players[_system.MonGame.StepperIndex].Position;
+
                 _cards[_system.MonGame.StepperIndex].SetVisableToTimer();
                 BussinessInfo.Children.Clear();
                 ClearDropDown();
@@ -447,7 +451,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             _toDropCubes = false;
 
             //Check if stepper went through start(to get money)
-            GoThroughStartCellCheck();
+            if(!_system.MonGame.IfNeedToMoveBackwards()) GoThroughStartCellCheck();
+                        
+            _system.MonGame.SetOpositeMoveBackWards();
+
 
             //Remove dice 
             //ChatMessages.Children.Remove(ChatMessages.Children.OfType<DicesDrop>().First());
@@ -560,7 +567,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             _cards[_system.MonGame.StepperIndex].UpdateTimer();
             AddWrapPanelToChatBox(SystemParamsServeses.GetStringByName("GotOnChance"), _system.MonGame.StepperIndex);
 
-            ChanceAction action = /*ChanceAction.GoToPrison;//*/ _system.MonGame.GetChanceAction();
+            ChanceAction action = ChanceAction.MoveBackwards;// _system.MonGame.GetChanceAction();
 
             string actionText = GetTextForChanceAction(action);
             AddWrapPanelToChatBox(actionText, _system.MonGame.StepperIndex);
@@ -594,7 +601,18 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 case ChanceAction.GoToPrison:
                     GoToPrisonFromChance();
                     break;
+                case ChanceAction.MoveBackwards:
+                    MoveBackWards();
+                    break;
             }
+        }
+
+        private void MoveBackWards()
+        {
+            //AddWrapPanelToChatBox($"{SystemParamsServeses.GetStringByName("ChanceMoveBackwards")}", _system.MonGame.StepperIndex);
+
+            _system.MonGame.SetOpositeMoveBackwards();          
+            ChangeStepper();
         }
 
         private void GoToPrisonFromChance()
@@ -612,6 +630,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         private void GetMoneyChanceAction(int money)
         {
+            AddWrapPanelToChatBox($"{SystemParamsServeses.GetStringByName("PaidStr")}" +
+            $"{GetConvertedPrice(money)}", _system.MonGame.StepperIndex);
+
             _system.MonGame.GetMoneyFromChance(money);
             ChangeStepper();
         }
@@ -673,6 +694,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                         $"{SystemParamsServeses.GetStringByName("ChanceBigMoneyGain")}";
                 case ChanceAction.GoToPrison:
                     return SystemParamsServeses.GetStringByName("GoesToPrison");
+                case ChanceAction.MoveBackwards:
+                    return SystemParamsServeses.GetStringByName("ChanceMoveBackwards");
             };
 
             throw new Exception("What can you get else");
@@ -1682,6 +1705,19 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 info.DescriptionText.Visibility = Visibility.Visible;
                 return;
             }
+            else if (!ChatMessages.Children.OfType<ThroughCubes>().Any() && 
+                !ChatMessages.Children.OfType<PrisonQuestion>().Any())
+            {
+                if (type == UsualBusInfoVisual.BuyHouse)
+                {
+                    info.DescriptionText.Visibility = Visibility.Visible;
+                    return;
+                }
+                else if(type == UsualBusInfoVisual.DepositAndBuildHouse)
+                {
+                    type = UsualBusInfoVisual.Deposit;
+                }
+            }
 
             info.DescriptionText.Visibility = Visibility.Hidden;
             switch (type)
@@ -2033,8 +2069,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             if (_ifChipMoves) return;
 
-            _squareIndexesToGoThrough =
-                BoardHelper.GetListOfSquareCellIndexesThatChipGoesThrough(startCellIndex, cellIndexToMoveOn);
+            _squareIndexesToGoThrough = !_system.MonGame.IfNeedToMoveBackwards() ?
+                BoardHelper.GetListOfSquareCellIndexesThatChipGoesThrough(startCellIndex, cellIndexToMoveOn) :
+                BoardHelper.GetListOfSquaresIndexesToGoThroughBackwards(startCellIndex, cellIndexToMoveOn);
+
 
             if (_ifWithoutGoingThrugh || _goToPrisonByDouble)
             {
@@ -3006,7 +3044,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetPlayerCardIfHeGaveUp(_cards[_system.MonGame.StepperIndex]);
             _cards[_system.MonGame.StepperIndex].StopTimer();
 
-
             if (IfSomeOneWon()) return;
 
             RemoveLostPlayersChip(_system.MonGame.StepperIndex);
@@ -3038,10 +3075,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         {
             Image toRemove = _imgs[playerIndex];
 
-            //_imgs[playerIndex] = null;
-
             toRemove.Visibility = Visibility.Hidden;
-            //((Canvas)toRemove.Parent).Children.Remove(toRemove);
+            
+            Canvas can = ((Canvas)toRemove.Parent);
+            can.Children.Remove(toRemove);
+
+            _system.MonGame.Players[_system.MonGame.StepperIndex].Position = -1;
+            _imgs[playerIndex] = null;
         }
 
         public void SetPlayerCardIfHeGaveUp(UserCard card)

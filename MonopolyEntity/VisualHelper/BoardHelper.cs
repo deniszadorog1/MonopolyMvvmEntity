@@ -385,6 +385,54 @@ namespace MonopolyEntity.VisualHelper
             return !ifGoesTrough ? null : GetCellIndexToGoThrough(startIndex, endIndex);
         }
 
+        public static List<int> GetListOfSquaresIndexesToGoThroughBackwards(int startIndex, int endIndex)
+        {
+            bool ifGoesTrough = IfChipGoesThroughCorner(startIndex, endIndex);
+            return !ifGoesTrough ? null : GetCellIndexToGoThroughBackwards(startIndex, endIndex);
+        }
+
+        private static int GetAmountOfSetpsFromEndToStartIndexesBackwards(int startIndex, int endIndex)
+        {
+            int res = 0;
+            int counter = startIndex;
+            const int lastCellIndex = 39;
+            do
+            {
+                counter--;
+                if (counter < 0)
+                {
+                    counter = lastCellIndex;
+                }
+                res++;
+
+                if (counter == endIndex)
+                {
+                    return res;
+                }
+            } while (true);
+        }
+
+        public static List<int> GetCellIndexToGoThroughBackwards(int startIndex, int endIndex)
+        {
+            int cubesVal = GetAmountOfSetpsFromEndToStartIndexesBackwards(startIndex, endIndex);
+            List<int> res = new List<int>();
+            const int squareDevider = 10;
+            const int firstCell = 0;
+            do
+            {
+                startIndex--;
+                cubesVal--;
+
+                if (startIndex < firstCell) startIndex = 39;
+                if (startIndex % squareDevider == 0) res.Add(startIndex);
+                if (cubesVal == 0)
+                {
+                    if (endIndex % squareDevider != 0) res.Add(endIndex);
+                    return res;
+                }
+            } while (true);
+        }
+
         public static bool IfChipGoesThroughCorner(int startIndex, int endPointIndex)
         {
             const int firstLineLasCellIndex = 10;

@@ -31,11 +31,13 @@ namespace MonopolyDLL.Monopoly
         public int DoubleCounter { get; set; }
 
         public List<BusinessType> BuiltHousesInRowType { get; set; }
+        public bool IfMoveBackWards = false;
         private List<BusinessType> _collectedMonopolies = new List<BusinessType>();
 
         private int Id;
         private int _maxDoubles = 3;
         private int? _pictureId;
+       
 
         public User(string login, int id, int? picId, string password)
         {
@@ -75,6 +77,16 @@ namespace MonopolyDLL.Monopoly
             IfLost = ifLost;
             DoubleCounter = 0;
             GameBusses = new List<InventoryObjs.BoxItem>();
+        }
+
+        public void SetOpositeMoveBackwardsVal()
+        {
+            IfMoveBackWards = !IfMoveBackWards;
+        }
+
+        public bool IfNeedToMoveBackWards()
+        {
+            return IfMoveBackWards;
         }
 
         public void ClearBuiltHousesInRowType()

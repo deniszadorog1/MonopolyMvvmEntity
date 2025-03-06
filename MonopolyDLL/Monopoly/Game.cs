@@ -11,9 +11,6 @@ using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 
 using MonopolyDLL.Monopoly.TradeAction;
-using System.Security.Policy;
-using MonopolyDLL.DBService;
-using System.Xml.Serialization;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -75,6 +72,9 @@ namespace MonopolyDLL.Monopoly
         Random _rnd;// = new Random(Guid.NewGuid().GetHashCode());
 
         public bool check = false;
+
+
+        bool qwe = false;
         public void DropCubes()
         {
             _rnd = new Random();
@@ -85,8 +85,16 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = _rnd.Next(1, 7);
-            _secondCube = _rnd.Next(1, 7);
+            _firstCube = 2;// _rnd.Next(1, 7);
+            _secondCube = 0;// _rnd.Next(1, 7);
+
+            if (qwe)
+            {
+                _firstCube = 12;// _rnd.Next(1, 7);
+                _secondCube = 13;// _rnd.Next(1, 7);
+            }
+
+            qwe = true;
         }
 
         public (int, int) GetValsForPrisonDice()
@@ -103,6 +111,11 @@ namespace MonopolyDLL.Monopoly
         {
             _firstCube = firstCube;
             _secondCube = secondCube;
+        }
+
+        public void SetOpositeMoveBackwards()
+        {
+            Players[StepperIndex].SetOpositeMoveBackwardsVal();
         }
 
         public int GetFirstCube()
@@ -122,6 +135,11 @@ namespace MonopolyDLL.Monopoly
 
         public int GetPointToMoveOn()
         {
+            if (Players[StepperIndex].IfNeedToMoveBackWards())
+            {
+                return MoveBackWards();
+            }
+
             const int lastCellIndex = 39;
             const int amountOfCell = 40;
 
@@ -132,8 +150,36 @@ namespace MonopolyDLL.Monopoly
                 sumPoint - amountOfCell : sumPoint;
         }
 
+        public void SetOpositeMoveBackWards()
+        {
+            if (!Players[StepperIndex].IfNeedToMoveBackWards()) return;
+
+            Players[StepperIndex].SetOpositeMoveBackwardsVal();
+        }
+
+        public bool IfNeedToMoveBackwards()
+        {
+            return Players[StepperIndex].IfNeedToMoveBackWards();
+        }
+
+        private int MoveBackWards()
+        {
+            const int amountOfCell = 40;
+
+            int tempPost = Players[StepperIndex].Position;
+            int sumPoint = (tempPost - GetSumOfCubes());
+
+
+            return sumPoint >= 0 ? sumPoint : amountOfCell + sumPoint;
+        }
+
         public void SetPlayerPosition(bool ifGoesToPrison)
         {
+            if (Players[StepperIndex].IfNeedToMoveBackWards())
+            {
+                Players[StepperIndex].Position = MoveBackWards();
+                return;
+            }
             const int lastCellIndex = 40;
 
             int sum = Players[StepperIndex].Position + GetSumOfCubes();
@@ -1250,6 +1296,11 @@ namespace MonopolyDLL.Monopoly
         {
             _rnd = new Random();
             return _rnd.Next(0, GameBoard.Cells.Length + 1);
+        }
+
+        public bool IfPlayerLost()
+        {
+            return Players[StepperIndex].IfLost;
         }
     }
 }

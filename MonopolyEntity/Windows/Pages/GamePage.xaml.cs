@@ -25,6 +25,7 @@ using System.Media;
 using System.CodeDom;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using MonopolyDLL.Monopoly.Enums;
+using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -215,7 +216,8 @@ namespace MonopolyEntity.Windows.Pages
 
         private void UserCardPopup_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(_system.MonGame.IfStepperLost() || _field._ifBlockMenus) return;
+            if(_system.MonGame.IfStepperLost() || _field._ifBlockMenus ||
+                (_field.ChatMessages.Children.OfType<DicesDrop>().Any())) return;
             if (_dropdownMenuPopup.PlacementTarget == null)
             {
                 SetPopopMenu((UserCard)sender);
