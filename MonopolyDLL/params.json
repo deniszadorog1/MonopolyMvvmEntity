@@ -15,6 +15,10 @@
   "SendTradePopup": "Send trade",
   "GiveUpPopup": "Give up",
 
+  "MoneyToPayOnBirthday": "500",
+  "HousePriceChance": "100",
+  "HotelPriceChance": "300",
+
   "ChangeItemInventory": "Change",
   "GetBackItemInventory": "Get back",
   "ItemChosenInventory": "Already chosen",
@@ -60,6 +64,10 @@
   "GotOnChance": "Got on Chance",
   "NeedToPat": "Need to pay",
   "PayMoneyOnChance": "You got on chance cell",
+  "BirthdayGift": "You are going on birthday party",
+  "GiftIs": "gift price is",
+  "BuildingsTax": "Need to pay tax for buildings", 
+  "BuildingsTaxToPay": "Total is",
 
   "ChangeLost": "Lost",
   "ChanceLittleLost": "in csgo cases",
@@ -124,7 +132,11 @@
 
   "SettignsNewPas": "new Password",
   "SettingsOldPas": "old Password",
-  "SettignsUserLog": "User login"
+  "SettignsUserLog": "User login",
+
+  "IfGiveUp": "Are you sure that you want to give up?"
+
+
 
 
 }

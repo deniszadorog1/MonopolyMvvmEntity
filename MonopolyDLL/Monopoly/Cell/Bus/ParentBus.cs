@@ -127,16 +127,22 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             return TempDepositCounter == 0;
         }
 
-        public void DepositCounterIsZero()
+        public void ClearBusVals()
         {
             OwnerIndex = -1;
             TempDepositCounter = _depositCounterMax;
+            Level = 0;
             IfDeposited = false;
         }
 
         public int GetOwnerIndex()
         {
             return OwnerIndex;
+        }
+
+        public void SetTempDepositCounter(int counter)
+        {
+            TempDepositCounter = counter;
         }
     }
 }

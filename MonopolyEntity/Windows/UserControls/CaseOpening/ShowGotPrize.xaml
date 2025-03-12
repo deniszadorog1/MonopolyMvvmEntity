@@ -39,11 +39,27 @@
                 </Grid>
             </Grid>
 
-            <Grid Grid.Row="2" Name="ButtonsGrid">
+            <Grid Grid.Row="2" Name="ButtonsGrid" >
                 <Button Name="AcceptBut" Content="Accept"
                     Margin="10 0 10 0"  Height="50" FontSize="20"
                     Background="{StaticResource MainGlobalColor}"
                     BorderThickness="0"/>
+            </Grid>
+
+            <Grid Grid.Row="2" Name ="GiveUpGrid" Visibility="Hidden">
+
+                <Button Name="GiveUpBut" Content="GiveUp" Width="265" 
+                    Margin="10 0 10 0"  Height="50" FontSize="20"
+                    Background="{StaticResource MainGlobalColor}"
+                    BorderThickness="0" VerticalAlignment="Center"
+                    HorizontalAlignment="Left" />
+
+                <Button Name="CancelGiveUpBut" Content="Cancel" Width="265" 
+                    Margin="10 0 10 0"  Height="50" FontSize="20"
+                    Background="{StaticResource DenyGlobalColor}"
+                    BorderThickness="0" VerticalAlignment="Center"
+                    HorizontalAlignment="Right"/>
+
             </Grid>
 
         </Grid>

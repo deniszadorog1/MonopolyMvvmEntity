@@ -56,11 +56,27 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
 
         public int GetSenderTradeMoney()
         {
+            RemoveSpace(SenderMoney.AmountOfMoneyBox.Text, SenderMoney.AmountOfMoneyBox);
             return ConvertMoneyStringInInterger(SenderMoney.AmountOfMoneyBox.Text);
+        }
+
+        public void RemoveSpace(string money, TextBox block)
+        {
+            string res = string.Empty;
+            for (int i = 0; i < money.Length; i++)
+            {
+                if (money[i] != ' ')
+                {
+                    res += money[i];
+                }
+            }
+            block.Text = res;
         }
 
         public int GetReciverTradeMoney()
         {
+            RemoveSpace(ReciverMoney.AmountOfMoneyBox.Text, ReciverMoney.AmountOfMoneyBox);
+
             return ConvertMoneyStringInInterger(ReciverMoney.AmountOfMoneyBox.Text);
         }
 
@@ -75,7 +91,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
             StringBuilder res = new StringBuilder();
             bool startWrite = false;
 
-            for(int i = 0; i < moneyString.Length; i++)
+            for (int i = 0; i < moneyString.Length; i++)
             {
                 if (moneyString[i] != '0') startWrite = true;
                 if (startWrite) res.Append(moneyString[i]);

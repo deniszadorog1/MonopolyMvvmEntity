@@ -29,9 +29,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
     public partial class Dice : UserControl
     {
         private int _cubeRes;
-        public Dice(int cubeRes)
+        private bool _ifFirst;
+        public Dice(int cubeRes, bool ifFirstCube)
         {
             _cubeRes = cubeRes;
+            _ifFirst = ifFirstCube;
+
             InitializeComponent();
 
             SetNeedRoatationParams();
@@ -63,9 +66,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             var diceVisual = new ModelVisual3D { Content = diceModel };
             viewport.Children.Add(diceVisual);
 
-            _horizontalRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0); 
+            _horizontalRotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
             _verticalRotation = new AxisAngleRotation3D(new Vector3D(1, 0, 0), 0);
-            
+
             _rotateTransforms.Children.Add(new RotateTransform3D(_horizontalRotation));
             _rotateTransforms.Children.Add(new RotateTransform3D(_verticalRotation));
 
@@ -158,8 +161,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             //return;
             _horizontalAnimation = new DoubleAnimation
             {
-                From = 0, 
-                To = _horizontalTo, 
+                From = 0,
+                To = _horizontalTo,
                 Duration = TimeSpan.FromSeconds(1),
                 //AccelerationRatio = 0.3, 
                 DecelerationRatio = 1,
@@ -178,10 +181,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
         {
             _vertialAnimation = new DoubleAnimation
             {
-                From = 0, 
-                To = _verticalTo, 
+                From = 0,
+                To = _verticalTo,
                 Duration = TimeSpan.FromSeconds(1),
-                AccelerationRatio = 0.1, 
+                AccelerationRatio = 0.1,
                 DecelerationRatio = 0.9,
                 //RepeatBehavior = RepeatBehavior.Forever,
 
@@ -197,14 +200,71 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             (int hor, int vert) rotation = GetRoationParams(_cubeRes);
 
             _horizontalTo = rotation.hor;
-            _verticalTo = rotation.vert; 
+            _verticalTo = rotation.vert;
         }
 
         private (int hor, int vert) GetRoationParams(int diceValue)
         {
+            //(int horizontal, int vertical) res = (0, 0);
+
+            return _ifFirst ? GetRightCubeRotVals(diceValue) : GetLeftCubeRotVals(diceValue)
+
+;           //return res;
+        }
+
+        private (int, int) GetLeftCubeRotVals(int diceValue)
+        {
+            (int horizontal, int vertical) res = (0, 0);
+            const int baseValue = -1080;
+
+            switch (diceValue)
+            {
+                case 1:
+                    {
+                        res.vertical = -1800;
+                        res.horizontal = baseValue;
+                        break;
+                    }
+                case 2:
+                    {
+                        res.vertical = baseValue;
+                        res.horizontal = -2250;
+                        break;
+                    }
+                case 3:
+                    {
+                        res.vertical = -2070;
+                        res.horizontal = baseValue;
+                        break;
+                    }
+                case 4:
+                    {
+                        res.vertical = -2250;
+                        res.horizontal = baseValue;
+                        break;
+                    }
+                case 5:
+                    {
+                        res.vertical = baseValue;
+                        res.horizontal = -2070;
+                        break;
+                    }
+                case 6:
+                    {
+                        res.vertical = -1980;
+                        res.horizontal = baseValue;
+                        break;
+                    }
+            }
+
+            return res;
+        }
+
+        private (int, int) GetRightCubeRotVals(int diceValue)
+        {
             (int horizontal, int vertical) res = (0, 0);
 
-            const int baseValue = 1080; //2160
+            const int baseValue = 1080; 
 
             switch (diceValue)
             {
@@ -245,8 +305,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
                         break;
                     }
             }
+
             return res;
         }
-
     }
 }

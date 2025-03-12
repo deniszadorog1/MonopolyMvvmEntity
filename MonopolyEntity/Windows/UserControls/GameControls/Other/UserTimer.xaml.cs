@@ -84,7 +84,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
                 {
                     if (_frame.Content is GamePage game)
                     {
-                        game._field.PlayerGaveUp();
+                        game._field.PlayerGaveUp(null);
                     }
                 });
             }

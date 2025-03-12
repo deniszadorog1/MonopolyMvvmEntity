@@ -11,6 +11,8 @@ using Chance = MonopolyDLL.Monopoly.Cell.Chance;
 using Tax = MonopolyDLL.Monopoly.Cell.Tax;
 
 using MonopolyDLL.Monopoly.TradeAction;
+using System.Dynamic;
+using System.Security.Cryptography;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -72,9 +74,6 @@ namespace MonopolyDLL.Monopoly
         Random _rnd;// = new Random(Guid.NewGuid().GetHashCode());
 
         public bool check = false;
-
-
-        bool qwe = false;
         public void DropCubes()
         {
             _rnd = new Random();
@@ -85,24 +84,16 @@ namespace MonopolyDLL.Monopoly
                             return;
                         }
                         check = true;*/
-            _firstCube = 2;// _rnd.Next(1, 7);
-            _secondCube = 0;// _rnd.Next(1, 7);
-
-            if (qwe)
-            {
-                _firstCube = 12;// _rnd.Next(1, 7);
-                _secondCube = 13;// _rnd.Next(1, 7);
-            }
-
-            qwe = true;
+            _firstCube = _rnd.Next(1, 7);
+            _secondCube = _rnd.Next(1, 7);
         }
 
         public (int, int) GetValsForPrisonDice()
         {
-           // return (2, 2);
+            //return (2, 2);
             _rnd = new Random();
             return (_rnd.Next(SystemParamsServeses.GetNumByName("minCubeRib"),
-                SystemParamsServeses.GetNumByName("maxCubeRub")), 
+                SystemParamsServeses.GetNumByName("maxCubeRub")),
                 _rnd.Next(SystemParamsServeses.GetNumByName("minCubeRib"),
                 SystemParamsServeses.GetNumByName("maxCubeRub")));
         }
@@ -314,6 +305,12 @@ namespace MonopolyDLL.Monopoly
             Players[((ParentBus)GameBoard.Cells[Players[StepperIndex].Position]).OwnerIndex].AmountOfMoney += amount;
         }
 
+        public void PayBirtdayMoneyByPlayer(int playerIndex)
+        {
+            int moneyToPay = SystemParamsServeses.GetNumByName("MoneyToPayOnBirthday");
+            Players[playerIndex].PayMoney(moneyToPay);
+        }
+
         public bool IfPlayerHasEnoughMoneyToPayBusBill()
         {
             int amount = GetBillForBusinessCell();
@@ -328,7 +325,7 @@ namespace MonopolyDLL.Monopoly
             }
             else if (GameBoard.Cells[Players[StepperIndex].Position] is Chance chance)
             {
-                int bill = chance._resChance == ChanceAction.Pay500 ? 
+                int bill = chance._resChance == ChanceAction.Pay500 ?
                     chance.GetLittleLoseMoney() : chance.GetBigloseMoney();
                 return Players[StepperIndex].IfPlayerHasEnoughMoney(bill);
             }
@@ -634,10 +631,10 @@ namespace MonopolyDLL.Monopoly
                 GameBoard.Cells[cellIndex] is GameBus;
         }
 
-        public bool IfCellIsSteppersBusiness(int cellIndex)
+        public bool IfCellIsPlayersBusiness(int cellIndex, int playerIndex)
         {
             return GameBoard.Cells[cellIndex] is ParentBus &&
-                ((ParentBus)GameBoard.Cells[cellIndex]).OwnerIndex == StepperIndex;
+                ((ParentBus)GameBoard.Cells[cellIndex]).OwnerIndex == playerIndex;
         }
 
         public bool IfCellIsUsualBusiness(int cellIndex)
@@ -1007,17 +1004,17 @@ namespace MonopolyDLL.Monopoly
                 CarGameInfoVisual.Rebuy : CarGameInfoVisual.Deposit;
         }
 
-        public void StepperGaveUp()
+        public void PlayerGaveUp(int playerIndex)
         {
-            GameBoard.ClearAllPlayersBuses(StepperIndex);
-            Players[StepperIndex].IfLost = true;
+            GameBoard.ClearAllPlayersBuses(playerIndex);
+            Players[playerIndex].IfLost = true;
         }
 
-        public int GetAllSteppersActivitiesPrice()
+        public int GetAllPlayersActivitiesPrice(int playerIndex)
         {
-            int priceForAllHouses = GameBoard.GetPriceOfAllBuiltHouses(StepperIndex);
-            int priceForDepositBuses = GameBoard.GetPriceForNotDepositedBuses(StepperIndex);
-            int playersMoney = Players[StepperIndex].AmountOfMoney;
+            int priceForAllHouses = GameBoard.GetPriceOfAllBuiltHouses(playerIndex);
+            int priceForDepositBuses = GameBoard.GetPriceForNotDepositedBuses(playerIndex);
+            int playersMoney = Players[playerIndex].AmountOfMoney;
 
             int totalPrice = priceForAllHouses + priceForDepositBuses + playersMoney;
 
@@ -1036,7 +1033,7 @@ namespace MonopolyDLL.Monopoly
         }
 
         public int GetWinnerIndex()
-        { 
+        {
             return Players.IndexOf(Players.Where(x => x.IfLost == false).First());
         }
 
@@ -1067,6 +1064,7 @@ namespace MonopolyDLL.Monopoly
                 RemoveFromCollectedMonopolies(GameBoard.GetBusTypeByIndex(busIndex));
             GameBoard.ClearBusiness(busIndex);
             GameBoard.SetMaxDepositCounter(busIndex);
+
         }
 
         public bool IfCubeDropsAreEqual()
@@ -1156,19 +1154,30 @@ namespace MonopolyDLL.Monopoly
 
         public void GiveAllSteppersMoneyToBusOwner()
         {
-            int allPlayersMoney = GetAllSteppersActivitiesPrice();
+            int allPlayersMoney = GetAllPlayersActivitiesPrice(StepperIndex);
 
             int ownerIndex = GameBoard.GetBusOwnerIndex(Players[StepperIndex].Position);
             if (ownerIndex == -1) return;
 
             int billMoney = GetPlayersBillMoney();
 
-            if(allPlayersMoney >= billMoney)
+            if (allPlayersMoney >= billMoney)
             {
                 allPlayersMoney = billMoney;
             }
 
             Players[ownerIndex].GetMoney(allPlayersMoney);
+        }
+
+        public void GiveAllMoneyToStepper(int playerIndex)
+        {
+            int allPlayersMoney = GetAllPlayersActivitiesPrice(playerIndex);
+
+            int birthdayMoney = SystemParamsServeses.GetNumByName("MoneyToPayOnBirthday");
+
+            allPlayersMoney = allPlayersMoney > birthdayMoney ? birthdayMoney : allPlayersMoney;
+
+            Players[StepperIndex].GetMoney(allPlayersMoney);
         }
 
         public int GetPlayersBillMoney()
@@ -1184,7 +1193,7 @@ namespace MonopolyDLL.Monopoly
 
         public bool IfSteppersCanOnlyGiveUp(int bill)
         {
-            int allPlayersMoney = GetAllSteppersActivitiesPrice();
+            int allPlayersMoney = GetAllPlayersActivitiesPrice(StepperIndex);
             return allPlayersMoney < bill;
         }
 
@@ -1262,6 +1271,11 @@ namespace MonopolyDLL.Monopoly
             return ((ParentBus)GameBoard.Cells[cellIndex]).OwnerIndex == StepperIndex;
         }
 
+        public bool IfPlayerIsBusOwner(int playerIndex, int cellIndex)
+        {
+            return ((ParentBus)GameBoard.Cells[cellIndex]).OwnerIndex == playerIndex;
+        }
+
         public bool IfStepperPositionIsGame()
         {
             return GameBoard.Cells[Players[StepperIndex].Position] is GameBus;
@@ -1302,5 +1316,89 @@ namespace MonopolyDLL.Monopoly
         {
             return Players[StepperIndex].IfLost;
         }
+
+        public bool IfPlayerLost(int playerIndex)
+        {
+            return Players[playerIndex].IfLost;
+        }
+
+        public List<int> GetBirthdayToPayPlayersIndexes(List<int> playerIndexesThatPaiedGift)
+        {
+            List<int> res = new List<int>();
+
+            for (int i = 0; i < Players.Count; i++)
+            {
+                if (i != StepperIndex && !Players[i].IfLost &&
+                    !playerIndexesThatPaiedGift.Contains(i))
+                {
+                    res.Add(i);
+                }
+            }
+            return res;
+        }
+
+        public int GetTaxMoneyForBuildings(int playerIndex)
+        {
+            int houseAmount = GetPlayersHouseAmount(playerIndex);
+            int hotelsAmount = GetHotelsAmount(playerIndex);
+
+            int housePrice = SystemParamsServeses.GetNumByName("HousePriceChance");
+            int hotelPrice = SystemParamsServeses.GetNumByName("HotelPriceChance");
+
+            int res = houseAmount * housePrice + hotelsAmount * hotelPrice;
+
+            return res;
+        }
+
+        public int GetPlayersHouseAmount(int playerIndex)
+        {
+            int res = 0;
+            const int maxLevel = 5;
+
+            for (int i = 0; i < GameBoard.Cells.Length; i++)
+            {
+                if (GameBoard.Cells[i] is UsualBus usual &&
+                    usual.OwnerIndex == playerIndex &&
+                    usual.Level != maxLevel)
+                {
+                    res += usual.Level;
+                }
+            }
+            return res;
+        }
+
+        public int GetHotelsAmount(int playerIndex)
+        {
+            int res = 0;
+            const int maxLevel = 5;
+
+            for (int i = 0; i < GameBoard.Cells.Length; i++)
+            {
+                if (GameBoard.Cells[i] is UsualBus usual &&
+                    usual.OwnerIndex == playerIndex &&
+                    usual.Level == maxLevel)
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
+
+        public bool _ifTP = false;
+        public void SetValsToGoOnFromChanceTp()
+        {
+            int randCellIndex = GameBoard.GetRandomCellIndexToGoOnInChance();
+
+            int stepperPosition = Players[StepperIndex].Position;
+
+            int res = stepperPosition >= randCellIndex ? stepperPosition - randCellIndex :
+                GameBoard.Cells.Length - stepperPosition + randCellIndex;
+
+            _firstCube = res;
+            _secondCube = 0;
+
+            _ifTP = true;
+        }
+
     }
 }

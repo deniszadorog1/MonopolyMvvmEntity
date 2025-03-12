@@ -13,6 +13,9 @@ namespace MonopolyDLL.Monopoly.Enums
         Get500, 
         Get1500,
         GoToPrison,
-        MoveBackwards
+        BirthDay,
+        Tax,
+        TP,
+        MoveBackwards,
     }
 }

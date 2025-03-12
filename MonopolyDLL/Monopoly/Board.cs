@@ -575,7 +575,7 @@ namespace MonopolyDLL.Monopoly
         
         public void ClearBusiness(int busIndex)
         {
-            ((ParentBus)Cells[busIndex]).DepositCounterIsZero();
+            ((ParentBus)Cells[busIndex]).ClearBusVals();
         }
 
         public int GetOwnerIndex(int busIndex)
@@ -626,17 +626,38 @@ namespace MonopolyDLL.Monopoly
         public void ChangeBoardItemOnInventory(ParentBus bus, int id)
         {
             bool ifDeposited = false;
-            if (Cells[id] is ParentBus oldBus) ifDeposited = bus.IfDeposited;
+            int desCounter = 15;
+            if (Cells[id] is ParentBus oldBus)
+            {
+                ifDeposited = bus.IfDeposited;
+                desCounter = bus.TempDepositCounter;
+            }
+
             Cells[id] = bus;
-            if (Cells[id] is ParentBus newBus) newBus.IfDeposited = ifDeposited;
+            if (Cells[id] is ParentBus newBus)
+            {
+                newBus.IfDeposited = ifDeposited;
+                newBus.TempDepositCounter = desCounter;
+            }
         }
 
         public void GetBasicBusBack(int position)
         {
             bool ifDeposited = false;
-            if (Cells[position] is ParentBus bus)ifDeposited = bus.IfDeposited;
+            int desCounter = 15;
+            if (Cells[position] is ParentBus bus)
+            {
+                ifDeposited = bus.IfDeposited;
+                desCounter = bus.TempDepositCounter;
+                bus.OwnerIndex = -1;
+            }
             Cells[position] = _basicBoardCells[position];
-            if (Cells[position] is ParentBus newBus) newBus.IfDeposited = ifDeposited; 
+            if (Cells[position] is ParentBus newBus)
+            {
+                newBus.IfDeposited = ifDeposited;
+                newBus.TempDepositCounter = desCounter;
+                newBus.OwnerIndex = -1;
+            }
         }
 
         public ParentBus GetBusByIndex(int index)
@@ -653,6 +674,18 @@ namespace MonopolyDLL.Monopoly
         public int GetBusOwnerIndex(int cellIndex)
         {
             return Cells[cellIndex] is ParentBus ? ((ParentBus)Cells[cellIndex]).OwnerIndex : -1;
+        }
+
+        public void ClearBusOwner(int busIndex)
+        {
+            if (!(Cells[busIndex] is ParentBus)) return;
+            ((ParentBus)Cells[busIndex]).OwnerIndex = -1;
+        }
+
+        public int GetRandomCellIndexToGoOnInChance()
+        {
+            Random rnd = new Random();
+            return rnd.Next(0, Cells.Length);
         }
     }
 }

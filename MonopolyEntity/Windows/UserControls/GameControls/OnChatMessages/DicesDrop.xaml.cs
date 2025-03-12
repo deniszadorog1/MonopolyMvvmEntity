@@ -44,10 +44,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         {
             const int cubesTopThickness = 20;
             _first3dCube = GetDice(HorizontalAlignment.Right,
-                new Thickness(0, -cubesTopThickness, 0, 0), _firstCube);
+                new Thickness(0, -cubesTopThickness, 0, 0), _firstCube, true);
 
             _second3dCube = GetDice(HorizontalAlignment.Left,
-                new Thickness(0, cubesTopThickness, 0, 0), _secondCube);
+                new Thickness(0, cubesTopThickness, 0, 0), _secondCube, false);
         }
 
         public void SetCubesIdGrids()
@@ -56,10 +56,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             SecondCube.Children.Add(_second3dCube);
         }
 
-        public Dice GetDice(HorizontalAlignment alinment, Thickness thick ,int cubeRes)
+        public Dice GetDice(HorizontalAlignment alinment, Thickness thick ,int cubeRes, bool ifRightCube)
         {
             const int cubeSizeParam = 175;
-            Dice dice = new Dice(cubeRes)
+            Dice dice = new Dice(cubeRes, ifRightCube)
             {
                 Width = cubeSizeParam,
                 Height = cubeSizeParam,

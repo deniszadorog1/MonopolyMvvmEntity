@@ -216,26 +216,29 @@ namespace MonopolyEntity.Windows.Pages
 
         private void UserCardPopup_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(_system.MonGame.IfStepperLost() || _field._ifBlockMenus ||
+            int playerIndex = _field._ifBirthdayChance ? _field._toPayMoneyBirthdayIndex :
+                _system.MonGame.StepperIndex;
+
+            if (_system.MonGame.Players[playerIndex].IfLost || _field._ifBlockMenus ||
                 (_field.ChatMessages.Children.OfType<DicesDrop>().Any())) return;
             if (_dropdownMenuPopup.PlacementTarget == null)
             {
-                SetPopopMenu((UserCard)sender);
+                SetPopopMenu((UserCard)sender, playerIndex);
                 _dropdownMenuPopup.PlacementTarget = ((UserCard)sender);
             }
             _dropdownMenuPopup.IsOpen = !_dropdownMenuPopup.IsOpen;
         }
 
-        private void SetPopopMenu(UserCard card)
+        private void SetPopopMenu(UserCard card, int playerIndex)
         {
             int cardIndex = _userCards.IndexOf(card);
 
             StackPanel popupPanel = (StackPanel)((Border)_dropdownMenuPopup.Child).Child;
             popupPanel.Children.Clear();
 
-            if (_system.MonGame.IfIndexAndStepperIndexAreEqual(cardIndex))
+            if (playerIndex == cardIndex)
             {
-                SetGiveUpButton(popupPanel);
+                SetGiveUpButton(popupPanel, playerIndex);
                 return;
             }
             SetSendTradeButton(popupPanel, cardIndex);
@@ -258,21 +261,21 @@ namespace MonopolyEntity.Windows.Pages
         }
 
         private const int _centerDevider = 2;
-        private void SetGiveUpButton(StackPanel panel)
+        private void SetGiveUpButton(StackPanel panel, int playerIndex)
         {
-            _dropdownMenuPopup.Width = _userCards[_system.MonGame.StepperIndex].UserCardGrid.Width ;
+            _dropdownMenuPopup.Width = _userCards[playerIndex].UserCardGrid.Width ;
             _dropdownMenuPopup.HorizontalOffset = 
-                (_userCards[_system.MonGame.StepperIndex].Width - 
-                _userCards[_system.MonGame.StepperIndex].UserCardGrid.Width) / _centerDevider;
+                (_userCards[playerIndex].Width - 
+                _userCards[playerIndex].UserCardGrid.Width) / _centerDevider;
 
             _dropdownMenuPopup.VerticalOffset =
-                -Math.Abs((_userCards[_system.MonGame.StepperIndex].Height -
-                _userCards[_system.MonGame.StepperIndex].UserCardGrid.Height) / _centerDevider); 
+                -Math.Abs((_userCards[playerIndex].Height -
+                _userCards[playerIndex].UserCardGrid.Height) / _centerDevider); 
 
-            Button but = GetButtonForUserCardMenu(SystemParamsServeses.GetStringByName("GiveUpPopup"), _system.MonGame.StepperIndex);
+            Button but = GetButtonForUserCardMenu(SystemParamsServeses.GetStringByName("GiveUpPopup"), playerIndex);
             but.Click += (sender, e) =>
             {
-                _field.PlayerGaveUp();
+                _field.PlayerGaveUp(playerIndex);
                 //_dropdownMenuPopup.IsOpen = !_dropdownMenuPopup.IsOpen;
                 _dropdownMenuPopup.IsOpen = false;
             };
