@@ -30,7 +30,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             _ifGiveUp = ifOnlyGiveUp;
             InitializeComponent();
 
-            SetPayButton(_ifPlayerHasEnoughMoney);
+            SetPayButton(_ifPlayerHasEnoughMoney, _ifGiveUp);
 
             SetGiveUpButton();
         }
@@ -41,8 +41,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             GiveUpBut.Visibility = Visibility.Visible;
         }
 
-        public void SetPayButton(bool ifPlayerHasEnoughMoney)
+        public void SetPayButton(bool ifPlayerHasEnoughMoney, bool ifNeedToGiveUp)
         {
+            if (ifNeedToGiveUp)
+            {
+                GiveUpBut.Visibility = Visibility.Visible;
+                return;
+            }
+            
+            GiveUpBut.Visibility = Visibility.Hidden;
+
             if (ifPlayerHasEnoughMoney)
             {
                 LastPay.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];

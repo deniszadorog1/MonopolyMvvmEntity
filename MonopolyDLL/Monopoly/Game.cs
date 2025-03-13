@@ -317,7 +317,7 @@ namespace MonopolyDLL.Monopoly
             return Players[StepperIndex].IfPlayerHasEnoughMoney(amount);
         }
 
-        public bool IfPlayerHasEnoughMoneyToPayTax()
+        public bool IfPlayerHasEnoughMoneyToPayMoney()
         {
             if (GameBoard.Cells[Players[StepperIndex].Position] is ParentBus)
             {
@@ -330,6 +330,22 @@ namespace MonopolyDLL.Monopoly
                 return Players[StepperIndex].IfPlayerHasEnoughMoney(bill);
             }
             return Players[StepperIndex].IfPlayerHasEnoughMoney(GetBillFromTaxStepperPosition());
+        }
+
+        public int GetMoneyToPayForStepper()
+        {
+            int position = Players[StepperIndex].Position;
+
+            if (GameBoard.Cells[Players[StepperIndex].Position] is ParentBus)
+            {
+                return GetBillForBusinessCell();
+            }
+            else if (GameBoard.Cells[Players[StepperIndex].Position] is Chance chance)
+            {
+                return chance._resChance == ChanceAction.Pay500 ?
+                    chance.GetLittleLoseMoney() : chance.GetBigloseMoney();
+            }
+            return GetBillFromTaxStepperPosition();
         }
 
         public bool IfStepperHasEnoughMoneyToPayBill(int money)
@@ -1146,6 +1162,7 @@ namespace MonopolyDLL.Monopoly
             return Players[StepperIndex].IfPlayerHasEnoughMoney(price);
         }
 
+
         public bool IfStepperOnEnemiesBus()
         {
             int position = Players[StepperIndex].Position;
@@ -1291,7 +1308,7 @@ namespace MonopolyDLL.Monopoly
             return GameBoard.Cells[cellIndex] is CarBus;
         }
 
-        public bool IfCellIsCarGame(int cellIndex)
+        public bool IfCellIsGame(int cellIndex)
         {
             return GameBoard.Cells[cellIndex] is GameBus;
         }

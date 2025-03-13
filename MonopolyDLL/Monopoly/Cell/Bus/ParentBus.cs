@@ -144,5 +144,6 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
         {
             TempDepositCounter = counter;
         }
+
     }
 }

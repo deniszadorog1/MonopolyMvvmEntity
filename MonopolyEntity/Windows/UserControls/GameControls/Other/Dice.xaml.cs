@@ -216,47 +216,52 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
         {
             (int horizontal, int vertical) res = (0, 0);
             const int baseValue = -1080;
+            const int oneVertical = -1800;
+            const int twoHorizontal = -2250;
+            const int threeVertical = -2070;
+            const int fourVertical = -2250;
+            const int fiveHorizontal = -2070;
+            const int sixVertical = -1980;
 
             switch (diceValue)
             {
                 case 1:
                     {
-                        res.vertical = -1800;
+                        res.vertical = oneVertical;
                         res.horizontal = baseValue;
                         break;
                     }
                 case 2:
                     {
                         res.vertical = baseValue;
-                        res.horizontal = -2250;
+                        res.horizontal = twoHorizontal;
                         break;
                     }
                 case 3:
                     {
-                        res.vertical = -2070;
+                        res.vertical = threeVertical;
                         res.horizontal = baseValue;
                         break;
                     }
                 case 4:
                     {
-                        res.vertical = -2250;
+                        res.vertical = fourVertical;
                         res.horizontal = baseValue;
                         break;
                     }
                 case 5:
                     {
                         res.vertical = baseValue;
-                        res.horizontal = -2070;
+                        res.horizontal = fiveHorizontal;
                         break;
                     }
                 case 6:
                     {
-                        res.vertical = -1980;
+                        res.vertical = sixVertical;
                         res.horizontal = baseValue;
                         break;
                     }
             }
-
             return res;
         }
 
@@ -264,43 +269,50 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
         {
             (int horizontal, int vertical) res = (0, 0);
 
-            const int baseValue = 1080; 
+            const int baseValue = 1080;
+
+            const int oneVertical = 1800;
+            const int twoHorizontal = 2070;
+            const int threeVertical = 1890;
+            const int fourVertical = 2070;
+            const int fiveHorizontal = 1890;
+            const int sixVertical = 1980;
 
             switch (diceValue)
             {
                 case 1:
                     {
-                        res.vertical = 1800;
+                        res.vertical = oneVertical;
                         res.horizontal = baseValue;
                         break;
                     }
                 case 2:
                     {
                         res.vertical = baseValue;
-                        res.horizontal = 2070;
+                        res.horizontal = twoHorizontal;
                         break;
                     }
                 case 3:
                     {
-                        res.vertical = 1890;
+                        res.vertical = threeVertical;
                         res.horizontal = baseValue;
                         break;
                     }
                 case 4:
                     {
-                        res.vertical = 2070;
+                        res.vertical = fourVertical;
                         res.horizontal = baseValue;
                         break;
                     }
                 case 5:
                     {
                         res.vertical = baseValue;
-                        res.horizontal = 1890;
+                        res.horizontal = fiveHorizontal;
                         break;
                     }
                 case 6:
                     {
-                        res.vertical = 1980;
+                        res.vertical = sixVertical;
                         res.horizontal = baseValue;
                         break;
                     }

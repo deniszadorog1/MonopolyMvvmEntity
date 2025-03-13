@@ -5,7 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.BussinessInfo"
              mc:Ignorable="d" 
-             d:DesignHeight="320" d:DesignWidth="270" MaxWidth="270">
+             d:DesignHeight="320" d:DesignWidth="270" MaxWidth="270"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             >
 
     <UserControl.Resources>
         <Style x:Key="PaymentNumber" TargetType="TextBlock">
@@ -34,6 +37,15 @@
             <Setter Property="Foreground" Value="#a7adb5"/>
             <Setter Property="Margin" Value="0 0 -2 0"/>
         </Style>
+
+        <Style x:Key="DiceStyle" TargetType="materialDesign:PackIcon">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Foreground" Value="#5b5d67"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 5 0"/>
+        </Style>
+        
     </UserControl.Resources>
 
     <Border CornerRadius="10" Background="White">
@@ -82,7 +94,7 @@
                 HorizontalAlignment="Center" Content="Deposit business"
                 Foreground="White" VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center" FontSize="14"/>
-                
+
             </Grid>
 
             <Grid Grid.Row="2" Margin="12 5 20 5">
@@ -93,15 +105,30 @@
 
                 <Grid Grid.Row="0">
                     <TextBlock Text="One field"  Style="{StaticResource PriceNames}"/>
-                    <TextBlock Name ="OneFieldMoney" Style="{StaticResource PaymentNumber}"/>
-                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <materialDesign:PackIcon Kind="DiceMultiple" 
+                                                 Style="{StaticResource DiceStyle}"/>
+                        <TextBlock Name ="xOne" Text="×" Style="{StaticResource PaymentNumber}"/>
+
+                        <TextBlock Name ="OneFieldMoney" Style="{StaticResource PaymentNumber}" Margin="0"/>
+                    </StackPanel>
                 </Grid>
 
                 <Grid Grid.Row="1">
                     <TextBlock Text="Two field" Style="{StaticResource PriceNames}"/>
-                    <TextBlock Name ="TwoFieldMoney"
+                  
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <materialDesign:PackIcon Kind="DiceMultiple" 
+                                                 Style="{StaticResource DiceStyle}"/>
+
+                        <TextBlock Name ="xTwo" Text="×" Style="{StaticResource PaymentNumber}"/>
+
+                        
+                        <TextBlock Name ="TwoFieldMoney" Margin="0"
                                Style="{StaticResource PaymentNumber}"/>
-                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                    </StackPanel>
                 </Grid>
             </Grid>
 

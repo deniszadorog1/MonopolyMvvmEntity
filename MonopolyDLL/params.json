@@ -8,6 +8,9 @@
 
   "MoneyLastCur": "k",
   "MoneyDevider": ",",
+  "GameLastCur": "x",
+
+  "MaxSitInPrison": "3",
 
   "MaxDepositCounter": "15",
   "UpperMoneyMoney": "NoMoney",
@@ -66,7 +69,7 @@
   "PayMoneyOnChance": "You got on chance cell",
   "BirthdayGift": "You are going on birthday party",
   "GiftIs": "gift price is",
-  "BuildingsTax": "Need to pay tax for buildings", 
+  "BuildingsTax": "Need to pay tax for buildings",
   "BuildingsTaxToPay": "Total is",
 
   "ChangeLost": "Lost",
@@ -76,6 +79,10 @@
   "ChanceLittleMoneyGain": "bucks on the street",
   "ChanceBigMoneyGain": "in winter jacket",
   "ChanceMoveBackwards": "will move backwards",
+  "BirthdayChance": "Its your birthday",
+  "BuildingsTaxChance": "Need to pay tax for buildings",
+  "TeleportChance": "using spatial magic",
+
 
   "GotOnCasino": "Got on Casino game",
   "CasinoPlaceMoney": "Place",

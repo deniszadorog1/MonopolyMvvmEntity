@@ -10,7 +10,7 @@ namespace MonopolyDLL.Monopoly.Cell.AngleCells
     public class Prison : CellParent
     {
         private const int _outPrisonPrice = 500;
-        private const int _maxSittingRounds = 3;
+        private readonly int _maxSittingRounds = SystemParamsServeses.GetNumByName("MaxSitInPrison");
 
         public Prison(string name, int id)
         {

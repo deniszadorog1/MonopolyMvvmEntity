@@ -651,7 +651,10 @@ namespace MonopolyDLL.Monopoly
                 desCounter = bus.TempDepositCounter;
                 bus.OwnerIndex = -1;
             }
+
             Cells[position] = _basicBoardCells[position];
+            //Cells[position] = _basicBoardCells[position].GetCopy(_basicBoardCells[position]);
+
             if (Cells[position] is ParentBus newBus)
             {
                 newBus.IfDeposited = ifDeposited;

@@ -30,6 +30,7 @@ using System.CodeDom;
 using System.Security.Policy;
 using System.Data.OleDb;
 using System.Windows.Media.Converters;
+using System.Windows.Markup;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
 {
@@ -467,7 +468,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             _system.MonGame.SetOpositeMoveBackWards();
 
-
             //Remove dice 
             //ChatMessages.Children.Remove(ChatMessages.Children.OfType<DicesDrop>().First());
             ChatMessages.Children.Clear();
@@ -848,11 +848,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 case ChanceAction.MoveBackwards:
                     return SystemParamsServeses.GetStringByName("ChanceMoveBackwards");
                 case ChanceAction.BirthDay:
-                    return "Its your birthday";
+                    return SystemParamsServeses.GetStringByName("BirthdayChance");
                 case ChanceAction.Tax:
-                    return "Need to pay tax for buildings";
+                    return SystemParamsServeses.GetStringByName("BuildingsTaxChance");
                 case ChanceAction.TP:
-                    return "using spatial magic";
+                    return SystemParamsServeses.GetStringByName("TeleportChance");
             };
 
             throw new Exception("What can you get else");
@@ -1064,7 +1064,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 _system.MonGame.SetCarsPaymentLevels(playerIndex);
                 SetCarsPayments(playerIndex);
             }
-            else if (_system.MonGame.IfCellIsCarGame(position))
+            else if (_system.MonGame.IfCellIsGame(position))
             {
                 _system.MonGame.SetGamePaymentLevels(playerIndex);
                 SetGamePayments(playerIndex);
@@ -1085,11 +1085,17 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             }
             else if (ChatMessages.Children[0] is PayMoney payMoney) // pay bus bill
             {
-                payMoney.SetPayButton(_system.MonGame.IfPlayerHasEnoughMoneyToPayTax());
+                bool ifPlayerHasEnoughMoney = _system.MonGame.IfPlayerHasEnoughMoneyToPayMoney();
+                bool ifPlayerNeedToGiveUp = _system.MonGame.IfSteppersCanOnlyGiveUp(_system.MonGame.GetMoneyToPayForStepper());
+
+                payMoney.SetPayButton(ifPlayerHasEnoughMoney,  ifPlayerNeedToGiveUp);
             }
             else if (ChatMessages.Children[0] is PrisonQuestion prisQuest)
             {
-                prisQuest.SetPayButton(_system.MonGame.IfPlayerHasEnoughMoneyToPAyPrisonBill());
+                bool ifEnoughForPrisonPay = _system.MonGame.IfPlayerHasEnoughMoneyToPAyPrisonBill();
+                bool ifPlayerNeedToGiveUp = _system.MonGame.IfSteppersCanOnlyGiveUp(_system.MonGame.GetPrisonPrice());
+
+                prisQuest.SetPayButton(ifEnoughForPrisonPay, ifPlayerNeedToGiveUp);
             }
         }
 
@@ -1337,9 +1343,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             ChangePriceInBusiness(position, startRent);
         }
 
-        public void ChangePriceInBusiness(int cellIndex, int price)
+        public void ChangePriceInBusiness(int cellIndex, int price, bool ifTaken = false)
         {
             string newPrice = GetConvertedPrice(price);
+
+            if(!ifTaken) newPrice = CorrectGameLastSign(newPrice, cellIndex);
 
             if (_cells[cellIndex] is UpperCell upper)
             {
@@ -1357,6 +1365,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 left.Money.Text = newPrice;
             }
+        }
+
+        private string CorrectGameLastSign(string price, int cellIndex)
+        {
+            if (!_system.MonGame.IfCellIsGame(cellIndex)) return price;
+
+            price = price.Remove(price.Length - 1);
+            price += "x";
+
+            return price;
         }
 
         private void PaintCellInColor(int cellIndex, SolidColorBrush brush)
@@ -1454,6 +1472,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                     build.Insert(price.ToString().Length - i, ",");
                 }
             }
+
 
             build.Append("k");
             return build.ToString();
@@ -3296,7 +3315,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             }
         }
 
-        public void GiveAllMoneyToAnotherPlayer(int playerIndex) 
+        public void GiveAllMoneyToAnotherPlayer(int playerIndex)
         {
             if (_ifBirthdayChance)
             {
@@ -3412,7 +3431,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 left.ImagePlacer.Opacity = clearOpacity;
                 left.StarsGrid.Children.Clear();
             }
-            ChangePriceInBusiness(cellIndex, _system.MonGame.GetBusPrice(cellIndex));
+            ChangePriceInBusiness(cellIndex, _system.MonGame.GetBusPrice(cellIndex), true);
         }
 
         private int _tradeReciveIndex;
@@ -3497,10 +3516,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 _ifBlockMenus = false;
 
-                int checkDeposCounter = 8;
-
-                Console.WriteLine(((ParentBus)_system.MonGame.GameBoard.Cells[checkDeposCounter]).TempDepositCounter);
-
 
                 AddWrapPanelToChatBox($"{SystemParamsServeses.GetStringByName("TradeAccept")}",
                     _system.MonGame._trade.ReciverIndex);
@@ -3508,21 +3523,15 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 MakeInActiveTradAnswerButs();
                 _system.MonGame.AcceptTrade();
 
-                Console.WriteLine(((ParentBus)_system.MonGame.GameBoard.Cells[checkDeposCounter]).TempDepositCounter);
-
-
                 UpdatePlayersMoney();
                 RepaintAfterTradeBuses();
 
                 CheckTradeBusesForInventoryBuses();
-                Console.WriteLine(((ParentBus)_system.MonGame.GameBoard.Cells[checkDeposCounter]).TempDepositCounter);
 
                 ChatMessages.Children.Remove(ChatMessages.Children.OfType<TradeOfferEl>().First());
 
                 SetClickEventForBusCells();
                 SetTradeMouseDownForBusses(false);
-
-                Console.WriteLine(((ParentBus)_system.MonGame.GameBoard.Cells[checkDeposCounter]).TempDepositCounter);
 
                 UpdatePaymnetLevelAfterTrade(_system.MonGame._trade.SenderIndex);
                 UpdatePaymnetLevelAfterTrade(_system.MonGame._trade.ReciverIndex);
@@ -3530,9 +3539,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 SwipeUsersAnim(_system.MonGame._trade.GetReciverIndex(), _system.MonGame._trade.GetSenderIndex());
 
                 UpdateChatMessages();
-
-                Console.WriteLine(((ParentBus)_system.MonGame.GameBoard.Cells[checkDeposCounter]).TempDepositCounter);
-
             };
 
             _tradeOffer.DeclineTradeBut.Click += (sender, e) =>

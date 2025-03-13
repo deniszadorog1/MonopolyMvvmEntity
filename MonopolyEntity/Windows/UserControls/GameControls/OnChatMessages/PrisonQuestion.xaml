@@ -52,18 +52,14 @@
 
                 </StackPanel>
 
-                <Button Name ="GiveUpBut" Height="45"
+                <Button Name ="GiveUpBut" Height="45" 
                         Width="{Binding ActualWidth, ElementName=ButsGrid}"
-                        Margin="25 0 25 0"
-                        Padding="0 0 50 0"
                         Background="{StaticResource InActiveColor}"
                         BorderBrush="White" Content="Give up" FontSize="16"
-                        Foreground="Black" Visibility="Hidden"/>
+                        Foreground="Black" Visibility="Hidden" Panel.ZIndex="100"/>
 
                 <Button Name ="LastPay" Height="45" Visibility="Hidden"
                         Width="{Binding ActualWidth, ElementName=ButsGrid}"                    
-                        Margin="10 0 10 0"
-                        Padding="0 0 20 0"
                         Background="{StaticResource MainGlobalColor}" 
                         BorderBrush="White" VerticalAlignment="Center"
                         HorizontalAlignment="Center" Content="You should pay 500"
