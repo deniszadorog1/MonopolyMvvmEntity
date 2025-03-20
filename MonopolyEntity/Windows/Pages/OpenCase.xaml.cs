@@ -37,21 +37,24 @@ namespace MonopolyEntity.Windows.Pages
 
         public void FillCheckToOpen()
         {
-            CheckToOpen.KeyToBox.CardName.Text = SystemParamsServeses.GetStringByName("CaseOpenKeyName");
+            const int checkToOpenBoxSizeParam = 125;
+            const int keySizeParam = 100;
+
+            CheckToOpen.KeyToBox.CardName.Text = SystemParamsService.GetStringByName("CaseOpenKeyName");
 
             Image img = BoardHelper.GetLotBoxImage(_caseBox.ImagePath);
             CheckToOpen.Box.CardName.Text = $"{_caseBox.Name} " +
-                $"{SystemParamsServeses.GetStringByName("CaseOpenToOpenBox")}";
+                $"{SystemParamsService.GetStringByName("CaseOpenToOpenBox")}";
             CheckToOpen.Box.CardImage.Source = img.Source;
 
             CheckToOpen.Box.CardImage.Stretch = Stretch.Uniform;
-            CheckToOpen.Box.CardImage.Width = 125;
-            CheckToOpen.Box.CardImage.Height = 125;
+            CheckToOpen.Box.CardImage.Width = checkToOpenBoxSizeParam;
+            CheckToOpen.Box.CardImage.Height = checkToOpenBoxSizeParam;
 
             Image key = BoardHelper.GetKeyImage();
             CheckToOpen.KeyToBox.CardImage.Source = key.Source;
-            CheckToOpen.KeyToBox.CardImage.Width = 100;
-            CheckToOpen.KeyToBox.CardImage.Height = 100;
+            CheckToOpen.KeyToBox.CardImage.Width = keySizeParam;
+            CheckToOpen.KeyToBox.CardImage.Height = keySizeParam;
         }
 
         public void SetCaseDrops()
@@ -93,7 +96,7 @@ namespace MonopolyEntity.Windows.Pages
             newCard.CardName.Text = name;
             newCard.Margin = new Thickness(cardMargin);
 
-            newCard.BorderBgColor.Background = BoardHelper.GetRearityColorForCard(item);
+            newCard.BorderBgColor.Background = BoardHelper.GetRarityColorForCard(item);
 
             newCard.BorderBase.Clip = new RectangleGeometry()
             {
@@ -114,14 +117,17 @@ namespace MonopolyEntity.Windows.Pages
                 res.names.Add(_caseBox.ItemsThatCanDrop[i].Name);
                 res.images.Add(BoardHelper.GetAddedItemImage(
                     _caseBox.ItemsThatCanDrop[i].ImagePath, _caseBox.ItemsThatCanDrop[i].Type));
-                res.colors.Add(BoardHelper.GetRearityColorForCard(_caseBox.ItemsThatCanDrop[i]));
+                res.colors.Add(BoardHelper.GetRarityColorForCard(_caseBox.ItemsThatCanDrop[i]));
             }
             return res;
         }
 
         private void OpenCaseBut_Click(object sender, RoutedEventArgs e)
         {
-            Size rouletteSize = new Size(600, 175);
+            const int widthRoulette = 600;
+            const int heightRoulette = 175;
+
+            Size rouletteSize = new Size(widthRoulette, heightRoulette);
 
             ExitBut.IsEnabled = false;
             OpenCaseBut.Visibility = Visibility.Hidden;

@@ -1,16 +1,19 @@
 ﻿{
-  "minCubeRib": "1",
-  "maxCubeRub": "7",
+  "AmountOfCells": "40",
+
+  "MinCubeRib": "1",
+  "MaxCubeRub": "7",
 
   "CasinoWonNumberMessage": "Won number was  ",
   "CasinoWon": "You won - ",
   "CasinoLost": "You lost( Won number - ",
 
   "MoneyLastCur": "k",
-  "MoneyDevider": ",",
+  "MoneyDivider": ",",
   "GameLastCur": "x",
 
   "MaxSitInPrison": "3",
+  "MaxDoubles": "3",
 
   "MaxDepositCounter": "15",
   "UpperMoneyMoney": "NoMoney",
@@ -19,8 +22,15 @@
   "GiveUpPopup": "Give up",
 
   "MoneyToPayOnBirthday": "500",
-  "HousePriceChance": "100",
-  "HotelPriceChance": "300",
+  "HousePriceChance": "250",
+  "HotelPriceChance": "1000",
+
+  "StartMoney": "15000",
+
+  "LittleMoneyChance": "500",
+  "MuchMoneyChance": "1500",
+  "StepChance": "1",
+  
 
   "ChangeItemInventory": "Change",
   "GetBackItemInventory": "Get back",
@@ -45,19 +55,19 @@
 
   "RegistrationChooseImage": "Choose file",
 
-  "CaseOpenPriszeMessage": "Congrats you won",
+  "CaseOpenPrizeMessage": "Congrats you won",
 
-  "InPrisonQustion": "In prison, what to do?",
+  "InPrisonQuestion": "In prison, what to do?",
   "InPrisonPayMoney": "Must pay money to go out",
-  "InPisonGettginOut": "You are luck to go out of prison.",
+  "InPrisonGettingOut": "You are luck to go out of prison.",
   "InPrisonDropped": "Droped",
   "And": "and",
-  "ValsNotEqual": "Values are not equal.",
+  "ValuesNotEqual": "Values are not equal.",
   "YouGot": "you got",
   "PaidStr": "Paid - ",
   "ToOutOfPrison": "to go out of prison",
   "GoesToPrison": "Goes to prison",
-  "PrisonVist": "Visits a prison",
+  "PrisonVisit": "Visits a prison",
 
   "Droped": "Droped",
   "ThreeSameDrops": "3 same drops, goes to prison",
@@ -82,7 +92,7 @@
   "BirthdayChance": "Its your birthday",
   "BuildingsTaxChance": "Need to pay tax for buildings",
   "TeleportChance": "using spatial magic",
-
+  "SkipMoveChance": "Will sleep all next move",
 
   "GotOnCasino": "Got on Casino game",
   "CasinoPlaceMoney": "Place",
@@ -93,8 +103,8 @@
   "TaxNeedToPay": "You need to pay bill - ",
   "TaxMessagePayMoney": "Got on tax cell. To pay - ",
 
-  "GotOnEnemysBus": "You got on enemys business - ",
-  "PayOnEnemysBus": "and should pay the bill - ",
+  "GotOnEnemiesBus": "You got on enemys business - ",
+  "PayOnEnemiesBus": "and should pay the bill - ",
   "GetsOn": "gets on",
   "Bus": "bus",
 
@@ -107,8 +117,8 @@
   "NotBuyBus": "Does not want to buy ",
   "Business": "business",
 
-  "NooneHasMoneyBids": "No one has enough money to make bid",
-  "NooneWantsBus": "Noone wants this business",
+  "NoOneHasMoneyBids": "No one has enough money to make bid",
+  "NoOneWantsBus": "Noone wants this business",
   "PlayerBuying": "is buying",
   "AuctionFor": "Auction for",
   "TempPriceAuction": "Temp price in auction is ",
@@ -121,7 +131,7 @@
   "BuyHouse": "Buies house on",
 
   "TradeSenderLogin": "Sender login",
-  "TradeReciverLogin": "Reciver login",
+  "TradeReceiverLogin": "Reciver login",
   "TradePlayerOffers": "Offers",
   "TradeToSignOffer": "to sign an offer",
   "TradeAccept": "Accept trade",
@@ -137,12 +147,34 @@
   "BusDescCardErngs": "You will get more from this card in",
   "BusDescItemDesc": "This is business card which you can use in game",
 
-  "SettignsNewPas": "new Password",
+  "SettingsNewPas": "new Password",
   "SettingsOldPas": "old Password",
-  "SettignsUserLog": "User login",
+  "SettingsUserLog": "User login",
 
-  "IfGiveUp": "Are you sure that you want to give up?"
+  "IfGiveUp": "Are you sure that you want to give up?",
 
+  "CasinoWinFirst": "2000",
+  "CasinoWinSecond": "4000",
+  "CasinoWinThird": "6000",
+  "CasinoGamePrice": "1000",
+
+  "NoOwnerIndex": "-1",
+
+  "BaseLoginFieldName": "Login",
+  "BasePasswordFieldName": "Password",
+
+  "FirstCardImageSizeParam":  "20",
+  "SecondCardImageSizeParam":  "25",
+  "ThirdCardImageSizeParam":  "30",
+  "FourthCardImageSizeParam":  "35",
+  "FifthCardImageSizeParam":  "45",
+  "SixthCardImageSizeParam":  "50",
+  "SeventhCardImageSizeParam":  "55",
+  "EighthCardImageSizeParam":  "65",
+  "NinethCardImageSizeParam":  "75",
+  "TensCardImageSizeParam":  "95",
+  "ElevensCardImageSizeParam": "100",
+  "TwelveCardImageSizeParam":  "40"
 
 
 

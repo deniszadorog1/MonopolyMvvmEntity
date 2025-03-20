@@ -24,17 +24,17 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         public bool _ifPlayerHasEnoughMoney = false;
         private SolidColorBrush _inActiveColor = (SolidColorBrush)Application.Current.Resources["InActiveColor"];
 
-        public BuyBusiness(bool ifHasMoney)
+        public BuyBusiness(bool isHasMoney)
         {
-            _ifPlayerHasEnoughMoney = ifHasMoney;
+            _ifPlayerHasEnoughMoney = isHasMoney;
             InitializeComponent();
 
             SetBuyButton(_ifPlayerHasEnoughMoney);
         }
 
-        public void SetBuyButton(bool ifPlayerHasEnoughMoney)
+        public void SetBuyButton(bool isPlayerHasEnoughMoney)
         {
-            if (ifPlayerHasEnoughMoney)
+            if (isPlayerHasEnoughMoney)
             {
                 BuyBusBut.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
                 //LockImage.Visibility = Visibility.Hidden;
@@ -44,10 +44,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             LockImage.Visibility = Visibility.Visible;
         }
 
-        private const double _middleDevider = 2.25;
+        private const double _middleDivider = 2.25; 
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            BuyBusBut.Width = this.ActualWidth / _middleDevider;
+            BuyBusBut.Width = this.ActualWidth / _middleDivider;
         }
     }
 }

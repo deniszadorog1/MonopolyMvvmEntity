@@ -12,8 +12,8 @@ namespace MonopolyDLL.DBService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Player()
         {
-            InventoryStaffs = new HashSet<InventoryStaff>();
-            PlayerGames = new HashSet<PlayerGame>();
+            InventoryStaff = new HashSet<InventoryStaff>();
+            PlayerGame = new HashSet<PlayerGame>();
         }
 
         public int Id { get; set; }
@@ -27,11 +27,11 @@ namespace MonopolyDLL.DBService
         public int? PictureId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<InventoryStaff> InventoryStaffs { get; set; }
+        public virtual ICollection<InventoryStaff> InventoryStaff { get; set; }
 
         public virtual PictureFile PictureFile { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlayerGame> PlayerGames { get; set; }
+        public virtual ICollection<PlayerGame> PlayerGame { get; set; }
     }
 }

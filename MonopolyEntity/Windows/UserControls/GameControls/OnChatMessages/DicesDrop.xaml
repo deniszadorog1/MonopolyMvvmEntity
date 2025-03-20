@@ -7,9 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="600"
              
-             xmlns:DicePath ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other"
-             
-             >
+             xmlns:DicePath ="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.Other">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

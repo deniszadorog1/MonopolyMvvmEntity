@@ -12,66 +12,61 @@ namespace MonopolyDLL.DBService
         {
         }
 
-        public virtual DbSet<Board> Boards { get; set; }
-        public virtual DbSet<BoxItem> BoxItems { get; set; }
-        public virtual DbSet<BusinessToGive> BusinessToGives { get; set; }
-        public virtual DbSet<Casino> Casinos { get; set; }
-        public virtual DbSet<CasinoType> CasinoTypes { get; set; }
-        public virtual DbSet<Cell> Cells { get; set; }
-        public virtual DbSet<CellType> CellTypes { get; set; }
-        public virtual DbSet<Chance> Chances { get; set; }
-        public virtual DbSet<ChanceMoney> ChanceMoneys { get; set; }
-        public virtual DbSet<ChanceMove> ChanceMoves { get; set; }
-        public virtual DbSet<ChanceType> ChanceTypes { get; set; }
-        public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<InventoryStaff> InventoryStaffs { get; set; }
-        public virtual DbSet<Item> Items { get; set; }
-        public virtual DbSet<LotBox> LotBoxes { get; set; }
-        public virtual DbSet<PictureFile> PictureFiles { get; set; }
-        public virtual DbSet<Player> Players { get; set; }
-        public virtual DbSet<PlayerGame> PlayerGames { get; set; }
-        public virtual DbSet<PriceForLevel> PriceForLevels { get; set; }
-        public virtual DbSet<PriceMultiplier> PriceMultipliers { get; set; }
-        public virtual DbSet<PriceType> PriceTypes { get; set; }
-        public virtual DbSet<Rearity> Rearities { get; set; }
-        public virtual DbSet<Station> Stations { get; set; }
-        public virtual DbSet<StationType> StationTypes { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<SystemColor> SystemColors { get; set; }
-        public virtual DbSet<Tax> Taxes { get; set; }
-        public virtual DbSet<TaxType> TaxTypes { get; set; }
-        public virtual DbSet<Trade> Trades { get; set; }
-        public virtual DbSet<TradeAttrib> TradeAttribs { get; set; }
-        public virtual DbSet<TradeStatu> TradeStatus { get; set; }
-        public virtual DbSet<WonLevel> WonLevels { get; set; }
-        public virtual DbSet<WonPlayer> WonPlayers { get; set; }
-        public virtual DbSet<WonTablesInCasino> WonTablesInCasinoes { get; set; }
+        public virtual DbSet<Board> Board { get; set; }
+        public virtual DbSet<BoxItems> BoxItems { get; set; }
+        public virtual DbSet<BusinessToGive> BusinessToGive { get; set; }
+        public virtual DbSet<Casino> Casino { get; set; }
+        public virtual DbSet<CasinoTypes> CasinoTypes { get; set; }
+        public virtual DbSet<Cell> Cell { get; set; }
+        public virtual DbSet<CellType> CellType { get; set; }
+        public virtual DbSet<Chance> Chance { get; set; }
+        public virtual DbSet<ChanceMoney> ChanceMoney { get; set; }
+        public virtual DbSet<ChanceMove> ChanceMove { get; set; }
+        public virtual DbSet<ChanceType> ChanceType { get; set; }
+        public virtual DbSet<Game> Game { get; set; }
+        public virtual DbSet<InventoryStaff> InventoryStaff { get; set; }
+        public virtual DbSet<Items> Items { get; set; }
+        public virtual DbSet<LotBox> LotBox { get; set; }
+        public virtual DbSet<PictureFile> PictureFile { get; set; }
+        public virtual DbSet<Player> Player { get; set; }
+        public virtual DbSet<PlayerGame> PlayerGame { get; set; }
+        public virtual DbSet<PriceForLevel> PriceForLevel { get; set; }
+        public virtual DbSet<PriceMultiplier> PriceMultiplier { get; set; }
+        public virtual DbSet<PriceType> PriceType { get; set; }
+        public virtual DbSet<Rearity> Rarity { get; set; }
+        public virtual DbSet<Station> Station { get; set; }
+        public virtual DbSet<StationType> StationType { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<SystemColors> SystemColors { get; set; }
+        public virtual DbSet<Tax> Tax { get; set; }
+        public virtual DbSet<TaxType> TaxType { get; set; }
+        public virtual DbSet<Trade> Trade { get; set; }
+        public virtual DbSet<TradeAttribs> TradeAttribs { get; set; }
+        public virtual DbSet<TradeStatus> TradeStatus { get; set; }
+        public virtual DbSet<WonLevels> WonLevels { get; set; }
+        public virtual DbSet<WonPlayer> WonPlayer { get; set; }
+        public virtual DbSet<WonTablesInCasino> WonTablesInCasino { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BoxItem>()
+            modelBuilder.Entity<BoxItems>()
                 .HasMany(e => e.Items)
-                .WithOptional(e => e.BoxItem)
+                .WithOptional(e => e.BoxItems)
                 .HasForeignKey(e => e.ItemId);
 
-            modelBuilder.Entity<CasinoType>()
-                .HasMany(e => e.WonTablesInCasinoes)
-                .WithOptional(e => e.CasinoType)
+            modelBuilder.Entity<CasinoTypes>()
+                .HasMany(e => e.WonTablesInCasino)
+                .WithOptional(e => e.CasinoTypes)
                 .HasForeignKey(e => e.TypeId);
 
             modelBuilder.Entity<CellType>()
-                .HasMany(e => e.Cells)
+                .HasMany(e => e.Cell)
                 .WithOptional(e => e.CellType1)
                 .HasForeignKey(e => e.CellType);
 
-            modelBuilder.Entity<ChanceType>()
-                .HasMany(e => e.Chances)
-                .WithOptional(e => e.ChanceType)
-                .HasForeignKey(e => e.TypeId);
-
-            modelBuilder.Entity<Item>()
-                .HasMany(e => e.InventoryStaffs)
-                .WithOptional(e => e.Item)
+            modelBuilder.Entity<Items>()
+                .HasMany(e => e.InventoryStaff)
+                .WithOptional(e => e.Items)
                 .HasForeignKey(e => e.StaffId);
 
             modelBuilder.Entity<LotBox>()
@@ -90,32 +85,27 @@ namespace MonopolyDLL.DBService
                 .HasForeignKey(e => e.PicId);
 
             modelBuilder.Entity<PictureFile>()
-                .HasMany(e => e.Cells)
+                .HasMany(e => e.Cell)
                 .WithOptional(e => e.PictureFile)
                 .HasForeignKey(e => e.PicId);
 
             modelBuilder.Entity<PictureFile>()
-                .HasMany(e => e.LotBoxes)
+                .HasMany(e => e.LotBox)
                 .WithOptional(e => e.PictureFile)
                 .HasForeignKey(e => e.PicId);
 
             modelBuilder.Entity<PictureFile>()
-                .HasMany(e => e.Players)
+                .HasMany(e => e.Player)
                 .WithOptional(e => e.PictureFile)
                 .HasForeignKey(e => e.PictureId);
 
             modelBuilder.Entity<PlayerGame>()
-                .HasMany(e => e.Stations)
-                .WithOptional(e => e.PlayerGame)
-                .HasForeignKey(e => e.OwnerId);
-
-            modelBuilder.Entity<PlayerGame>()
-                .HasMany(e => e.Trades)
+                .HasMany(e => e.Trade)
                 .WithOptional(e => e.PlayerGame)
                 .HasForeignKey(e => e.ReciverId);
 
             modelBuilder.Entity<PlayerGame>()
-                .HasMany(e => e.Trades1)
+                .HasMany(e => e.Trade1)
                 .WithOptional(e => e.PlayerGame1)
                 .HasForeignKey(e => e.SenderId);
 
@@ -125,7 +115,7 @@ namespace MonopolyDLL.DBService
                 .HasForeignKey(e => e.PlayerId);
 
             modelBuilder.Entity<PlayerGame>()
-                .HasMany(e => e.WonPlayers)
+                .HasMany(e => e.WonPlayer)
                 .WithOptional(e => e.PlayerGame)
                 .HasForeignKey(e => e.PlayerId);
 
@@ -134,30 +124,35 @@ namespace MonopolyDLL.DBService
                 .WithOptional(e => e.PriceMultiplier)
                 .HasForeignKey(e => e.MultiplierId);
 
-            modelBuilder.Entity<PriceType>()
-                .HasMany(e => e.PriceForLevels)
-                .WithOptional(e => e.PriceType)
-                .HasForeignKey(e => e.TypeId);
-
             modelBuilder.Entity<StationType>()
-                .HasMany(e => e.Stations)
+                .HasMany(e => e.Station)
                 .WithOptional(e => e.StationType)
                 .HasForeignKey(e => e.TypeId);
 
-            modelBuilder.Entity<SystemColor>()
-                .HasMany(e => e.Rearities)
-                .WithOptional(e => e.SystemColor)
+            modelBuilder.Entity<SystemColors>()
+                .HasMany(e => e.Rearity)
+                .WithOptional(e => e.SystemColors)
                 .HasForeignKey(e => e.ColorId);
 
             modelBuilder.Entity<TaxType>()
-                .HasMany(e => e.Taxes)
+                .HasMany(e => e.Tax)
                 .WithOptional(e => e.TaxType)
                 .HasForeignKey(e => e.TypeId);
 
-            modelBuilder.Entity<TradeStatu>()
-                .HasMany(e => e.Trades)
-                .WithOptional(e => e.TradeStatu)
+            modelBuilder.Entity<TradeAttribs>()
+                .HasMany(e => e.BusinessToGive)
+                .WithOptional(e => e.TradeAttribs)
+                .HasForeignKey(e => e.TradeAttribId);
+
+            modelBuilder.Entity<TradeStatus>()
+                .HasMany(e => e.Trade)
+                .WithOptional(e => e.TradeStatus)
                 .HasForeignKey(e => e.StatusId);
+
+            modelBuilder.Entity<WonLevels>()
+                .HasMany(e => e.WonTablesInCasino)
+                .WithOptional(e => e.WonLevels)
+                .HasForeignKey(e => e.WonLevelId);
         }
     }
 }

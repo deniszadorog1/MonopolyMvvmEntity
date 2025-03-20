@@ -39,7 +39,7 @@
         </Canvas>
 
         <Grid Width="45" Height="20" Background="Transparent" 
-              HorizontalAlignment="Left" Margin="-20 0 0 0">
+              HorizontalAlignment="Left" Margin="-7 0 0 0">
             <DepoistCounter:DepositCounter Height="20" 
                                            x:Name="DepositObj" Visibility="Hidden"/>
         </Grid>

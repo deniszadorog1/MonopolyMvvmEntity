@@ -9,7 +9,7 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
 {
     public class BoxItem : Item
     {
-        public BusRearity Rearity { get; set; }
+        public BusRarity Rarity { get; set; }
         public BusinessType Type { get; set; }
         public int StationId { get; set; }
         public double Multiplier { get; set; }
@@ -23,13 +23,13 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
         private int _inventoryIdInDB;
 
         public BoxItem(string name, string imagePath,
-            BusRearity rearity, BusinessType type, int stationId,
+            BusRarity rarity, BusinessType type, int stationId,
             double multiplier, int r, int g, int b)
         {
             Name = name;
             IsBox = false;
             ImagePath = imagePath;
-            Rearity = rearity;
+            Rarity = rarity;
             Type = type;
             StationId = stationId;
             Multiplier = multiplier;
@@ -68,7 +68,7 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
             return (byte)bColor;
         }
 
-        public bool IfBusIsUsual()
+        public bool IsBusIsUsual()
         {
             return Type != BusinessType.Games && 
                 Type != BusinessType.Cars;
@@ -96,15 +96,15 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
 
         public List<int> GetNewPaymentList(List<int> payments)
         {
-            const int paymetMult = 100;
+            const int paymentMult = 100;
             const int paymentAdder = 1;
             List<int> res = new List<int>();
 
-            double mult = Multiplier / paymetMult + paymentAdder;
+            double multiplier = Multiplier / paymentMult + paymentAdder;
 
             for(int i = 0; i < payments.Count; i++)
             {
-                res.Add((int)(payments[i] * mult));
+                res.Add((int)(payments[i] * multiplier));
             }
             return res;
         }

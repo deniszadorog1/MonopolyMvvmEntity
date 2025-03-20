@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyEntity.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.GameCell
     /// <summary>
     /// Логика взаимодействия для LeftPart.xaml
     /// </summary>
-    public partial class LeftCell : UserControl
+    public partial class LeftCell : UserControl, IClearCellVis, IGetLastChipImage,IChangeCellSize
     {
         public LeftCell()
         {
@@ -27,12 +28,32 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.GameCell
             SetChipsCanvasSize();
         }
 
+        public void ChangeCellSize(Size size)
+        {
+            Width = size.Width;
+            Height = size.Height;
+        }
+
         public void SetChipsCanvasSize()
         {
-            const int devider = 5;
+            const int divider = 5;
             const int multiplier = 4;
-            ChipsPlacer.Width = Width / devider * multiplier;
+            ChipsPlacer.Width = Width / divider * multiplier;
             ChipsPlacer.Height = Height;
+        }
+
+        public void ClearCell()
+        {
+            const int clearOpacity = 1;
+
+            ImagePlacer.Background = Brushes.White;
+            ImagePlacer.Opacity = clearOpacity;
+            StarsGrid.Children.Clear();
+        }
+
+        public Image GetLastChipImageFromBusCell()
+        {
+            return ImagePlacer.Children.OfType<Image>().Last();
         }
     }
 }

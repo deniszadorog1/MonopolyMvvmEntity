@@ -18,9 +18,7 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"
              
-             KeyDown="UserControl_KeyDown"
-             LayoutUpdated="UserControl_LayoutUpdated"
-             
+             KeyDown="UserControl_KeyDown"             
              >
 
     <!-- Width  835  Height 835 -->

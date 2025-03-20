@@ -17,5 +17,6 @@ namespace MonopolyDLL.Monopoly.Enums
         BirthDay,
         TP,
         MoveBackwards,
+        SkipMove
     }
 }

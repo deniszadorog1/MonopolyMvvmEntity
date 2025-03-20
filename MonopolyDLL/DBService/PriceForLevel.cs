@@ -13,12 +13,18 @@ namespace MonopolyDLL.DBService
 
         public int? StationId { get; set; }
 
-        public int? Price { get; set; }
+        public int? FirstLevel { get; set; }
 
-        public int? TypeId { get; set; }
+        public int? SecondLevel { get; set; }
+
+        public int? ThirdLevel { get; set; }
+
+        public int? FourthLevel { get; set; }
+
+        public int? FifthLevel { get; set; }
+
+        public int? SixthLevel { get; set; }
 
         public virtual Station Station { get; set; }
-
-        public virtual PriceType PriceType { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
             InitializeComponent();
         }
 
-        public TradeItem(ParentBus bus, Image busImg)
+        public TradeItem(Business bus, Image busImg)
         {
             InitializeComponent();
 

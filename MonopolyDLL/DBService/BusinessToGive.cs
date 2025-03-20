@@ -15,6 +15,6 @@ namespace MonopolyDLL.DBService
 
         public int? TradeAttribId { get; set; }
 
-        public virtual TradeAttrib TradeAttrib { get; set; }
+        public virtual TradeAttribs TradeAttribs { get; set; }
     }
 }

@@ -64,10 +64,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
         {
             if (_timer is null) return;
             SetTimer();
-            return;
-
-            _timeLeft = _timeForMove;
-            TimerTextBlock.Text = _timeLeft.ToString();
         }
 
         private void TimerElapsed(object sender, ElapsedEventArgs e)

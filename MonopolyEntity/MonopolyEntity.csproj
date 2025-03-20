@@ -83,6 +83,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IChangeCellSize.cs" />
+    <Compile Include="Interfaces\IClearCellVis.cs" />
+    <Compile Include="Interfaces\IGetLastChipImage.cs" />
+    <Compile Include="Interfaces\IPagesOpener.cs" />
     <Compile Include="ThingForTest.cs" />
     <Compile Include="VisualHelper\BoardHelper.cs" />
     <Compile Include="VisualHelper\Helper.cs" />
@@ -501,13 +505,13 @@
     <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\jail.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Messagers\vk.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Messenger\vk.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Messagers\twitter.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Messenger\twitter.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Messagers\facebook.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Messenger\facebook.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Games\rockstar_games.png" />
@@ -607,52 +611,52 @@
     <Resource Include="Visuals\Images\BoardImages\DiceRibs\two.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Perfume\diorPerfume.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Perfume\niveaPerfume.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Perfume\diorPerfume.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Perfume\niveaPerfume.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Car\jeepCar.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Car\kiaCar.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Car\mazdaCar.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Car\skodaCar.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Car\jeepCar.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Car\kiaCar.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Car\mazdaCar.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Car\skodaCar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Clothes\newBalanceClothes.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Clothes\nikeClothes.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Clothes\reebokClothes.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Clothes\newBalanceClothes.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Clothes\nikeClothes.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Clothes\reebokClothes.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Messager\lineMessager.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Messager\skypeMessager.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Messager\viberMessager.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Messenger\lineMessager.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Messenger\skypeMessager.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Messenger\viberMessager.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Drinks\7upDrink.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Drinks\mountainDewDrink.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Drinks\spriteDrink.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Drinks\7upDrink.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Drinks\mountainDewDrink.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Drinks\spriteDrink.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Planes\airBalticPlane.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Planes\klmPlane.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Planes\ryanairPlane.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Planes\airBalticPlane.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Planes\klmPlane.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Planes\ryanairPlane.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Food\dominosPizzaFood.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Food\subwayFood.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Food\tacoBellFood.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Food\dominosPizzaFood.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Food\subwayFood.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Food\tacoBellFood.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Hotels\kimptonHotel.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Hotels\sheartonHotel.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Hotels\westinHotel.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Hotels\kimptonHotel.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Hotels\sheartonHotel.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Hotels\westinHotel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Games\gameloftGame.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Games\ubisoftGame.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Games\gameloftGame.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Games\ubisoftGame.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Phones\htcPhone.png" />
-    <Resource Include="Visuals\Images\AddItemsImages\Busnesses\Phones\samsungPhone.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Phones\htcPhone.png" />
+    <Resource Include="Visuals\Images\AddItemsImages\Businesses\Phones\samsungPhone.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\AddItemsImages\Box\birds.png" />

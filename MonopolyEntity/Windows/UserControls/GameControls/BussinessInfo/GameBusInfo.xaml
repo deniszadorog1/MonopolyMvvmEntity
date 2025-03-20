@@ -81,16 +81,17 @@
                            Text="There should be bus type description" 
                            FontSize="16" TextWrapping="Wrap"/>
 
-                <Button Name ="RebuyBut" Width="200" Height="30" Visibility="Hidden"
+                <Button Name ="RebuyBut" Width="200" Height="25" Visibility="Hidden"
                 Background="{StaticResource MainGlobalColor}" 
-                BorderBrush="White" VerticalAlignment="Center"
+                BorderBrush="White" VerticalAlignment="Top"
                 HorizontalAlignment="Center" Content="Rebuy business"
                 Foreground="White" VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center" FontSize="14"/>
+                HorizontalContentAlignment="Center" FontSize="14" Margin="0 -10 0 0"/>
 
-                <Button Name ="DepositBut" Width="200" Height="30" Visibility="Hidden"
+                <Button Name ="DepositBut" Width="200" Height="25" Visibility="Hidden"
                 Background="{StaticResource DenyGlobalColor}" 
                 BorderBrush="White" VerticalAlignment="Center"
+                        Margin="0 -10 0 0"
                 HorizontalAlignment="Center" Content="Deposit business"
                 Foreground="White" VerticalContentAlignment="Center"
                 HorizontalContentAlignment="Center" FontSize="14"/>

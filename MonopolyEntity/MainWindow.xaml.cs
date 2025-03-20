@@ -18,6 +18,7 @@ using MonopolyEntity.Windows;
 using MonopolyDLL.Monopoly;
 
 using MonopolyEntity.Windows.Pages;
+using System.ComponentModel;
 namespace MonopolyEntity
 {
     /// <summary>
@@ -39,27 +40,16 @@ namespace MonopolyEntity
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (MainFrame.Content is StartPage start)
-            {
-
-            }
-            else if (MainFrame.Content is RegistrationPage reg)
-            {
-                this.Hide();
-                MainFrame.Content = new StartPage(MainFrame, _system);
-                e.Cancel = true;
-            }
-            else if (MainFrame.Content is WorkPage workPage)
+            if (MainFrame.Content is StartPage) return;
+            
+            if (MainFrame.Content is RegistrationPage || 
+                MainFrame.Content is WorkPage || MainFrame.Content is MainPage) 
             {
                 this.Hide();
                 MainFrame.Content = new StartPage(MainFrame, _system);
                 e.Cancel = true;
-            }
-            else if (MainFrame.Content is MainPage main)
-            {
-                this.Hide();
-                MainFrame.Content = new StartPage(MainFrame, _system);
-                e.Cancel = true;
+                return;
+                InitStartPage(e);
             }
             else if (MainFrame.Content is SetPlayersInGame playersInGame || 
                 MainFrame.Content is GamePage game || 
@@ -71,10 +61,15 @@ namespace MonopolyEntity
                 ClearCaseOpenEffect();
                 ClearGame();
 
-                this.Hide();
-                MainFrame.Content = new MainPage(MainFrame, _system);
-                e.Cancel = true;
+                InitStartPage(e);
             }
+        }
+
+        private void InitStartPage(CancelEventArgs e)
+        {
+            this.Hide();
+            MainFrame.Content = new MainPage(MainFrame, _system);
+            e.Cancel = true;
         }
 
         private void ClosePopupIfGame()
@@ -135,7 +130,7 @@ namespace MonopolyEntity
             this.Left = 0;
         }
 
-        private const int _centerDevider = 2;
+        private const int _centerDivider = 2;
         public void SetInLittleWindow()
         {
            this.WindowState = WindowState.Normal;
@@ -143,8 +138,8 @@ namespace MonopolyEntity
             double screenWidth = SystemParameters.PrimaryScreenWidth;
             double screenHeight = SystemParameters.PrimaryScreenHeight;
 
-            this.Left = (screenWidth - this.Width) / _centerDevider;
-            this.Top = (screenHeight - this.Height) / _centerDevider;
+            this.Left = (screenWidth - this.Width) / _centerDivider;
+            this.Top = (screenHeight - this.Height) / _centerDivider;
         }
 
         private void MainFrame_Navigated(object sender, NavigationEventArgs e)
@@ -165,7 +160,7 @@ namespace MonopolyEntity
             this.Show();
         }
 
-        public void ClearVisiableItems()
+        public void ClearVisibleItems()
         {
             VisiableItems.Children.Clear();
         }

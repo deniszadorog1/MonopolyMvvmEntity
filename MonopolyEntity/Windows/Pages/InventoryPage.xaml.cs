@@ -19,13 +19,14 @@ using MonopolyDLL;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 using MonopolyDLL.Monopoly.Enums;
+using MonopolyEntity.Interfaces;
 
 namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
     /// Логика взаимодействия для InventoryPage.xaml
     /// </summary>
-    public partial class InventoryPage : Page
+    public partial class InventoryPage : Page, IPagesOpener
     {
         private Frame _frame;
         private MonopolySystem _system;
@@ -85,7 +86,7 @@ namespace MonopolyEntity.Windows.Pages
                     CaseCard card = SetLootBoxCard(box, BoardHelper.GetLotBoxImage(box.ImagePath));
                     card.MouseDown += (sender, e) =>
                     {
-                        if (_ifJustBlured) { _ifJustBlured = !_ifJustBlured; return; }
+                        if (_ifJustBlurred) { _ifJustBlurred = !_ifJustBlurred; return; }
                         Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
                         SetAnimationForCaseBox(pagePoint, card.CardImage, box);
                     };
@@ -100,12 +101,12 @@ namespace MonopolyEntity.Windows.Pages
 
                     card.MouseDown += (sender, e) =>
                     {
-                        if (_ifJustBlured) { _ifJustBlured = !_ifJustBlured; return; }
+                        if (_ifJustBlurred) { _ifJustBlurred = !_ifJustBlurred; return; }
                         Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
                         SetAnimationForInventoryBusiness(pagePoint, card.CardImage, boxItem);
                     };
 
-                    if (IfBoxCardIsTicked(boxItem))
+                    if (IsBoxCardIsTicked(boxItem))
                     {
                         card.IfTicked.Visibility = Visibility.Visible;
                         boxItem.SetTick(true);
@@ -115,9 +116,9 @@ namespace MonopolyEntity.Windows.Pages
             SetCardsInItemsPanel();
         }
 
-        private bool IfBoxCardIsTicked(BoxItem item)
+        private bool IsBoxCardIsTicked(BoxItem item)
         {
-            return DBQueries.IfInventoryStaffIsEnabled(item.GetInventoryIdInDB());
+            return DBQueries.IsInventoryStaffIsEnabled(item.GetInventoryIdInDB());
         }
 
         private void SetCardsInItemsPanel()
@@ -148,7 +149,7 @@ namespace MonopolyEntity.Windows.Pages
             res.CardImage.VerticalAlignment = VerticalAlignment.Center;
             res.CardImage.HorizontalAlignment = HorizontalAlignment.Center;
 
-            res.BorderBgColor.Background = BoardHelper.GetRearityColorForCard(item);
+            res.BorderBgColor.Background = BoardHelper.GetRarityColorForCard(item);
             res.CardName.Foreground = Brushes.White;
 
             res.CardName.Text = $"{item.Name}";
@@ -193,15 +194,15 @@ namespace MonopolyEntity.Windows.Pages
         /// to change busses in game
         /// </summary>
 
-        private readonly SolidColorBrush _ususalCellBrush = new SolidColorBrush(Color.FromRgb(167, 175, 187));
+        private readonly SolidColorBrush _usualCellBrush = new SolidColorBrush(Color.FromRgb(167, 175, 187));
         public List<BusDescButton> GetButtonForUsualBus(BoxItem item)
         {
             List<BusDescButton> res = new List<BusDescButton>();
-            List<ParentBus> busesToGetButsFor = _system.MonGame.GetBusWithGivenBoxItem(item);
+            List<Business> busesToGetButsFor = _system.MonGame.GetBusWithGivenBoxItem(item);
 
-             string changeText = SystemParamsServeses.GetStringByName("ChangeItemInventory");
-             string getBackText = SystemParamsServeses.GetStringByName("GetBackItemInventory");
-             string sameItemIsChosen = SystemParamsServeses.GetStringByName("ItemChosenInventory");
+             string changeText = SystemParamsService.GetStringByName("ChangeItemInventory");
+             string getBackText = SystemParamsService.GetStringByName("GetBackItemInventory");
+             string sameItemIsChosen = SystemParamsService.GetStringByName("ItemChosenInventory");
              int textBlockFz = 16;
 
             for (int i = 0; i < busesToGetButsFor.Count; i++)
@@ -212,7 +213,7 @@ namespace MonopolyEntity.Windows.Pages
 
                 if (usingItem is null)
                 {
-                    but = GetBusForBusinessDescription(busesToGetButsFor[i].Name, _ususalCellBrush, changeText);
+                    but = GetBusForBusinessDescription(busesToGetButsFor[i].Name, _usualCellBrush, changeText);
                     SetButMouseDownEventChangedWithParentBus(but, busesToGetButsFor[i], item);
                 }
                 else if (usingItem.GetInventoryIdInDB() != item.GetInventoryIdInDB() && !usingItem.IsTicked() &&
@@ -229,7 +230,7 @@ namespace MonopolyEntity.Windows.Pages
                 }
                 else if (usingItem.GetInventoryIdInDB() == item.GetInventoryIdInDB())
                 {
-                    but = GetBusForBusinessDescription(busesToGetButsFor[i].Name, _ususalCellBrush, getBackText);
+                    but = GetBusForBusinessDescription(busesToGetButsFor[i].Name, _usualCellBrush, getBackText);
 
                     GetUsualBuyBack(but, item);
 
@@ -268,7 +269,7 @@ namespace MonopolyEntity.Windows.Pages
             };
         }
 
-        private void SetButMouseDownEventChangedWithParentBus(BusDescButton but, ParentBus oldItem, BoxItem newItem)
+        private void SetButMouseDownEventChangedWithParentBus(BusDescButton but, Business oldItem, BoxItem newItem)
         {
             but.MouseDown += (sender, e) =>
             {
@@ -289,7 +290,7 @@ namespace MonopolyEntity.Windows.Pages
         {
             but.MouseDown += (sender, e) =>
             {
-                if (_system.IfBussWithSuchNameIsUsing(newItem.Name)) return;
+                if (_system.IsBussWithSuchNameIsUsing(newItem.Name)) return;
 
                 newItem.StationId = oldItem.StationId;
                 _system.RemoveBoxItemFromUsingList(oldItem);
@@ -390,7 +391,7 @@ namespace MonopolyEntity.Windows.Pages
         private void MakeImageDescriptionAnimation(Image img)
         {
             const double _centerOrigin = 0.5;
-            const double _movmentSpeed = 0.2;
+            const double _movementSpeed = 0.2;
             const double scaleFrom = 1;
             const double scaleTo = 1.5;
 
@@ -403,7 +404,7 @@ namespace MonopolyEntity.Windows.Pages
             {
                 From = scaleFrom,
                 To =scaleTo,
-                Duration = TimeSpan.FromSeconds(_movmentSpeed),
+                Duration = TimeSpan.FromSeconds(_movementSpeed),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
 
@@ -411,7 +412,7 @@ namespace MonopolyEntity.Windows.Pages
             {
                 From = scaleFrom,
                 To = scaleTo,
-                Duration = TimeSpan.FromSeconds(_movmentSpeed),
+                Duration = TimeSpan.FromSeconds(_movementSpeed),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
             ImageScaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleXAnimation);
@@ -463,7 +464,7 @@ namespace MonopolyEntity.Windows.Pages
             UpperMenuu.AllPanelGrid.Width = CenterColDef.Width.Value;
         }
 
-        private bool _ifJustBlured = false;
+        private bool _ifJustBlurred = false;
         private void Page_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!(_boxDescript is null) || !(_busDesc is null))
@@ -473,7 +474,7 @@ namespace MonopolyEntity.Windows.Pages
                 this.IsEnabled = true;
                 _boxDescript = null;
                 _busDesc = null;
-                _ifJustBlured = true;
+                _ifJustBlurred = true;
 
 
                 //Update item is box is opened
@@ -484,18 +485,18 @@ namespace MonopolyEntity.Windows.Pages
                 RareFilter.SelectedItem = BaseChooseRare;
                 return;
             }
-            _ifJustBlured = false;
+            _ifJustBlurred = false;
         }
 
         private void ClearDescription()
         {
             MainWindow window = Helper.FindParent<MainWindow>(_frame);
-            window.ClearVisiableItems();
+            window.ClearVisibleItems();
             window.CaseFrame.Visibility = Visibility.Hidden;
         }
 
         private string _textFilter = string.Empty;
-        private void FilterByBameBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void FilterByBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ItemsPanel.Children.Clear();
             _textFilter = ((TextBox)sender).Text.ToLower();
@@ -507,8 +508,8 @@ namespace MonopolyEntity.Windows.Pages
             for (int i = 0; i < _cards.Count; i++)
             {
                 if (_cards[i].CardName.Text.ToLower().Contains(_textFilter) &&
-                    ((!(_rearity is null) && _system.LoggedUser.Inventory.InventoryItems[i] is BoxItem boxItem && 
-                    boxItem.Rearity == _rearity) || _rearity is null) &&
+                    ((!(_rarity is null) && _system.LoggedUser.Inventory.InventoryItems[i] is BoxItem boxItem && 
+                    boxItem.Rarity == _rarity) || _rarity is null) &&
                     ((_itemType is BoxItem && _system.LoggedUser.Inventory.InventoryItems[i] is BoxItem) ||
                     (_itemType is CaseBox && _system.LoggedUser.Inventory.InventoryItems[i] is CaseBox) || _itemType is null))
                 {
@@ -517,40 +518,46 @@ namespace MonopolyEntity.Windows.Pages
             }
         }
 
-        private BusRearity? _rearity;
+        private BusRarity? _rarity;
         private void RareFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-             string clearFilterStr = SystemParamsServeses.GetStringByName("SetAllInFilterInventory");
+             string clearFilterStr = SystemParamsService.GetStringByName("SetAllInFilterInventory");
             ItemsPanel.Children.Clear();
             string res = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
 
-            if (res == clearFilterStr) _rearity = null;
-            else SetRearity(res);
+            if (res == clearFilterStr) _rarity = null;
+            else SetRarity(res);
 
             SetCardsByName();
         }
 
-        private void SetRearity(string rearity)
+        private void SetRarity(string rarity)
         {
-            for (int i = (int)BusRearity.Usual; i <= (int)BusRearity.Legend; i++)
+            for (int i = (int)BusRarity.Usual; i <= (int)BusRarity.Legend; i++)
             {
-                if (rearity == ((BusRearity)i).ToString())
+                if (rarity == ((BusRarity)i).ToString())
                 {
-                    _rearity = (BusRearity)i;
+                    _rarity = (BusRarity)i;
                     return;
                 }
             }
         }
 
         private Item _itemType = null;
+        private const string _baseItemsFilterName = "Items";
+        private const string _baseBoxFilterName = "Box";
+
         private void TypeChooseBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ItemsPanel.Children.Clear();
             string res = ((ComboBoxItem)((ComboBox)sender).SelectedItem).Content.ToString();
 
-            if (res == "Items") _itemType = new BoxItem();
-            else if (res == "Box") _itemType = new CaseBox();
+            if (res == _baseItemsFilterName) _itemType = new BoxItem();
+            else if (res == _baseBoxFilterName) _itemType = new CaseBox();
             else _itemType = null;
+
+            //_itemType = res == "Items" ? new BoxItem() : res == "Box" ? new CaseBox() : null;
+
 
             SetCardsByName();
         }

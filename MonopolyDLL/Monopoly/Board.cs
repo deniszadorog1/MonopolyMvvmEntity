@@ -23,7 +23,7 @@ namespace MonopolyDLL.Monopoly
 {
     public class Board
     {
-        public CellParent[] Cells { get; set; }
+        public Cell.Cell[] Cells { get; set; }
 
         public Board()
         {
@@ -34,14 +34,14 @@ namespace MonopolyDLL.Monopoly
         private int _startIndex;
         private int _prisonIndex;
         private int _casinoIndex;
-        private int _goToPrisonIndex;
+        //private int _goToPrisonIndex;
 
         private void SetBasicBoard()
         {
-            const int amountofCells = 40;
-            Cells = new CellParent[amountofCells];
+            int amountOfCells = SystemParamsService.GetNumByName("AmountOfCells");
+            Cells = new Cell.Cell[amountOfCells];
 
-            List<CellParent> basicGamesCells = SetBasicBoardCells();
+            List<Cell.Cell> basicGamesCells = SetBasicBoardCells();
 
             for (int i = 0; i < Cells.Length; i++)
             {
@@ -49,11 +49,15 @@ namespace MonopolyDLL.Monopoly
             }
         }
 
-        private readonly List<CellParent> _basicBoardCells = SetBasicBoardCells();
-        public static List<CellParent> SetBasicBoardCells()
+        private readonly List<Cell.Cell> _basicBoardCells = SetBasicBoardCells();
+        public static List<Cell.Cell> SetBasicBoardCells()
         {
-            List<CellParent> res = new List<CellParent>();
+            List<Cell.Cell> res = new List<Cell.Cell>();
 
+            res = DBQueries.GetBasicBoardCells();
+
+            return res;
+/*
             res.Add(new Start("Start", 0));
 
             res.Add(new UsualBus("Chanel", 600, 300, 360, new List<int>() { 20, 100, 300, 900, 1600, 2500 }, 0, 0, 500, -1, BusinessType.Perfume, false, 1));
@@ -102,22 +106,21 @@ namespace MonopolyDLL.Monopoly
             res.Add(new Chance("Chance", 38));
             res.Add(new UsualBus("Nokia", 4000, 2000, 2400, new List<int>() { 500, 2000, 6000, 14000, 17000, 20000 }, 0, 0, 2000, -1, BusinessType.Phones, false, 39));
 
-            return res;
+            return res;*/
         }
 
         private void SetSquareCellsIndexes()
         {
-            _startIndex = 0;
-            _prisonIndex = 10;
-            _casinoIndex = 20;
-            _goToPrisonIndex = 30;
+            _startIndex = _basicBoardCells.OfType<Start>().First().GetId();
+            _prisonIndex = _basicBoardCells.OfType<Prison>().First().GetId();
+            _casinoIndex = _basicBoardCells.OfType<Casino>().First().GetId();
+            //_goToPrisonIndex = _basicBoardCells.OfType<GoToPrison>().First().GetId();
         }
 
         public int GetBusinessPrice(int index)
         {
             const int emptyPrice = -1;
-            return !(Cells[index] is ParentBus) ? emptyPrice :
-                ((ParentBus)Cells[index]).Price;
+            return Cells[index] is Business parentBus ? parentBus.Price : emptyPrice;
         }
 
         public (int, string) PlayCasino(List<int> chosenCasinoRibs)
@@ -144,7 +147,7 @@ namespace MonopolyDLL.Monopoly
             return action;
         }
 
-        public int GetLitteleWinMoneyChance()
+        public int GetLittleWinMoneyChance()
         {
             return GetChance().GetLittleWinMoney();
         }
@@ -154,14 +157,14 @@ namespace MonopolyDLL.Monopoly
             return GetChance().GetBigWinMoney();
         }
 
-        public int GetLitteleLoseMoneyChance()
+        public int GetLittleLoseMoneyChance()
         {
             return GetChance().GetLittleLoseMoney();
         }
 
         public int GetBigLoseMoneyChance()
         {
-            return GetChance().GetBigloseMoney();
+            return GetChance().GetBigLoseMoney();
         }
 
         public int GetStepForwardChance()
@@ -191,14 +194,14 @@ namespace MonopolyDLL.Monopoly
             return _prisonIndex;
         }
 
-        public bool IfPlayerOwnsBusiness(int playerIndex, int cellIndex)
+        public bool IsPlayerOwnsBusiness(int playerIndex, int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).OwnerIndex == playerIndex;
+            return ((Business)Cells[cellIndex]).OwnerIndex == playerIndex;
         }
 
-        public ParentBus GetBusinessByIndex(int cellIndex)
+        public Business GetBusinessByIndex(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]);
+            return (Business)Cells[cellIndex];
         }
 
         public int GetCellIndexByName(string cellName)
@@ -215,7 +218,7 @@ namespace MonopolyDLL.Monopoly
             int res = 0;
             for (int i = 0; i < buses.Count; i++)
             {
-                if (Cells[buses[i]] is ParentBus bus)
+                if (Cells[buses[i]] is Business bus)
                 {
                     res += bus.GetPriceForBus();
                 }
@@ -225,14 +228,14 @@ namespace MonopolyDLL.Monopoly
 
         public int GetParentBusPrice(int index)
         {
-            return ((ParentBus)Cells[index]).Price;
+            return ((Business)Cells[index]).Price;
         }
 
         public void SetNewOwnerAfterTrade(List<int> indexes, int newOwnerIndex)
         {
             for (int i = 0; i < indexes.Count; i++)
             {
-                ((ParentBus)Cells[indexes[i]]).ChangeOwner(newOwnerIndex);
+                ((Business)Cells[indexes[i]]).ChangeOwner(newOwnerIndex);
             }
         }
 
@@ -263,42 +266,42 @@ namespace MonopolyDLL.Monopoly
 
         public BusinessType GetBusTypeByIndex(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).GetBusType();
+            return ((Business)Cells[cellIndex]).GetBusType();
         }
 
-        public List<ParentBus> GetBusesByType(BusinessType type)
+        public List<Business> GetBusesByType(BusinessType type)
         {
-            return Cells.OfType<ParentBus>().Where(x => x.BusType == type).ToList();
+            return Cells.OfType<Business>().Where(x => x.BusType == type).ToList();
         }
 
-        public List<ParentBus> GetBusesWhichPlayersOwnByType(BusinessType type, int playerIndex)
+        public List<Business> GetBusesWhichPlayersOwnByType(BusinessType type, int playerIndex)
         {
-            return Cells.OfType<ParentBus>().Where(x => x.BusType == type && x.OwnerIndex == playerIndex).ToList();
+            return Cells.OfType<Business>().Where(x => x.BusType == type && x.OwnerIndex == playerIndex).ToList();
         }
 
-        public UsualBusInfoVisual? GetVisualBySettingNewAmountOfHouses(int cellIndex, bool ifBuilt)
+        public UsualBusInfoVisual? GetVisualBySettingNewAmountOfHouses(int cellIndex, bool isBuilt)
         {
             const int checkAmount = 1;
             //set +1 house and -1
-            bool ifCanBeAdded = IfAmountOfHousesIsOk(cellIndex,
-                ((ParentBus)Cells[cellIndex]).GetAddedHousesAmount(checkAmount)) && !ifBuilt;
+            bool isCanBeAdded = IsAmountOfHousesIsOk(cellIndex,
+                ((Business)Cells[cellIndex]).GetAddedHousesAmount(checkAmount)) && !isBuilt;
 
-            bool ifCanBeTaken = IfAmountOfHousesIsOk(cellIndex,
-                ((ParentBus)Cells[cellIndex]).GetTakenHousesAmount(checkAmount)) &&
-                            !(((ParentBus)Cells[cellIndex]).Level == 0);
+            bool isCanBeTaken = IsAmountOfHousesIsOk(cellIndex,
+                ((Business)Cells[cellIndex]).GetTakenHousesAmount(checkAmount)) &&
+                            !(((Business)Cells[cellIndex]).Level == 0);
 
 
-            if (!ifCanBeAdded && !ifCanBeTaken) return null;
+            if (!isCanBeAdded && !isCanBeTaken) return null;
 
-            return ifCanBeAdded && ifCanBeTaken ? UsualBusInfoVisual.Combine :
-                   ifCanBeAdded && !ifCanBeTaken ? UsualBusInfoVisual.BuyHouse : UsualBusInfoVisual.SellHouse;
+            return isCanBeAdded && isCanBeTaken ? UsualBusInfoVisual.Combine :
+                   isCanBeAdded && !isCanBeTaken ? UsualBusInfoVisual.BuyHouse : UsualBusInfoVisual.SellHouse;
                    //!ifCanBeAdded && ifCanBeTaken ? UsualBusInfoVisual.SellHouse : null;
         }
 
-        public bool IfAmountOfHousesIsOk(int cellIndex, int amountOfHouses)
+        public bool IsAmountOfHousesIsOk(int cellIndex, int amountOfHouses)
         {
             BusinessType type = GetBusTypeByIndex(cellIndex);
-            List<ParentBus> buses = GetBusesByType(type);
+            List<Business> buses = GetBusesByType(type);
 
             const int maxHouseDiffer = 1;
 
@@ -313,28 +316,28 @@ namespace MonopolyDLL.Monopoly
             return true;
         }
 
-        public bool IfBusLevelIsMax(int cellIndex)
+        public bool IsBusLevelIsMax(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).IfLevelIsMax();
+            return ((Business)Cells[cellIndex]).IsLevelIsMax();
         }
 
-        public bool IfBusDoesNotHaveHoueses(int cellIndex)
+        public bool IsBusDoesNotHaveHouses(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).IfThereAreNoHouses();
+            return ((Business)Cells[cellIndex]).IsThereAreNoHouses();
         }
 
         public int GetAmountOfBusesWithBusType(BusinessType type)
         {
-            return Cells.OfType<UsualBus>().Where(x => x.BusType == type).Count();
+            return Cells.OfType<RegularBusiness>().Where(x => x.BusType == type).Count();
         }
 
         public int GetAmountOfBusesTypeByOwningPlayer(int playersIndex, BusinessType type)
         {
-            return Cells.OfType<UsualBus>().Where(x => x.BusType == type &&
+            return Cells.OfType<RegularBusiness>().Where(x => x.BusType == type &&
             x.OwnerIndex == playersIndex).Count();
         }
 
-        public bool IfPlayerHasMonopolyByType(int playerIndex, BusinessType type)
+        public bool IsPlayerHasMonopolyByType(int playerIndex, BusinessType type)
         {
             return GetAmountOfBusesWithBusType(type) ==
                 GetAmountOfBusesTypeByOwningPlayer(playerIndex, type);
@@ -342,74 +345,74 @@ namespace MonopolyDLL.Monopoly
 
         public int GetBusLevel(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).GetLevel();
+            return ((Business)Cells[cellIndex]).GetLevel();
         }
 
         public int GetUsualBusHousePrice(int cellIndex)
         {
-            return ((UsualBus)Cells[cellIndex]).GetHousePrice();
+            return ((RegularBusiness)Cells[cellIndex]).GetHousePrice();
         }
 
         public void BuyHouseUsualBus(int cellIndex)
         {
-            ((UsualBus)Cells[cellIndex]).BuyHouse();
+            ((RegularBusiness)Cells[cellIndex]).BuyHouse();
         }
 
         public void SellHouseUsualBus(int cellIndex)
         {
-            ((UsualBus)Cells[cellIndex]).SellHouse();
+            ((RegularBusiness)Cells[cellIndex]).SellHouse();
         }
 
         public int GetBusMoneyLevel(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).GetPayMoney();
+            return ((Business)Cells[cellIndex]).GetPayMoney();
         }
 
-        public bool IfBusinessIsDeposited(int cellIndex)
+        public bool IsBusinessIsDeposited(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).IfBusinessIsDeposited();
+            return ((Business)Cells[cellIndex]).IsBusinessIsDeposited();
         }
 
-        public bool IfBusesHaveHouses(List<ParentBus> buses)
+        public bool IsBusesHaveHouses(List<Business> buses)
         {
-            return buses.Where(x => x.Level != 0).Any();
+            return buses.Any(x => x.Level != 0);
         }
 
-        public bool IfAnyOfBussesIsDeposited(List<ParentBus> buses)
+        public bool IsAnyOfBussesIsDeposited(List<Business> buses)
         {
-            return buses.Where(x => x.IfBusinessIsDeposited()).Any() ;
+            return buses.Any(x => x.IsBusinessIsDeposited());
         }
 
 
         public void DepositBus(int cellIndex)
         {
-            ((ParentBus)Cells[cellIndex]).DepositBus();
+            ((Business)Cells[cellIndex]).DepositBus();
         }
 
         public void RebuyBus(int cellIndex)
         {
-            ((ParentBus)Cells[cellIndex]).RebuyBus();
+            ((Business)Cells[cellIndex]).RebuyBus();
         }
 
         public void SetMaxDepositCounter(int cellIndex)
         {
-            ((ParentBus)Cells[cellIndex]).SetNewDepositCounter();
+            ((Business)Cells[cellIndex]).SetNewDepositCounter();
         }
 
         public int GetRubyPrice(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).GetRubyPrice();
+            return ((Business)Cells[cellIndex]).GetRubyPrice();
         }
 
         public int GetDepositPrice(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).GetDepositMoney();
+            return ((Business)Cells[cellIndex]).GetDepositMoney();
         }
 
         public void SetCarsPaymentLevelByIndex(int playerIndex)
         {
-            List<CarBus> buses =
-                Cells.OfType<CarBus>().Where(x => x.OwnerIndex == playerIndex && !x.IfDeposited).ToList();
+            List<CarBusiness> buses =
+                Cells.OfType<CarBusiness>().Where(x => x.OwnerIndex == playerIndex && !x.IsDeposited).ToList();
 
             if (buses.Count() == 0) return;
             for (int i = 0; i < buses.Count; i++)
@@ -420,9 +423,10 @@ namespace MonopolyDLL.Monopoly
 
         public void SetGamePaymentsLevelByIndex(int playerIndex)
         {
-            List<GameBus> buses =
-                Cells.OfType<GameBus>().Where(x => x.OwnerIndex == playerIndex && !x.IfDeposited).ToList();
+            List<GameBusiness> buses =
+                Cells.OfType<GameBusiness>().Where(x => x.OwnerIndex == playerIndex && !x.IsDeposited).ToList();
             if (buses.Count == 0) return;
+
             for (int i = 0; i < buses.Count; i++)
             {
                 buses[i].SetBusLevel(buses.Count() - 1);
@@ -433,11 +437,11 @@ namespace MonopolyDLL.Monopoly
         {
             List<int> res = new List<int>();
 
-            List<GameBus> cars = Cells.OfType<GameBus>().Where(x => x.OwnerIndex == playerIndex && !x.IfDeposited).ToList();
+            List<GameBusiness> games = Cells.OfType<GameBusiness>().Where(x => x.OwnerIndex == playerIndex && !x.IsDeposited).ToList();
 
-            for (int i = 0; i < cars.Count(); i++)
+            for (int i = 0; i < games.Count(); i++)
             {
-                res.Add(Cells.ToList().IndexOf(cars[i]));
+                res.Add(Cells.ToList().IndexOf(games[i]));
             }
             return res;
         }
@@ -446,7 +450,7 @@ namespace MonopolyDLL.Monopoly
         {
             List<int> res = new List<int>();
 
-            List<CarBus> cars = Cells.OfType<CarBus>().Where(x => x.OwnerIndex == playerIndex && !x.IfDeposited).ToList();
+            List<CarBusiness> cars = Cells.OfType<CarBusiness>().Where(x => x.OwnerIndex == playerIndex && !x.IsDeposited).ToList();
 
             for (int i = 0; i < cars.Count(); i++)
             {
@@ -455,16 +459,16 @@ namespace MonopolyDLL.Monopoly
             return res;
         }
 
-        public List<UsualBus> GetAllPlayersNotDepositedUsualBuses(int playerIndex)
+        public List<RegularBusiness> GetAllPlayersNotDepositedUsualBuses(int playerIndex)
         {
-            return Cells.OfType<UsualBus>().Where(
-                x => x.OwnerIndex == playerIndex && !x.IfDeposited).ToList();
+            return Cells.OfType<RegularBusiness>().Where(
+                x => x.OwnerIndex == playerIndex && !x.IsDeposited).ToList();
         }
 
         public int GetPriceOfAllBuiltHouses(int playerIndex)
         {
             int res = 0;
-            List<UsualBus> buses = GetAllPlayersNotDepositedUsualBuses(playerIndex);
+            List<RegularBusiness> buses = GetAllPlayersNotDepositedUsualBuses(playerIndex);
 
             for(int i = 0; i < buses.Count; i++)
             {
@@ -477,8 +481,8 @@ namespace MonopolyDLL.Monopoly
         public int GetPriceForNotDepositedBuses(int playerIndex)
         {
             int res = 0;
-            List<ParentBus> buses = Cells.OfType<ParentBus>().Where(
-                x => x.OwnerIndex == playerIndex && !x.IfDeposited).ToList();
+            List<Business> buses = Cells.OfType<Business>().Where(
+                x => x.OwnerIndex == playerIndex && !x.IsDeposited).ToList();
 
             for(int i = 0; i < buses.Count; i++)
             {
@@ -489,8 +493,8 @@ namespace MonopolyDLL.Monopoly
 
         public void UnDepositPlayersBuses(int playerIndex)
         {
-            List<ParentBus> buses = Cells.OfType<ParentBus>().Where(
-                    x => x.OwnerIndex == playerIndex && x.IfDeposited).ToList();
+            List<Business> buses = Cells.OfType<Business>().Where(
+                    x => x.OwnerIndex == playerIndex && x.IsDeposited).ToList();
 
             for(int i = 0; i < buses.Count; i++)
             {
@@ -500,8 +504,8 @@ namespace MonopolyDLL.Monopoly
 
         public void ClearPlayersBussHouses(int playerIndex)
         {
-            List<ParentBus> buses = Cells.OfType<ParentBus>().Where(
-                    x => x.OwnerIndex == playerIndex && !x.IfDeposited).ToList();
+            List<Business> buses = Cells.OfType<Business>().Where(
+                    x => x.OwnerIndex == playerIndex && !x.IsDeposited).ToList();
         
             for(int i = 0; i < buses.Count; i++)
             {
@@ -509,23 +513,13 @@ namespace MonopolyDLL.Monopoly
             }
         }
 
-        public void ClearPlayersBussesOwner(int playerIndex)
-        {
-            List<ParentBus> buses = Cells.OfType<ParentBus>().Where(
-                    x => x.OwnerIndex == playerIndex && !x.IfDeposited).ToList();
-
-            for (int i = 0; i < buses.Count; i++)
-            {
-                buses[i].OwnerIndex = -1;
-            }
-        }
 
         public void ClearAllPlayersBuses(int playerIndex)
         {
             //Clear Players bus deposit counter 
             ClearDepositCounter(playerIndex);
 
-            //UnDeposit all players busess
+            //UnDeposit all players Businesses
             UnDepositPlayersBuses(playerIndex);
 
             //Clear Houses
@@ -539,7 +533,7 @@ namespace MonopolyDLL.Monopoly
         {
             for(int i = 0; i < Cells.Length; i++)
             {
-                if (Cells[i] is ParentBus bus && 
+                if (Cells[i] is Business bus && 
                     bus.OwnerIndex == ownerIndex)
                 {
                     bus.SetNewDepositCounter();
@@ -549,24 +543,24 @@ namespace MonopolyDLL.Monopoly
 
         public int GetBusPrice(int busIndex)
         {
-            return ((ParentBus)Cells[busIndex]).Price;
+            return ((Business)Cells[busIndex]).Price;
         }
 
         public int GetDepositCounter(int cellIndex)
         {
-            return ((ParentBus)Cells[cellIndex]).GetDepositCounter();
+            return ((Business)Cells[cellIndex]).GetDepositCounter();
         }
 
-        public bool IfDepositCounterIsZero(int busIndex)
+        public bool IsDepositCounterIsZero(int busIndex)
         {
-            return ((ParentBus)Cells[busIndex]).IfDepositCounterIsZero();
+            return ((Business)Cells[busIndex]).IsDepositCounterIsZero();
         }
 
         public void SetNewCircleOfDepositedBuses()
         {
             for(int i = 0; i < Cells.Length; i++)
             {
-                if(Cells[i] is ParentBus bus && bus.IfDeposited)
+                if(Cells[i] is Business bus && bus.IsDeposited)
                 {
                     bus.NewCircleOfDeposit();
                 }
@@ -575,20 +569,21 @@ namespace MonopolyDLL.Monopoly
         
         public void ClearBusiness(int busIndex)
         {
-            ((ParentBus)Cells[busIndex]).ClearBusVals();
+            ((Business)Cells[busIndex]).ClearBusValues();
         }
 
         public int GetOwnerIndex(int busIndex)
         {
-            return ((ParentBus)Cells[busIndex]).GetOwnerIndex();
+            return ((Business)Cells[busIndex]).GetOwnerIndex();
         }
 
         private const int _littleStrickBusType = 2;
-        public List<ParentBus> GetUsualBussesToChangeOn(InventoryObjs.BoxItem item)
+        private const int _secondObjIndex = 1;
+        public List<Business> GetUsualBussesToChangeOn(InventoryObjs.BoxItem item)
         {          
-            List<ParentBus> res = new List<ParentBus>();
+            List<Business> res = new List<Business>();
 
-            List<UsualBus> buses = Cells.OfType<UsualBus>().Where(x => x.BusType == item.Type).ToList();
+            List<RegularBusiness> buses = Cells.OfType<RegularBusiness>().Where(x => x.BusType == item.Type).ToList();
             if(buses.Count == _littleStrickBusType)
             {
                 res.AddRange(buses.Where(x => x.GetId() == item.StationId));
@@ -604,85 +599,98 @@ namespace MonopolyDLL.Monopoly
 
             //to change for first two
             res.Add(buses.First());
-            res.Add(buses[1]);
+            res.Add(buses[_secondObjIndex]);
 
             return res;
         }
 
-        public List<ParentBus> GetAllCarBuses()
+        public List<Business> GetAllCarBuses() //to check
         {
-            List<ParentBus> buses = new List<ParentBus>(); 
-            buses.AddRange(Cells.OfType<CarBus>().ToList());
+            List<Business> buses = new List<Business>(); 
+            buses.AddRange(Cells.OfType<Business>().ToList());
             return buses;
         }
 
-        public List<ParentBus> GetAllGameBuses()
+        public void ClearPlayersBussesOwner(int playerIndex)
         {
-            List<ParentBus> buses = new List<ParentBus>();
-            buses.AddRange(Cells.OfType<GameBus>().ToList());
-            return buses;
-        }
+            List<Business> buses = Cells.OfType<Business>().Where(
+                    x => x.OwnerIndex == playerIndex && !x.IsDeposited).ToList();
 
-        public void ChangeBoardItemOnInventory(ParentBus bus, int id)
-        {
-            bool ifDeposited = false;
-            int desCounter = 15;
-            if (Cells[id] is ParentBus oldBus)
+            for (int i = 0; i < buses.Count; i++)
             {
-                ifDeposited = bus.IfDeposited;
+                buses[i].OwnerIndex = -1;
+            }
+        }
+
+        public List<Business> GetAllGameBuses()
+        {
+            List<Business> buses = new List<Business>();
+            buses.AddRange(Cells.OfType<GameBusiness>().ToList());
+            return buses;
+        }
+
+        public void ChangeBoardItemOnInventory(Business bus, int id)
+        {
+            bool isDeposited = false;
+            int desCounter = SystemParamsService.GetNumByName("MaxDepositCounter");
+            if (Cells[id] is Business)
+            {
+                isDeposited = bus.IsDeposited;
                 desCounter = bus.TempDepositCounter;
             }
 
             Cells[id] = bus;
-            if (Cells[id] is ParentBus newBus)
+            if (Cells[id] is Business newBus)
             {
-                newBus.IfDeposited = ifDeposited;
+                newBus.IsDeposited = isDeposited;
                 newBus.TempDepositCounter = desCounter;
             }
         }
 
         public void GetBasicBusBack(int position)
         {
-            bool ifDeposited = false;
-            int desCounter = 15;
-            if (Cells[position] is ParentBus bus)
+            bool isDeposited = false;
+            int desCounter = SystemParamsService.GetNumByName("MaxDepositCounter");
+            if (Cells[position] is Business bus)
             {
-                ifDeposited = bus.IfDeposited;
+                isDeposited = bus.IsDeposited;
                 desCounter = bus.TempDepositCounter;
-                bus.OwnerIndex = -1;
+                bus.OwnerIndex = SystemParamsService.GetNumByName("NoOwnerIndex");
             }
 
             Cells[position] = _basicBoardCells[position];
             //Cells[position] = _basicBoardCells[position].GetCopy(_basicBoardCells[position]);
 
-            if (Cells[position] is ParentBus newBus)
+            if (Cells[position] is Business newBus)
             {
-                newBus.IfDeposited = ifDeposited;
+                newBus.IsDeposited = isDeposited;
                 newBus.TempDepositCounter = desCounter;
-                newBus.OwnerIndex = -1;
+                newBus.OwnerIndex = SystemParamsService.GetNumByName("NoOwnerIndex");
             }
         }
 
-        public ParentBus GetBusByIndex(int index)
+        public Business GetBusByIndex(int index)
         {   
-            return ((ParentBus)Cells[index]);
+            return ((Business)Cells[index]);
         }
 
-        public bool IfPlayerIsOnEnemiesBus(int playerIndex, int cellIndex)
+        public bool IsPlayerIsOnEnemiesBus(int playerIndex, int cellIndex)
         {
-            return Cells[cellIndex] is ParentBus && ((ParentBus)Cells[cellIndex]).OwnerIndex != -1 &&
-                ((ParentBus)Cells[cellIndex]).OwnerIndex != playerIndex;
+            return Cells[cellIndex] is Business && ((Business)Cells[cellIndex]).OwnerIndex != 
+                SystemParamsService.GetNumByName("NoOwnerIndex") &&
+                ((Business)Cells[cellIndex]).OwnerIndex != playerIndex;
         }
 
         public int GetBusOwnerIndex(int cellIndex)
         {
-            return Cells[cellIndex] is ParentBus ? ((ParentBus)Cells[cellIndex]).OwnerIndex : -1;
+            return Cells[cellIndex] is Business ? ((Business)Cells[cellIndex]).OwnerIndex : 
+                SystemParamsService.GetNumByName("NoOwnerIndex");
         }
 
         public void ClearBusOwner(int busIndex)
         {
-            if (!(Cells[busIndex] is ParentBus)) return;
-            ((ParentBus)Cells[busIndex]).OwnerIndex = -1;
+            if (!(Cells[busIndex] is Business)) return;
+            ((Business)Cells[busIndex]).OwnerIndex = SystemParamsService.GetNumByName("NoOwnerIndex");
         }
 
         public int GetRandomCellIndexToGoOnInChance()
@@ -690,5 +698,21 @@ namespace MonopolyDLL.Monopoly
             Random rnd = new Random();
             return rnd.Next(0, Cells.Length);
         }
+
+        public int GetAmountOfStars(int ownerIndex, bool isGoldStar)
+        {
+            int res = 0;
+            for(int i = 0; i < Cells.Length; i++)
+            {
+                if (Cells[i] is RegularBusiness bus && bus.OwnerIndex == ownerIndex &&
+                    !bus.IsDeposited &&  bus.IsBusLevelIsMax() == isGoldStar)
+                {
+                    res += bus.Level;       
+                }
+            }
+            return res;
+        }
+
+        
     }
 }

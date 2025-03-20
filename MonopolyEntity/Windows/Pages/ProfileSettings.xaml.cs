@@ -1,4 +1,5 @@
 ﻿using MonopolyDLL.Monopoly;
+using MonopolyEntity.Interfaces;
 using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.UserControls;
 using System;
@@ -22,7 +23,7 @@ namespace MonopolyEntity.Windows.Pages
     /// <summary>
     /// Логика взаимодействия для ProfileSettings.xaml
     /// </summary>
-    public partial class ProfileSettings : Page
+    public partial class ProfileSettings : Page, IPagesOpener
     {
         private MonopolySystem _system;
         private Frame _frame;
@@ -86,7 +87,7 @@ namespace MonopolyEntity.Windows.Pages
 
             UpperMenuu.InventoryBut.Foreground = new SolidColorBrush(Colors.Gray);
 
-            //UpperMenuu.UserAnim.UserIcon.Foreground = new SolidColorBrush(Colors.Gray);
+            //UpperMenu.UserAnimation.UserIcon.Foreground = new SolidColorBrush(Colors.Gray);
             UpperMenuu.AllPanelGrid.Width = CenterColDef.Width.Value;
         }
 

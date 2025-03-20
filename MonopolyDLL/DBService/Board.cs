@@ -12,16 +12,16 @@ namespace MonopolyDLL.DBService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Board()
         {
-            Cells = new HashSet<Cell>();
-            Games = new HashSet<Game>();
+            Cell = new HashSet<Cell>();
+            Game = new HashSet<Game>();
         }
 
         public int Id { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cell> Cells { get; set; }
+        public virtual ICollection<Cell> Cell { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Game> Games { get; set; }
+        public virtual ICollection<Game> Game { get; set; }
     }
 }

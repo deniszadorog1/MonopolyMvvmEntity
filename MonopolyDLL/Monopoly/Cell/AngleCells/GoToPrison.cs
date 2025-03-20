@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonopolyDLL.Monopoly.Cell.AngleCells
 {
-    public class GoToPrison : CellParent
+    public class GoToPrison : Cell
     {
         public GoToPrison(string name, int id)
         {

@@ -15,9 +15,7 @@
              TextOptions.TextRenderingMode="Auto"
              FontFamily="{DynamicResource MaterialDesignFont}"      
            
-             MouseEnter="UserControl_MouseEnter"
-             MouseLeave="UserControl_MouseLeave"
-             >
+             MouseEnter="UserControl_MouseEnter"             >
     <Border Name="ElemBorder" CornerRadius="5" Background="Transparent">
         <Canvas>
 
@@ -30,7 +28,7 @@
         
             <Grid Name ="UserMenu"  Height="130" Width="200" 
                   Visibility="Hidden" Panel.ZIndex="100" Background="White"
-                  MouseLeave="UserMenu_MouseLeave">
+                  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="40"/>

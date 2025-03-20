@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,40 +35,36 @@ namespace MonopolyEntity.Windows.UserControls.MainPage
                     new Size(AnimImage.Width, AnimImage.Height)).Source;
         }
 
-        private DoubleAnimation _anim;
+        private DoubleAnimation _animation;
         private void UserIcon_MouseEnter(object sender, MouseEventArgs e)
         {
-
-            _anim = new DoubleAnimation
+            const double animationDuration = 0.2;
+            _animation = new DoubleAnimation
             {
                 To = 0,
-                Duration = TimeSpan.FromSeconds(0.2)
+                Duration = TimeSpan.FromSeconds(animationDuration)
             };
 
-            _anim.Completed += Animation_Complited;
-            AnimImage.BeginAnimation(Canvas.LeftProperty, _anim);
+            _animation.Completed += Animation_Completed;
+            AnimImage.BeginAnimation(Canvas.LeftProperty, _animation);
         }
 
-        private void Animation_Complited(object sender, EventArgs e)
+        private void Animation_Completed(object sender, EventArgs e)
         {
+            const int zIndex = 150;
             UserMenu.Visibility = Visibility.Visible;
             ElemBorder.Background = new SolidColorBrush(Colors.White);
-            Canvas.SetZIndex(AnimImage, 150);
+            Canvas.SetZIndex(AnimImage, zIndex);
         }
 
-        private void UserMenu_MouseLeave(object sender, MouseEventArgs e)
-        {
-            return;
-            UserMenu.Visibility = Visibility.Hidden;
 
-        }
-
+        private const string _mouseEnterColor = "#37BC9D";
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
             if (sender is Button but)
             {
                 but.Foreground = new SolidColorBrush(Colors.White);
-                but.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#37BC9D"));
+                but.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(_mouseEnterColor));
             }
         }
 

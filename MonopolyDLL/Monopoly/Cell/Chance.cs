@@ -10,16 +10,16 @@ using MonopolyDLL.Services;
 
 namespace MonopolyDLL.Monopoly.Cell
 {
-    public class Chance : CellParent
+    public class Chance : Cell
     {
-        private const int _littleWinMoney = 500;
-        private const int _bigWinMoney = 1500;
+        private readonly int _littleWinMoney = SystemParamsService.GetNumByName("LittleMoneyChance");
+        private readonly int _bigWinMoney = SystemParamsService.GetNumByName("MuchMoneyChance");
 
-        private const int _littleLoseMony = 500;
-        private const int _bigLoseMony = 1500;
+        private readonly int _littleLoseMoney = SystemParamsService.GetNumByName("LittleMoneyChance");
+        private readonly int _bigLoseMoney = SystemParamsService.GetNumByName("MuchMoneyChance");
 
-        private const int _stepForward = 1;
-        private const int _stepBackward = -1;
+        private readonly int _stepForward = SystemParamsService.GetNumByName("StepChance");
+        private readonly int _stepBackward = -SystemParamsService.GetNumByName("StepChance");
 
         public Chance(string name, int id)
         {
@@ -32,7 +32,7 @@ namespace MonopolyDLL.Monopoly.Cell
         {
             const int startVal = 1;
             const int moveBordValue = 1;
-            _resChance = (ChanceAction)GetRandomServese.GetRandom(startVal, (int)ChanceAction.Tax + moveBordValue);
+            _resChance = (ChanceAction)GetRandomService.GetRandom(startVal, (int)ChanceAction.SkipMove + moveBordValue);
 
             //_resChance = ChanceAction.Pay1500;
             return _resChance;
@@ -50,12 +50,12 @@ namespace MonopolyDLL.Monopoly.Cell
 
         public int GetLittleLoseMoney()
         {
-            return _littleLoseMony;
+            return _littleLoseMoney;
         }
 
-        public int GetBigloseMoney()
+        public int GetBigLoseMoney()
         {
-            return _bigLoseMony;
+            return _bigLoseMoney;
         }
 
         public int GetStepForward()
@@ -67,9 +67,5 @@ namespace MonopolyDLL.Monopoly.Cell
         {
             return _stepBackward;
         }
-
-
-
-
     }
 }

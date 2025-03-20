@@ -19,8 +19,8 @@ namespace MonopolyDLL.DBService
 
         public virtual Casino Casino { get; set; }
 
-        public virtual CasinoType CasinoType { get; set; }
+        public virtual CasinoTypes CasinoTypes { get; set; }
 
-        public virtual WonLevel WonLevel { get; set; }
+        public virtual WonLevels WonLevels { get; set; }
     }
 }

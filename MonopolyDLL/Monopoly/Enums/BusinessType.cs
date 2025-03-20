@@ -12,7 +12,7 @@ namespace MonopolyDLL.Monopoly.Enums
         Cars,
         Clothes,
         Games,
-        Messagers,
+        Messengers,
         Drinks,
         Planes,
         Food,

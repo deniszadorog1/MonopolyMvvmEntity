@@ -24,10 +24,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         public bool _ifGiveUp = false;
         private SolidColorBrush _inActiveColor = (SolidColorBrush)Application.Current.Resources["InActiveColor"];
 
-        public PayMoney(bool ifPlayerHasEnoughMoney, bool ifGiveUp)
+        public PayMoney(bool isPlayerHasEnoughMoney, bool isGiveUp)
         {
-            _ifPlayerHasEnoughMoney = ifPlayerHasEnoughMoney;
-            _ifGiveUp = ifGiveUp;
+            _ifPlayerHasEnoughMoney = isPlayerHasEnoughMoney;
+            _ifGiveUp = isGiveUp;
 
             InitializeComponent();
             SetPayButton(_ifPlayerHasEnoughMoney, _ifGiveUp);
@@ -38,8 +38,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         public void SetGiveUpButton()
         {
             if (!_ifGiveUp) return;
-            PayBillBut.Visibility = Visibility.Hidden;
-            GiveUpBut.Visibility = Visibility.Visible;
+            SetVisToGiveUp();
         }
 
         public void SetPayButtons()
@@ -48,18 +47,17 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             GiveUpBut.Visibility = Visibility.Hidden;
         }
 
-        public void SetPayButton(bool ifPlayerHasEnoughMoney, bool ifPLayerCanOnlyGiveUp)
+        public void SetPayButton(bool isPlayerHasEnoughMoney, bool isPLayerCanOnlyGiveUp)
         {
-            if (ifPLayerCanOnlyGiveUp)
+            if (isPLayerCanOnlyGiveUp)
             {
-                PayBillBut.Visibility = Visibility.Hidden;
-                GiveUpBut.Visibility = Visibility.Visible; 
+                SetVisToGiveUp();
                 return;
             }
 
             SetPayButtons();
 
-            if (ifPlayerHasEnoughMoney)
+            if (isPlayerHasEnoughMoney)
             {
                 PayBillBut.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
                 //LockImage.Visibility = Visibility.Hidden;
@@ -68,5 +66,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             PayBillBut.Background = _inActiveColor;
             LockImage.Visibility = Visibility.Visible;
         }
+
+        private void SetVisToGiveUp()
+        {
+            PayBillBut.Visibility = Visibility.Hidden;
+            GiveUpBut.Visibility = Visibility.Visible;
+        }
+
     }
 }

@@ -87,7 +87,7 @@
                         <TextBox FontSize="16" 
                             MaxLength="32"
                             Name ="FilterByBameBox"
-                                 TextChanged="FilterByBameBox_TextChanged"
+                                 TextChanged="FilterByBox_TextChanged"
                             materialDesign:HintAssist.Hint="Enter Text"
                             materialDesign:TextFieldAssist.UnderlineBrush="Transparent" />
                     </Border>

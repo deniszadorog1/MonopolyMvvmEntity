@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MonopolyDLL;
+using MonopolyDLL.Services;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
 {
@@ -24,9 +26,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         public bool _ifPlayerHasEnoughMoney = false;
         private SolidColorBrush _inActiveColor = (SolidColorBrush)Application.Current.Resources["InActiveColor"];
 
-        public JackpotElem(bool ifPlayerHasEnoughMoney)
+        public JackpotElem(bool isPlayerHasEnoughMoney)
         {
-            _ifPlayerHasEnoughMoney = ifPlayerHasEnoughMoney; 
+            _ifPlayerHasEnoughMoney = isPlayerHasEnoughMoney; 
             InitializeComponent();
 
             SetBordersRibsInList();
@@ -34,9 +36,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             SetPlayButton(_ifPlayerHasEnoughMoney);
         }
 
-        public void SetPlayButton(bool ifPlayerHasEnoughMoney)
+        public void SetPlayButton(bool isPlayerHasEnoughMoney)
         {
-            if (ifPlayerHasEnoughMoney)
+            if (isPlayerHasEnoughMoney)
             {
                 MakeBidBut.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
                 //LockImage.Visibility = Visibility.Hidden;
@@ -75,6 +77,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         public List<int> _chosenRibs = new List<int>();
         private void RibBorder_PreviewMouseDown(object sender, MouseEventArgs e)
         {
+            const int baseOpacity = 1;
             const int indexAdder = 1;
             int index = -1;
             for (int i = 0; i < _ribBorders.Count; i++)
@@ -99,11 +102,60 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
                 else if (border.BorderBrush != brush &&
                     GetAmountOfChosenBorders(brush) < maxAllowedChosenRib)
                 {
-                    border.Opacity = 1;
+                    border.Opacity = baseOpacity;
                     border.BorderBrush = brush;
                     if (index != -1) _chosenRibs.Add((index + indexAdder));
                 }
             }
+
+            SetPotMoneyToWin(brush);
+        }
+
+        public void SetPotMoneyToWin(SolidColorBrush globalBrush)
+        {
+            int amount = GetAmountOfChosenBorders(globalBrush);
+            const string notChosenCasinoRibs = "-";
+            switch (amount)
+            {
+                case 0:
+                    PotWon.Text = notChosenCasinoRibs;
+                    return;
+                case 1:
+                    PotWon.Text = GetConvertedPrice(SystemParamsService.GetNumByName("CasinoWinThird"));
+                    return;
+                case 2:
+                    PotWon.Text = GetConvertedPrice(SystemParamsService.GetNumByName("CasinoWinSecond"));
+                    return;
+                case 3:
+                    PotWon.Text = GetConvertedPrice(SystemParamsService.GetNumByName("CasinoWinFirst"));
+                    return;
+                    
+            }
+            throw new Exception("Something wrong with casino ribs choosing");
+        }
+
+
+        public string GetConvertedPrice(int price)
+        {
+            const char endAdd = 'k';
+            const char thousandDivider = ',';
+            StringBuilder build = new StringBuilder();
+
+            for (int i = 0; i < price.ToString().Length; i++)
+            {
+                build.Append(price.ToString()[i]);
+            }
+
+            for (int i = price.ToString().Length; i >= 0; i--)
+            {
+                if (i % 3 == 0 && i != 0 && i != price.ToString().Length)
+                {
+                    build.Insert(price.ToString().Length - i, thousandDivider);
+                }
+            }
+
+            build.Append(endAdd);
+            return build.ToString();
         }
 
         private int GetAmountOfChosenBorders(SolidColorBrush brush)
@@ -113,56 +165,56 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
 
         const int _cubeSize = 100;
         const int _circleSize = 8;
-        private const int _centerDevider = 2;
+        private const int _centerDivider = 2;
         private void SetCubeSquares()
         {
-            const int distFromBorder = 10;
+            const int distanceFromBorder = 10;
 
-            Point center = new Point(OneRibGrid.ActualWidth / _centerDevider - _circleSize / _centerDevider,
-                OneRibGrid.ActualHeight / _centerDevider - _circleSize / _centerDevider);
+            Point center = new Point(OneRibGrid.ActualWidth / _centerDivider - _circleSize / _centerDivider,
+                OneRibGrid.ActualHeight / _centerDivider - _circleSize / _centerDivider);
 
-            Point upLeft = new Point(distFromBorder, distFromBorder);
-            Point upRight = new Point(OneRibGrid.ActualWidth - _circleSize - distFromBorder, distFromBorder);
+            Point upLeft = new Point(distanceFromBorder, distanceFromBorder);
+            Point upRight = new Point(OneRibGrid.ActualWidth - _circleSize - distanceFromBorder, distanceFromBorder);
 
-            Point downLeft = new Point(distFromBorder, OneRibGrid.ActualHeight - _circleSize - distFromBorder);
-            Point downRight = new Point(OneRibGrid.ActualWidth - _circleSize - distFromBorder,
-                OneRibGrid.ActualHeight - _circleSize - distFromBorder);
+            Point downLeft = new Point(distanceFromBorder, OneRibGrid.ActualHeight - _circleSize - distanceFromBorder);
+            Point downRight = new Point(OneRibGrid.ActualWidth - _circleSize - distanceFromBorder,
+                OneRibGrid.ActualHeight - _circleSize - distanceFromBorder);
 
-            Point centerLeft = new Point(distFromBorder, 
-                OneRibGrid.ActualHeight / _centerDevider - _circleSize / _centerDevider);
-            Point centerRight = new Point(OneRibGrid.ActualWidth - _circleSize - distFromBorder,
-                OneRibGrid.ActualHeight / _centerDevider - _circleSize / _centerDevider);
+            Point centerLeft = new Point(distanceFromBorder, 
+                OneRibGrid.ActualHeight / _centerDivider - _circleSize / _centerDivider);
+            Point centerRight = new Point(OneRibGrid.ActualWidth - _circleSize - distanceFromBorder,
+                OneRibGrid.ActualHeight / _centerDivider - _circleSize / _centerDivider);
 
 
-            OneRibGrid.Children.Add(GetElipseInRib(center));
+            OneRibGrid.Children.Add(GetEllipseInRib(center));
 
-            TwoRibGrid.Children.Add(GetElipseInRib(upRight));
-            TwoRibGrid.Children.Add(GetElipseInRib(downLeft));
+            TwoRibGrid.Children.Add(GetEllipseInRib(upRight));
+            TwoRibGrid.Children.Add(GetEllipseInRib(downLeft));
 
-            ThreeRibGrid.Children.Add(GetElipseInRib(upRight));
-            ThreeRibGrid.Children.Add(GetElipseInRib(center));
-            ThreeRibGrid.Children.Add(GetElipseInRib(downLeft));
+            ThreeRibGrid.Children.Add(GetEllipseInRib(upRight));
+            ThreeRibGrid.Children.Add(GetEllipseInRib(center));
+            ThreeRibGrid.Children.Add(GetEllipseInRib(downLeft));
 
-            FourRibGrid.Children.Add(GetElipseInRib(upLeft));
-            FourRibGrid.Children.Add(GetElipseInRib(upRight));
-            FourRibGrid.Children.Add(GetElipseInRib(downRight));
-            FourRibGrid.Children.Add(GetElipseInRib(downLeft));
+            FourRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            FourRibGrid.Children.Add(GetEllipseInRib(upRight));
+            FourRibGrid.Children.Add(GetEllipseInRib(downRight));
+            FourRibGrid.Children.Add(GetEllipseInRib(downLeft));
 
-            FiveRibGrid.Children.Add(GetElipseInRib(upLeft));
-            FiveRibGrid.Children.Add(GetElipseInRib(upRight));
-            FiveRibGrid.Children.Add(GetElipseInRib(downRight));
-            FiveRibGrid.Children.Add(GetElipseInRib(downLeft));
-            FiveRibGrid.Children.Add(GetElipseInRib(center));
+            FiveRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            FiveRibGrid.Children.Add(GetEllipseInRib(upRight));
+            FiveRibGrid.Children.Add(GetEllipseInRib(downRight));
+            FiveRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            FiveRibGrid.Children.Add(GetEllipseInRib(center));
 
-            SixRibGrid.Children.Add(GetElipseInRib(upLeft));
-            SixRibGrid.Children.Add(GetElipseInRib(centerLeft));
-            SixRibGrid.Children.Add(GetElipseInRib(downLeft));
-            SixRibGrid.Children.Add(GetElipseInRib(upRight));
-            SixRibGrid.Children.Add(GetElipseInRib(centerRight));
-            SixRibGrid.Children.Add(GetElipseInRib(downRight));
+            SixRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            SixRibGrid.Children.Add(GetEllipseInRib(centerLeft));
+            SixRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            SixRibGrid.Children.Add(GetEllipseInRib(upRight));
+            SixRibGrid.Children.Add(GetEllipseInRib(centerRight));
+            SixRibGrid.Children.Add(GetEllipseInRib(downRight));
         }
 
-        private Ellipse GetElipseInRib(Point point)
+        private Ellipse GetEllipseInRib(Point point)
         {
             Ellipse el = new Ellipse()
             {

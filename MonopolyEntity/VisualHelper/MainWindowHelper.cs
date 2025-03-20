@@ -46,7 +46,7 @@ namespace MonopolyEntity.VisualHelper
         public static void SetUpperMenuParams(UpperMenu menu, User user)
         {            
             menu.UserAnim.LoginText.Text = user.Login;
-            menu.UserAnim.MoneyText.Text = SystemParamsServeses.GetStringByName("UpperMoneyMoney");
+            menu.UserAnim.MoneyText.Text = SystemParamsService.GetStringByName("UpperMoneyMoney");
         }
 
         public static string GetUserImagePath()
@@ -85,7 +85,7 @@ namespace MonopolyEntity.VisualHelper
             return GetCircleImage(img);
         }
 
-        private static readonly int _centerDevider = 2;
+        private static readonly int _centerDivider = 2;
         private static readonly int _dpiInBitmap = 96;
         public static Image GetCircleImage(Image image)
         {           
@@ -95,8 +95,8 @@ namespace MonopolyEntity.VisualHelper
             DrawingVisual drawingVisual = new DrawingVisual();
             using (DrawingContext context = drawingVisual.RenderOpen())
             {
-                EllipseGeometry clip = new EllipseGeometry(new System.Windows.Point(width / _centerDevider, height / _centerDevider), 
-                    width / _centerDevider, height / _centerDevider);
+                EllipseGeometry clip = new EllipseGeometry(new System.Windows.Point(width / _centerDivider, height / _centerDivider), 
+                    width / _centerDivider, height / _centerDivider);
 
                 context.PushClip(clip);
                 context.DrawImage(image.Source, new Rect(0, 0, width, height));

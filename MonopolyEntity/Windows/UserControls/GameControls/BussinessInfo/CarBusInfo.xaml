@@ -69,19 +69,19 @@
                            Text="Payment depends from amount of own car buses"
                            FontSize="16" Margin="5 0 0 0"/>
 
-                <Button Name ="RebuyBut" Width="200" Height="30" Visibility="Hidden"
+                <Button Name ="RebuyBut" Width="200" Height="25" Visibility="Hidden"
                 Background="{StaticResource MainGlobalColor}" 
                 BorderBrush="White" VerticalAlignment="Center"
                 HorizontalAlignment="Center" Content="Rebuy business"
                 Foreground="White" VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center" FontSize="14"/>
+                HorizontalContentAlignment="Center" FontSize="13"/>
 
-                <Button Name ="DepositBut" Width="200" Height="30" Visibility="Hidden"
+                <Button Name ="DepositBut" Width="200" Height="25" Visibility="Hidden"
                 Background="{StaticResource DenyGlobalColor}" 
                 BorderBrush="White" VerticalAlignment="Center"
                 HorizontalAlignment="Center" Content="Deposit business"
                 Foreground="White" VerticalContentAlignment="Center"
-                HorizontalContentAlignment="Center" FontSize="14"/>
+                HorizontalContentAlignment="Center" FontSize="13"/>
             </Grid>
 
             <Grid Grid.Row="2" Margin="15 5 20 0">

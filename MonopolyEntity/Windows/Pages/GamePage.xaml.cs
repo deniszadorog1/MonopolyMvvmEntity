@@ -154,7 +154,7 @@ namespace MonopolyEntity.Windows.Pages
             GetContextMenu();
         }
 
-        private const int _horOffset = 0;
+        //private const int _horOffset = 0;
         private const int _vertOffset = 0;
         private void GetContextMenu()
         {
@@ -208,7 +208,7 @@ namespace MonopolyEntity.Windows.Pages
             //Its test Misha!!!
             button.Click += (s, e) =>
             {
-                MessageBox.Show($"You choosed: {content}");
+                MessageBox.Show($"You choose: {content}");
                 _dropdownMenuPopup.IsOpen = false;
             };
             return button;
@@ -219,17 +219,17 @@ namespace MonopolyEntity.Windows.Pages
             int playerIndex = _field._ifBirthdayChance ? _field._toPayMoneyBirthdayIndex :
                 _system.MonGame.StepperIndex;
 
-            if (_system.MonGame.Players[playerIndex].IfLost || _field._ifBlockMenus ||
+            if (_system.MonGame.Players[playerIndex].IsLost || _field._ifBlockMenus ||
                 (_field.ChatMessages.Children.OfType<DicesDrop>().Any())) return;
             if (_dropdownMenuPopup.PlacementTarget == null)
             {
-                SetPopopMenu((UserCard)sender, playerIndex);
+                SetPopupMenu((UserCard)sender, playerIndex);
                 _dropdownMenuPopup.PlacementTarget = ((UserCard)sender);
             }
             _dropdownMenuPopup.IsOpen = !_dropdownMenuPopup.IsOpen;
         }
 
-        private void SetPopopMenu(UserCard card, int playerIndex)
+        private void SetPopupMenu(UserCard card, int playerIndex)
         {
             int cardIndex = _userCards.IndexOf(card);
 
@@ -251,7 +251,7 @@ namespace MonopolyEntity.Windows.Pages
             _dropdownMenuPopup.VerticalOffset = -(_userCards[traderIndex].Height - _userCards[traderIndex].UserCardGrid.Height) / 2;
 
             Button but = GetButtonForUserCardMenu(
-                SystemParamsServeses.GetStringByName("SendTradePopup"), traderIndex);
+                SystemParamsService.GetStringByName("SendTradePopup"), traderIndex);
 
             but.Click += (sender, e) =>
             {
@@ -260,19 +260,19 @@ namespace MonopolyEntity.Windows.Pages
             panel.Children.Add(but);
         }
 
-        private const int _centerDevider = 2;
+        private const int _centerDivider = 2;
         private void SetGiveUpButton(StackPanel panel, int playerIndex)
         {
             _dropdownMenuPopup.Width = _userCards[playerIndex].UserCardGrid.Width ;
             _dropdownMenuPopup.HorizontalOffset = 
                 (_userCards[playerIndex].Width - 
-                _userCards[playerIndex].UserCardGrid.Width) / _centerDevider;
+                _userCards[playerIndex].UserCardGrid.Width) / _centerDivider;
 
             _dropdownMenuPopup.VerticalOffset =
                 -Math.Abs((_userCards[playerIndex].Height -
-                _userCards[playerIndex].UserCardGrid.Height) / _centerDevider); 
+                _userCards[playerIndex].UserCardGrid.Height) / _centerDivider); 
 
-            Button but = GetButtonForUserCardMenu(SystemParamsServeses.GetStringByName("GiveUpPopup"), playerIndex);
+            Button but = GetButtonForUserCardMenu(SystemParamsService.GetStringByName("GiveUpPopup"), playerIndex);
             but.Click += (sender, e) =>
             {
                 _field.PlayerGaveUp(playerIndex);

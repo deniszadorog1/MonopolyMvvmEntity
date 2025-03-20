@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace MonopolyDLL.Monopoly.Cell.AngleCells
 {
-    public class Prison : CellParent
+    public class Prison : Cell
     {
         private const int _outPrisonPrice = 500;
-        private readonly int _maxSittingRounds = SystemParamsServeses.GetNumByName("MaxSitInPrison");
+        private readonly int _maxSittingRounds = SystemParamsService.GetNumByName("MaxSitInPrison");
 
         public Prison(string name, int id)
         {

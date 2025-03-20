@@ -37,8 +37,8 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
             ItemName.Text = _boxItem.Name;
             ItemType.Text = _boxItem.Type.ToString();
             
-            CardPersErnings.Text = $"{SystemParamsServeses.GetStringByName("BusDescCardErngs")} {_boxItem.Multiplier}%";
-            ItemDesctiption.Text = SystemParamsServeses.GetStringByName("BusDescItemDesc");
+            CardPersErnings.Text = $"{SystemParamsService.GetStringByName("BusDescCardErngs")} {_boxItem.Multiplier}%";
+            ItemDesctiption.Text = SystemParamsService.GetStringByName("BusDescItemDesc");
 
             ColType.Text = $"{DBQueries.GetBoxNameByItsDropItemName(_boxItem.Name)} collection";
 

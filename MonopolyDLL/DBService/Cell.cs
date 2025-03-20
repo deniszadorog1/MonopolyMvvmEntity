@@ -12,10 +12,10 @@ namespace MonopolyDLL.DBService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cell()
         {
-            Casinos = new HashSet<Casino>();
-            Chances = new HashSet<Chance>();
-            Stations = new HashSet<Station>();
-            Taxes = new HashSet<Tax>();
+            Casino = new HashSet<Casino>();
+            Chance = new HashSet<Chance>();
+            Station = new HashSet<Station>();
+            Tax = new HashSet<Tax>();
         }
 
         public int Id { get; set; }
@@ -32,19 +32,19 @@ namespace MonopolyDLL.DBService
         public virtual Board Board { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Casino> Casinos { get; set; }
+        public virtual ICollection<Casino> Casino { get; set; }
 
         public virtual CellType CellType1 { get; set; }
 
         public virtual PictureFile PictureFile { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Chance> Chances { get; set; }
+        public virtual ICollection<Chance> Chance { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Station> Stations { get; set; }
+        public virtual ICollection<Station> Station { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tax> Taxes { get; set; }
+        public virtual ICollection<Tax> Tax { get; set; }
     }
 }

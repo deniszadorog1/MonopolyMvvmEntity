@@ -12,7 +12,7 @@ namespace MonopolyDLL.DBService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Station()
         {
-            PriceForLevels = new HashSet<PriceForLevel>();
+            PriceForLevel = new HashSet<PriceForLevel>();
         }
 
         public int Id { get; set; }
@@ -23,16 +23,16 @@ namespace MonopolyDLL.DBService
 
         public int? UpgradePrice { get; set; }
 
-        public int? OwnerId { get; set; }
-
         public int? TypeId { get; set; }
+
+        public int? DepositPrice { get; set; }
+
+        public int? RebuyPrice { get; set; }
 
         public virtual Cell Cell { get; set; }
 
-        public virtual PlayerGame PlayerGame { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PriceForLevel> PriceForLevels { get; set; }
+        public virtual ICollection<PriceForLevel> PriceForLevel { get; set; }
 
         public virtual StationType StationType { get; set; }
     }

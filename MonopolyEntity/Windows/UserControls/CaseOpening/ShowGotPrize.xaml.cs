@@ -47,7 +47,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         public void FillParams()
         {
             PrizeImg.Source = _prizeImg.Source;
-            NameText.Text = $"{SystemParamsServeses.GetStringByName("CaseOpenPriszeMessage")}" +
+            NameText.Text = $"{SystemParamsService.GetStringByName("CaseOpenPrizeMessage")}" +
                 $" {_prize.Name}";
         }
     }

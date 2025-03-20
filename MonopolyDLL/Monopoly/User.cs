@@ -21,23 +21,24 @@ namespace MonopolyDLL.Monopoly
         public string Password { get; set; }
         public int AmountOfMoney { get; set; }
         public int Position { get; set; }
-        public bool IfSitInPrison { get; set; }
+        public bool IsSitInPrison { get; set; }
         public int SitInPrisonCounter { get; set; }
 
         public UserInventory Inventory { get; set; }
         public List<BoxItem> GameBusses { get; set; }
 
-        public bool IfLost { get; set; }
+        public bool IsLost { get; set; }
         public int DoubleCounter { get; set; }
 
         public List<BusinessType> BuiltHousesInRowType { get; set; }
-        public bool IfMoveBackWards = false;
+        public bool IsMoveBackwards = false;
         private List<BusinessType> _collectedMonopolies = new List<BusinessType>();
 
         private int Id;
-        private int _maxDoubles = 3;
+        private int _maxDoubles = SystemParamsService.GetNumByName("MaxDoubles"); //3;
         private int? _pictureId;
-       
+        private bool _skipMove = false;
+
 
         public User(string login, int id, int? picId, string password)
         {
@@ -45,11 +46,11 @@ namespace MonopolyDLL.Monopoly
             Password = password;
             Id = id;
             GameBusses = new List<InventoryObjs.BoxItem>();
-            AmountOfMoney = 15000;
+            AmountOfMoney = SystemParamsService.GetNumByName("StartMoney"); //15000;
             Position = 0;
-            IfSitInPrison = false;
+            IsSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();
-            IfLost = false;
+            IsLost = false;
             DoubleCounter = 0;
             GameBusses = new List<InventoryObjs.BoxItem>();
             SetPictureId(picId);
@@ -58,35 +59,45 @@ namespace MonopolyDLL.Monopoly
         public User()
         {
             Login = string.Empty;
-            AmountOfMoney = 15000;
+            AmountOfMoney = SystemParamsService.GetNumByName("StartMoney");// 15000;
             Position = 0;
-            IfSitInPrison = false;
+            IsSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();
-            IfLost = false;
+            IsLost = false;
             DoubleCounter = 0;
             GameBusses = new List<InventoryObjs.BoxItem>();
         }
 
-        public User(string login, int amountOfMoney, int position, bool ifLost)
+        public User(string login, int amountOfMoney, int position, bool isLost)
         {
             Login = login;
             AmountOfMoney = amountOfMoney;
             Position = position;
-            IfSitInPrison = false;
+            IsSitInPrison = false;
             BuiltHousesInRowType = new List<BusinessType>();
-            IfLost = ifLost;
+            IsLost = isLost;
             DoubleCounter = 0;
             GameBusses = new List<InventoryObjs.BoxItem>();
         }
 
-        public void SetOpositeMoveBackwardsVal()
+        public void SetSkipMoveOpposite()
         {
-            IfMoveBackWards = !IfMoveBackWards;
+            _skipMove = !_skipMove;
         }
 
-        public bool IfNeedToMoveBackWards()
+        public bool IsSleeping()
         {
-            return IfMoveBackWards;
+            return _skipMove;
+        }
+
+        public void SetOppositeMoveBackwardsVal()
+        {
+            IsMoveBackwards = !IsMoveBackwards;
+        }
+
+        public bool IsNeedToMoveBackwards()
+        {
+            return IsMoveBackwards;
         }
 
         public void ClearBuiltHousesInRowType()
@@ -99,7 +110,7 @@ namespace MonopolyDLL.Monopoly
             BuiltHousesInRowType.Add(type);
         }
 
-        public bool IfTypeContainsInBuiltHouses(BusinessType type)
+        public bool IsTypeContainsInBuiltHouses(BusinessType type)
         {
             return BuiltHousesInRowType.Contains(type);
         }
@@ -124,14 +135,14 @@ namespace MonopolyDLL.Monopoly
             AmountOfMoney += money;
         }
 
-        public bool IfPlayersInCellIndex(int cellIndex)
+        public bool IsPlayersInCellIndex(int cellIndex)
         {
             return Position == cellIndex;
         }
 
-        public bool IfPlayerSitsInPrison()
+        public bool IsPlayerSitsInPrison()
         {
-            return IfSitInPrison;
+            return IsSitInPrison;
         }
 
         public void ClearSitInPrisonCounter()
@@ -146,7 +157,7 @@ namespace MonopolyDLL.Monopoly
 
         public void ReverseSitInPrison()
         {
-            IfSitInPrison = !IfSitInPrison;
+            IsSitInPrison = !IsSitInPrison;
         }
 
         public int GetPrisonCounter()
@@ -154,7 +165,7 @@ namespace MonopolyDLL.Monopoly
             return SitInPrisonCounter;
         }
 
-        public List<BusinessType> GetCollectedMonopolys()
+        public List<BusinessType> GetCollectedMonopolies()
         {
             return _collectedMonopolies;
         }
@@ -175,17 +186,17 @@ namespace MonopolyDLL.Monopoly
             _collectedMonopolies.Clear();
         }
 
-        public bool IfPlayerHasEnoughMoney(int money)
+        public bool IsPlayerHasEnoughMoney(int money)
         {
             return AmountOfMoney >= money;
         }
 
-        public bool IfMaxDoublesIsAchieved()
+        public bool IsMaxDoublesIsAchieved()
         {
             return _maxDoubles <= DoubleCounter;
         }
 
-        public bool IfDoublesMoreThenZero()
+        public bool IsDoublesMoreThenZero()
         {
             return DoubleCounter != 0;
         }
@@ -195,7 +206,7 @@ namespace MonopolyDLL.Monopoly
             DoubleCounter = 0;
         }
 
-        public bool IfBusWithSuchIdIsUsedInGame(int stationId)
+        public bool IsBusWithSuchIdIsUsedInGame(int stationId)
         {
             return GameBusses.Any(x => x.StationId == stationId);
         }
@@ -206,7 +217,7 @@ namespace MonopolyDLL.Monopoly
                 GameBusses.Find(x => x.StationId == id) : null;
         }
 
-        public bool IfBusWithSuchNameIsUsedInGame(string name)
+        public bool IsBusWithSuchNameIsUsedInGame(string name)
         {
             return GameBusses.Any(x => x.Name == name);
         }
@@ -231,44 +242,44 @@ namespace MonopolyDLL.Monopoly
             return GameBusses[index];
         }
 
-        public bool IfHasInventoryOnPosition()
+        public bool IsHasInventoryOnPosition()
         {
             return GameBusses.Where(x => x.StationId == Position).Any();
         }
 
-        public bool IfHasInventoryItemOnCellIndex(int cellIndex)
+        public bool IsHasInventoryItemOnCellIndex(int cellIndex)
         {
             return GameBusses.Where(x => x.StationId == cellIndex).Any();
         }
 
-        public ParentBus GetInventoryItemById(int position, ParentBus ususalPosBus, int newOwnerIndex)
+        public Business GetInventoryItemById(int position, Business usualPosBus, int newOwnerIndex)
         {
             BoxItem item = GameBusses.Where(x => x.StationId == position).FirstOrDefault();
 
-            const int usCounter = 15;
+            int usCounter = SystemParamsService.GetNumByName("MaxDepositCounter");// 15; //!!!
 
-            ParentBus bus;
+            Business bus;
 
             if (item.Type == BusinessType.Cars)
             {
-                bus = new CarBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
-                     ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
-                     usCounter, 0, newOwnerIndex, item.Type, ususalPosBus.IfDeposited, ususalPosBus.GetId());
+                bus = new CarBusiness(item.Name, usualPosBus.Price, usualPosBus.DepositPrice,
+                     usualPosBus.RebuyPrice, item.GetNewPaymentList(usualPosBus.PayLevels),
+                     usCounter, 0, newOwnerIndex, item.Type, usualPosBus.IsDeposited, usualPosBus.GetId());
             }
             else if (item.Type == BusinessType.Games)
             {
-                bus = new GameBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
-                    ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
-                    usCounter, 0, newOwnerIndex, item.Type, ususalPosBus.IfDeposited, ususalPosBus.GetId());
+                bus = new GameBusiness(item.Name, usualPosBus.Price, usualPosBus.DepositPrice,
+                    usualPosBus.RebuyPrice, item.GetNewPaymentList(usualPosBus.PayLevels),
+                    usCounter, 0, newOwnerIndex, item.Type, usualPosBus.IsDeposited, usualPosBus.GetId());
             }
             else { 
-                bus = new UsualBus(item.Name, ususalPosBus.Price, ususalPosBus.DepositPrice,
-                ususalPosBus.RebuyPrice, item.GetNewPaymentList(ususalPosBus.PayLevels),
-                usCounter, 0, ((UsualBus)ususalPosBus).BuySellHouse, newOwnerIndex,
-                item.Type, ususalPosBus.IfDeposited, ususalPosBus.GetId());
+                bus = new RegularBusiness(item.Name, usualPosBus.Price, usualPosBus.DepositPrice,
+                usualPosBus.RebuyPrice, item.GetNewPaymentList(usualPosBus.PayLevels),
+                usCounter, 0, ((RegularBusiness)usualPosBus).BuySellHouse, newOwnerIndex,
+                item.Type, usualPosBus.IsDeposited, usualPosBus.GetId());
             }
 
-            bus.SetTempDepositCounter(ususalPosBus.TempDepositCounter);
+            bus.SetTempDepositCounter(usualPosBus.TempDepositCounter);
 
             return bus;
         }

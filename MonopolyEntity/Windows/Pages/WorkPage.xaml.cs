@@ -23,10 +23,10 @@ namespace MonopolyEntity.Windows.Pages
     {
         private MonopolySystem _monSystem;
         private Frame _frame;
-        public WorkPage(MonopolySystem monSystem, Frame frmae)
+        public WorkPage(MonopolySystem monSystem, Frame frame)
         {
             _monSystem = monSystem;
-            _frame = frmae;
+            _frame = frame;
 
             InitializeComponent();
             SetStartPage();
@@ -41,15 +41,15 @@ namespace MonopolyEntity.Windows.Pages
 
         public void SetWindowSize()
         {
-            return;
+           /* return;
             Window parentWindow = Window.GetWindow(this);
             if (parentWindow != null)
             {
                 parentWindow.WindowState = WindowState.Maximized;
-            }
+            }*/
         }
 
-        public void ClearVisiableItems()
+        public void ClearVisibleItems()
         {
             VisiableItems.Children.Clear();
         }

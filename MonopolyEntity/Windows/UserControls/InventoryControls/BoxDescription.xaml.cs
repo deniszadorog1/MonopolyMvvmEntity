@@ -44,10 +44,10 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
         public void SetTextParams()
         {//SystemParamsServeses.GetStringByName("InPrisonQustion")
             ItemName.Text = _caseBox.Name;
-            ItemType.Text = SystemParamsServeses.GetStringByName("LotBox");
-            ItemDesctiption.Text = SystemParamsServeses.GetStringByName("LotBoxDesc");
-            ColType.Text = SystemParamsServeses.GetStringByName("LotBoxColType");
-            CanBeDroppedDescription.Text = SystemParamsServeses.GetStringByName("LotBoxCanDroppedDesc");
+            ItemType.Text = SystemParamsService.GetStringByName("LotBox");
+            ItemDesctiption.Text = SystemParamsService.GetStringByName("LotBoxDesc");
+            ColType.Text = SystemParamsService.GetStringByName("LotBoxColType");
+            CanBeDroppedDescription.Text = SystemParamsService.GetStringByName("LotBoxCanDroppedDesc");
         }
 
         private void OpenCaseBut_Click(object sender, RoutedEventArgs e)

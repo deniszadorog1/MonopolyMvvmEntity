@@ -16,7 +16,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
     /// </summary>
     public partial class CaseRoulette : UserControl
     {
-        private List<Image> _imgs;
+        private List<Image> _images;
         private List<string> _names;
         private List<SolidColorBrush> _colors;
 
@@ -24,7 +24,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
 
         public CaseRoulette()
         {
-            _imgs = new List<Image>();
+            _images = new List<Image>();
             _names = new List<string>();
             _colors = new List<SolidColorBrush>();
 
@@ -42,7 +42,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         public CaseRoulette(List<Image> caseImgs,
             List<string> itemNames, List<SolidColorBrush> colors)
         {
-            _imgs = caseImgs;
+            _images = caseImgs;
             _names = itemNames;
             _colors = colors;
 
@@ -57,7 +57,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
 
         public void SetTestValues()
         {
-            (_imgs, _names) = ThingForTest.GetParamsForCaseRoullete();
+            (_images, _names) = ThingForTest.GetParamsForCaseRoullete();
         }
 
         public DoubleAnimation _animation;
@@ -65,8 +65,9 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
         {
             int cardId = 1;
             const int endPoint = -10000;
-            int completeAnimsCount = 1;
-            const int animDuration = 4;
+            int completeAnimationCount = 1;
+            const int animationDuration = 4;
+            const int baseAnimCount = 1;
 
             foreach (UIElement element in CaseRotator.Children)
             {
@@ -77,21 +78,21 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                 {
                     From = 0,
                     To = endPoint,
-                    Duration = TimeSpan.FromSeconds(animDuration),
+                    Duration = TimeSpan.FromSeconds(animationDuration),
                     EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
                 };
 
                 _animation.Completed += (s, e) =>
                 {
-                    if (completeAnimsCount == amountOfItems)
+                    if (completeAnimationCount == amountOfItems)
                     {
                         Console.WriteLine(_resCard.CardName.Text);
                         ShowPrizeWindow();
-                        completeAnimsCount = 1;
+                        completeAnimationCount = baseAnimCount;
                         _animationIsDone = true;
                     }
                     transform.X = 0;
-                    completeAnimsCount++;
+                    completeAnimationCount++;
                 };
 
                 transform.BeginAnimation(TranslateTransform.XProperty, _animation);
@@ -131,12 +132,13 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             {
                 _resCard = card;
             }
+            
         }
 
-        private const int _centerWidth = _cardWidth * 2 + _distBetweenCards * 2;
+        private const int _centerWidth = _cardWidth * _centerDivider + _distanceBetweenCards * _centerDivider;
         public CaseCard GetCardByXLocation(int endPoint, int tempCardId)
         {
-            int tempXLoc = tempCardId * _cardWidth + tempCardId * _distBetweenCards;
+            int tempXLoc = tempCardId * _cardWidth + tempCardId * _distanceBetweenCards;
 
             if (tempXLoc > endPoint + _centerWidth)
             {
@@ -148,7 +150,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
 
         private const int _cardWidth = 130;
         private const int _cardHeight = 150;
-        private const int _distBetweenCards = 10;
+        private const int _distanceBetweenCards = 10;
         private List<CaseCard> _cardsToFind = new List<CaseCard>();
         private const int amountOfItems = 150;
 
@@ -160,7 +162,7 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
                 {
                     Width = _cardWidth,
                     Height = _cardHeight,
-                    Margin = new Thickness(0, 0, _distBetweenCards, 0),
+                    Margin = new Thickness(0, 0, _distanceBetweenCards, 0),
                     VerticalAlignment = VerticalAlignment.Top,
                 };
 
@@ -171,24 +173,24 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             }
         }
 
-        private const int _centerDevider = 2;
+        private const int _centerDivider = 2; 
         public void SetChosenLine()
         {
             CaseView.Width = Width;
             CaseView.Height = Height;
 
-            ChoseLine.X1 = Width / _centerDevider;
-            ChoseLine.Y1 = _distBetweenCards;
-            ChoseLine.X2 = Width / _centerDevider;
-            ChoseLine.Y2 = _distBetweenCards + _cardHeight;
+            ChoseLine.X1 = Width / _centerDivider;
+            ChoseLine.Y1 = _distanceBetweenCards;
+            ChoseLine.X2 = Width / _centerDivider;
+            ChoseLine.Y2 = _distanceBetweenCards + _cardHeight;
         }
 
         Random rnd = new Random();
         public CaseCard FillCaseCardInRandom(CaseCard card)
         {
-            int index = rnd.Next(0, _imgs.Count);
+            int index = rnd.Next(0, _images.Count);
 
-            card.CardImage.Source = _imgs[index].Source;
+            card.CardImage.Source = _images[index].Source;
             card.CardName.Text = _names[index];
             card.BorderBgColor.Background = _colors[index];
 

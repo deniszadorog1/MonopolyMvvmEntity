@@ -80,6 +80,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
         public void AddEmptyColorCircle()
         {
+            const int zIndex = 9;
             const int circleSize = 73;
             Ellipse colorCircle = new Ellipse()
             {
@@ -90,7 +91,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
                 HorizontalAlignment = HorizontalAlignment.Center
             };
 
-            Canvas.SetZIndex(colorCircle, 9);
+            Canvas.SetZIndex(colorCircle, zIndex);
 
             UserImageGrid.Children.Add(colorCircle);
         }
@@ -98,16 +99,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         public int _toMakeBigger = 20;
         public int _toMakeThinner = -20;
 
-        public DoubleAnimation _horizAnim;
-        private const double _animDur = 0.2;
-        public void SetAnimation(SolidColorBrush brush, bool ifStepper)
+        public DoubleAnimation _horizontalAnimation; 
+        private const double _animationDuration = 0.2;
+        public void SetAnimation(SolidColorBrush brush, bool isStepper)
         {
             var transform = new TranslateTransform();
             UserCardGrid.RenderTransform = transform;
 
-            int value = ifStepper ? _toMakeBigger : _toMakeThinner;
+            int value = isStepper ? _toMakeBigger : _toMakeThinner;
             int horValue = /*ifStepper ? translateMove :*/ 0;
-            UserCardGrid.Background = brush is null ? _usualBrush : brush;
+            PaintBg(brush);
 
             SetTimer(brush);
 
@@ -115,7 +116,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = UserCardGrid.Width,
                 To = UserCardGrid.Width + value,
-                Duration = TimeSpan.FromSeconds(_animDur),
+                Duration = TimeSpan.FromSeconds(_animationDuration),
                 // AutoReverse = true 
             };
 
@@ -123,26 +124,31 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 From = UserCardGrid.Height,
                 To = UserCardGrid.Height + value,
-                Duration = TimeSpan.FromSeconds(_animDur),
+                Duration = TimeSpan.FromSeconds(_animationDuration),
                 //AutoReverse = true 
             };
 
-            _horizAnim = new DoubleAnimation
+            _horizontalAnimation = new DoubleAnimation
             {
                 From = 0,
                 To = horValue,
-                Duration = TimeSpan.FromSeconds(_animDur),
+                Duration = TimeSpan.FromSeconds(_animationDuration),
                // EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
             };
-            _horizAnim.Completed += HorizAnim_Complited;
+            _horizontalAnimation.Completed += HorizAnim_Complited;
 
-            transform.BeginAnimation(TranslateTransform.XProperty, _horizAnim);
+            transform.BeginAnimation(TranslateTransform.XProperty, _horizontalAnimation);
 
             UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);         
             UserCardGrid.BeginAnimation(HeightProperty, heightAnimation);
         }    
 
-        public bool IfUserCardBgIsUsual()
+        public void PaintBg(SolidColorBrush brush)
+        {
+            UserCardGrid.Background = brush is null ? _usualBrush : brush;
+        }
+
+        public bool IsUserCardBgIsUsual()
         {
             return ((SolidColorBrush)UserCardGrid.Background).Color == _usualBrush.Color;
         }
@@ -165,7 +171,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             SetTimerBgColor(brush);
         }
 
-        public void SetVisableToTimer()
+        public void SetVisibleToTimer()
         {
             UserTimer.Visibility = Visibility.Visible;
             UserTimer.SetTimer();
@@ -212,7 +218,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             
         }
 
-        public void MakeCardUsual()
+        /*public void MakeCardUsual()
         {
             return;
             var transform = new TranslateTransform();
@@ -250,6 +256,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);
             UserCardGrid.BeginAnimation(HeightProperty, heightAnimation);
         }
-
+*/
     }
 }

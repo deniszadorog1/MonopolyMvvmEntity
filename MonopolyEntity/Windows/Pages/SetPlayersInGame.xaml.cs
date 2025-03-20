@@ -54,7 +54,7 @@ namespace MonopolyEntity.Windows.Pages
         }
 
         private const int _itemsCut = 100;
-        private const int _centerDevider = 2;
+        private const int _centerDivider = 2;
         private void AddLoginsInBox(List<User> users, Canvas box)
         {
             //box.PreviewDrop += ListBox_Drop;
@@ -63,7 +63,7 @@ namespace MonopolyEntity.Windows.Pages
             {
                 WrapPanel panel = new WrapPanel()
                 {
-                    Width = this.Width / _centerDevider - _itemsCut,
+                    Width = this.Width / _centerDivider - _itemsCut,
                     Background = Brushes.Transparent,
                     Orientation = Orientation.Horizontal,
                 };
@@ -79,7 +79,7 @@ namespace MonopolyEntity.Windows.Pages
 
                 box.Children.Add(panel);               
             }
-            UppdateHeightLocForItems(box);
+            UpdateHeightLocForItems(box);
         }
 
         private void MoveWarpPanel_MouseDown(object sender, MouseEventArgs e)
@@ -98,7 +98,7 @@ namespace MonopolyEntity.Windows.Pages
         }
 
         private const int _mouseMoveParam = 20;
-        private void ToDrag_MouseMove(object sedner, MouseEventArgs e)
+        private void ToDrag_MouseMove(object sender, MouseEventArgs e)
         {
             if (_toDragDrop is null) return;
             Point point = e.GetPosition(DragCanvas);
@@ -135,8 +135,8 @@ namespace MonopolyEntity.Windows.Pages
                 _panelOwner.Children.Add(_toDragDrop);
             }
 
-            UppdateHeightLocForItems(PlayersInGame);
-            UppdateHeightLocForItems(PlayersThatCanBeAdd);
+            UpdateHeightLocForItems(PlayersInGame);
+            UpdateHeightLocForItems(PlayersThatCanBeAdd);
 
             SetDraggedPlayerInList(GetListToWorkWith(_panelOwner), 
                 GetListToWorkWith((Canvas)_toDragDrop.Parent));
@@ -149,7 +149,7 @@ namespace MonopolyEntity.Windows.Pages
         }
 
         private const int _userItemHeight = 55;
-        public void UppdateHeightLocForItems(Canvas can)
+        public void UpdateHeightLocForItems(Canvas can)
         {
             for (int i = 0; i < can.Children.Count; i++)
             {
@@ -170,7 +170,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void ListBox_Drop(object sender, DragEventArgs e)
         {
-            UppdateHeightLocForItems((Canvas)sender);
+            UpdateHeightLocForItems((Canvas)sender);
 
             SetDraggedPlayerInList(GetListToWorkWith(_panelOwner), GetListToWorkWith((Canvas)sender));
         }
@@ -217,10 +217,10 @@ namespace MonopolyEntity.Windows.Pages
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
             const int leastAmountOfPlayers = 2;
-            const int _maxAmountofPlayers = 5;
+            const int _maxAmountOfPlayers = 5;
             if (!_users.Any(x => x.Login == _system.LoggedUser.Login) ||
                 _playersInGame.Count < leastAmountOfPlayers ||
-                _playersInGame.Count > _maxAmountofPlayers) return;
+                _playersInGame.Count > _maxAmountOfPlayers) return;
 
             _system.MonGame.Players = _playersInGame;
             _frame.Content = new GamePage(_frame, _system);;

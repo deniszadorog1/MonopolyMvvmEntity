@@ -12,7 +12,7 @@ namespace MonopolyDLL.DBService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PriceMultiplier()
         {
-            BoxItems = new HashSet<BoxItem>();
+            BoxItems = new HashSet<BoxItems>();
         }
 
         public int Id { get; set; }
@@ -20,6 +20,6 @@ namespace MonopolyDLL.DBService
         public int? Multiplier { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BoxItem> BoxItems { get; set; }
+        public virtual ICollection<BoxItems> BoxItems { get; set; }
     }
 }

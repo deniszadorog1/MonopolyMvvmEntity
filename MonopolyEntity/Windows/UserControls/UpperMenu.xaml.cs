@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
+using MonopolyEntity.Interfaces;
 using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.Pages;
 
@@ -34,21 +35,23 @@ namespace MonopolyEntity.Windows.UserControls
 
         private void UserIcon_MouseLeave(object sender, MouseEventArgs e)
         {
-            //return;
+            const int animationDistance = 150;
+            const double duration = 0.2;
+
             var animation = new DoubleAnimation
             {
-                To = 150,
-                Duration = TimeSpan.FromSeconds(0.2)
+                To = animationDistance,
+                Duration = TimeSpan.FromSeconds(duration)
             };
 
-            animation.Completed += Anim_Complite;
+            animation.Completed += Animation_Complete;
             UserAnim.UserMenu.Visibility = Visibility.Hidden;
             UserAnim.ElemBorder.Background = new SolidColorBrush(Colors.Transparent);
 
             UserAnim.AnimImage.BeginAnimation(Canvas.LeftProperty, animation);
         }
 
-        private void Anim_Complite(object sender, EventArgs e)
+        private void Animation_Complete(object sender, EventArgs e)
         {
             Canvas.SetZIndex(UserAnim.AnimImage, 0);
         }
@@ -70,9 +73,16 @@ namespace MonopolyEntity.Windows.UserControls
 
         private void MainLogoBut_Click(object sender, RoutedEventArgs e)
         {
+            //!!!!!!!!!!!!!!!!  Гениально использовал интерфейсы  !!!!!!!!!!!!!!!!!!!            
             _page = _page = Helper.FindParent<Page>(this);
             if (_page is null) return;
 
+            if(_page is IPagesOpener inter)
+            {
+                inter.OpenMainPage();
+            }
+
+/*
             if (_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenMainPage();
@@ -84,15 +94,21 @@ namespace MonopolyEntity.Windows.UserControls
             else if (_page is ProfileSettings settings)
             {
                 settings.OpenMainPage();
-            }
+            }*/
         }
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
+            //!!!!!!!!!!!!!!!!  Гениально использовал интерфейсы  !!!!!!!!!!!!!!!!!!!            
             _page = _page = Helper.FindParent<Page>(this);
             if (_page is null) return;
 
-            if (_page is Pages.MainPage mainPage)
+            if (_page is IPagesOpener inter)
+            {
+                inter.OpenGameField();
+            }
+
+/*            if (_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenGameField();
             }
@@ -100,10 +116,10 @@ namespace MonopolyEntity.Windows.UserControls
             {
                 invPage.OpenGameField();
             }
-            else if (_page is ProfileSettings settigns)
+            else if (_page is ProfileSettings settings)
             {
-                settigns.OpenGameField();
-            }
+                settings.OpenGameField();
+            }*/
         }
     }
 }

@@ -12,7 +12,7 @@ namespace MonopolyDLL.DBService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Casino()
         {
-            WonTablesInCasinoes = new HashSet<WonTablesInCasino>();
+            WonTablesInCasino = new HashSet<WonTablesInCasino>();
         }
 
         public int Id { get; set; }
@@ -24,6 +24,6 @@ namespace MonopolyDLL.DBService
         public virtual Cell Cell { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WonTablesInCasino> WonTablesInCasinoes { get; set; }
+        public virtual ICollection<WonTablesInCasino> WonTablesInCasino { get; set; }
     }
 }

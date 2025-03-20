@@ -12,10 +12,10 @@ namespace MonopolyDLL.DBService
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PictureFile()
         {
-            BoxItems = new HashSet<BoxItem>();
-            Cells = new HashSet<Cell>();
-            LotBoxes = new HashSet<LotBox>();
-            Players = new HashSet<Player>();
+            BoxItems = new HashSet<BoxItems>();
+            Cell = new HashSet<Cell>();
+            LotBox = new HashSet<LotBox>();
+            Player = new HashSet<Player>();
         }
 
         public int Id { get; set; }
@@ -27,15 +27,15 @@ namespace MonopolyDLL.DBService
         public string Path { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BoxItem> BoxItems { get; set; }
+        public virtual ICollection<BoxItems> BoxItems { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cell> Cells { get; set; }
+        public virtual ICollection<Cell> Cell { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<LotBox> LotBoxes { get; set; }
+        public virtual ICollection<LotBox> LotBox { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Player> Players { get; set; }
+        public virtual ICollection<Player> Player { get; set; }
     }
 }

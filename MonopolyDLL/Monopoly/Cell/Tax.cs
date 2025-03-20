@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonopolyDLL.Monopoly.Cell
 {
-    public class Tax : CellParent
+    public class Tax : Cell
     {
         public int TaxBill { get; set; }
 

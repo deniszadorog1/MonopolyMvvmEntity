@@ -10,7 +10,7 @@ namespace MonopolyDLL.Monopoly.Enums
     {
         GotOnBusinessToBuy = 1,
         GotOnOwnBusiness,
-        GotOnEnemysBusiness,
+        GotOnEnemiesBusiness,
         GotOnTax,
         GotOnCasino,
         GotOnGoToPrison,

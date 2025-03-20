@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,13 +26,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
             InitializeComponent();
         }
 
-        public bool IfTradeItemNameContainsInList(string busName)
+        public bool IsTradeItemNameContainsInList(string busName)
         {
-            return IfItemNameContainsInListBox(busName, SenderListBox) ||
-                IfItemNameContainsInListBox(busName, ReciverListBox);
+            return IsItemNameContainsInListBox(busName, SenderListBox) ||
+                IsItemNameContainsInListBox(busName, ReciverListBox);
         }
 
-        public bool IfItemNameContainsInListBox(string name, ListBox box)
+        public bool IsItemNameContainsInListBox(string name, ListBox box)
         {
             for (int i = 0; i < box.Items.Count; i++)
             {
@@ -49,7 +50,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
             SenderTotalMoney.Text = money;
         }
 
-        public void UpdateReciverTotalMoney(string money)
+        public void UpdateReceiverTotalMoney(string money)
         {
             ReciverTotalMoney.Text = money;
         }
@@ -57,15 +58,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
         public int GetSenderTradeMoney()
         {
             RemoveSpace(SenderMoney.AmountOfMoneyBox.Text, SenderMoney.AmountOfMoneyBox);
-            return ConvertMoneyStringInInterger(SenderMoney.AmountOfMoneyBox.Text);
+            return ConvertMoneyStringInInteger(SenderMoney.AmountOfMoneyBox.Text);
         }
 
         public void RemoveSpace(string money, TextBox block)
         {
+            const char space = ' ';
             string res = string.Empty;
             for (int i = 0; i < money.Length; i++)
             {
-                if (money[i] != ' ')
+                if (money[i] != space)
                 {
                     res += money[i];
                 }
@@ -73,14 +75,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
             block.Text = res;
         }
 
-        public int GetReciverTradeMoney()
+        public int GetReceiverTradeMoney()
         {
             RemoveSpace(ReciverMoney.AmountOfMoneyBox.Text, ReciverMoney.AmountOfMoneyBox);
 
-            return ConvertMoneyStringInInterger(ReciverMoney.AmountOfMoneyBox.Text);
+            return ConvertMoneyStringInInteger(ReciverMoney.AmountOfMoneyBox.Text);
         }
 
-        private int ConvertMoneyStringInInterger(string money)
+        private int ConvertMoneyStringInInteger(string money)
         {
             string zeroRemoved = RemoveZerosFromStart(money);
             return int.Parse(zeroRemoved);
@@ -88,16 +90,17 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
 
         public string RemoveZerosFromStart(string moneyString)
         {
+            const char startChar = '0';
             StringBuilder res = new StringBuilder();
             bool startWrite = false;
 
             for (int i = 0; i < moneyString.Length; i++)
             {
-                if (moneyString[i] != '0') startWrite = true;
+                if (moneyString[i] != startChar) startWrite = true;
                 if (startWrite) res.Append(moneyString[i]);
             }
 
-            if (res.Length == 0) res.Append("0");
+            if (res.Length == 0) res.Append(startChar);
             return res.ToString();
         }
 

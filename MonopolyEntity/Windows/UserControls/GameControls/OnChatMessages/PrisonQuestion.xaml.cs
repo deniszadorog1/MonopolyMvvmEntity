@@ -24,10 +24,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         private SolidColorBrush _inActiveColor = (SolidColorBrush)Application.Current.Resources["InActiveColor"];
         bool _ifGiveUp;
 
-        public PrisonQuestion(bool ifPlayerHasEnoughMoney, bool ifOnlyGiveUp)
+        public PrisonQuestion(bool isPlayerHasEnoughMoney, bool isOnlyGiveUp)
         {
-            _ifPlayerHasEnoughMoney = ifPlayerHasEnoughMoney;
-            _ifGiveUp = ifOnlyGiveUp;
+            _ifPlayerHasEnoughMoney = isPlayerHasEnoughMoney;
+            _ifGiveUp = isOnlyGiveUp;
             InitializeComponent();
 
             SetPayButton(_ifPlayerHasEnoughMoney, _ifGiveUp);
@@ -41,9 +41,9 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             GiveUpBut.Visibility = Visibility.Visible;
         }
 
-        public void SetPayButton(bool ifPlayerHasEnoughMoney, bool ifNeedToGiveUp)
+        public void SetPayButton(bool isPlayerHasEnoughMoney, bool isNeedToGiveUp)
         {
-            if (ifNeedToGiveUp)
+            if (isNeedToGiveUp)
             {
                 GiveUpBut.Visibility = Visibility.Visible;
                 return;
@@ -51,7 +51,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             
             GiveUpBut.Visibility = Visibility.Hidden;
 
-            if (ifPlayerHasEnoughMoney)
+            if (isPlayerHasEnoughMoney)
             {
                 LastPay.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
                 PayBut.Background = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
@@ -75,10 +75,10 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             LastPay.Visibility = Visibility.Visible;
         }
 
-        private const double _middleDevider = 2.25;
+        private const double _middleDivider = 2.25;
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            PayBut.Width = this.ActualWidth / _middleDevider;
+            PayBut.Width = this.ActualWidth / _middleDivider;
         }
     }
 }

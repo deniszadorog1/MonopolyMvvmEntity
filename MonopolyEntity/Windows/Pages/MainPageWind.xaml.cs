@@ -12,13 +12,14 @@ using System.Windows;
 using MonopolyDLL;
 using System.CodeDom;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using MonopolyEntity.Interfaces;
 
 namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
     /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class MainPage : Page, IPagesOpener
     {
         private Frame _frame;
         private MonopolySystem _system;
@@ -29,7 +30,7 @@ namespace MonopolyEntity.Windows.Pages
             InitializeComponent();
 
             SetGameWindowImg();
-            SetDescRibeCards();
+            SetDescribeCards();
 
             SetUserMenu();
         }
@@ -49,26 +50,26 @@ namespace MonopolyEntity.Windows.Pages
             };
         }
 
-        public void SetDescRibeCards()
+        public void SetDescribeCards()
         {
             //return;
-            SetParamsToCard(OneDesc, SystemParamsServeses.GetStringByName("FirstMainWindowName"),
-                SystemParamsServeses.GetStringByName("FirstMainWindowDesc"), MainWindowHelper.GetImagePyName("okay.png"));
+            SetParamsToCard(OneDesc, SystemParamsService.GetStringByName("FirstMainWindowName"),
+                SystemParamsService.GetStringByName("FirstMainWindowDesc"), MainWindowHelper.GetImagePyName("okay.png"));
             
-            SetParamsToCard(TwoDesc, SystemParamsServeses.GetStringByName("SecondMainWindowName"),
-                SystemParamsServeses.GetStringByName("SecondMainWindowDesc"), MainWindowHelper.GetImagePyName("dices.png"));
+            SetParamsToCard(TwoDesc, SystemParamsService.GetStringByName("SecondMainWindowName"),
+                SystemParamsService.GetStringByName("SecondMainWindowDesc"), MainWindowHelper.GetImagePyName("dices.png"));
             
-            SetParamsToCard(ThreeDesc, SystemParamsServeses.GetStringByName("ThirdMainWindowName"),
-                SystemParamsServeses.GetStringByName("ThirdMainWindowDesc"), MainWindowHelper.GetImagePyName("cup.png"));
+            SetParamsToCard(ThreeDesc, SystemParamsService.GetStringByName("ThirdMainWindowName"),
+                SystemParamsService.GetStringByName("ThirdMainWindowDesc"), MainWindowHelper.GetImagePyName("cup.png"));
             
-            SetParamsToCard(FourDesc, SystemParamsServeses.GetStringByName("FourthMainWindowName"),
-                SystemParamsServeses.GetStringByName("FourthMainWindowDesc"), MainWindowHelper.GetImagePyName("rating-positive.png"));
+            SetParamsToCard(FourDesc, SystemParamsService.GetStringByName("FourthMainWindowName"),
+                SystemParamsService.GetStringByName("FourthMainWindowDesc"), MainWindowHelper.GetImagePyName("rating-positive.png"));
             
-            SetParamsToCard(FiveDesc, SystemParamsServeses.GetStringByName("FifthMainWindowName"),
-                SystemParamsServeses.GetStringByName("FifthMainWindowDesc"), MainWindowHelper.GetImagePyName("delivery.png"));
+            SetParamsToCard(FiveDesc, SystemParamsService.GetStringByName("FifthMainWindowName"),
+                SystemParamsService.GetStringByName("FifthMainWindowDesc"), MainWindowHelper.GetImagePyName("delivery.png"));
             
-            SetParamsToCard(SixDesc, SystemParamsServeses.GetStringByName("SixthMainWindowName"),
-                SystemParamsServeses.GetStringByName("SixthMainWindowDesc"), MainWindowHelper.GetImagePyName("planet.png"));
+            SetParamsToCard(SixDesc, SystemParamsService.GetStringByName("SixthMainWindowName"),
+                SystemParamsService.GetStringByName("SixthMainWindowDesc"), MainWindowHelper.GetImagePyName("planet.png"));
         }
 
         public void SetParamsToCard(DescribeBox box, string nameText, string descText, Image img)

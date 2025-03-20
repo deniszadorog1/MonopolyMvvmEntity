@@ -40,7 +40,7 @@ namespace MonopolyEntity.Windows.Pages
             _newUser.Login = LoginBox.Text;
             _newUser.Password = PasswordBox.Text;
 
-            if (DBQueries.IfUserExistByLogin(_newUser.Login) || 
+            if (DBQueries.IsUserExistByLogin(_newUser.Login) || 
                 LoginBox.Text == string.Empty ||
                 PasswordBox.Text == string.Empty) return;
             DBQueries.AddNewUserInDB(_newUser);
@@ -48,9 +48,12 @@ namespace MonopolyEntity.Windows.Pages
             _frame.Content = new StartPage(_frame, _system);
         }
 
+        private readonly string _baseLoginFieldName = SystemParamsService.GetStringByName("BaseLoginFieldName");// "Login";
+        private readonly string _basePasswordFieldName = SystemParamsService.GetStringByName("BasePasswordFieldName");// "Password";
+
         private void LoginBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (LoginBox.Text == "Login")
+            if (LoginBox.Text == _baseLoginFieldName)
             {
                 LoginBox.Text = string.Empty;
                 LoginBox.Foreground = Brushes.Black;
@@ -61,14 +64,14 @@ namespace MonopolyEntity.Windows.Pages
         {
             if (string.IsNullOrWhiteSpace(LoginBox.Text))
             {
-                LoginBox.Text = "Login";
+                LoginBox.Text = _baseLoginFieldName;
                 LoginBox.Foreground = Brushes.Gray;
             }
         }
 
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (PasswordBox.Text == "Password")
+            if (PasswordBox.Text == _basePasswordFieldName)
             {
                 PasswordBox.Text = string.Empty;
                 PasswordBox.Foreground = Brushes.Black;
@@ -79,7 +82,7 @@ namespace MonopolyEntity.Windows.Pages
         {
             if (string.IsNullOrWhiteSpace(PasswordBox.Text))
             {
-                PasswordBox.Text = "Password";
+                PasswordBox.Text = _basePasswordFieldName;
                 PasswordBox.Foreground = Brushes.Gray;
             }
         }
@@ -89,7 +92,7 @@ namespace MonopolyEntity.Windows.Pages
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*",
-                Title = SystemParamsServeses.GetStringByName("RegistrationChooseImage")
+                Title = SystemParamsService.GetStringByName("RegistrationChooseImage")
             };
 
             if (openFileDialog.ShowDialog() == true)

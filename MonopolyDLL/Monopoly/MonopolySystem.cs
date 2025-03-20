@@ -1,21 +1,7 @@
 ﻿using MonopolyDLL.Monopoly.InventoryObjs;
-using System;
 using System.Collections.Generic;
-using System.Data.OleDb;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.Pkcs;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Markup;
-
-using MonopolyDLL.DBService;
-using System.Dynamic;
-using System.CodeDom.Compiler;
-
-using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
+using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 
 namespace MonopolyDLL.Monopoly
 {
@@ -30,14 +16,14 @@ namespace MonopolyDLL.Monopoly
             LoggedUser = new User();
             LoggedUser = DBQueries.GetPlayerById(_checkId);
             SetUserInventory();
-            
+
             MonGame = new Game(LoggedUser);
-        }   
+        }
 
         public void SetUserInventory()
         {
             List<Item> items = DBQueries.GetUserItemsFromInventory(_checkId);
-            LoggedUser.Inventory = new UserInventory(items);;
+            LoggedUser.Inventory = new UserInventory(items);
 
             List<BoxItem> boxItems = DBQueries.GetItemsToUseInGame(_checkId);
             LoggedUser.GameBusses = boxItems;
@@ -57,7 +43,7 @@ namespace MonopolyDLL.Monopoly
         {
             LoggedUser.RemoveAddedBusWithGivenId(index);
         }
-        
+
         public BoxItem GetUserInventoryItemByIndex(int index)
         {
             return LoggedUser.GetUsingItemByIndex(index);
@@ -68,9 +54,9 @@ namespace MonopolyDLL.Monopoly
             return LoggedUser.GetItemByName(name);
         }
 
-        public bool IfBussWithSuchNameIsUsing(string name)
+        public bool IsBussWithSuchNameIsUsing(string name)
         {
-            return LoggedUser.IfBusWithSuchNameIsUsedInGame(name);
+            return LoggedUser.IsBusWithSuchNameIsUsedInGame(name);
         }
     }
 }

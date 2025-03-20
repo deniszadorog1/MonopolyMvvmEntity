@@ -54,7 +54,7 @@ namespace MonopolyEntity.Windows.UserControls
 
         public void SetNewPassword()
         {
-            UserNewPasswordParam.ParamNameBlock.Text = SystemParamsServeses.GetStringByName("SettignsNewPas");
+            UserNewPasswordParam.ParamNameBlock.Text = SystemParamsService.GetStringByName("SettingsNewPas");
 
             UserNewPasswordParam.ParamNameBox.TextChanged += (sender, e) =>
             {
@@ -85,7 +85,7 @@ namespace MonopolyEntity.Windows.UserControls
 
         public void SetOldPassword()
         {
-            UserOldPasswordParam.ParamNameBlock.Text = SystemParamsServeses.GetStringByName("SettingsOldPas");
+            UserOldPasswordParam.ParamNameBlock.Text = SystemParamsService.GetStringByName("SettingsOldPas");
             UserOldPasswordParam.ParamPasswordBox.Visibility = Visibility.Visible;
             UserOldPasswordParam.ParamNameBox.Visibility = Visibility.Hidden;
 
@@ -109,14 +109,14 @@ namespace MonopolyEntity.Windows.UserControls
 
         public void SetLoginParam()
         {
-            UserLoignParam.ParamNameBlock.Text = SystemParamsServeses.GetStringByName("SettignsUserLog");
+            UserLoignParam.ParamNameBlock.Text = SystemParamsService.GetStringByName("SettingsUserLog");
             UserLoignParam.ParamNameBox.Text = _system.LoggedUser.Login;
 
             UserLoignParam.ParamNameBox.TextChanged += (sender, e) =>
             {
                 if (_system.LoggedUser.Login != UserLoignParam.ParamNameBox.Text &&
                 !string.IsNullOrWhiteSpace(UserLoignParam.ParamNameBox.Text) &&
-                !DBQueries.IfUserExistByLogin(UserLoignParam.ParamNameBox.Text))
+                !DBQueries.IsUserExistByLogin(UserLoignParam.ParamNameBox.Text))
                 {
                     UserLoignParam.SaveBox.Visibility = Visibility.Visible;
                 }

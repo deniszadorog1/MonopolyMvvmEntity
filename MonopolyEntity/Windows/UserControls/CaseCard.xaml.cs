@@ -33,7 +33,7 @@ namespace MonopolyEntity.Windows.UserControls
 
         public void SetBorderClip()
         {
-            if (ActualHeight == 0 || ActualWidth == 0) return; 
+           /* if (ActualHeight == 0 || ActualWidth == 0) return; 
 
             Console.WriteLine(ActualWidth + ActualHeight);
 
@@ -43,7 +43,7 @@ namespace MonopolyEntity.Windows.UserControls
                 RadiusX = 10,
                 RadiusY = 10,
                 Rect = new Rect(0, 0, ActualWidth, ActualHeight)
-            };
+            };*/
         }
 
         public void SetCardImage(string picName)
@@ -90,7 +90,7 @@ namespace MonopolyEntity.Windows.UserControls
             return imagePath;
         }
 
-        private const int _centerDevider = 2;
+        private const int _centerDevider = 2; //!!!!
         private void CardName_Loaded(object sender, RoutedEventArgs e)
         {
             double upperPadding = DownRow.ActualHeight / _centerDevider - CardName.FontSize / _centerDevider;

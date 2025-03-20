@@ -56,14 +56,14 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             SecondCube.Children.Add(_second3dCube);
         }
 
-        public Dice GetDice(HorizontalAlignment alinment, Thickness thick ,int cubeRes, bool ifRightCube)
+        public Dice GetDice(HorizontalAlignment alignment, Thickness thick ,int cubeRes, bool isRightCube)
         {
             const int cubeSizeParam = 175;
-            Dice dice = new Dice(cubeRes, ifRightCube)
+            Dice dice = new Dice(cubeRes, isRightCube)
             {
                 Width = cubeSizeParam,
                 Height = cubeSizeParam,
-                HorizontalAlignment = alinment,
+                HorizontalAlignment = alignment,
                 Margin = thick
             };
 

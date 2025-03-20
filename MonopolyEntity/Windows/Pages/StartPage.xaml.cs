@@ -39,10 +39,10 @@ namespace MonopolyEntity.Windows.Pages
 
         private void LoginBut_Click(object sender, RoutedEventArgs e)
         {
-/*            User user = DBQueries.GetUserByLoginAndPassword(LoginTextBox.Text, PasswordTextBox.Password);
+            User user = DBQueries.GetUserByLoginAndPassword(LoginTextBox.Text, PasswordTextBox.Password);
 
             if (user is null) return;
-            _monopolySys.LoggedUser = user;*/
+            _monopolySys.LoggedUser = user;
             WorkPage page = new WorkPage(_monopolySys, _frame);
         }
 
@@ -54,7 +54,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void LoginBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (LoginTextBox.Text == "Login")
+            if (LoginTextBox.Text == SystemParamsService.GetStringByName("BaseLoginFieldName"))
             {
                 //LoginTextBox.Text = string.Empty;
                 LoginTextBox.Foreground = Brushes.Black;
@@ -73,7 +73,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (PasswordTextBox.Password == "Password")
+            if (PasswordTextBox.Password == SystemParamsService.GetStringByName("BasePasswordFieldName"))
             {
                 //PasswordTextBox.Password = string.Empty;
                 PasswordTextBox.Foreground = Brushes.Black;

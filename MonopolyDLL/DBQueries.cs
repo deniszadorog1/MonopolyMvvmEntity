@@ -1,21 +1,20 @@
 ﻿using MonopolyDLL.DBService;
+using MonopolyDLL.Monopoly;
+using MonopolyDLL.Monopoly.Cell;
+using MonopolyDLL.Monopoly.Enums;
 using MonopolyDLL.Monopoly.InventoryObjs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using MonopolyDLL.Monopoly;
-using MonopolyDLL.Monopoly.Enums;
-
-using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
-using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using System.Data;
-using System.Dynamic;
-using System.Security.Policy;
-using System.Diagnostics;
-using System.Security.Permissions;
+using System.Linq;
+using System.Security.AccessControl;
+using MonopolyDLL.Monopoly.Cell.AngleCells;
+using MonopolyDLL.Monopoly.Cell.Bus;
+using MonopolyDLL.Monopoly.Cell;
+
+
+using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
+using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 
 namespace MonopolyDLL
 {
@@ -27,7 +26,7 @@ namespace MonopolyDLL
 
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var item in model.InventoryStaffs)
+                foreach (var item in model.InventoryStaff)
                 {
                     if (item.PlayerId == playerId)
                     {
@@ -52,7 +51,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                var item = model.InventoryStaffs.FirstOrDefault(x => x.Id == id);
+                var item = model.InventoryStaff.FirstOrDefault(x => x.Id == id);
                 if (item is null) return;
                 item.StationId = null;
                 item.IfEnabled = false;
@@ -75,7 +74,7 @@ namespace MonopolyDLL
             int inventoryId = item.GetInventoryIdInDB();
             using (MonopolyModel model = new MonopolyModel())
             {
-                var staff = model.InventoryStaffs.FirstOrDefault(s => s.Id == inventoryId);
+                var staff = model.InventoryStaff.FirstOrDefault(s => s.Id == inventoryId);
 
                 if (staff != null)
                 {
@@ -91,7 +90,7 @@ namespace MonopolyDLL
             using (MonopolyModel model = new MonopolyModel())
             {
                 int id = item.GetInventoryIdInDB();
-                var staff = model.InventoryStaffs.FirstOrDefault(s => s.Id == id);
+                var staff = model.InventoryStaff.FirstOrDefault(s => s.Id == id);
 
                 if (staff != null)
                 {
@@ -100,16 +99,16 @@ namespace MonopolyDLL
                     model.SaveChanges();
                 }
 
-           /*     foreach (var staff in model.InventoryStaffs)
-                {
-                    if (staff.Id == item.GetInventoryIdInDB())
-                    {
-                        staff.IfEnabled = false;
-                        staff.StationId = null;
-                        model.SaveChanges();
-                        return;
-                    }
-                }*/
+                /*     foreach (var staff in model.InventoryStaffs)
+                     {
+                         if (staff.Id == item.GetInventoryIdInDB())
+                         {
+                             staff.IfEnabled = false;
+                             staff.StationId = null;
+                             model.SaveChanges();
+                             return;
+                         }
+                     }*/
             }
         }
 
@@ -121,9 +120,9 @@ namespace MonopolyDLL
                 {
                     if (item.Name == name)
                     {
-                        (int r, int g, int b) colorParams = GetColorByRearityId((int)item.RearityId);
+                        (int r, int g, int b) colorParams = GetColorByRarityId((int)item.RearityId);
                         return new BoxItem(item.Name, GetImagePathById((int)item.PicId),
-                            GetRearityById((int)item.RearityId), (BusinessType)item.StationTypeId,
+                            GetRarityById((int)item.RearityId), (BusinessType)item.StationTypeId,
                             (int)item.StationId, GetMultiplierById((int)item.MultiplierId),
                             colorParams.r, colorParams.g, colorParams.b);
                     }
@@ -136,7 +135,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                model.InventoryStaffs.Add(new InventoryStaff()
+                model.InventoryStaff.Add(new InventoryStaff()
                 {
                     PlayerId = GetPlayerIdByLogin(userLogin),
                     StaffId = GetItemIdByBoxItemName(itemName),
@@ -183,7 +182,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var player in model.Players)
+                foreach (var player in model.Player)
                 {
                     if (player.Login == login)
                     {
@@ -199,7 +198,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var player in model.Players)
+                foreach (var player in model.Player)
                 {
                     if (player.Id == id)
                     {
@@ -251,9 +250,9 @@ namespace MonopolyDLL
                 {
                     if (item.Id == id)
                     {
-                        (int r, int g, int b) colorParams = GetColorByRearityId((int)item.RearityId);
+                        (int r, int g, int b) colorParams = GetColorByRarityId((int)item.RearityId);
                         return new BoxItem(item.Name, GetImagePathById((int)item.PicId),
-                            GetRearityById((int)item.RearityId), (BusinessType)item.StationTypeId,
+                            GetRarityById((int)item.RearityId), (BusinessType)item.StationTypeId,
                             (int)item.StationId, GetMultiplierById((int)item.MultiplierId),
                             colorParams.r, colorParams.g, colorParams.b);
 
@@ -263,27 +262,28 @@ namespace MonopolyDLL
             throw new Exception("No such boxItem");
         }
 
-        public static (int, int, int) GetColorByRearityId(int rearityId)
+        public static (int, int, int) GetColorByRarityId(int rearityId)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var rearity in model.Rearities)
+                foreach (var rarity in model.Rarity)
                 {
-                    if (rearity.Id == rearityId)
+                    if (rarity.Id == rearityId)
                     {
-                        return GetColorInSystemColorsById((int)rearity.ColorId);
+                        return GetColorInSystemColorsById((int)rarity.ColorId);
                     }
                 }
             }
 
-            throw new Exception("no Rearity with such Id");
+            throw new Exception("no Rarity with such Id");
         }
 
-        public static (byte, byte, byte) GetColorByRearityName(string name)
+        private static (byte, byte, byte) _usualRarityColorParams = (76, 180, 219);
+        public static (byte, byte, byte) GetColorByRarityName(string name)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var rear in model.Rearities)
+                foreach (var rear in model.Rarity)
                 {
                     if (rear.Rearity1 == name)
                     {
@@ -292,7 +292,7 @@ namespace MonopolyDLL
                 }
             }
 
-            return (76, 180, 219);
+            return _usualRarityColorParams;
         }
 
         public static (byte, byte, byte) GetColorParamsByName(string name)
@@ -307,7 +307,7 @@ namespace MonopolyDLL
                     }
                 }
             }
-            return (76, 180, 219);
+            return _usualRarityColorParams;
         }
 
         public static (byte, byte, byte) GetColorInSystemColorsById(int id)
@@ -326,7 +326,7 @@ namespace MonopolyDLL
             throw new Exception("no color with such id");
         }
 
-        public static List<(byte, byte, byte)> GetAllRearityColors()
+        public static List<(byte, byte, byte)> GetAllRarityColors()
         {
             List<(byte, byte, byte)> res = new List<(byte, byte, byte)>();
 
@@ -344,11 +344,11 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var mult in model.PriceMultipliers)
+                foreach (var multiplier in model.PriceMultiplier)
                 {
-                    if (mult.Id == id)
+                    if (multiplier.Id == id)
                     {
-                        return (double)mult.Multiplier;
+                        return (double)multiplier.Multiplier;
                     }
                 }
             }
@@ -360,7 +360,7 @@ namespace MonopolyDLL
             List<Item> items = new List<Item>();
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var item in model.InventoryStaffs)
+                foreach (var item in model.InventoryStaff)
                 {
                     if (item.PlayerId == playerId)
                     {
@@ -393,24 +393,24 @@ namespace MonopolyDLL
             throw new Exception("No item with such Id");
         }
 
-        public static BusinessType GetBusTypeByid(int id)
+        public static BusinessType GetBusTypeById(int id)
         {
             return (BusinessType)id;
         }
 
-        public static BusRearity GetRearityById(int id)
+        public static BusRarity GetRarityById(int id)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var rearity in model.Rearities)
+                foreach (var rarity in model.Rarity)
                 {
-                    if (rearity.Id == id)
+                    if (rarity.Id == id)
                     {
-                        return (BusRearity)id;
+                        return (BusRarity)id;
                     }
                 }
             }
-            throw new Exception("no such Rearity");
+            throw new Exception("no such Rarity");
         }
 
         public static List<CaseBox> GetLotBoxesForInventory()
@@ -435,7 +435,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var dbBox in model.LotBoxes)
+                foreach (var dbBox in model.LotBox)
                 {
                     if (dbBox.Id == boxId)
                     {
@@ -456,9 +456,9 @@ namespace MonopolyDLL
                 {
                     if (item.BoxId == boxId)
                     {
-                        (int r, int g, int b) colorParams = GetColorByRearityId((int)item.RearityId);
+                        (int r, int g, int b) colorParams = GetColorByRarityId((int)item.RearityId);
                         res.Add(new BoxItem(item.Name, GetImagePathById((int)item.PicId),
-                            GetRearityById((int)item.RearityId), (BusinessType)item.StationTypeId,
+                            GetRarityById((int)item.RearityId), (BusinessType)item.StationTypeId,
                             (int)item.StationId, GetMultiplierById((int)item.MultiplierId),
                             colorParams.r, colorParams.g, colorParams.b));
                     }
@@ -471,7 +471,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var pic in model.PictureFiles)
+                foreach (var pic in model.PictureFile)
                 {
                     if (pic.Id == picId)
                     {
@@ -486,7 +486,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var user in model.Players)
+                foreach (var user in model.Player)
                 {
                     if (user.Login == login)
                     {
@@ -497,13 +497,13 @@ namespace MonopolyDLL
             throw new Exception("No player with such user");
         }
 
-        public static string GetBoxNameByItsDropItemName(string boxItemNmae)
+        public static string GetBoxNameByItsDropItemName(string boxItemName)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
                 foreach (var item in model.BoxItems)
                 {
-                    if (item.Name == boxItemNmae)
+                    if (item.Name == boxItemName)
                     {
                         return GetBoxNameByBoxId((int)item.BoxId);
                     }
@@ -516,7 +516,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var box in model.LotBoxes)
+                foreach (var box in model.LotBox)
                 {
                     if (box.Id == boxId)
                     {
@@ -528,19 +528,19 @@ namespace MonopolyDLL
             throw new Exception("no box with such id");
         }
 
-        public static bool IfInventoryStaffIsEnabled(int id)
+        public static bool IsInventoryStaffIsEnabled(int id)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                return model.InventoryStaffs.Where(x => x.Id == id && x.IfEnabled != null && (bool)x.IfEnabled).Any();
+                return model.InventoryStaff.Where(x => x.Id == id && x.IfEnabled != null && (bool)x.IfEnabled).Any();
             }
         }
 
-        public static bool IfUserExistByLogin(string login)
+        public static bool IsUserExistByLogin(string login)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                return model.Players.Any(x => x.Login == login);
+                return model.Player.Any(x => x.Login == login);
             }
         }
 
@@ -548,7 +548,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                model.Players.Add(new Player()
+                model.Player.Add(new Player()
                 {
                     Login = user.Login,
                     Password = user.Password,
@@ -565,11 +565,11 @@ namespace MonopolyDLL
 
             using (MonopolyModel model = new MonopolyModel())
             {
-                foreach (var user in model.Players)
+                foreach (var user in model.Player)
                 {
-                    int? picId = null; 
+                    int? picId = null;
                     if (!(user.PictureFile is null)) picId = user.PictureFile.Id;
- 
+
                     User addUser = new User(user.Login, user.Id, picId, user.Password);
 
                     addUser.GameBusses = GetItemsToUseInGame(user.Id);
@@ -584,7 +584,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                model.PictureFiles.Add(new PictureFile()
+                model.PictureFile.Add(new PictureFile()
                 {
                     Name = picPath,
                     Path = picPath
@@ -598,23 +598,23 @@ namespace MonopolyDLL
             if (picId is null) return null;
             using (MonopolyModel model = new MonopolyModel())
             {
-                return model.PictureFiles.Where(x => x.Id == picId).FirstOrDefault().Path;
+                return model.PictureFile.Where(x => x.Id == picId).FirstOrDefault().Path;
             };
         }
 
         public static int GetLastPicId()
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-               return model.PictureFiles.OrderByDescending(p => p.Id).FirstOrDefault().Id;
+                return model.PictureFile.OrderByDescending(p => p.Id).FirstOrDefault().Id;
             }
         }
 
         public static void UpdateUserLogin(string oldOne, string newOne)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-                Player user = model.Players.Where(x => x.Login == oldOne).FirstOrDefault();
+                Player user = model.Player.Where(x => x.Login == oldOne).FirstOrDefault();
 
                 if (user is null) return;
                 user.Login = newOne;
@@ -624,9 +624,9 @@ namespace MonopolyDLL
 
         public static void UpdateUserPassword(string login, string newPassword)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-                Player user = model.Players.Where(x => x.Login == login).FirstOrDefault();
+                Player user = model.Player.Where(x => x.Login == login).FirstOrDefault();
 
                 if (user is null) return;
                 user.Password = newPassword;
@@ -638,7 +638,7 @@ namespace MonopolyDLL
         {
             using (MonopolyModel model = new MonopolyModel())
             {
-                Player user = model.Players.Where(x => x.Login == userLogin).FirstOrDefault();
+                Player user = model.Player.Where(x => x.Login == userLogin).FirstOrDefault();
 
                 if (user is null) return;
                 user.PictureId = GetLastPicId();
@@ -648,17 +648,179 @@ namespace MonopolyDLL
 
         public static User GetUserByLoginAndPassword(string login, string password)
         {
-            using(MonopolyModel model = new MonopolyModel())
+            using (MonopolyModel model = new MonopolyModel())
             {
-                Player player = model.Players.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
-            
-                if(!(player is null))
+                Player player = model.Player.Where(x => x.Login == login && x.Password == password).FirstOrDefault();
+
+                if (!(player is null))
                 {
                     return new User(player.Login, player.Id, player.PictureId, player.Password);
+                }
+            }
+            return null;
+        }
+
+        public static List<Monopoly.Cell.Cell> GetBasicBoardCells()
+        {
+
+            List<Monopoly.Cell.Cell> res = new List<Monopoly.Cell.Cell>();
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                model.Database.ExecuteSqlCommand("CHECKPOINT; DBCC DROPCLEANBUFFERS;");
+
+                var cells = model.Cell.ToList();
+                for (int i = 0; i < cells.Count(); i++)
+                {
+                    Monopoly.Cell.Cell par = GetParentByCell(cells[i]);
+                    if (!(par is null))
+                    {
+                        res.Add(par);
+                    }
+                }
+            }
+
+            return res;
+        }
+
+        private static Monopoly.Cell.Cell GetParentByCell(DBService.Cell cell)
+        {   
+            Monopoly.Enums.CellType? type = GetTypeByCell(cell);
+            if (type is null) return null;
+
+            int cellIdForIndex = cell.Id - 1;
+
+            switch ((Monopoly.Enums.CellType)type)
+            {
+                case Monopoly.Enums.CellType.Start:
+                    return new Start(cell.Name, cellIdForIndex);
+                case Monopoly.Enums.CellType.UsualBusiness:
+                    return GetBusByCell(cell, (Monopoly.Enums.CellType)type);
+                case Monopoly.Enums.CellType.CarBusiness:
+                    return GetBusByCell(cell, (Monopoly.Enums.CellType)type);
+                case Monopoly.Enums.CellType.Prison:
+                    return new Prison(cell.Name, cellIdForIndex);
+                case Monopoly.Enums.CellType.Chance:
+                    return new Monopoly.Cell.Chance(cell.Name, cellIdForIndex);
+                case Monopoly.Enums.CellType.GameBusiness:
+                    return GetBusByCell(cell, (Monopoly.Enums.CellType)type);
+                case Monopoly.Enums.CellType.Casino:
+                    return new Monopoly.Cell.AngleCells.Casino(cell.Name, cellIdForIndex);
+                case Monopoly.Enums.CellType.GoToPrison:
+                    return new GoToPrison(cell.Name, cellIdForIndex);
+                case Monopoly.Enums.CellType.Tax:
+                    return GetTaxByCell(cell, cellIdForIndex);
+            }
+            return null;
+        }
+
+        private static Monopoly.Cell.Tax GetTaxByCell(DBService.Cell cell, int cellIndex)
+        {
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                var taxes = cell.Tax.ToList();
+                var taxTypes = model.TaxType.ToList();
+
+                int moneyToPay = (int)taxTypes[taxes.Where(x => x.CellId == cell.Id).ToList().First().Id - 1].TaxMoney;
+
+                return new Monopoly.Cell.Tax(cell.Name, moneyToPay, cellIndex);
+
+            }
+        }
+
+        private static Business GetBusByCell(DBService.Cell cell, Monopoly.Enums.CellType busType)
+        {
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                var stations = model.Station.ToList();
+
+                for (int i = 0; i < stations.Count; i++)
+                {
+                    if (cell.Id == stations[i].CellId)
+                    {
+                        List<int> paymentLevels = GetClearedPaymentLevels(GetPaymentLevels(stations[i]));
+
+
+                        switch (busType)
+                        {
+                            case Monopoly.Enums.CellType.UsualBusiness:
+                                {
+                                    return new RegularBusiness(cell.Name, (int)stations[i].Price, (int)stations[i].DepositPrice, (int)stations[i].RebuyPrice, 
+                                        paymentLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0, (int)stations[i].UpgradePrice,
+                                        SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, i);
+                                }
+                            case Monopoly.Enums.CellType.CarBusiness:
+                                {
+                                    return new CarBusiness(cell.Name, (int)stations[i].Price, (int)stations[i].DepositPrice, (int)stations[i].RebuyPrice,
+                                        paymentLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
+                                         SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, i);
+                                }
+                            case Monopoly.Enums.CellType.GameBusiness:
+                                {
+                                    return new GameBusiness(cell.Name, (int)stations[i].Price, (int)stations[i].DepositPrice, (int)stations[i].RebuyPrice,
+                                        paymentLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
+                                         SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, i);
+                                }
+                        }
+
+                    }
+
+                }
+
+            }
+            return null;
+        }
+
+        private static List<int> GetClearedPaymentLevels(List<int> levels)
+        {
+            const int toClear = -1;
+
+            return new List<int>(levels.Where(x => x != toClear));
+        }
+
+        private static List<int> GetPaymentLevels(Station station)
+        {
+            List<int> res = new List<int>();
+
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                var prices = model.PriceForLevel.ToList();
+                PriceForLevel price = prices[station.Id - 1];
+
+                res.Add((int)price.FirstLevel);
+                res.Add((int)price.SecondLevel);
+                res.Add((int)price.ThirdLevel);
+                res.Add((int)price.FourthLevel);
+                res.Add((int)price.FifthLevel);
+                res.Add((int)price.SixthLevel);
+            }
+            return res;
+        }
+
+        private static Monopoly.Enums.CellType? GetTypeByCell(DBService.Cell cell)
+        {
+            for (int i = 1; i <= (int)Monopoly.Enums.CellType.Tax; i++)
+            {
+                if (((Monopoly.Enums.CellType)i).ToString() ==
+                    GetCellTypeInStringById((int)cell.CellType))
+                {
+                    return (Monopoly.Enums.CellType)i;
                 }
             }
 
             return null;
         }
+
+        private static string GetCellTypeInStringById(int id)
+        {
+            string res = string.Empty;
+            using (MonopolyModel model = new MonopolyModel())
+            {
+                var types = model.CellType.ToList();
+                res =  types[id - 1].Name.ToString();
+
+                return res;
+            }
+        }
+
     }
 }

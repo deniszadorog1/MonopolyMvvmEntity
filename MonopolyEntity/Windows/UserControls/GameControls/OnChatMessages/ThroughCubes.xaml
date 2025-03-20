@@ -35,8 +35,7 @@
                         BorderBrush="White" VerticalAlignment="Center"
                         HorizontalAlignment="Center" Content="Through cubes"
                         Foreground="White" VerticalContentAlignment="Center"
-                        HorizontalContentAlignment="Center" FontSize="16"
-                        Click="ThroughCubesBut_Click"/>
+                        HorizontalContentAlignment="Center" FontSize="16"/>
             </Grid>
             
         </Grid>
