@@ -33,6 +33,8 @@ namespace MonopolyEntity.Windows.Pages
             SetDescribeCards();
 
             SetUserMenu();
+
+            UpperMenuu.SetMonSystemAndFrame(_frame, _system);
         }
 
         public void SetUserMenu()
@@ -54,27 +56,29 @@ namespace MonopolyEntity.Windows.Pages
         {
             //return;
             SetParamsToCard(OneDesc, SystemParamsService.GetStringByName("FirstMainWindowName"),
-                SystemParamsService.GetStringByName("FirstMainWindowDesc"), MainWindowHelper.GetImagePyName("okay.png"));
+                SystemParamsService.GetStringByName("FirstMainWindowDesc"), MainWindowHelper.GetImageByName("okay.png"));
             
             SetParamsToCard(TwoDesc, SystemParamsService.GetStringByName("SecondMainWindowName"),
-                SystemParamsService.GetStringByName("SecondMainWindowDesc"), MainWindowHelper.GetImagePyName("dices.png"));
+                SystemParamsService.GetStringByName("SecondMainWindowDesc"), MainWindowHelper.GetImageByName("dices.png"));
             
             SetParamsToCard(ThreeDesc, SystemParamsService.GetStringByName("ThirdMainWindowName"),
-                SystemParamsService.GetStringByName("ThirdMainWindowDesc"), MainWindowHelper.GetImagePyName("cup.png"));
+                SystemParamsService.GetStringByName("ThirdMainWindowDesc"), MainWindowHelper.GetImageByName("cup.png"));
             
             SetParamsToCard(FourDesc, SystemParamsService.GetStringByName("FourthMainWindowName"),
-                SystemParamsService.GetStringByName("FourthMainWindowDesc"), MainWindowHelper.GetImagePyName("rating-positive.png"));
+                SystemParamsService.GetStringByName("FourthMainWindowDesc"), MainWindowHelper.GetImageByName("ratingPositive.png"));
             
             SetParamsToCard(FiveDesc, SystemParamsService.GetStringByName("FifthMainWindowName"),
-                SystemParamsService.GetStringByName("FifthMainWindowDesc"), MainWindowHelper.GetImagePyName("delivery.png"));
+                SystemParamsService.GetStringByName("FifthMainWindowDesc"), MainWindowHelper.GetImageByName("delivery.png"));
             
             SetParamsToCard(SixDesc, SystemParamsService.GetStringByName("SixthMainWindowName"),
-                SystemParamsService.GetStringByName("SixthMainWindowDesc"), MainWindowHelper.GetImagePyName("planet.png"));
+                SystemParamsService.GetStringByName("SixthMainWindowDesc"), MainWindowHelper.GetImageByName("planet.png"));
         }
 
         public void SetParamsToCard(DescribeBox box, string nameText, string descText, Image img)
         {
-            Size baseInvCardSize = new Size(250, 200);
+            const int invWidth = 250;
+            const int invHeight = 200;
+            Size baseInvCardSize = new Size(invWidth, invHeight);
 
             box.Height = baseInvCardSize.Height;
             box.Width = baseInvCardSize.Width;
@@ -85,35 +89,43 @@ namespace MonopolyEntity.Windows.Pages
 
         public void SetGameWindowImg()
         {
-            GameWindowImg.Source = MainWindowHelper.GetImagePyName("BoardImg.png").Source;
+            GameWindowImg.Source = MainWindowHelper.GetImageByName("boardImg.png").Source;
         }
 
-        public void OpenInventoryPage()
+ /*       public void OpenInventoryPage()
         {
-            InventoryPage page = new InventoryPage(_frame, _system);
+*//*            InventoryPage page = new InventoryPage(_frame, _system);
             _frame.Content = page;
-        }
+
+            return;*//*
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new InventoryPage(_frame, _system));
+        }*/
 
         public void OpenGameField()
         {
-            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
-            _frame.Content = page;
+/*            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
+            _frame.Content = page;*/
 
-            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize(page);
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new SetPlayersInGame(_system, _frame));
         }
 
         public void OpenMainPage()
         {
-            MainPage page = new MainPage(_frame, _system);
-            _frame.Content = page;
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new MainPage(_frame, _system));
+
+/*            MainPage page = new MainPage(_frame, _system);
+            _frame.Content = page;*/
         }
 
         private void StartGameButSecRow_Click(object sender, RoutedEventArgs e)
         {
-            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new SetPlayersInGame(_system, _frame));
+
+
+/*            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
             _frame.Content = page;
 
-            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize(page);
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize(page);*/
         }
     }
 }

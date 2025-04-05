@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MonopolyEntity.VisualHelper;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using MonopolyEntity.VisualHelper;
 
 namespace MonopolyEntity.Windows.UserControls.MainPage
 {
@@ -58,24 +44,33 @@ namespace MonopolyEntity.Windows.UserControls.MainPage
         }
 
 
-        private const string _mouseEnterColor = "#37BC9D";
+        private  SolidColorBrush _mouseEnterColor = (SolidColorBrush)Application.Current.Resources["MainGlobalColor"];
+
         private void Button_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (sender is Button but)
+            if (sender is Button)
             {
-                but.Foreground = new SolidColorBrush(Colors.White);
-                but.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(_mouseEnterColor));
+                SetColorsForButton((Button)sender, new SolidColorBrush(Colors.White), _mouseEnterColor);
+                /*but.Foreground = new SolidColorBrush(Colors.White);
+                but.Background = _mouseEnterColor; // new SolidColorBrush((Color)ColorConverter.ConvertFromString(_mouseEnterColor));*/
             }
         }
 
-        private bool _check = false;
+        //private bool _check = false;
         private void Button_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (_check || sender is Button)
+            if (/*_check ||*/ sender is Button)
             {
-                ((Button)sender).Foreground = new SolidColorBrush(Colors.Gray);
-                ((Button)sender).Background = new SolidColorBrush(Colors.White);
+                SetColorsForButton((Button)sender, new SolidColorBrush(Colors.Gray), new SolidColorBrush(Colors.White));
+/*                ((Button)sender).Foreground = new SolidColorBrush(Colors.Gray);
+                ((Button)sender).Background = new SolidColorBrush(Colors.White);*/
             }
+        }
+
+        public void SetColorsForButton(Button but, SolidColorBrush foregroundColor, SolidColorBrush backgroundColor)
+        {
+            but.Foreground = foregroundColor;
+            but.Background = backgroundColor;
         }
 
         private void UserControl_MouseEnter(object sender, MouseEventArgs e)

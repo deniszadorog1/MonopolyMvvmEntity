@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MonopolyDLL;
+using MonopolyEntity.VisualHelper;
+using System;
+using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.IO;
 using System.Windows;
@@ -20,20 +23,20 @@ namespace MonopolyEntity.Windows.UserControls
             InitializeComponent();
 
             SetCardImage(name);
-            SetBorderClip();
+            //SetBorderClip();
         }
 
         public CaseCard()
         {
             InitializeComponent();
 
-            SetBorderClip();
+            //SetBorderClip();
             //SetCardImage(string.Empty);
         }
 
-        public void SetBorderClip()
+/*        public void SetBorderClip()
         {
-           /* if (ActualHeight == 0 || ActualWidth == 0) return; 
+           *//* if (ActualHeight == 0 || ActualWidth == 0) return; 
 
             Console.WriteLine(ActualWidth + ActualHeight);
 
@@ -43,18 +46,18 @@ namespace MonopolyEntity.Windows.UserControls
                 RadiusX = 10,
                 RadiusY = 10,
                 Rect = new Rect(0, 0, ActualWidth, ActualHeight)
-            };*/
-        }
+            };*//*
+        }*/
 
         public void SetCardImage(string picName)
         {
-            string imgPath = GetImageFolderDirectory();
-            SetPicImageByName(picName, imgPath);
+
+            SetPicImageByName(picName, Helper.GetImagesPath());
         }
 
         private void SetPicImageByName(string picName, string folderPath)
         {
-            string testPath = Path.Combine(folderPath, "Calivan.jpg");
+            string testPath = Path.Combine(folderPath, "calivan.jpg");
 
             string imgPath = GetGivenImgNamePath(folderPath, picName);
 
@@ -65,12 +68,18 @@ namespace MonopolyEntity.Windows.UserControls
 
         private string GetGivenImgNamePath(string folderPath, string imgName)
         {
-            string[] supExts = { ".jpg", ".png", ".jpeg" };
+            List<string> supExpansion = SystemParamsService.GetImageExpansions();
+            
+            /* {  
+                SystemParamsService.GetStringByName("jpgExpansion"),
+                SystemParamsService.GetStringByName("pngExpansion"),
+                SystemParamsService.GetStringByName("jpegExpansion")
+            };*/
             string imgPath = null;
 
-            foreach (string exts in supExts)
+            foreach (string expansion in supExpansion)
             {
-                string potentialPath = Path.Combine(folderPath, imgName + exts);
+                string potentialPath = Path.Combine(folderPath, imgName + expansion);
                 if (File.Exists(potentialPath))
                 {
                     imgPath = potentialPath;
@@ -80,7 +89,7 @@ namespace MonopolyEntity.Windows.UserControls
             return imgPath;
         }
 
-        public string GetImageFolderDirectory()
+/*        public string GetImageFolderDirectory()
         {
             DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
             string parentPath = baseDirectoryInfo.Parent.Parent.FullName;
@@ -88,15 +97,15 @@ namespace MonopolyEntity.Windows.UserControls
             string imagePath = Path.Combine(visPath, "Images");
 
             return imagePath;
-        }
+        }*/
 
-        private const int _centerDevider = 2; //!!!!
+        private const int _centerDivider = 2; 
         private void CardName_Loaded(object sender, RoutedEventArgs e)
         {
-            double upperPadding = DownRow.ActualHeight / _centerDevider - CardName.FontSize / _centerDevider;
+            double upperPadding = DownRow.ActualHeight / _centerDivider - CardName.FontSize / _centerDivider;
             if (upperPadding < 0) return;
 
-            CardName.Padding = new Thickness(0, DownRow.ActualHeight / _centerDevider - CardName.FontSize / _centerDevider, 0, 0);
+            CardName.Padding = new Thickness(0, DownRow.ActualHeight / _centerDivider - CardName.FontSize / _centerDivider, 0, 0);
         }
 
     }

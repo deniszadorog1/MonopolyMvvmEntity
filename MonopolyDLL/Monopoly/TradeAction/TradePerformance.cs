@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MonopolyDLL.Monopoly.TradeAction
 {
@@ -15,9 +10,9 @@ namespace MonopolyDLL.Monopoly.TradeAction
         public int SenderMoney { get; set; }
         public int ReceiverMoney { get; set; }
 
-        public List<int> SenderBusesIndexes { get; set; }
-        public List<int> ReceiverBusesIndexes { get; set; }
-    
+        public List<int> SenderBusinessesIndexes { get; set; }
+        public List<int> ReceiverBusinessesIndexes { get; set; }
+
         public TradePerformance()
         {
             SenderIndex = -1;
@@ -26,8 +21,8 @@ namespace MonopolyDLL.Monopoly.TradeAction
             SenderMoney = 0;
             ReceiverMoney = 0;
 
-            SenderBusesIndexes = new List<int>();
-            ReceiverBusesIndexes = new List<int>();
+            SenderBusinessesIndexes = new List<int>();
+            ReceiverBusinessesIndexes = new List<int>();
         }
 
         public void SetSenderIndex(int senderIndex)
@@ -42,14 +37,14 @@ namespace MonopolyDLL.Monopoly.TradeAction
 
         public void AddCellIndexInTrade(int cellIndex, bool isSenderIsOwner)
         {
-            if (isSenderIsOwner) SenderBusesIndexes.Add(cellIndex);
-            else ReceiverBusesIndexes.Add(cellIndex);
+            if (isSenderIsOwner) SenderBusinessesIndexes.Add(cellIndex);
+            else ReceiverBusinessesIndexes.Add(cellIndex);
         }
 
         public void RemoveCellIndexFromTrade(int cellIndex)
         {
-            SenderBusesIndexes.Remove(cellIndex);
-            ReceiverBusesIndexes.Remove(cellIndex);
+            SenderBusinessesIndexes.Remove(cellIndex);
+            ReceiverBusinessesIndexes.Remove(cellIndex);
         }
 
         public int GetSenderMoney()
@@ -59,7 +54,7 @@ namespace MonopolyDLL.Monopoly.TradeAction
 
         public List<int> GetSenderCellsIndexes()
         {
-            return SenderBusesIndexes;
+            return SenderBusinessesIndexes;
         }
 
         public int GetReceiverMoney()
@@ -69,14 +64,18 @@ namespace MonopolyDLL.Monopoly.TradeAction
 
         public List<int> GetReceiverIndexes()
         {
-            return ReceiverBusesIndexes;
+            return ReceiverBusinessesIndexes;
         }
 
         public bool IsTwiceRuleIsCompleted(int totalSender, int totalReceiver)
         {
             const int twiceRuleValue = 2;
-            return !(totalSender / twiceRuleValue > totalReceiver) && 
-                !(totalReceiver / twiceRuleValue > totalSender);
+
+            return totalSender / twiceRuleValue <= totalReceiver &&
+                totalReceiver / twiceRuleValue <= totalSender;
+
+            /*            return !(totalSender / twiceRuleValue > totalReceiver) && 
+                            !(totalReceiver / twiceRuleValue > totalSender);*/
         }
 
         public void SetSenderMoney(int money)
@@ -98,6 +97,6 @@ namespace MonopolyDLL.Monopoly.TradeAction
         {
             return ReceiverIndex;
         }
-        
+
     }
 }

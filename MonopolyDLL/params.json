@@ -1,4 +1,8 @@
 ﻿{
+
+  "MinAmountOfPlayers": "2",
+  "MaxAmountOfPlayers": "5",
+
   "AmountOfCells": "40",
 
   "MinCubeRib": "1",
@@ -11,6 +15,9 @@
   "MoneyLastCur": "k",
   "MoneyDivider": ",",
   "GameLastCur": "x",
+
+  "GetOnStartMoney": "3000",
+  "GoThroughStartMoney": "2000",
 
   "MaxSitInPrison": "3",
   "MaxDoubles": "3",
@@ -30,7 +37,8 @@
   "LittleMoneyChance": "500",
   "MuchMoneyChance": "1500",
   "StepChance": "1",
-  
+
+  "OutOfPrisonPrice": "500",
 
   "ChangeItemInventory": "Change",
   "GetBackItemInventory": "Get back",
@@ -89,7 +97,7 @@
   "ChanceLittleMoneyGain": "bucks on the street",
   "ChanceBigMoneyGain": "in winter jacket",
   "ChanceMoveBackwards": "will move backwards",
-  "BirthdayChance": "Its your birthday",
+  "BirthdayChance": "Its your birthday, everyone need to pay a gift",
   "BuildingsTaxChance": "Need to pay tax for buildings",
   "TeleportChance": "using spatial magic",
   "SkipMoveChance": "Will sleep all next move",
@@ -144,7 +152,7 @@
   "LotBoxColType": "The same as box name btw",
   "LotBoxCanDroppedDesc": "Several items from the worst type to the best",
 
-  "BusDescCardErngs": "You will get more from this card in",
+  "BusDescCardEarnings": "You will get more from this card in",
   "BusDescItemDesc": "This is business card which you can use in game",
 
   "SettingsNewPas": "new Password",
@@ -163,18 +171,58 @@
   "BaseLoginFieldName": "Login",
   "BasePasswordFieldName": "Password",
 
-  "FirstCardImageSizeParam":  "20",
-  "SecondCardImageSizeParam":  "25",
-  "ThirdCardImageSizeParam":  "30",
-  "FourthCardImageSizeParam":  "35",
-  "FifthCardImageSizeParam":  "45",
-  "SixthCardImageSizeParam":  "50",
-  "SeventhCardImageSizeParam":  "55",
-  "EighthCardImageSizeParam":  "65",
-  "NinethCardImageSizeParam":  "75",
-  "TensCardImageSizeParam":  "95",
+  "FirstCardImageSizeParam": "20",
+  "SecondCardImageSizeParam": "25",
+  "ThirdCardImageSizeParam": "30",
+  "FourthCardImageSizeParam": "35",
+  "FifthCardImageSizeParam": "45",
+  "SixthCardImageSizeParam": "50",
+  "SeventhCardImageSizeParam": "55",
+  "EighthCardImageSizeParam": "65",
+  "NinethCardImageSizeParam": "75",
+  "TensCardImageSizeParam": "95",
   "ElevensCardImageSizeParam": "100",
-  "TwelveCardImageSizeParam":  "40"
+  "TwelveCardImageSizeParam": "40",
+
+  "GotWinner": "We have a winner!",
+  "CloseWindow": "Close thisWindow",
+
+  "RegularRarityR": "76",
+  "RegularRarityG": "180",
+  "RegularRarityB": "219",
+
+  "FirstLineLastPoint": "10",
+  "SecondLineLastPoint": "20",
+  "ThirdLineLastPoint": "30",
+  "FourthLineLastPoint": "40",
+
+  "BaseWindowSizeParam": "450",
+  "MinWindowWidth": "1500",
+  "MinWindowHeight": "900",
+
+  "ClearedValue": "-1",
+  "OpenFileDialogFilterString": "PNG files (*.png)|*.png|All files (*.*)|*.*",
+  "jpgExpansion": ".jpg",
+  "pngExpansion": ".png",
+  "jpegExpansion": ".jpeg",
+
+  "MaxBusinessLevel": "5",
+
+  "LeftCubeBaseValue": "-1080",
+  "LeftCubeOneVertical": "-1800",
+  "LeftCubeTwoHorizontal": "-2250",
+  "LeftCubeThreeVertical": "-2070",
+  "LeftCubeFourVertical": "-2250",
+  "LeftCubeFiveHorizontal": "-2070",
+  "LeftCubeSixVertical": "-1980",
+
+  "RightCubeBaseValue": "1080",
+  "RightCubeOneVertical": "1800",
+  "RightCubeTwoHorizontal": "2070",
+  "RightCubeThreeVertical": "1890",
+  "RightCubeFourVertical": "2070",
+  "RightCubeFiveHorizontal": "1890",
+  "RightCubeSixVertical": "1980"
 
 
 

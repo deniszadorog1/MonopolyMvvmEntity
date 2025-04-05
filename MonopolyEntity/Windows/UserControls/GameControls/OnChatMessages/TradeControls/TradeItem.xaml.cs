@@ -1,4 +1,4 @@
-﻿using MonopolyDLL.Monopoly.Cell.Bus;
+﻿using MonopolyDLL.Monopoly.Cell.Businesses;
 using System;
 using System.Collections.Generic;
 using System.Linq;

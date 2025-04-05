@@ -1,15 +1,7 @@
 ﻿using MonopolyDLL.Monopoly.Enums;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
-using System.Security.Cryptography.Pkcs;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MonopolyDLL.Monopoly.Cell.Bus
+namespace MonopolyDLL.Monopoly.Cell.Businesses
 {
     public class Business : Cell
     {
@@ -20,13 +12,13 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
         public int DepositCounter { get; set; }
         public int Level { get; set; }
         public int OwnerIndex { get; set; }
-        public BusinessType BusType { get; set; }
+        public BusinessType BusinessType { get; set; }
         public bool IsDeposited { get; set; }
         public int TempDepositCounter { get; set; }
 
         public int _depositCounterMax = SystemParamsService.GetNumByName("MaxDepositCounter");
 
-        public int GetPriceForBus()
+        public int GetPriceForBusiness()
         {
             return Price;
         }
@@ -36,9 +28,9 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             OwnerIndex = newOwnerIndex;
         }
 
-        public BusinessType GetBusType()
+        public BusinessType GetBusinessType()
         {
-            return BusType;
+            return BusinessType;
         }
 
         public bool IsLevelIsMax()
@@ -76,12 +68,12 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             return IsDeposited;
         }
 
-        public void DepositBus()
+        public void DepositBusiness()
         {
             IsDeposited = true;
         }
 
-        public void RebuyBus()
+        public void RebuyBusiness()
         {
             IsDeposited = false;
         }
@@ -101,7 +93,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             return index < 0 || index > PayLevels.Count - 1 ? 0 : PayLevels[index];
         }
 
-        public void SetBusLevel(int level)
+        public void SetBusinessLevel(int level)
         {
             Level = level;
         }
@@ -126,7 +118,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             return TempDepositCounter == 0;
         }
 
-        public void ClearBusValues()
+        public void ClearBusinessValues()
         {
             OwnerIndex = SystemParamsService.GetNumByName("NoOwnerIndex");
             TempDepositCounter = _depositCounterMax;

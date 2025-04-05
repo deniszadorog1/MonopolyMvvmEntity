@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeControls
 {
@@ -84,8 +72,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
 
         private int ConvertMoneyStringInInteger(string money)
         {
-            string zeroRemoved = RemoveZerosFromStart(money);
-            return int.Parse(zeroRemoved);
+            return int.Parse(RemoveZerosFromStart(money));
         }
 
         public string RemoveZerosFromStart(string moneyString)
@@ -100,7 +87,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages.TradeC
                 if (startWrite) res.Append(moneyString[i]);
             }
 
-            if (res.Length == 0) res.Append(startChar);
+            if (res.ToString() == string.Empty) res.Append(startChar);
             return res.ToString();
         }
 

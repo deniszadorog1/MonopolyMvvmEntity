@@ -1,24 +1,22 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Newtonsoft.Json;
+using System.Runtime.InteropServices;
 
 namespace MonopolyDLL
 {
     public static class SystemParamsService
     {
         private static Dictionary<string, string> _dict = null;
-        private static void SetStringParams()
+        private static void SetStringParams(string fileName)
         {
-            //B:\\GitHub\\MonopolyMvvmEntity\\MonopolyEntity"
             DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
             string parentPath = baseDirectoryInfo.Parent.Parent.Parent.FullName;
             string monopolyDllPath = Path.Combine(parentPath, "MonopolyDLL");
-            string jsonFilePath = Path.Combine(monopolyDllPath, "params.json");
+            string jsonFilePath = Path.Combine(monopolyDllPath, fileName);
 
             string json = File.ReadAllText(jsonFilePath);
             _dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
@@ -26,7 +24,7 @@ namespace MonopolyDLL
 
         public static int GetNumByName(string name)
         {
-            SetStringParams();
+            SetStringParams("params.json");
             int.TryParse(_dict[name], out int res);
 
             return res;
@@ -34,8 +32,16 @@ namespace MonopolyDLL
 
         public static string GetStringByName(string name)
         {
-            SetStringParams();
+            SetStringParams("params.json");
             return _dict[name];
+        }
+
+        public static List<string> GetImageExpansions()
+        {
+            List<string> res = new List<string>();
+            SetStringParams("ImageExpansions.json");
+
+            return _dict.Values.ToList();
         }
     }
 }

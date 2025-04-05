@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MonopolyDLL.Monopoly.Cell.AngleCells
+﻿namespace MonopolyDLL.Monopoly.Cell.AngleCells
 {
     public class Start : Cell
     {
-        private const int _paymentToGetOn = 3000;
-        private const int _paymentToGetThrough = 2000;
+        private readonly int _paymentToGetOn = SystemParamsService.GetNumByName("GetOnStartMoney");// 3000;
+        private readonly int _paymentToGetThrough = SystemParamsService.GetNumByName("GoThroughStartMoney");//2000;
 
         public Start(string name, int id)
         {

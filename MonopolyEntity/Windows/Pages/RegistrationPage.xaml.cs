@@ -55,8 +55,9 @@ namespace MonopolyEntity.Windows.Pages
         {
             if (LoginBox.Text == _baseLoginFieldName)
             {
-                LoginBox.Text = string.Empty;
-                LoginBox.Foreground = Brushes.Black;
+/*                LoginBox.Text = string.Empty;
+                LoginBox.Foreground = Brushes.Black;*/
+                SetParamsToTextBox(LoginBox, string.Empty, Brushes.Black);
             }
         }
 
@@ -64,8 +65,10 @@ namespace MonopolyEntity.Windows.Pages
         {
             if (string.IsNullOrWhiteSpace(LoginBox.Text))
             {
-                LoginBox.Text = _baseLoginFieldName;
-                LoginBox.Foreground = Brushes.Gray;
+/*                LoginBox.Text = _baseLoginFieldName;
+                LoginBox.Foreground = Brushes.Gray;*/
+                SetParamsToTextBox(LoginBox, _baseLoginFieldName, Brushes.Gray);
+
             }
         }
 
@@ -73,8 +76,9 @@ namespace MonopolyEntity.Windows.Pages
         {
             if (PasswordBox.Text == _basePasswordFieldName)
             {
-                PasswordBox.Text = string.Empty;
-                PasswordBox.Foreground = Brushes.Black;
+/*                PasswordBox.Text = string.Empty;
+                PasswordBox.Foreground = Brushes.Black;*/
+                SetParamsToTextBox(PasswordBox, string.Empty, Brushes.Black);
             }
         }
 
@@ -82,16 +86,23 @@ namespace MonopolyEntity.Windows.Pages
         {
             if (string.IsNullOrWhiteSpace(PasswordBox.Text))
             {
-                PasswordBox.Text = _basePasswordFieldName;
-                PasswordBox.Foreground = Brushes.Gray;
+/*                PasswordBox.Text = _basePasswordFieldName;
+                PasswordBox.Foreground = Brushes.Gray;*/
+                SetParamsToTextBox(PasswordBox, _basePasswordFieldName, Brushes.Gray);
             }
+        }
+
+        public void SetParamsToTextBox(TextBox box, string text, SolidColorBrush brush)
+        {
+            box.Text = text;
+            box.Foreground = brush;
         }
 
         private void ChoseImgBut_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*",
+                Filter = SystemParamsService.GetStringByName("OpenFileDialogFilterString"),// "PNG files (*.png)|*.png|All files (*.*)|*.*",
                 Title = SystemParamsService.GetStringByName("RegistrationChooseImage")
             };
 

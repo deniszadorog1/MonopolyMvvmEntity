@@ -1,18 +1,13 @@
 ﻿using MonopolyDLL.DBService;
 using MonopolyDLL.Monopoly;
-using MonopolyDLL.Monopoly.Cell;
+using MonopolyDLL.Monopoly.Cell.AngleCells;
+using MonopolyDLL.Monopoly.Cell.Businesses;
 using MonopolyDLL.Monopoly.Enums;
 using MonopolyDLL.Monopoly.InventoryObjs;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Security.AccessControl;
-using MonopolyDLL.Monopoly.Cell.AngleCells;
-using MonopolyDLL.Monopoly.Cell.Bus;
-using MonopolyDLL.Monopoly.Cell;
-
-
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 
@@ -262,13 +257,13 @@ namespace MonopolyDLL
             throw new Exception("No such boxItem");
         }
 
-        public static (int, int, int) GetColorByRarityId(int rearityId)
+        public static (int, int, int) GetColorByRarityId(int rarityId)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
                 foreach (var rarity in model.Rarity)
                 {
-                    if (rarity.Id == rearityId)
+                    if (rarity.Id == rarityId)
                     {
                         return GetColorInSystemColorsById((int)rarity.ColorId);
                     }
@@ -278,7 +273,11 @@ namespace MonopolyDLL
             throw new Exception("no Rarity with such Id");
         }
 
-        private static (byte, byte, byte) _usualRarityColorParams = (76, 180, 219);
+
+        private static (byte, byte, byte) _usualRarityColorParams =
+            ((byte)SystemParamsService.GetNumByName("RegularRarityR"),
+            (byte)SystemParamsService.GetNumByName("RegularRarityG"),
+            (byte)SystemParamsService.GetNumByName("RegularRarityB"));
         public static (byte, byte, byte) GetColorByRarityName(string name)
         {
             using (MonopolyModel model = new MonopolyModel())
@@ -398,7 +397,7 @@ namespace MonopolyDLL
             return (BusinessType)id;
         }
 
-        public static BusRarity GetRarityById(int id)
+        public static BusinessRarity GetRarityById(int id)
         {
             using (MonopolyModel model = new MonopolyModel())
             {
@@ -406,7 +405,7 @@ namespace MonopolyDLL
                 {
                     if (rarity.Id == id)
                     {
-                        return (BusRarity)id;
+                        return (BusinessRarity)id;
                     }
                 }
             }
@@ -682,8 +681,8 @@ namespace MonopolyDLL
             return res;
         }
 
-        private static Monopoly.Cell.Cell GetParentByCell(DBService.Cell cell)
-        {   
+        private static Monopoly.Cell.Cell GetParentByCell(Cell cell)
+        {
             Monopoly.Enums.CellType? type = GetTypeByCell(cell);
             if (type is null) return null;
 
@@ -744,21 +743,21 @@ namespace MonopolyDLL
                         {
                             case Monopoly.Enums.CellType.UsualBusiness:
                                 {
-                                    return new RegularBusiness(cell.Name, (int)stations[i].Price, (int)stations[i].DepositPrice, (int)stations[i].RebuyPrice, 
+                                    return new RegularBusiness(cell.Name, (int)stations[i].Price, (int)stations[i].DepositPrice, (int)stations[i].RebuyPrice,
                                         paymentLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0, (int)stations[i].UpgradePrice,
-                                        SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, i);
+                                        SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, cell.Id - 1);
                                 }
                             case Monopoly.Enums.CellType.CarBusiness:
                                 {
                                     return new CarBusiness(cell.Name, (int)stations[i].Price, (int)stations[i].DepositPrice, (int)stations[i].RebuyPrice,
                                         paymentLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
-                                         SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, i);
+                                         SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, cell.Id - 1);
                                 }
                             case Monopoly.Enums.CellType.GameBusiness:
                                 {
                                     return new GameBusiness(cell.Name, (int)stations[i].Price, (int)stations[i].DepositPrice, (int)stations[i].RebuyPrice,
                                         paymentLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
-                                         SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, i);
+                                         SystemParamsService.GetNumByName("NoOwnerIndex"), (BusinessType)stations[i].TypeId, false, cell.Id - 1);
                                 }
                         }
 
@@ -816,7 +815,7 @@ namespace MonopolyDLL
             using (MonopolyModel model = new MonopolyModel())
             {
                 var types = model.CellType.ToList();
-                res =  types[id - 1].Name.ToString();
+                res = types[id - 1].Name.ToString();
 
                 return res;
             }

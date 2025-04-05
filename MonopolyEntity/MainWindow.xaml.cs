@@ -19,6 +19,7 @@ using MonopolyDLL.Monopoly;
 
 using MonopolyEntity.Windows.Pages;
 using System.ComponentModel;
+using MonopolyDLL;
 namespace MonopolyEntity
 {
     /// <summary>
@@ -49,12 +50,12 @@ namespace MonopolyEntity
                 MainFrame.Content = new StartPage(MainFrame, _system);
                 e.Cancel = true;
                 return;
-                InitStartPage(e);
+                //InitStartPage(e);
             }
-            else if (MainFrame.Content is SetPlayersInGame playersInGame || 
-                MainFrame.Content is GamePage game || 
-                MainFrame.Content is InventoryPage inventory ||
-                MainFrame.Content is ProfileSettings settings) 
+            else if (MainFrame.Content is SetPlayersInGame || 
+                MainFrame.Content is GamePage || 
+                MainFrame.Content is InventoryPage ||
+                MainFrame.Content is ProfileSettings ) 
             {
                 ClosePopupIfGame();
 
@@ -86,7 +87,7 @@ namespace MonopolyEntity
             _system.MonGame = new Game(_system.LoggedUser);
             if(MainFrame.Content is GamePage game)
             {
-                game.StopGmeTimers();
+                game.StopGameTimers();
             }
         }
 
@@ -165,8 +166,13 @@ namespace MonopolyEntity
             VisiableItems.Children.Clear();
         }
 
-        private readonly Size _baseSize = new Size(450, 450);
-        private readonly Size _minSize = new Size(1500, 900);
+        private readonly Size _baseSize = new Size(
+            SystemParamsService.GetNumByName("BaseWindowSizeParam"),
+            SystemParamsService.GetNumByName("BaseWindowSizeParam"));
+        private readonly Size _minSize = new Size(
+            SystemParamsService.GetNumByName("MinWindowWidth"),
+            SystemParamsService.GetNumByName("MinWindowHeight"));
+
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if(MainFrame.Content is GamePage game)
@@ -181,7 +187,40 @@ namespace MonopolyEntity
                 MinHeight = _baseSize.Height;
                 MinWidth = _baseSize.Width;
             }
-           
         }
+       
+        public void SetFrameContent(Page page)
+        {
+            if(!(page is WorkPage)) MainFrame.Content = page;
+            SetWindowSize(page);
+        }
+
+/*        public void SetInventoryPage()
+        {
+            InventoryPage page = new InventoryPage(MainFrame, _system);
+            MainFrame.Content = page;
+
+            SetWindowSize(page);
+        }*/
+
+      /*  public void SetPlayersInGamePage()
+        {
+            SetPlayersInGame page = new SetPlayersInGame(_system, MainFrame);
+            MainFrame.Content = page;
+
+            SetWindowSize(page);
+        }
+
+        public void SetMainPage()
+        {
+            MainPage page = new MainPage(MainFrame, _system);
+            MainFrame.Content = page;
+        }
+
+        public void SetWorkPage()
+        {
+            WorkPage page = new WorkPage(_system, MainFrame);
+            MainFrame.Content = page;
+        }*/
     }
 }

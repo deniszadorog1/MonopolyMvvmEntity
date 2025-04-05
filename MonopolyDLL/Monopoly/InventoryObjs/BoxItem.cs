@@ -1,15 +1,11 @@
 ﻿using MonopolyDLL.Monopoly.Enums;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MonopolyDLL.Monopoly.InventoryObjs
 {
     public class BoxItem : Item
     {
-        public BusRarity Rarity { get; set; }
+        public BusinessRarity Rarity { get; set; }
         public BusinessType Type { get; set; }
         public int StationId { get; set; }
         public double Multiplier { get; set; }
@@ -23,7 +19,7 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
         private int _inventoryIdInDB;
 
         public BoxItem(string name, string imagePath,
-            BusRarity rarity, BusinessType type, int stationId,
+            BusinessRarity rarity, BusinessType type, int stationId,
             double multiplier, int r, int g, int b)
         {
             Name = name;
@@ -40,6 +36,15 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
 
         public BoxItem()
         {
+            Name = string.Empty;
+            IsBox = false;
+            ImagePath = string.Empty;
+            Rarity = BusinessRarity.Usual;
+            Type = BusinessType.Perfume;
+            Multiplier = 0;
+            rColor = 0;
+            gColor = 0;
+            bColor = 0;
         }
 
         public void SetTick(bool? tick)
@@ -70,7 +75,7 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
 
         public bool IsBusIsUsual()
         {
-            return Type != BusinessType.Games && 
+            return Type != BusinessType.Games &&
                 Type != BusinessType.Cars;
         }
 
@@ -96,13 +101,13 @@ namespace MonopolyDLL.Monopoly.InventoryObjs
 
         public List<int> GetNewPaymentList(List<int> payments)
         {
-            const int paymentMult = 100;
+            const int paymentMultiplier = 100;
             const int paymentAdder = 1;
             List<int> res = new List<int>();
 
-            double multiplier = Multiplier / paymentMult + paymentAdder;
+            double multiplier = Multiplier / paymentMultiplier + paymentAdder;
 
-            for(int i = 0; i < payments.Count; i++)
+            for (int i = 0; i < payments.Count; i++)
             {
                 res.Add((int)(payments[i] * multiplier));
             }

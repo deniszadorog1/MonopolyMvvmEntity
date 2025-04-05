@@ -1,31 +1,20 @@
-﻿using MahApps.Metro.Controls;
+﻿using MonopolyDLL;
+using MonopolyDLL.Monopoly;
+using MonopolyDLL.Monopoly.Enums;
+using MonopolyDLL.Services;
+using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.UserControls.GameControls;
+using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-using MonopolyDLL.Monopoly;
-using MonopolyEntity.VisualHelper;
-using System.Data.Entity.Infrastructure;
-using MonopolyDLL;
-using MonopolyDLL.DBService;
-using System.Media;
-using System.CodeDom;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using MonopolyDLL.Monopoly.Enums;
-using MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -45,7 +34,7 @@ namespace MonopolyEntity.Windows.Pages
 
             SetPopupsForUserCards();
             SetUserCardsInList();
-            
+
             AddGameField();
 
             SetStartValuesInUserCards();
@@ -93,7 +82,8 @@ namespace MonopolyEntity.Windows.Pages
             for (int i = 0; i < _system.MonGame.Players.Count; i++)
             {
                 _userCards[i].UserLogin.Text = _system.MonGame.Players[i].Login;
-                _userCards[i].UserMoney.Text = _field.GetConvertedStringWithoutLastK(_system.MonGame.Players[i].AmountOfMoney);
+                _userCards[i].UserMoney.Text = MoneyConvertingService.GetConvertedStringWithoutLastK(_system.MonGame.Players[i].AmountOfMoney);
+
                 _userCards[i].SetNewCardImage(MainWindowHelper.GetCircleImage(
                     _userCards[i]._imgSize, _userCards[i]._imgSize,
                     DBQueries.GetPictureNameById(_system.MonGame.Players[i].GetPictureId())));
@@ -128,7 +118,7 @@ namespace MonopolyEntity.Windows.Pages
                 }
 
             }
-            _userCards = res;    
+            _userCards = res;
         }
 
         private void UserCard_MouseEnter(object sender, EventArgs e)
@@ -171,10 +161,10 @@ namespace MonopolyEntity.Windows.Pages
 
             const int lastXPoint = 500;
             const int thickness = 1;
-            const string bgColor = "#E6E9ED";
+            SolidColorBrush bgColor = (SolidColorBrush)Application.Current.Resources["PopupBgColor"];
             var popupContent = new Border
             {
-                Background = (SolidColorBrush)new BrushConverter().ConvertFromString(bgColor),
+                Background = bgColor, //(SolidColorBrush)new BrushConverter().ConvertFromString(bgColor),
                 //BorderBrush = Brushes.Gray,
                 BorderThickness = new Thickness(0),
                 //CornerRadius = new CornerRadius(5),
@@ -183,7 +173,7 @@ namespace MonopolyEntity.Windows.Pages
                     Children =
                     {
                         CreateMenuItem("Test first"),
-                        new Line(){X1 = 0, Y1 = 0, X2 = lastXPoint, Y2 = 0, 
+                        new Line(){X1 = 0, Y1 = 0, X2 = lastXPoint, Y2 = 0,
                             Stroke = Brushes.Black, StrokeThickness = thickness},
                         CreateMenuItem("Test second"),
                     }
@@ -220,7 +210,8 @@ namespace MonopolyEntity.Windows.Pages
                 _system.MonGame.StepperIndex;
 
             if (_system.MonGame.Players[playerIndex].IsLost || _field._ifBlockMenus ||
-                (_field.ChatMessages.Children.OfType<DicesDrop>().Any())) return;
+                (_field.ChatMessages.Children.OfType<DicesDrop>().Any()) || _field._ifBirthdayChance) return;
+
             if (_dropdownMenuPopup.PlacementTarget == null)
             {
                 SetPopupMenu((UserCard)sender, playerIndex);
@@ -263,14 +254,14 @@ namespace MonopolyEntity.Windows.Pages
         private const int _centerDivider = 2;
         private void SetGiveUpButton(StackPanel panel, int playerIndex)
         {
-            _dropdownMenuPopup.Width = _userCards[playerIndex].UserCardGrid.Width ;
-            _dropdownMenuPopup.HorizontalOffset = 
-                (_userCards[playerIndex].Width - 
+            _dropdownMenuPopup.Width = _userCards[playerIndex].UserCardGrid.Width;
+            _dropdownMenuPopup.HorizontalOffset =
+                (_userCards[playerIndex].Width -
                 _userCards[playerIndex].UserCardGrid.Width) / _centerDivider;
 
             _dropdownMenuPopup.VerticalOffset =
                 -Math.Abs((_userCards[playerIndex].Height -
-                _userCards[playerIndex].UserCardGrid.Height) / _centerDivider); 
+                _userCards[playerIndex].UserCardGrid.Height) / _centerDivider);
 
             Button but = GetButtonForUserCardMenu(SystemParamsService.GetStringByName("GiveUpPopup"), playerIndex);
             but.Click += (sender, e) =>
@@ -303,7 +294,7 @@ namespace MonopolyEntity.Windows.Pages
 
         private void Page_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            IfPageIsRendered();
+            IsPageIsRendered();
             if (!_ifPageIsRendered) return;
 
             if ((this.ActualWidth < _firstStep.Width ||
@@ -313,7 +304,7 @@ namespace MonopolyEntity.Windows.Pages
                 _windowSizeType = GamePageSize.MediumWindow;
                 _field.UpdateFieldSize(_windowSizeType, _middleWindowSize);
             }
-            else if(this.ActualWidth > _firstStep.Width &&
+            else if (this.ActualWidth > _firstStep.Width &&
                 this.ActualHeight > _firstStep.Height &&
                 _windowSizeType != GamePageSize.BigWindow)
             {
@@ -323,18 +314,18 @@ namespace MonopolyEntity.Windows.Pages
         }
 
         private bool _ifPageIsRendered = false;
-        private void IfPageIsRendered()
+        private void IsPageIsRendered()
         {
             if (_ifPageIsRendered) return;
             Window parentWindow = Window.GetWindow(_frame);
 
-            if(parentWindow is MainWindow window)
+            if (parentWindow is MainWindow window)
             {
                 _ifPageIsRendered = window._ifGamePageIsRendered;
             }
         }
 
-        public void StopGmeTimers()
+        public void StopGameTimers()
         {
             _field.StopTimers();
         }

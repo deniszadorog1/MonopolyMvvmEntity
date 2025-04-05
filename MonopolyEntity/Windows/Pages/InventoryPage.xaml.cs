@@ -14,19 +14,20 @@ using System.Windows.Media.Effects;
 using MonopolyDLL.Monopoly;
 using MonopolyDLL.Monopoly.InventoryObjs;
 using System.Collections.Generic;
-using MonopolyDLL.Monopoly.Cell.Bus;
+using MonopolyDLL.Monopoly.Cell.Businesses;
 using MonopolyDLL;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 using Item = MonopolyDLL.Monopoly.InventoryObjs.Item;
 using MonopolyDLL.Monopoly.Enums;
 using MonopolyEntity.Interfaces;
+using MonopolyDLL.DBService;
 
 namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
     /// Логика взаимодействия для InventoryPage.xaml
     /// </summary>
-    public partial class InventoryPage : Page, IPagesOpener
+    public partial class InventoryPage : Page/*, IPagesOpener*/
     {
         private Frame _frame;
         private MonopolySystem _system;
@@ -44,6 +45,8 @@ namespace MonopolyEntity.Windows.Pages
             SetUserParamsText();
 
             SetUserMenu();
+
+            UpperMenuu.SetMonSystemAndFrame(_frame, _system);
         }
 
         public void SetUserMenu()
@@ -83,28 +86,33 @@ namespace MonopolyEntity.Windows.Pages
             {
                 if (_system.LoggedUser.Inventory.InventoryItems[i] is CaseBox box)
                 {
-                    CaseCard card = SetLootBoxCard(box, BoardHelper.GetLotBoxImage(box.ImagePath));
-                    card.MouseDown += (sender, e) =>
+                    CaseCard card = SetLootBoxCard(box, Helper.GetLotBoxImage(box.ImagePath));
+
+                    SetMouseDownEvent(card, box);
+
+/*                  card.MouseDown += (sender, e) =>
                     {
                         if (_ifJustBlurred) { _ifJustBlurred = !_ifJustBlurred; return; }
                         Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
                         SetAnimationForCaseBox(pagePoint, card.CardImage, box);
-                    };
+                    };*/
                     _cards.Add(card);
                 }
                 else if (_system.LoggedUser.Inventory.InventoryItems[i] is BoxItem boxItem)
                 {
-                    CaseCard card = SetLootBoxCard(boxItem, BoardHelper.GetAddedItemImage(boxItem.ImagePath, boxItem.Type));
+                    CaseCard card = SetLootBoxCard(boxItem, Helper.GetAddedItemImage(boxItem.ImagePath, boxItem.Type));
 
                     _cards.Add(card);
                     boxItem.SetCaseCardId(_cards.Count() - 1);
 
-                    card.MouseDown += (sender, e) =>
+                    SetMouseDownEvent(card, boxItem);
+
+/*                  card.MouseDown += (sender, e) =>
                     {
                         if (_ifJustBlurred) { _ifJustBlurred = !_ifJustBlurred; return; }
                         Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
                         SetAnimationForInventoryBusiness(pagePoint, card.CardImage, boxItem);
-                    };
+                    };*/
 
                     if (IsBoxCardIsTicked(boxItem))
                     {
@@ -114,6 +122,18 @@ namespace MonopolyEntity.Windows.Pages
                 }
             }
             SetCardsInItemsPanel();
+        }
+
+        public void SetMouseDownEvent(CaseCard card, object element)
+        {
+            card.MouseDown += (sender, e) =>
+            {
+                if (_ifJustBlurred) { _ifJustBlurred = !_ifJustBlurred; return; }
+                Point pagePoint = Helper.GetElementLocationRelativeToPage(card, this);
+                
+                if(element is BoxItem boxItem) SetAnimationForInventoryBusiness(pagePoint, card.CardImage, boxItem);
+                else if(element is CaseBox caseBox) SetAnimationForCaseBox(pagePoint, card.CardImage, caseBox);
+            };
         }
 
         private bool IsBoxCardIsTicked(BoxItem item)
@@ -149,14 +169,14 @@ namespace MonopolyEntity.Windows.Pages
             res.CardImage.VerticalAlignment = VerticalAlignment.Center;
             res.CardImage.HorizontalAlignment = HorizontalAlignment.Center;
 
-            res.BorderBgColor.Background = BoardHelper.GetRarityColorForCard(item);
+            res.BorderBgColor.Background = Helper.GetRarityColorForCard(item);
             res.CardName.Foreground = Brushes.White;
 
             res.CardName.Text = $"{item.Name}";
             return res;
         }
 
-        private BussinessDescription _busDesc;
+        private BusinessDescription _busDesc;
         public void SetAnimationForInventoryBusiness(Point cardLocation, Image busImg, BoxItem bus)
         {
             if (_frame.Opacity == _inActiveOpacity) return;
@@ -164,7 +184,7 @@ namespace MonopolyEntity.Windows.Pages
             MainWindow window = Helper.FindParent<MainWindow>(_frame);
             Canvas items = window.VisiableItems;
 
-            _busDesc = new BussinessDescription(bus);
+            _busDesc = new BusinessDescription(bus);
             _busDesc.DescImage.Source = busImg.Source;
 
             SetButtonsInBusDescription(bus);
@@ -265,7 +285,9 @@ namespace MonopolyEntity.Windows.Pages
                 _busDesc.ButtonsPanel.Children.Clear();
                 SetButtonsInBusDescription(item);
 
-                RemoveTickForCaseCard(item);
+                SetVisibilityForCaseCard(item, Visibility.Hidden);
+
+                //RemoveTickForCaseCard(item);
             };
         }
 
@@ -280,7 +302,8 @@ namespace MonopolyEntity.Windows.Pages
                 _busDesc.ButtonsPanel.Children.Clear();
                 SetButtonsInBusDescription(newItem);
 
-                AddTickForCaseCard(newItem);
+                //AddTickForCaseCard(newItem);
+                SetVisibilityForCaseCard(newItem, Visibility.Visible);
 
                 DBQueries.SetBoxItemWhichUserStartsToUse(newItem);
             };
@@ -298,15 +321,27 @@ namespace MonopolyEntity.Windows.Pages
                 _busDesc.ButtonsPanel.Children.Clear();
                 SetButtonsInBusDescription(newItem);
 
-                RemoveTickForCaseCard(oldItem);
-                AddTickForCaseCard(newItem);
+
+                SetVisibilityForCaseCard(oldItem, Visibility.Hidden);
+
+                //RemoveTickForCaseCard(oldItem);
+
+                SetVisibilityForCaseCard(newItem, Visibility.Visible);
+
+                //AddTickForCaseCard(newItem);
 
                 DBQueries.SetBoxItemWhichUserNotUse(oldItem);
                 DBQueries.SetBoxItemWhichUserStartsToUse(newItem);
             };
         }
 
-        private void AddTickForCaseCard(BoxItem toAdd)
+        public void SetVisibilityForCaseCard(BoxItem item, Visibility visibility)
+        {
+            CaseCard card = _cards[item.GetCaseCardId()];
+            card.IfTicked.Visibility = visibility;
+        }
+
+/*        private void AddTickForCaseCard(BoxItem toAdd, Visibility visible)
         {
             CaseCard card = _cards[toAdd.GetCaseCardId()];
             card.IfTicked.Visibility = Visibility.Visible;
@@ -316,7 +351,7 @@ namespace MonopolyEntity.Windows.Pages
         {
             CaseCard card = _cards[toHide.GetCaseCardId()];
             card.IfTicked.Visibility = Visibility.Hidden;
-        }
+        }*/
 
         public BusDescButton GetBusForBusinessDescription(string busName, SolidColorBrush color, string actionText)
         {
@@ -339,9 +374,6 @@ namespace MonopolyEntity.Windows.Pages
 
             MainWindow window = Helper.FindParent<MainWindow>(_frame);
             Canvas items = window.VisiableItems;
-
-            Console.WriteLine(window.CaseFrame.Visibility);
-            Console.WriteLine(items.Visibility);
 
             _boxDescript = new BoxDescription(_frame, box, _system.LoggedUser.Login);
             SetBoxDescriptionParams(cardLocation, caseImg);
@@ -400,23 +432,34 @@ namespace MonopolyEntity.Windows.Pages
             ScaleTransform ImageScaleTransform = new ScaleTransform();
             img.RenderTransform = ImageScaleTransform;
 
-            var scaleXAnimation = new DoubleAnimation
+            var scaleXAnimation = GetAnimation(scaleFrom, scaleTo, _movementSpeed); /*new DoubleAnimation
             {
                 From = scaleFrom,
                 To =scaleTo,
                 Duration = TimeSpan.FromSeconds(_movementSpeed),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-            };
+            };*/
 
-            var scaleYAnimation = new DoubleAnimation
+            var scaleYAnimation = GetAnimation(scaleFrom, scaleTo, _movementSpeed);/*new DoubleAnimation
             {
                 From = scaleFrom,
                 To = scaleTo,
                 Duration = TimeSpan.FromSeconds(_movementSpeed),
                 EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-            };
+            };*/
             ImageScaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, scaleXAnimation);
             ImageScaleTransform.BeginAnimation(ScaleTransform.ScaleYProperty, scaleYAnimation);
+        }
+
+        public DoubleAnimation GetAnimation(double scaleFrom, double scaleTo, double speed)
+        {
+            return new DoubleAnimation
+            {
+                From = scaleFrom,
+                To = scaleTo,
+                Duration = TimeSpan.FromSeconds(speed),
+                EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };
         }
 
         public void SetUserImage()
@@ -435,17 +478,27 @@ namespace MonopolyEntity.Windows.Pages
             Canvas.SetTop(img, yLoc);
         }
 
-        public void OpenGameField()
+        public void OpenPage(bool ifMainPage)
         {
+            Page page = ifMainPage ? new MainPage(_frame, _system) : (Page)new SetPlayersInGame(_system, _frame);
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(page);
+        }
+
+/*        public void OpenGameField()
+        {
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new SetPlayersInGame(_system, _frame));
+*//*
             SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
-            _frame.Content = page;
+            _frame.Content = page;*//*
         }
 
         public void OpenMainPage()
         {
-            MainPage page = new MainPage(_frame, _system);
-            _frame.Content = page;
-        }
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new MainPage(_frame, _system));
+
+*//*            MainPage page = new MainPage(_frame, _system);
+            _frame.Content = page;*//*
+        }*/
 
         public void SetUpperLineSettings()
         {
@@ -518,7 +571,7 @@ namespace MonopolyEntity.Windows.Pages
             }
         }
 
-        private BusRarity? _rarity;
+        private BusinessRarity? _rarity;
         private void RareFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
              string clearFilterStr = SystemParamsService.GetStringByName("SetAllInFilterInventory");
@@ -533,11 +586,11 @@ namespace MonopolyEntity.Windows.Pages
 
         private void SetRarity(string rarity)
         {
-            for (int i = (int)BusRarity.Usual; i <= (int)BusRarity.Legend; i++)
+            for (int i = (int)BusinessRarity.Usual; i <= (int)BusinessRarity.Legend; i++)
             {
-                if (rarity == ((BusRarity)i).ToString())
+                if (rarity == ((BusinessRarity)i).ToString())
                 {
-                    _rarity = (BusRarity)i;
+                    _rarity = (BusinessRarity)i;
                     return;
                 }
             }

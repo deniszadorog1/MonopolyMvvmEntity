@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MonopolyEntity.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.GameCell
     /// <summary>
     /// Логика взаимодействия для SquareCell.xaml
     /// </summary>
-    public partial class SquareCell : UserControl
+    public partial class SquareCell : UserControl, IAllCellActions
     {
         public SquareCell()
         {
@@ -31,6 +32,32 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.GameCell
         {
             ChipsPlacer.Width = Width;
             ChipsPlacer.Height = Height;
+        }
+
+        public Size GetCellSize()
+        {
+            return new Size(ChipsPlacer.Width, ChipsPlacer.Height);
+        }
+
+        public void AddChip(Image chip)
+        {
+            ChipsPlacer.Children.Add(chip);
+        }
+
+        public Point GetCenterOfTheSquareForImage(Image img, int divider)
+        {
+            return new Point(ChipsPlacer.ActualWidth / divider - img.Width / divider,
+                    ChipsPlacer.ActualHeight / divider - img.Height / divider);
+        }
+
+        public int GetAmountOfItemsInCell()
+        {
+            return ChipsPlacer.Children.Count;
+        }
+
+        public Size GetActualCellSize()
+        {
+            return new Size(ChipsPlacer.ActualWidth, ChipsPlacer.ActualHeight);
         }
     }
 }

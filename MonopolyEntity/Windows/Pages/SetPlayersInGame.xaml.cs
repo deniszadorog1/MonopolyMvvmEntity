@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.CodeDom;
+using MonopolyEntity.Windows.UserControls;
 
 namespace MonopolyEntity.Windows.Pages
 {
@@ -28,7 +29,6 @@ namespace MonopolyEntity.Windows.Pages
             _system = system;
             _frame = frame;
             InitializeComponent();
-
             FillStartListBoxes();
         }
 
@@ -202,22 +202,19 @@ namespace MonopolyEntity.Windows.Pages
 
         private TextBlock GetTextBlock(string name)
         {
+            const int textSize = 16;
             return new TextBlock()
             {
                 Text = name,
-                FontSize = 16
+                FontSize = textSize
             };
-        }
-
-        private void GetBackBut_Click(object sender, RoutedEventArgs e)
-        {
-            //Close();
         }
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
-            const int leastAmountOfPlayers = 2;
-            const int _maxAmountOfPlayers = 5;
+            int leastAmountOfPlayers = SystemParamsService.GetNumByName("MinAmountOfPlayers");
+            int _maxAmountOfPlayers = SystemParamsService.GetNumByName("MaxAmountOfPlayers");
+
             if (!_users.Any(x => x.Login == _system.LoggedUser.Login) ||
                 _playersInGame.Count < leastAmountOfPlayers ||
                 _playersInGame.Count > _maxAmountOfPlayers) return;
@@ -225,15 +222,5 @@ namespace MonopolyEntity.Windows.Pages
             _system.MonGame.Players = _playersInGame;
             _frame.Content = new GamePage(_frame, _system);;
         }
-
-        private void Page_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-        }
-
-        private void Page_DragOver(object sender, DragEventArgs e)
-        {
-
-        }
-
     }
 }

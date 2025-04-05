@@ -1,0 +1,273 @@
+﻿<UserControl x:Class="MonopolyEntity.Windows.UserControls.GameControls.BusinessInfo.RegularBusInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MonopolyEntity.Windows.UserControls.GameControls.BusinessInfo"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="260"
+             MaxHeight="430" MinHeight="420"
+             MaxWidth="260" MinWidth="260"                    
+             >
+
+    <UserControl.Resources>
+        <Style x:Key="PaymentNumber" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="Open Sans"/>
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="Text" Value="xxxx"/>
+            <Setter Property="Margin" Value="0 0 30 0"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="#5b5d67"/>
+        </Style>
+
+        <Style x:Key="PriceNames" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="20 0 0 0"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
+
+        <Style x:Key="KLetter" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="FontFamily" Value="Open Sans"/>
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="Margin" Value="0 0 20 0"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="Foreground" Value="#a7adb5"/>
+        </Style>
+
+        <Style x:Key="LittleStar" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#656D78"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Text" Value="★"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
+        </Style>
+    </UserControl.Resources>
+    
+    
+    <Border Background="White" CornerRadius="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Name ="NameBusBorder" CornerRadius="10 10 0 0" Background="Gray">
+                <StackPanel Orientation="Vertical" Margin="20 10 0 0">
+                    <TextBlock Name="BusName" Text="Busness name place" 
+                               FontSize="22" Foreground="White"
+                               FontFamily="Open Sans" FontWeight="SemiBold"/>
+
+                    <TextBlock Name= "BusType" Text="Busness type" 
+                               FontSize="16" Foreground="White"
+                               FontFamily="Open Sans" />
+                </StackPanel>
+            </Border>
+
+            <Grid Grid.Row="1" Name="BusDescGrid">
+                <TextBlock FontSize="16" TextWrapping="Wrap"  Name="DescriptionText"
+                           Margin="20 5 20 0"
+                           Text="Build houses to get bigger payment" Visibility="Hidden"/>
+
+                <Button Name ="BuildHouseBut" Width="200" Height="25" Visibility="Hidden"
+                Background="{StaticResource MainGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Build house"
+                Foreground="White" VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
+
+                <Button Name ="SellHouseBut" Width="200" Height="25" Visibility="Hidden"
+                Background="{StaticResource DenyGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="SellHouse"
+                Foreground="White" VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
+                
+                <Grid Name ="CombineHouseButs"  Width="235" Visibility="Hidden">
+                    <Button Name ="BuildHouseCombineBut" Width="115" Height="25" 
+                    Background="{StaticResource MainGlobalColor}" 
+                    BorderBrush="White" VerticalAlignment="Center"
+                    HorizontalAlignment="Left" Content="Build house"
+                    Foreground="White" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" FontSize="14"/>
+
+
+                    <Button Name ="SellHouseCombineBut" Width="115" Height="25"
+                    Background="{StaticResource DenyGlobalColor}" 
+                    BorderBrush="White" VerticalAlignment="Center"
+                    HorizontalAlignment="Right" Content="SellHouse"
+                    Foreground="White" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" FontSize="14"/>
+                </Grid>
+
+                <Grid Name ="CombineDepositBuyHouse" Width="235" Visibility="Hidden">
+                    <Button Name ="BuildHouseSecondCombineBut" Width="115" Height="25" 
+                    Background="{StaticResource MainGlobalColor}" 
+                    BorderBrush="White" VerticalAlignment="Center"
+                    HorizontalAlignment="Left" Content="Build house"
+                    Foreground="White" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" FontSize="14"/>
+
+                    <Button Name ="DepositCellSecondCombineBut" Width="115" Height="25"
+                    Background="{StaticResource DenyGlobalColor}" 
+                    BorderBrush="White" VerticalAlignment="Center"
+                    HorizontalAlignment="Right" Content="Deposit"
+                    Foreground="White" VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center" FontSize="14"/>
+                </Grid>
+
+                <Button Name ="RebuyBut" Width="200" Height="25" Visibility="Hidden"
+                Background="{StaticResource MainGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Rebuy business"
+                Foreground="White" VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
+                <Button Name ="DepositBut" Width="200" Height="25" Visibility="Hidden"
+                Background="{StaticResource DenyGlobalColor}" 
+                BorderBrush="White" VerticalAlignment="Center"
+                HorizontalAlignment="Center" Content="Deposit business"
+                Foreground="White" VerticalContentAlignment="Center"
+                HorizontalContentAlignment="Center" FontSize="14"/>
+
+            </Grid>
+
+            <Grid Grid.Row="2" Name ="BusLevelsGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="0">
+                    <TextBlock Name="BaseRentText" Text="Base rent" Style="{StaticResource PriceNames}"/>
+                    <TextBlock Name="BaseRentMoney" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Name="OneStarK" Style="{StaticResource KLetter}"/>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="20 0 0 0">
+
+                    <TextBlock Style="{StaticResource LittleStar}"/>
+
+                    <TextBlock Name="OneStarRentMoney" Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <WrapPanel Name="WrapPanelTwoStars" Margin="20 0 0 0">
+                        <TextBlock Style="{StaticResource LittleStar}"/>
+
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
+                    </WrapPanel>
+
+                    <TextBlock Name="TwoStarRentMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <WrapPanel Name="WrapPanelThreeStars" Margin="20 0 0 0">
+                        <TextBlock Style="{StaticResource LittleStar}"/>
+
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
+
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
+                    </WrapPanel>
+
+                    <TextBlock Name="ThreeStarRentMoney"
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                </Grid>
+
+                <Grid Grid.Row="4">
+                    <WrapPanel Name="WrapPanelFourStars" Margin="20 0 0 0">
+                        <TextBlock Style="{StaticResource LittleStar}"/>
+
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
+
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
+
+                        <TextBlock Style="{StaticResource LittleStar}" 
+                                   Margin="5 0 0 0"/>
+                    </WrapPanel>
+
+                    <TextBlock Name="FourStarRentMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+
+                </Grid>
+
+                <Grid Grid.Row="5" Margin="20 0 0 0">
+
+                    <TextBlock Text="★" Margin="0 0 0 0" FontSize="20" 
+                               Foreground="#F6BB43"/>
+
+                    <TextBlock Name="YellowStarRentMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <TextBlock Name="BusPrice" Text="Bussiness price" 
+                               Style="{StaticResource PriceNames}"/>
+
+                    <TextBlock Name="BusPriceMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <TextBlock Name="DepositPrice" Text="Deposit price" 
+                               Style="{StaticResource PriceNames}"/>
+
+                    <TextBlock Name="DepositPriceMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <TextBlock Name= "RebuyPrice" Text="Rebuy price"
+                               Style="{StaticResource PriceNames}"/>
+
+                    <TextBlock Name="RebuyPriceMoney" 
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <TextBlock Name= "HousePrice" Text="House price" 
+                               Style="{StaticResource PriceNames}"/> 
+
+                    <TextBlock Name="HousePriceMoney"
+                               Style="{StaticResource PaymentNumber}"/>
+                    <TextBlock Text="k" Style="{StaticResource KLetter}"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

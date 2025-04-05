@@ -19,7 +19,8 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.GameCell
     /// <summary>
     /// Логика взаимодействия для LeftPart.xaml
     /// </summary>
-    public partial class LeftCell : UserControl, IClearCellVis, IGetLastChipImage,IChangeCellSize
+    public partial class LeftCell : UserControl, IClearCellVis, IGetLastChipImage, 
+        IChangeCellSize, IRegularCellsActions, IAllCellActions
     {
         public LeftCell()
         {
@@ -54,6 +55,62 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.GameCell
         public Image GetLastChipImageFromBusCell()
         {
             return ImagePlacer.Children.OfType<Image>().Last();
+        }
+
+        public void SetImagePlacerBg(SolidColorBrush brush)
+        {
+            ImagePlacer.Background = brush;
+        }
+        
+        public Grid GetStarGrid()
+        {
+            return StarsGrid;
+        }
+
+        public Grid GetImagePlacer()
+        {
+            return ImagePlacer;
+        }
+
+        public Size GetCellSize()
+        {
+            return new Size(ChipsPlacer.Width, ChipsPlacer.Height);
+        }
+
+        public void AddChip(Image chip)
+        {
+            ChipsPlacer.Children.Add(chip);
+        }
+
+        public TextBlock GetMoneyTextBlock()
+        {
+            return Money;
+        }
+
+        public Point GetCenterOfTheSquareForImage(Image img, int divider)
+        {
+            return new Point(ChipsPlacer.ActualWidth / divider - img.Width / divider,
+                    ChipsPlacer.ActualHeight / divider - img.Height / divider);
+        }
+
+        public void SetValueForDepositCounter(int value)
+        {
+            DepositObj.Counter.Text = value.ToString();
+        }
+
+        public void ChangeDepositCounterVisibility(Visibility vis)
+        {
+            DepositObj.Visibility = vis;
+        }
+
+        public int GetAmountOfItemsInCell()
+        {
+            return ChipsPlacer.Children.Count;
+        }
+
+        public Size GetActualCellSize()
+        {
+            return new Size(ChipsPlacer.ActualWidth, ChipsPlacer.ActualHeight);
         }
     }
 }

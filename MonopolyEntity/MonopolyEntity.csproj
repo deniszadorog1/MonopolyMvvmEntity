@@ -83,12 +83,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Interfaces\IAllCellActions.cs" />
+    <Compile Include="Interfaces\IBusinessInfoActions.cs" />
     <Compile Include="Interfaces\IChangeCellSize.cs" />
     <Compile Include="Interfaces\IClearCellVis.cs" />
     <Compile Include="Interfaces\IGetLastChipImage.cs" />
     <Compile Include="Interfaces\IPagesOpener.cs" />
+    <Compile Include="Interfaces\IRegularCellsActions.cs" />
     <Compile Include="ThingForTest.cs" />
-    <Compile Include="VisualHelper\BoardHelper.cs" />
     <Compile Include="VisualHelper\Helper.cs" />
     <Compile Include="VisualHelper\MainWindowHelper.cs" />
     <Compile Include="Windows\Pages\GamePage.xaml.cs">
@@ -130,14 +132,14 @@
     <Compile Include="Windows\UserControls\CaseOpening\ShowGotPrize.xaml.cs">
       <DependentUpon>ShowGotPrize.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\UserControls\GameControls\BussinessInfo\CarBusInfo.xaml.cs">
-      <DependentUpon>CarBusInfo.xaml</DependentUpon>
+    <Compile Include="Windows\UserControls\GameControls\BusinessInfo\CarBusinessInfo.xaml.cs">
+      <DependentUpon>CarBusinessInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\UserControls\GameControls\BussinessInfo\GameBusInfo.xaml.cs">
-      <DependentUpon>GameBusInfo.xaml</DependentUpon>
+    <Compile Include="Windows\UserControls\GameControls\BusinessInfo\GameBusinessInfo.xaml.cs">
+      <DependentUpon>GameBusinessInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\UserControls\GameControls\BussinessInfo\UsualBusInfo.xaml.cs">
-      <DependentUpon>UsualBusInfo.xaml</DependentUpon>
+    <Compile Include="Windows\UserControls\GameControls\BusinessInfo\RegularBusinessInfo.xaml.cs">
+      <DependentUpon>RegularBusinessInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UserControls\GameControls\GameCell\BottomCell.xaml.cs">
       <DependentUpon>BottomCell.xaml</DependentUpon>
@@ -208,8 +210,8 @@
     <Compile Include="Windows\UserControls\InventoryControls\BusDescButton.xaml.cs">
       <DependentUpon>BusDescButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\UserControls\InventoryControls\BussinessDescription.xaml.cs">
-      <DependentUpon>BussinessDescription.xaml</DependentUpon>
+    <Compile Include="Windows\UserControls\InventoryControls\BusinessDescription.xaml.cs">
+      <DependentUpon>BusinessDescription.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\UserControls\MainPageWindow\ChoosePlayersForGame.xaml.cs">
       <DependentUpon>ChoosePlayersForGame.xaml</DependentUpon>
@@ -293,15 +295,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\UserControls\GameControls\BussinessInfo\CarBusInfo.xaml">
+    <Page Include="Windows\UserControls\GameControls\BusinessInfo\CarBusinessInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\UserControls\GameControls\BussinessInfo\GameBusInfo.xaml">
+    <Page Include="Windows\UserControls\GameControls\BusinessInfo\GameBusinessInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\UserControls\GameControls\BussinessInfo\UsualBusInfo.xaml">
+    <Page Include="Windows\UserControls\GameControls\BusinessInfo\RegularBusinessInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -397,7 +399,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\UserControls\InventoryControls\BussinessDescription.xaml">
+    <Page Include="Windows\UserControls\InventoryControls\BusinessDescription.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -454,10 +456,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\Calivan.jpg" />
+    <Resource Include="Visuals\Images\calivan.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Gifs\Dude.gif" />
+    <Resource Include="Visuals\Gifs\dude.gif" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\Other\tradeMoney.png" />
@@ -466,7 +468,7 @@
     <Resource Include="Visuals\Images\BoardImages\CardImages\Perfume\chanel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Perfume\hugo_boss.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Perfume\hugoBoss.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Clothes\adidas.png" />
@@ -499,7 +501,7 @@
     <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\jackpot.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\jail-visiting.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\jailVisiting.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Squares\jail.png" />
@@ -514,7 +516,7 @@
     <Resource Include="Visuals\Images\BoardImages\CardImages\Messenger\facebook.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Games\rockstar_games.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Games\rockstarGames.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Games\rovio.png" />
@@ -526,34 +528,34 @@
     <Resource Include="Visuals\Images\BoardImages\CardImages\Drinkings\fanta.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Drinkings\coca_cola.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Drinkings\cocaCola.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Planes\american_airlines.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Planes\americanAirlines.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Planes\british_airways.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Planes\britishAirways.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Planes\lufthansa.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Food\burger_king.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Food\burgerKing.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Food\kfc.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Food\max_burgers.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Food\maxBurgers.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Hotels\radisson_blu.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Hotels\radissonBlu.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Hotels\novotel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Hotels\holiday_inn.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Hotels\holidayInn.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Phones\apple.png" />
@@ -562,16 +564,16 @@
     <Resource Include="Visuals\Images\BoardImages\CardImages\Phones\nokia.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Chance\chance_rotated.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Chance\chanceRotated.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\CardImages\Chance\chance.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Tax\tax_income.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Tax\taxIncome.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\CardImages\Tax\tax_luxury.png" />
+    <Resource Include="Visuals\Images\BoardImages\CardImages\Tax\taxLuxury.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\Chips\chipBlue.png" />
@@ -594,7 +596,7 @@
     <Resource Include="Visuals\Images\AddItemsImages\Box\dragon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\BoardImages\Other\chance_rotated.png" />
+    <Resource Include="Visuals\Images\BoardImages\Other\chanceRotated.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\Other\chance.png" />
@@ -683,10 +685,10 @@
     <Resource Include="Visuals\Images\MainWindowImages\dices.png" />
     <Resource Include="Visuals\Images\MainWindowImages\okay.png" />
     <Resource Include="Visuals\Images\MainWindowImages\planet.png" />
-    <Resource Include="Visuals\Images\MainWindowImages\rating-positive.png" />
+    <Resource Include="Visuals\Images\MainWindowImages\ratingPositive.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Visuals\Images\MainWindowImages\BoardImg.png" />
+    <Resource Include="Visuals\Images\MainWindowImages\boardImg.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Visuals\Images\BoardImages\Other\whiteStar.png" />

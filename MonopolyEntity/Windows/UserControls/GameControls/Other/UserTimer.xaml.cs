@@ -55,11 +55,6 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
             TimerTextBlock.Text = _timeLeft.ToString();
         }
 
-        public void ToStopTimer()
-        {
-
-        }
-
         public void UpdateTimeOnTimer()
         {
             if (_timer is null) return;

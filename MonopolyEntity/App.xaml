@@ -46,6 +46,10 @@
 
             <SolidColorBrush x:Key="InActiveColor" Color="#C7CCD3"/>
 
+            <SolidColorBrush x:Key="BasicRarity" Color="#4CB4DB"/>
+            <SolidColorBrush x:Key="BorderActive" Color="#3BAFDA"/>
+            <SolidColorBrush x:Key="PopupBgColor" Color="#E6E9ED"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

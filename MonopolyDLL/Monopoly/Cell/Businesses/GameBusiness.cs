@@ -1,11 +1,7 @@
 ﻿using MonopolyDLL.Monopoly.Enums;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MonopolyDLL.Monopoly.Cell.Bus
+namespace MonopolyDLL.Monopoly.Cell.Businesses
 {
     public class GameBusiness : Business
     {
@@ -21,13 +17,10 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             DepositCounter = depositCounter;
             Level = level;
             OwnerIndex = ownerIndex;
-            BusType = type;
+            BusinessType = type;
             IsDeposited = isDeposited;
             TempDepositCounter = _depositCounterMax;
             Id = id;
         }
-
-
-
     }
 }

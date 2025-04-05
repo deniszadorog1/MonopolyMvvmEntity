@@ -1,4 +1,4 @@
-﻿using MonopolyDLL.Monopoly.Cell.Bus;
+﻿using MonopolyDLL.Monopoly.Cell.Businesses;
 
 namespace MonopolyDLL.Monopoly.Cell
 {
@@ -14,23 +14,23 @@ namespace MonopolyDLL.Monopoly.Cell
 
         public Cell GetCopy(Cell cell)
         {
-            if (cell is RegularBusiness usual)
+            if (cell is RegularBusiness regularBusiness)
             {
-                return new RegularBusiness(usual.Name, usual.Price, usual.DepositPrice, usual.RebuyPrice,
-                    usual.PayLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
-                    usual.BuySellHouse, SystemParamsService.GetNumByName("NoOwnerIndex"), usual.BusType, false, usual.Id);
+                return new RegularBusiness(regularBusiness.Name, regularBusiness.Price, regularBusiness.DepositPrice, regularBusiness.RebuyPrice,
+                    regularBusiness.PayLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
+                    regularBusiness.BuySellHouse, SystemParamsService.GetNumByName("NoOwnerIndex"), regularBusiness.BusinessType, false, regularBusiness.Id);
             }
-            else if (cell is CarBusiness carBus)
+            else if (cell is CarBusiness carBusiness)
             {
-                return new CarBusiness(carBus.Name, carBus.Price, carBus.DepositPrice, carBus.RebuyPrice,
-                    carBus.PayLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
-                    SystemParamsService.GetNumByName("NoOwnerIndex"), carBus.BusType, false, carBus.Id);
+                return new CarBusiness(carBusiness.Name, carBusiness.Price, carBusiness.DepositPrice, carBusiness.RebuyPrice,
+                    carBusiness.PayLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
+                    SystemParamsService.GetNumByName("NoOwnerIndex"), carBusiness.BusinessType, false, carBusiness.Id);
             }
-            else if (cell is GameBusiness gameBus)
+            else if (cell is GameBusiness gameBusiness)
             {
-                return new GameBusiness(gameBus.Name, gameBus.Price, gameBus.DepositPrice, gameBus.RebuyPrice,
-                    gameBus.PayLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
-                    SystemParamsService.GetNumByName("NoOwnerIndex"), gameBus.BusType, false, gameBus.Id);
+                return new GameBusiness(gameBusiness.Name, gameBusiness.Price, gameBusiness.DepositPrice, gameBusiness.RebuyPrice,
+                    gameBusiness.PayLevels, SystemParamsService.GetNumByName("MaxDepositCounter"), 0,
+                    SystemParamsService.GetNumByName("NoOwnerIndex"), gameBusiness.BusinessType, false, gameBusiness.Id);
             }
             return cell;
         }

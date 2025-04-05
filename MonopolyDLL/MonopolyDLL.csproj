@@ -109,14 +109,14 @@
     <Compile Include="DBQueries.cs" />
     <Compile Include="Monopoly\Enums\ActionAfterStepperChanged.cs" />
     <Compile Include="Monopoly\Enums\BusinessType.cs" />
-    <Compile Include="Monopoly\Enums\BusRarity.cs" />
+    <Compile Include="Monopoly\Enums\BusinessRarity.cs" />
     <Compile Include="Monopoly\Enums\CarGameInfoVisual.cs" />
     <Compile Include="Monopoly\Enums\CellAction.cs" />
     <Compile Include="Monopoly\Enums\CellType.cs" />
     <Compile Include="Monopoly\Enums\ChanceAction.cs" />
     <Compile Include="Monopoly\Enums\GamePageSize.cs" />
     <Compile Include="Monopoly\Enums\StarType.cs" />
-    <Compile Include="Monopoly\Enums\UsualBusInfoVisual.cs" />
+    <Compile Include="Monopoly\Enums\UsualBusinessInfoVisual.cs" />
     <Compile Include="Monopoly\Enums\VisualPrisonCellActions.cs" />
     <Compile Include="Monopoly\Game.cs" />
     <Compile Include="Monopoly\InventoryObjs\BoxItem.cs" />
@@ -132,11 +132,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
-    <Compile Include="Services\GetRandomService.cs" />
+    <Compile Include="Services\MoneyConvertingService.cs" />
+    <Compile Include="Services\RandomService.cs" />
     <Compile Include="Services\SystemParamsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ImageExpansions.json" />
     <None Include="packages.config" />
     <None Include="params.json" />
   </ItemGroup>

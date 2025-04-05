@@ -1,27 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MonopolyDLL;
+using MonopolyEntity.VisualHelper;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using System.IO;
-
-using MonopolyEntity.VisualHelper;
-using System.Windows.Media.Animation;
-using System.Windows.Markup.Localizer;
-using System.Threading;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Dynamic;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls.Other
 {
@@ -104,15 +89,15 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
                 new Point3D(downTop, upTop, downTop)   // 7
             };
 
-            int firstTop = 0; 
-            int secondTop = 1; 
-            int thirdTop = 2; 
-            int fourthTop = 3; 
-            int fifthTop = 4; 
-            int sixthTop = 5; 
+            int firstTop = 0;
+            int secondTop = 1;
+            int thirdTop = 2;
+            int fourthTop = 3;
+            int fifthTop = 4;
+            int sixthTop = 5;
             int seventhTop = 6;
-            int eightTop = 7; 
-            
+            int eightTop = 7;
+
             int[][] faces =
             {
                 new[] {firstTop, secondTop, thirdTop, fourthTop}, // Front
@@ -123,7 +108,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
                 new[] {firstTop, fifthTop, sixthTop, secondTop}  // Bottom
             };
 
-            string diceFolderPath = BoardHelper.GetDiceFolderPath();
+            string diceFolderPath = Helper.GetDiceFolderPath();
 
             string[] texturePaths =
             {
@@ -165,7 +150,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
                         vertices[face[thirdTopOfFaceIndex]],
                         vertices[face[fourthTopOfFaceIndex]]
                     }),
-                    TriangleIndices = new Int32Collection(new[] { firstTriangleIndex, secondTriangleIndex, 
+                    TriangleIndices = new Int32Collection(new[] { firstTriangleIndex, secondTriangleIndex,
                         thirdTriangleIndex, thirdTriangleIndex, fourthTriangleIndex, firstTriangleIndex }),
                     TextureCoordinates = new PointCollection(new[]
                     {
@@ -187,12 +172,12 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
         private AxisAngleRotation3D _verticalRotation;
 
         public DoubleAnimation _horizontalAnimation;
-        public DoubleAnimation _verticalAnimation; 
+        public DoubleAnimation _verticalAnimation;
 
         private void SetHorizontalRotation()
         {
             const int animationDuration = 1;
-            const int declarationDuration = 1; 
+            const int declarationDuration = 1;
             _horizontalAnimation = new DoubleAnimation
             {
                 From = 0,
@@ -204,10 +189,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
 
             };
 
-            _horizontalAnimation.Completed += (sender, e) =>
-            {
-            };
-
+            _horizontalAnimation.Completed += (sender, e) => { };
             _horizontalRotation.BeginAnimation(AxisAngleRotation3D.AngleProperty, _horizontalAnimation);
         }
 
@@ -248,113 +230,161 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.Other
 ;           //return res;
         }
 
+        private const int firstRib = 1;
+        private const int secondRib = 2;
+        private const int thirdRib = 3;
+        private const int fourthRib = 4;
+        private const int fifthRib = 5;
+        private const int sixthRib = 6;
+
         private (int, int) GetLeftCubeRotValues(int diceValue)
         {
-            (int horizontal, int vertical) res = (0, 0);
-            const int baseValue = -1080;
-            const int oneVertical = -1800;
-            const int twoHorizontal = -2250;
-            const int threeVertical = -2070;
-            const int fourVertical = -2250;
-            const int fiveHorizontal = -2070;
-            const int sixVertical = -1980;
+            //(int horizontal, int vertical) res = (0, 0);
 
-            switch (diceValue)
-            {
-                case 1:
-                    {
-                        res.vertical = oneVertical;
-                        res.horizontal = baseValue;
-                        break;
-                    }
-                case 2:
-                    {
-                        res.vertical = baseValue;
-                        res.horizontal = twoHorizontal;
-                        break;
-                    }
-                case 3:
-                    {
-                        res.vertical = threeVertical;
-                        res.horizontal = baseValue;
-                        break;
-                    }
-                case 4:
-                    {
-                        res.vertical = fourVertical;
-                        res.horizontal = baseValue;
-                        break;
-                    }
-                case 5:
-                    {
-                        res.vertical = baseValue;
-                        res.horizontal = fiveHorizontal;
-                        break;
-                    }
-                case 6:
-                    {
-                        res.vertical = sixVertical;
-                        res.horizontal = baseValue;
-                        break;
-                    }
-            }
-            return res;
+            int baseValue = SystemParamsService.GetNumByName("LeftCubeBaseValue");         
+            int oneVertical = SystemParamsService.GetNumByName("LeftCubeOneVertical");
+            int twoHorizontal = SystemParamsService.GetNumByName("LeftCubeTwoHorizontal");
+            int threeVertical = SystemParamsService.GetNumByName("LeftCubeThreeVertical");
+            int fourVertical = SystemParamsService.GetNumByName("LeftCubeFourVertical");
+            int fiveHorizontal = SystemParamsService.GetNumByName("LeftCubeFiveHorizontal");
+            int sixVertical = SystemParamsService.GetNumByName("LeftCubeSixVertical");
+
+
+            return GetCubeRotation(diceValue, baseValue, oneVertical,
+                twoHorizontal, threeVertical, fourVertical, fiveHorizontal, sixVertical);
+/*
+            return diceValue == firstRib ? (baseValue, oneVertical) :
+                diceValue == secondRib ? (twoHorizontal, baseValue) :
+                diceValue == thirdRib ? (baseValue, threeVertical) :
+                diceValue == fourthRib ? (baseValue, fourVertical) :
+                diceValue == fifthRib ? (fiveHorizontal, baseValue) :
+                diceValue == sixthRib ? (baseValue, sixVertical) : res;*/
+
+            /*            switch (diceValue)
+                        {
+                            case 1:
+                                {
+                                    res.vertical = oneVertical;
+                                    res.horizontal = baseValue;
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    res.vertical = baseValue;
+                                    res.horizontal = twoHorizontal;
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    res.vertical = threeVertical;
+                                    res.horizontal = baseValue;
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    res.vertical = fourVertical;
+                                    res.horizontal = baseValue;
+                                    break;
+                                }
+                            case 5:
+                                {
+                                    res.vertical = baseValue;
+                                    res.horizontal = fiveHorizontal;
+                                    break;
+                                }
+                            case 6:
+                                {
+                                    res.vertical = sixVertical;
+                                    res.horizontal = baseValue;
+                                    break;
+                                }
+                        }
+                        return res;*/
+        }
+
+        public (int, int) GetCubeRotation(
+            int diceValue,
+            int baseValue,
+            int oneVertical,
+            int twoHorizontal,
+            int threeVertical,
+            int fourVertical,
+            int fiveHorizontal,
+            int sixVertical)
+        {
+
+            return diceValue == firstRib ? (baseValue, oneVertical) :
+                diceValue == secondRib ? (twoHorizontal, baseValue) :
+                diceValue == thirdRib ? (baseValue, threeVertical) :
+                diceValue == fourthRib ? (baseValue, fourVertical) :
+                diceValue == fifthRib ? (fiveHorizontal, baseValue) :
+                diceValue == sixthRib ? (baseValue, sixVertical) : (0,0);
         }
 
         private (int, int) GetRightCubeRotValues(int diceValue)
         {
-            (int horizontal, int vertical) res = (0, 0);
+            //(int horizontal, int vertical) res = (0, 0);
 
-            const int baseValue = 1080;
+            int baseValue = SystemParamsService.GetNumByName("RightCubeBaseValue");
+            int oneVertical = SystemParamsService.GetNumByName("RightCubeOneVertical");
+            int twoHorizontal = SystemParamsService.GetNumByName("RightCubeTwoHorizontal");
+            int threeVertical = SystemParamsService.GetNumByName("RightCubeThreeVertical");
+            int fourVertical = SystemParamsService.GetNumByName("RightCubeFourVertical");
+            int fiveHorizontal = SystemParamsService.GetNumByName("RightCubeFiveHorizontal");
+            int sixVertical = SystemParamsService.GetNumByName("RightCubeSixVertical");
 
-            const int oneVertical = 1800;
-            const int twoHorizontal = 2070;
-            const int threeVertical = 1890;
-            const int fourVertical = 2070;
-            const int fiveHorizontal = 1890;
-            const int sixVertical = 1980;
+            return GetCubeRotation(diceValue, baseValue, oneVertical, 
+                twoHorizontal, threeVertical, fourVertical, fiveHorizontal, sixVertical);
 
-            switch (diceValue)
-            {
-                case 1:
-                    {
-                        res.vertical = oneVertical;
-                        res.horizontal = baseValue;
-                        break;
-                    }
-                case 2:
-                    {
-                        res.vertical = baseValue;
-                        res.horizontal = twoHorizontal;
-                        break;
-                    }
-                case 3:
-                    {
-                        res.vertical = threeVertical;
-                        res.horizontal = baseValue;
-                        break;
-                    }
-                case 4:
-                    {
-                        res.vertical = fourVertical;
-                        res.horizontal = baseValue;
-                        break;
-                    }
-                case 5:
-                    {
-                        res.vertical = baseValue;
-                        res.horizontal = fiveHorizontal;
-                        break;
-                    }
-                case 6:
-                    {
-                        res.vertical = sixVertical;
-                        res.horizontal = baseValue;
-                        break;
-                    }
-            }
 
-            return res;
+/*            return diceValue == firstRib ? (baseValue, oneVertical) :
+                diceValue == secondRib ? (twoHorizontal, baseValue) :
+                diceValue == thirdRib ? (baseValue, threeVertical) :
+                diceValue == fourthRib ? (baseValue, fourVertical) :
+                diceValue == fifthRib ? (fiveHorizontal, baseValue) :
+                diceValue == sixthRib ? (baseValue, sixVertical) : res;
+*/
+            /*            switch (diceValue)
+                        {
+                            case 1:
+                                {
+                                    res.vertical = oneVertical;
+                                    res.horizontal = baseValue;
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    res.vertical = baseValue;
+                                    res.horizontal = twoHorizontal;
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    res.vertical = threeVertical;
+                                    res.horizontal = baseValue;
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    res.vertical = fourVertical;
+                                    res.horizontal = baseValue;
+                                    break;
+                                }
+                            case 5:
+                                {
+                                    res.vertical = baseValue;
+                                    res.horizontal = fiveHorizontal;
+                                    break;
+                                }
+                            case 6:
+                                {
+                                    res.vertical = sixVertical;
+                                    res.horizontal = baseValue;
+                                    break;
+                                }
+                        }*/
+
+            //return res;
         }
     }
 }

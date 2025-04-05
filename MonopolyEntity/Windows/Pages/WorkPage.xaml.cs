@@ -34,20 +34,22 @@ namespace MonopolyEntity.Windows.Pages
 
         public void SetStartPage()
         {
-            SetWindowSize();
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new MainPage(_frame, _monSystem));
+
+            /*SetWindowSize();
             MainPage mainPage = new MainPage(_frame, _monSystem);
-            _frame.Content = mainPage;
+            _frame.Content = mainPage;*/
         }
 
-        public void SetWindowSize()
+       /* public void SetWindowSize()
         {
-           /* return;
+           *//* return;
             Window parentWindow = Window.GetWindow(this);
             if (parentWindow != null)
             {
                 parentWindow.WindowState = WindowState.Maximized;
-            }*/
-        }
+            }*//*
+        }*/
 
         public void ClearVisibleItems()
         {

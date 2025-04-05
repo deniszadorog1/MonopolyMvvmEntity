@@ -63,7 +63,13 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             // LockImage.Visibility = Visibility.Visible;
         }
 
-        public void SetEnoughMoneyButsVisibility()
+        public void SetButtonsVisibility(bool ifLastPay)
+        {
+            ActiveButs.Visibility = ifLastPay ? Visibility.Hidden : Visibility.Visible;
+            LastPay.Visibility = ifLastPay ? Visibility.Visible : Visibility.Hidden;
+        }
+
+/*        public void SetEnoughMoneyButsVisibility()
         {
             ActiveButs.Visibility = Visibility.Visible;
             LastPay.Visibility = Visibility.Hidden;
@@ -73,7 +79,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         {
             ActiveButs.Visibility = Visibility.Hidden;
             LastPay.Visibility = Visibility.Visible;
-        }
+        }*/
 
         private const double _middleDivider = 2.25;
         private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)

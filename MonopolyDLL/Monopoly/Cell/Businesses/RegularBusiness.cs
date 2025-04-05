@@ -1,17 +1,14 @@
 ﻿using MonopolyDLL.Monopoly.Enums;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MonopolyDLL.Monopoly.Cell.Bus
+namespace MonopolyDLL.Monopoly.Cell.Businesses
 {
     public class RegularBusiness : Business
     {
         public int BuySellHouse { get; set; }
 
-        public RegularBusiness(string name, int price, int depositPrice, int rebuyPrice,List<int> paymentLevels, 
+        public RegularBusiness(string name, int price, int depositPrice, int rebuyPrice, List<int> paymentLevels,
             int depositCounter, int level, int buySellHouse, int ownerIndex, BusinessType type,
             bool isDeposited, int id)
         {
@@ -24,7 +21,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             Level = level;
             BuySellHouse = buySellHouse;
             OwnerIndex = ownerIndex;
-            BusType = type;
+            BusinessType = type;
             IsDeposited = isDeposited;
             TempDepositCounter = _depositCounterMax;
             Id = id;
@@ -51,7 +48,7 @@ namespace MonopolyDLL.Monopoly.Cell.Bus
             return (BuySellHouse * Level);
         }
 
-        public bool IsBusLevelIsMax()
+        public bool IsBusinessLevelIsMax()
         {
             return Level == PayLevels.Count - 1;
         }

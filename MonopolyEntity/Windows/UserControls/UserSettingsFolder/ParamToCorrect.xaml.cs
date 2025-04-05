@@ -25,7 +25,8 @@ namespace MonopolyEntity.Windows.UserControls.UserSettingsFolder
             InitializeComponent();
         }
 
-        private readonly SolidColorBrush _borderActiveColor = new SolidColorBrush(Color.FromRgb(59, 175, 218));
+        private readonly SolidColorBrush _borderActiveColor =  (SolidColorBrush)Application.Current.Resources["BorderActive"];
+
 
         private void ParamNameBox_GotFocus(object sender, RoutedEventArgs e)
         {

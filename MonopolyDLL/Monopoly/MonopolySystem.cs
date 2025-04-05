@@ -10,9 +10,20 @@ namespace MonopolyDLL.Monopoly
         public User LoggedUser { get; set; }
         public Game MonGame { get; set; }
 
-        private const int _checkId = 1; //before making right login form
+        private  int _checkId = 1;
         public MonopolySystem()
         {
+            LoggedUser = new User();
+            LoggedUser = DBQueries.GetPlayerById(_checkId);
+            SetUserInventory();
+
+            MonGame = new Game(LoggedUser);
+        }
+
+        public MonopolySystem(int id)
+        {
+            _checkId = id;
+
             LoggedUser = new User();
             LoggedUser = DBQueries.GetPlayerById(_checkId);
             SetUserInventory();

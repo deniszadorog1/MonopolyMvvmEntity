@@ -1,23 +1,11 @@
 ﻿using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.UserControls.GameControls.Other;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.TextFormatting;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MonopolyEntity.Windows.UserControls.GameControls
@@ -86,7 +74,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             {
                 Width = circleSize,
                 Height = circleSize,
-                Fill = _usualBrush ,
+                Fill = _usualBrush,
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
@@ -99,7 +87,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
         public int _toMakeBigger = 20;
         public int _toMakeThinner = -20;
 
-        public DoubleAnimation _horizontalAnimation; 
+        public DoubleAnimation _horizontalAnimation;
         private const double _animationDuration = 0.2;
         public void SetAnimation(SolidColorBrush brush, bool isStepper)
         {
@@ -112,36 +100,46 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
 
             SetTimer(brush);
 
-            var widthAnimation = new DoubleAnimation
+            var widthAnimation = GetAnimation(UserCardGrid.Width, UserCardGrid.Width + value, _animationDuration); /*new DoubleAnimation
             {
                 From = UserCardGrid.Width,
                 To = UserCardGrid.Width + value,
                 Duration = TimeSpan.FromSeconds(_animationDuration),
                 // AutoReverse = true 
-            };
+            };*/
 
-            var heightAnimation = new DoubleAnimation
+            var heightAnimation = GetAnimation(UserCardGrid.Height, UserCardGrid.Height + value, _animationDuration);  /*new DoubleAnimation
             {
                 From = UserCardGrid.Height,
                 To = UserCardGrid.Height + value,
                 Duration = TimeSpan.FromSeconds(_animationDuration),
                 //AutoReverse = true 
-            };
+            };*/
 
-            _horizontalAnimation = new DoubleAnimation
+            _horizontalAnimation = GetAnimation(0, horValue, _animationDuration); /*new DoubleAnimation
             {
                 From = 0,
                 To = horValue,
                 Duration = TimeSpan.FromSeconds(_animationDuration),
-               // EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
-            };
-            _horizontalAnimation.Completed += HorizAnim_Complited;
+                // EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut }
+            };*/
+            _horizontalAnimation.Completed += (sender, e) => { };
 
             transform.BeginAnimation(TranslateTransform.XProperty, _horizontalAnimation);
 
-            UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);         
+            UserCardGrid.BeginAnimation(WidthProperty, widthAnimation);
             UserCardGrid.BeginAnimation(HeightProperty, heightAnimation);
-        }    
+        }
+
+        public DoubleAnimation GetAnimation(double from, double to, double duration)
+        {
+            return  new DoubleAnimation
+            {
+                From = from,
+                To = to,
+                Duration = TimeSpan.FromSeconds(duration),
+            };
+        }
 
         public void PaintBg(SolidColorBrush brush)
         {
@@ -183,7 +181,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             UserTimer.UpdateTimeOnTimer();
         }
 
-        private readonly SolidColorBrush _firstUserTimerColor = 
+        private readonly SolidColorBrush _firstUserTimerColor =
             new SolidColorBrush(Color.FromRgb(188, 66, 70));
 
         private readonly SolidColorBrush _secondUserTimerColor =
@@ -212,11 +210,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls
             UserTimer.Visibility = Visibility.Hidden;
             UserTimer.StopTimer();
         }
-       
-        public void HorizAnim_Complited(object sender, EventArgs e)
-        {
-            
-        }
+
 
         /*public void MakeCardUsual()
         {

@@ -38,24 +38,33 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
         public void SetGiveUpButton()
         {
             if (!_ifGiveUp) return;
-            SetVisToGiveUp();
+            SetButtonsVisibility(true);
+            //SetVisToGiveUp();
         }
 
-        public void SetPayButtons()
+        public void SetButtonsVisibility(bool ifGiveUp)
+        {
+            PayBillBut.Visibility = ifGiveUp ? Visibility.Hidden : Visibility.Visible;
+            GiveUpBut.Visibility = ifGiveUp ? Visibility.Visible : Visibility.Hidden;
+        }
+
+/*        public void SetPayButtons()
         {
             PayBillBut.Visibility = Visibility.Visible;
             GiveUpBut.Visibility = Visibility.Hidden;
-        }
+        }*/
 
         public void SetPayButton(bool isPlayerHasEnoughMoney, bool isPLayerCanOnlyGiveUp)
         {
             if (isPLayerCanOnlyGiveUp)
             {
-                SetVisToGiveUp();
+                SetButtonsVisibility(true);
+                //SetVisToGiveUp();
                 return;
             }
 
-            SetPayButtons();
+            SetButtonsVisibility(false);
+            //SetPayButtons();
 
             if (isPlayerHasEnoughMoney)
             {
@@ -67,11 +76,11 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
             LockImage.Visibility = Visibility.Visible;
         }
 
-        private void SetVisToGiveUp()
+/*        private void SetVisToGiveUp()
         {
             PayBillBut.Visibility = Visibility.Hidden;
             GiveUpBut.Visibility = Visibility.Visible;
-        }
+        }*/
 
     }
 }

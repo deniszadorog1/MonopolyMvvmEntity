@@ -40,8 +40,8 @@ namespace MonopolyEntity.Windows.UserControls.CaseOpening
             InitializeComponent();
 
             PrizeImg.Source = img.Source;
-            HeadText.Text = "We have a winner!";
-            AcceptBut.Content = "Close this window";
+            HeadText.Text = SystemParamsService.GetStringByName("GotWinner");//  "We have a winner!";
+            AcceptBut.Content = SystemParamsService.GetStringByName("CloseWindow");// "Close this window";
         }
 
         public void FillParams()

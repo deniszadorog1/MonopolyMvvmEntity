@@ -2,6 +2,7 @@
 using MonopolyDLL;
 using MonopolyDLL.Monopoly;
 using MonopolyEntity.VisualHelper;
+using MonopolyEntity.Windows.UserControls.UserSettingsFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,23 +53,31 @@ namespace MonopolyEntity.Windows.UserControls
             SetNewPassword();
         }
 
+        /*        public void SetUserOldPasswordVisibility(bool ifSaveBox)
+                {
+                    UserOldPasswordParam.CrossBox.Visibility = ifSaveBox ? Visibility.Hidden : Visibility.Visible;
+                    UserOldPasswordParam.SaveBox.Visibility = ifSaveBox ? Visibility.Hidden : Visibility.Visible;
+                }*/
+
         public void SetNewPassword()
         {
             UserNewPasswordParam.ParamNameBlock.Text = SystemParamsService.GetStringByName("SettingsNewPas");
 
             UserNewPasswordParam.ParamNameBox.TextChanged += (sender, e) =>
-            {
-                if(!string.IsNullOrWhiteSpace(UserNewPasswordParam.ParamNameBox.Text) &&
+            { 
+                if (!string.IsNullOrWhiteSpace(UserNewPasswordParam.ParamNameBox.Text) &&
                 UserOldPasswordParam.SaveBox.Visibility == Visibility.Visible)
                 {
-                    UserNewPasswordParam.SaveBox.Visibility = Visibility.Visible;
-                    UserNewPasswordParam.CrossBox.Visibility = Visibility.Hidden;
+                    /*                    UserNewPasswordParam.SaveBox.Visibility = Visibility.Visible;
+                                        UserNewPasswordParam.CrossBox.Visibility = Visibility.Hidden;*/
+
+                    SetVisForUserSettingsParam(UserNewPasswordParam, true);
+                    return;
                 }
-                else
-                {
-                    UserNewPasswordParam.CrossBox.Visibility = Visibility.Visible;
-                    UserNewPasswordParam.SaveBox.Visibility = Visibility.Hidden;
-                }
+
+                /*                    UserNewPasswordParam.CrossBox.Visibility = Visibility.Visible;
+                                    UserNewPasswordParam.SaveBox.Visibility = Visibility.Hidden;*/
+                SetVisForUserSettingsParam(UserNewPasswordParam, false);
             };
 
             UserNewPasswordParam.SaveBox.PreviewMouseDown += (sender, e) =>
@@ -78,8 +87,10 @@ namespace MonopolyEntity.Windows.UserControls
                 DBQueries.UpdateUserPassword(_system.LoggedUser.Login, UserNewPasswordParam.ParamNameBox.Text);
                 _system.LoggedUser.Password = UserLoignParam.ParamNameBox.Text;
 
-                UserOldPasswordParam.SaveBox.Visibility = Visibility.Hidden;
-                UserOldPasswordParam.CrossBox.Visibility = Visibility.Visible;     
+                SetVisForUserSettingsParam(UserOldPasswordParam, false);
+
+                /*                UserOldPasswordParam.SaveBox.Visibility = Visibility.Hidden;
+                                UserOldPasswordParam.CrossBox.Visibility = Visibility.Visible;  */
             };
         }
 
@@ -91,20 +102,28 @@ namespace MonopolyEntity.Windows.UserControls
 
             UserOldPasswordParam.ParamPasswordBox.PasswordChanged += (sender, e) =>
             {
-                if(UserOldPasswordParam.ParamPasswordBox.Password != _system.LoggedUser.Password)
+                if (UserOldPasswordParam.ParamPasswordBox.Password != _system.LoggedUser.Password)
                 {
-                    UserOldPasswordParam.CrossBox.Visibility = Visibility.Visible;
-                    UserOldPasswordParam.SaveBox.Visibility = Visibility.Hidden;
+                    SetVisForUserSettingsParam(UserOldPasswordParam, false);
+                    /*                    UserOldPasswordParam.CrossBox.Visibility = Visibility.Visible;
+                                        UserOldPasswordParam.SaveBox.Visibility = Visibility.Hidden;*/
 
-                    UserNewPasswordParam.CrossBox.Visibility = Visibility.Visible;
-                    UserNewPasswordParam.SaveBox.Visibility = Visibility.Hidden;
+                    SetVisForUserSettingsParam(UserNewPasswordParam, false);
+
+                    /*                    UserNewPasswordParam.CrossBox.Visibility = Visibility.Visible;
+                                        UserNewPasswordParam.SaveBox.Visibility = Visibility.Hidden;*/
+                    return;
                 }
-                else
-                {
-                    UserOldPasswordParam.CrossBox.Visibility = Visibility.Hidden;
-                    UserOldPasswordParam.SaveBox.Visibility = Visibility.Visible;
-                }
+                SetVisForUserSettingsParam(UserOldPasswordParam, true);
+                /*                    UserOldPasswordParam.CrossBox.Visibility = Visibility.Hidden;
+                                    UserOldPasswordParam.SaveBox.Visibility = Visibility.Visible;*/
             };
+        }
+
+        public void SetVisForUserSettingsParam(ParamToCorrect toCorrect, bool ifSaveBox)
+        {
+            toCorrect.CrossBox.Visibility = ifSaveBox ? Visibility.Hidden : Visibility.Visible;
+            toCorrect.SaveBox.Visibility = ifSaveBox ? Visibility.Hidden : Visibility.Visible;
         }
 
         public void SetLoginParam()
@@ -129,7 +148,7 @@ namespace MonopolyEntity.Windows.UserControls
                 _system.LoggedUser.Login = UserLoignParam.ParamNameBox.Text;
                 UserLoignParam.SaveBox.Visibility = Visibility.Hidden;
             };
-        }    
+        }
 
         public void SetUserImage()
         {
@@ -144,7 +163,7 @@ namespace MonopolyEntity.Windows.UserControls
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "PNG files (*.png)|*.png|All files (*.*)|*.*",
+                Filter = SystemParamsService.GetStringByName("OpenFileDialogFilterString"), //"PNG files (*.png)|*.png|All files (*.*)|*.*",
                 Title = "Choose file"
             };
 

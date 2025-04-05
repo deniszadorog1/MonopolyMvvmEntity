@@ -1,5 +1,6 @@
 ﻿using MonopolyDLL;
 using MonopolyDLL.Monopoly;
+using MonopolyEntity.Windows.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -33,7 +34,6 @@ namespace MonopolyEntity.Windows.Pages
         {
             _frame = frame;
             _monopolySys = system;
-
             InitializeComponent();
         }
 
@@ -41,15 +41,20 @@ namespace MonopolyEntity.Windows.Pages
         {
             User user = DBQueries.GetUserByLoginAndPassword(LoginTextBox.Text, PasswordTextBox.Password);
 
+
             if (user is null) return;
-            _monopolySys.LoggedUser = user;
-            WorkPage page = new WorkPage(_monopolySys, _frame);
+           // _monopolySys.LoggedUser = user;
+            int id = user.GetId();
+
+            _monopolySys = new MonopolySystem(id);
+
+            //WorkPage page = new WorkPage(_monopolySys, _frame);
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new WorkPage(_monopolySys, _frame));
         }
 
         private void RegistrationBut_Click(object sender, RoutedEventArgs e)
         {
-            RegistrationPage page = new RegistrationPage(_frame, _monopolySys);
-            _frame.Content = page;
+            _frame.Content = new RegistrationPage(_frame, _monopolySys);
         }
 
         private void LoginBox_GotFocus(object sender, RoutedEventArgs e)

@@ -2,28 +2,17 @@
 using MonopolyEntity.Interfaces;
 using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.UserControls;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MonopolyEntity.Windows.Pages
 {
     /// <summary>
     /// Логика взаимодействия для ProfileSettings.xaml
     /// </summary>
-    public partial class ProfileSettings : Page, IPagesOpener
+    public partial class ProfileSettings : Page/*, IPagesOpener*/
     {
         private MonopolySystem _system;
         private Frame _frame;
@@ -38,6 +27,8 @@ namespace MonopolyEntity.Windows.Pages
             SetUpperMenuStyle();
 
             SetUserMenu();
+
+            UpperMenuu.SetMonSystemAndFrame(_frame, _system);
         }
 
         public void SetUserMenu()
@@ -54,25 +45,38 @@ namespace MonopolyEntity.Windows.Pages
                 _frame.Content = new ProfileSettings(_system, _frame);
             };
         }
-        
-        public void OpenInventoryPage()
+
+/*        public void OpenInventoryPage()
         {
-            InventoryPage page = new InventoryPage(_frame, _system);
-            _frame.Content = page;
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new InventoryPage(_frame, _system));
+
+            *//*            InventoryPage page = new InventoryPage(_frame, _system);
+                        _frame.Content = page;*//*
+        }
+*/
+
+        public void OpenPage(bool ifMainPage)
+        {
+            Page page = ifMainPage ? new MainPage(_frame, _system) : (Page)new SetPlayersInGame(_system, _frame);
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(page);
         }
 
-        public void OpenMainPage()
+/*        public void OpenMainPage()
         {
-            MainPage page = new MainPage(_frame, _system);
-            _frame.Content = page;
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new MainPage(_frame, _system));
+
+            *//*            MainPage page = new MainPage(_frame, _system);
+                        _frame.Content = page;*//*
         }
 
         public void OpenGameField()
         {
-            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
-            _frame.Content = page;
-        }
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new SetPlayersInGame(_system, _frame));
 
+            *//*            SetPlayersInGame page = new SetPlayersInGame(_system, _frame);
+                        _frame.Content = page;*//*
+        }
+*/
         private void SetUpperMenuStyle()
         {
             //Set bg
@@ -83,7 +87,7 @@ namespace MonopolyEntity.Windows.Pages
             UpperMenuu.MainLogoBut.Foreground = new SolidColorBrush(Colors.Gray);
 
             UpperMenuu.StartGameBut.Foreground = new SolidColorBrush(Colors.White);
-            UpperMenuu.StartGameBut.Background = (Brush)Application.Current.Resources["MainGlobalColor"];
+            UpperMenuu.StartGameBut.Background = (Brush)System.Windows.Application.Current.Resources["MainGlobalColor"];
 
             UpperMenuu.InventoryBut.Foreground = new SolidColorBrush(Colors.Gray);
 

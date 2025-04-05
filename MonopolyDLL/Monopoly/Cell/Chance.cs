@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using MonopolyDLL.Monopoly.Enums;
+﻿using MonopolyDLL.Monopoly.Enums;
 using MonopolyDLL.Services;
 
 namespace MonopolyDLL.Monopoly.Cell
@@ -28,13 +21,18 @@ namespace MonopolyDLL.Monopoly.Cell
         }
 
         public ChanceAction _resChance;
-        public ChanceAction GetRandomChanceAction()
+        public void SetRandomChanceAction()
         {
             const int startVal = 1;
             const int moveBordValue = 1;
-            _resChance = (ChanceAction)GetRandomService.GetRandom(startVal, (int)ChanceAction.SkipMove + moveBordValue);
 
-            //_resChance = ChanceAction.Pay1500;
+            //return (ChanceAction)RandomService.GetRandom(startVal, (int)ChanceAction.SkipMove + moveBordValue);
+            _resChance = (ChanceAction)RandomService.GetRandom(startVal, (int)ChanceAction.SkipMove + moveBordValue);
+            //return _resChance;
+        }
+
+        public ChanceAction GetChanceType()
+        {
             return _resChance;
         }
 

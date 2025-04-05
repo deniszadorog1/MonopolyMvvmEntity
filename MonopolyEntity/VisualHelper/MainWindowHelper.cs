@@ -19,28 +19,20 @@ namespace MonopolyEntity.VisualHelper
     public static class MainWindowHelper
     {
         //Get Images
-        public static Image GetImagePyName(string imageName)
+        public static Image GetImageByName(string imageName)
         {
             string mainWindowsImgsPath = GetMainWindowImagePath();
             string imgPath = Path.Combine(mainWindowsImgsPath, imageName);
 
-            Image img = new Image()
+            return new Image()
             {
                 Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute))
             };
-
-            return img;
         }
 
         private static string GetMainWindowImagePath()
         {
-            DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            string parentPath = baseDirectoryInfo.Parent.Parent.FullName;
-            string visPath = Path.Combine(parentPath, "Visuals");
-            string imagePath = Path.Combine(visPath, "Images");
-            string addedImagesPath = Path.Combine(imagePath, "MainWindowImages");
-
-            return addedImagesPath;
+            return Path.Combine(Helper.GetImagesPath(), "MainWindowImages");
         }
 
         public static void SetUpperMenuParams(UpperMenu menu, User user)
@@ -51,13 +43,7 @@ namespace MonopolyEntity.VisualHelper
 
         public static string GetUserImagePath()
         {
-            DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            string parentPath = baseDirectoryInfo.Parent.Parent.FullName;
-            string visPath = Path.Combine(parentPath, "Visuals");
-            string imagePath = Path.Combine(visPath, "Images");
-            string userImages = Path.Combine(imagePath, "UserImages");
-
-            return userImages;
+            return Path.Combine(Helper.GetImagesPath(), "UserImages");
         }
 
         public static Image GetUserImage(string name)
@@ -65,24 +51,28 @@ namespace MonopolyEntity.VisualHelper
             if (name is null) return null;
             string userFolderPath = GetUserImagePath();
 
-            string imgPath = Path.Combine(userFolderPath, name);
-
-            Image img = new Image()
+            //string imgPath = Path.Combine(userFolderPath, name);
+            return new Image()
             {
-                Source = new BitmapImage(new Uri(imgPath, UriKind.Absolute))
+                Source = new BitmapImage(new Uri(Path.Combine(userFolderPath, name), UriKind.Absolute))
             };
-
-            return img;
         }
 
         public static Image GetCircleImage(int imgWidth, int imgHeight, string name)
         {
-            Image img = name is null ? ThingForTest.GetCalivanImage() : GetUserImage(name);
+            return GetCircleImage(new Image()
+            {
+                Source = name is null ? ThingForTest.GetCalivanImage().Source : GetUserImage(name).Source,
+                Width = imgWidth,
+                Height = imgHeight
+            });
+
+/*            Image img = name is null ? ThingForTest.GetCalivanImage() : GetUserImage(name);
 
             img.Width = imgWidth;
             img.Height = imgHeight;
 
-            return GetCircleImage(img);
+            return GetCircleImage(img);*/
         }
 
         private static readonly int _centerDivider = 2;
@@ -106,9 +96,7 @@ namespace MonopolyEntity.VisualHelper
             RenderTargetBitmap targetBitmap = new RenderTargetBitmap(width, height, _dpiInBitmap, _dpiInBitmap, PixelFormats.Pbgra32);
             targetBitmap.Render(drawingVisual);
 
-            Image clippedImage = new Image { Source = targetBitmap, Width = width, Height = height };
-
-            return clippedImage;
+            return new Image { Source = targetBitmap, Width = width, Height = height };
         }
 
         public static string GetSoundLocation(string soundName)
@@ -117,14 +105,12 @@ namespace MonopolyEntity.VisualHelper
             string parentPath = baseDirectoryInfo.Parent.Parent.FullName;
             string visPath = Path.Combine(parentPath, "Visuals");
             string soundPath = Path.Combine(visPath, "Sounds");
-            string resPath = Path.Combine(soundPath, soundName);
-
-            return resPath;
+            return Path.Combine(soundPath, soundName);
         }
 
         public static Image GetCircleImageFace(Size size)
         {
-            Image img = GetFaceImage();
+            Image img = Helper.GetFaceImage();
 
             img.Width = size.Width;
             img.Height = size.Height;
@@ -132,19 +118,6 @@ namespace MonopolyEntity.VisualHelper
             return GetCircleImage(img);
         }
 
-        public static Image GetFaceImage()
-        {
-            DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            string parentPath = baseDirectoryInfo.Parent.Parent.FullName;
-            string visPath = Path.Combine(parentPath, "Visuals");
-            string soundPath = Path.Combine(visPath, "Images");
-            string resPath = Path.Combine(soundPath, "face.png");
-
-            Image img = new Image()
-            {
-                Source = new BitmapImage(new Uri(resPath, UriKind.Absolute))
-            };
-            return img;
-        }
+        
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -113,9 +114,19 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
 
         public void SetPotMoneyToWin(SolidColorBrush globalBrush)
         {
+            const int zeroChosenRibs = 0;
+            const int oneChosenRib = 1;
+            const int twoChosenRibs = 2;
+
             int amount = GetAmountOfChosenBorders(globalBrush);
             const string notChosenCasinoRibs = "-";
-            switch (amount)
+
+            PotWon.Text = amount == zeroChosenRibs ? notChosenCasinoRibs :
+                amount == oneChosenRib ? MoneyConvertingService.GetConvertedPrice(SystemParamsService.GetNumByName("CasinoWinThird")) :
+                amount == twoChosenRibs ? MoneyConvertingService.GetConvertedPrice(SystemParamsService.GetNumByName("CasinoWinSecond")) :
+               /* amount == 3 ?*/ MoneyConvertingService.GetConvertedPrice(SystemParamsService.GetNumByName("CasinoWinFirst"));
+
+/*            switch (amount)
             {
                 case 0:
                     PotWon.Text = notChosenCasinoRibs;
@@ -130,15 +141,16 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
                     PotWon.Text = GetConvertedPrice(SystemParamsService.GetNumByName("CasinoWinFirst"));
                     return;
                     
-            }
-            throw new Exception("Something wrong with casino ribs choosing");
+            }*/
+           // throw new Exception("Something wrong with casino ribs choosing");
         }
 
 
-        public string GetConvertedPrice(int price)
+/*        public string GetConvertedPrice(int price)
         {
             const char endAdd = 'k';
             const char thousandDivider = ',';
+            const int pointDivider = 3;
             StringBuilder build = new StringBuilder();
 
             for (int i = 0; i < price.ToString().Length; i++)
@@ -148,7 +160,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
 
             for (int i = price.ToString().Length; i >= 0; i--)
             {
-                if (i % 3 == 0 && i != 0 && i != price.ToString().Length)
+                if (i % pointDivider == 0 && i != 0 && i != price.ToString().Length)
                 {
                     build.Insert(price.ToString().Length - i, thousandDivider);
                 }
@@ -156,7 +168,7 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
 
             build.Append(endAdd);
             return build.ToString();
-        }
+        }*/
 
         private int GetAmountOfChosenBorders(SolidColorBrush brush)
         {
@@ -186,33 +198,87 @@ namespace MonopolyEntity.Windows.UserControls.GameControls.OnChatMessages
                 OneRibGrid.ActualHeight / _centerDivider - _circleSize / _centerDivider);
 
 
-            OneRibGrid.Children.Add(GetEllipseInRib(center));
+            AddCenterPoint(center);
+            SetUpLeftPoint(upLeft);
+            SetUpRight(upRight);
+            SetDownLeft(downLeft);
+            SetDownRight(downRight);
+            SetCenterLeftRightPoints(centerLeft, centerRight);
 
-            TwoRibGrid.Children.Add(GetEllipseInRib(upRight));
-            TwoRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            //OneRibGrid.Children.Add(GetEllipseInRib(center));
 
-            ThreeRibGrid.Children.Add(GetEllipseInRib(upRight));
-            ThreeRibGrid.Children.Add(GetEllipseInRib(center));
-            ThreeRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            //TwoRibGrid.Children.Add(GetEllipseInRib(upRight));
+            //TwoRibGrid.Children.Add(GetEllipseInRib(downLeft));
 
-            FourRibGrid.Children.Add(GetEllipseInRib(upLeft));
-            FourRibGrid.Children.Add(GetEllipseInRib(upRight));
-            FourRibGrid.Children.Add(GetEllipseInRib(downRight));
-            FourRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            //ThreeRibGrid.Children.Add(GetEllipseInRib(upRight));
+            //ThreeRibGrid.Children.Add(GetEllipseInRib(center));
+            //ThreeRibGrid.Children.Add(GetEllipseInRib(downLeft));
 
-            FiveRibGrid.Children.Add(GetEllipseInRib(upLeft));
-            FiveRibGrid.Children.Add(GetEllipseInRib(upRight));
-            FiveRibGrid.Children.Add(GetEllipseInRib(downRight));
-            FiveRibGrid.Children.Add(GetEllipseInRib(downLeft));
-            FiveRibGrid.Children.Add(GetEllipseInRib(center));
+            //FourRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            //FourRibGrid.Children.Add(GetEllipseInRib(upRight));
+            //FourRibGrid.Children.Add(GetEllipseInRib(downRight));
+            //FourRibGrid.Children.Add(GetEllipseInRib(downLeft));
 
-            SixRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            //FiveRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            //FiveRibGrid.Children.Add(GetEllipseInRib(upRight));
+            //FiveRibGrid.Children.Add(GetEllipseInRib(downRight));
+            //FiveRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            //FiveRibGrid.Children.Add(GetEllipseInRib(center));
+
+            //SixRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            //SixRibGrid.Children.Add(GetEllipseInRib(centerLeft));
+            //SixRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            //SixRibGrid.Children.Add(GetEllipseInRib(upRight));
+            //SixRibGrid.Children.Add(GetEllipseInRib(centerRight));
+            //SixRibGrid.Children.Add(GetEllipseInRib(downRight));
+        }
+
+        public void SetCenterLeftRightPoints(Point centerLeft, Point centerRight)
+        {
             SixRibGrid.Children.Add(GetEllipseInRib(centerLeft));
-            SixRibGrid.Children.Add(GetEllipseInRib(downLeft));
-            SixRibGrid.Children.Add(GetEllipseInRib(upRight));
             SixRibGrid.Children.Add(GetEllipseInRib(centerRight));
+        }
+
+        public void SetDownRight(Point downRight)
+        {
+            FourRibGrid.Children.Add(GetEllipseInRib(downRight));
+            FiveRibGrid.Children.Add(GetEllipseInRib(downRight));
             SixRibGrid.Children.Add(GetEllipseInRib(downRight));
         }
+
+        public void SetDownLeft(Point downLeft)
+        {
+            TwoRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            ThreeRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            FourRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            FiveRibGrid.Children.Add(GetEllipseInRib(downLeft));
+            SixRibGrid.Children.Add(GetEllipseInRib(downLeft));
+        }
+
+        public void SetUpRight(Point upRight)
+        {
+            TwoRibGrid.Children.Add(GetEllipseInRib(upRight));
+            ThreeRibGrid.Children.Add(GetEllipseInRib(upRight));
+            FourRibGrid.Children.Add(GetEllipseInRib(upRight));
+            FiveRibGrid.Children.Add(GetEllipseInRib(upRight));
+            SixRibGrid.Children.Add(GetEllipseInRib(upRight));
+        }
+
+        public void SetUpLeftPoint(Point upLeft)
+        {
+            FourRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            FiveRibGrid.Children.Add(GetEllipseInRib(upLeft));
+            SixRibGrid.Children.Add(GetEllipseInRib(upLeft));
+        }
+
+        public void AddCenterPoint(Point center)
+        {
+            OneRibGrid.Children.Add(GetEllipseInRib(center));
+            ThreeRibGrid.Children.Add(GetEllipseInRib(center));
+            FiveRibGrid.Children.Add(GetEllipseInRib(center));
+        }
+
+
 
         private Ellipse GetEllipseInRib(Point point)
         {

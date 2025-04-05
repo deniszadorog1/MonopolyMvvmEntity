@@ -33,6 +33,7 @@ namespace MonopolyEntity.Windows.Pages
 
             SetCaseDrops();
             FillCheckToOpen();
+
         }
 
         public void FillCheckToOpen()
@@ -42,7 +43,7 @@ namespace MonopolyEntity.Windows.Pages
 
             CheckToOpen.KeyToBox.CardName.Text = SystemParamsService.GetStringByName("CaseOpenKeyName");
 
-            Image img = BoardHelper.GetLotBoxImage(_caseBox.ImagePath);
+            Image img = Helper.GetLotBoxImage(_caseBox.ImagePath);
             CheckToOpen.Box.CardName.Text = $"{_caseBox.Name} " +
                 $"{SystemParamsService.GetStringByName("CaseOpenToOpenBox")}";
             CheckToOpen.Box.CardImage.Source = img.Source;
@@ -51,7 +52,7 @@ namespace MonopolyEntity.Windows.Pages
             CheckToOpen.Box.CardImage.Width = checkToOpenBoxSizeParam;
             CheckToOpen.Box.CardImage.Height = checkToOpenBoxSizeParam;
 
-            Image key = BoardHelper.GetKeyImage();
+            Image key = Helper.GetKeyImage();
             CheckToOpen.KeyToBox.CardImage.Source = key.Source;
             CheckToOpen.KeyToBox.CardImage.Width = keySizeParam;
             CheckToOpen.KeyToBox.CardImage.Height = keySizeParam;
@@ -63,11 +64,11 @@ namespace MonopolyEntity.Windows.Pages
             for (int i = 0; i < _caseBox.ItemsThatCanDrop.Count; i++)
             {
                 cards.Add(GetCaseCards(_caseBox.ItemsThatCanDrop[i].Name,
-                    BoardHelper.GetAddedItemImage(_caseBox.ItemsThatCanDrop[i].ImagePath, _caseBox.ItemsThatCanDrop[i].Type),
+                    Helper.GetAddedItemImage(_caseBox.ItemsThatCanDrop[i].ImagePath, _caseBox.ItemsThatCanDrop[i].Type),
                     _caseBox.ItemsThatCanDrop[i]));
             }
 
-            cards = BoardHelper.SetCardsInRightPosition(cards);
+            cards = Helper.SetCardsInRightPosition(cards);
 
             for (int i = 0; i < cards.Count; i++)
             {
@@ -77,8 +78,11 @@ namespace MonopolyEntity.Windows.Pages
 
         public static CaseCard GetCaseCards(string name, Image img, Item item)
         {
-            Size cardSize = new Size(175, 175);
-            Size cardImageSize = new Size(125, 125);
+            const int cardSizeParams = 175;
+            const int cardImageSizeParam = 125;
+
+            Size cardSize = new Size(cardSizeParams, cardSizeParams);
+            Size cardImageSize = new Size(cardImageSizeParam, cardImageSizeParam);
             const int cardMargin = 20;
             const int baseRadius = 10;
 
@@ -96,7 +100,7 @@ namespace MonopolyEntity.Windows.Pages
             newCard.CardName.Text = name;
             newCard.Margin = new Thickness(cardMargin);
 
-            newCard.BorderBgColor.Background = BoardHelper.GetRarityColorForCard(item);
+            newCard.BorderBgColor.Background = Helper.GetRarityColorForCard(item);
 
             newCard.BorderBase.Clip = new RectangleGeometry()
             {
@@ -115,9 +119,9 @@ namespace MonopolyEntity.Windows.Pages
             for (int i = 0; i < _caseBox.ItemsThatCanDrop.Count; i++)
             {
                 res.names.Add(_caseBox.ItemsThatCanDrop[i].Name);
-                res.images.Add(BoardHelper.GetAddedItemImage(
+                res.images.Add(Helper.GetAddedItemImage(
                     _caseBox.ItemsThatCanDrop[i].ImagePath, _caseBox.ItemsThatCanDrop[i].Type));
-                res.colors.Add(BoardHelper.GetRarityColorForCard(_caseBox.ItemsThatCanDrop[i]));
+                res.colors.Add(Helper.GetRarityColorForCard(_caseBox.ItemsThatCanDrop[i]));
             }
             return res;
         }
@@ -149,7 +153,7 @@ namespace MonopolyEntity.Windows.Pages
                 if (!_rol._animationIsDone) return;
 
                 BoxItem prize =
-                DBQueries.GetBoxItemByName(_rol._resCard.CardName.Text);
+                    DBQueries.GetBoxItemByName(_rol._resCard.CardName.Text);
 
                 DBQueries.AddBoxItemInUserInventory(_loggedUserLogin, prize.Name);
 

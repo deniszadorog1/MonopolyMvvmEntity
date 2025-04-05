@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.Migrations.Model;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using MonopolyDLL.DBService;
-using MonopolyDLL.Monopoly.Cell.Bus;
+﻿using MonopolyDLL.Monopoly.Cell.Businesses;
 using MonopolyDLL.Monopoly.Enums;
 using MonopolyDLL.Monopoly.InventoryObjs;
+using System.Collections.Generic;
+using System.Linq;
 using BoxItem = MonopolyDLL.Monopoly.InventoryObjs.BoxItem;
 
 namespace MonopolyDLL.Monopoly
@@ -34,7 +26,7 @@ namespace MonopolyDLL.Monopoly
         public bool IsMoveBackwards = false;
         private List<BusinessType> _collectedMonopolies = new List<BusinessType>();
 
-        private int Id;
+        private int _id;
         private int _maxDoubles = SystemParamsService.GetNumByName("MaxDoubles"); //3;
         private int? _pictureId;
         private bool _skipMove = false;
@@ -44,7 +36,7 @@ namespace MonopolyDLL.Monopoly
         {
             Login = login;
             Password = password;
-            Id = id;
+            _id = id;
             GameBusses = new List<InventoryObjs.BoxItem>();
             AmountOfMoney = SystemParamsService.GetNumByName("StartMoney"); //15000;
             Position = 0;
@@ -78,6 +70,11 @@ namespace MonopolyDLL.Monopoly
             IsLost = isLost;
             DoubleCounter = 0;
             GameBusses = new List<InventoryObjs.BoxItem>();
+        }
+
+        public int GetId()
+        {
+            return _id;
         }
 
         public void SetSkipMoveOpposite()
@@ -272,7 +269,8 @@ namespace MonopolyDLL.Monopoly
                     usualPosBus.RebuyPrice, item.GetNewPaymentList(usualPosBus.PayLevels),
                     usCounter, 0, newOwnerIndex, item.Type, usualPosBus.IsDeposited, usualPosBus.GetId());
             }
-            else { 
+            else
+            {
                 bus = new RegularBusiness(item.Name, usualPosBus.Price, usualPosBus.DepositPrice,
                 usualPosBus.RebuyPrice, item.GetNewPaymentList(usualPosBus.PayLevels),
                 usCounter, 0, ((RegularBusiness)usualPosBus).BuySellHouse, newOwnerIndex,
@@ -286,8 +284,7 @@ namespace MonopolyDLL.Monopoly
 
         public BoxItem GetBoxItemByPosition(int position)
         {
-            BoxItem item = GameBusses.Where(x => x.StationId == position).FirstOrDefault();
-            return item;
+            return GameBusses.Where(x => x.StationId == position).FirstOrDefault();
         }
 
         public string GetLogin()

@@ -1,23 +1,10 @@
-﻿using MonopolyEntity.VisualHelper;
+﻿using MonopolyDLL;
+using MonopolyDLL.Monopoly.InventoryObjs;
+using MonopolyEntity.VisualHelper;
 using MonopolyEntity.Windows.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
-using MonopolyDLL.Monopoly.InventoryObjs;
-using MonopolyDLL;
 
 namespace MonopolyEntity.Windows.UserControls.InventoryControls
 {
@@ -54,7 +41,7 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
         {
             const int fullBlur = 100;
             //return;
-            MainWindow obj = 
+            MainWindow obj =
                 Helper.FindParent<MainWindow>(_frame);
 
             OpenCase inventory = new OpenCase(_caseBox, _loggedUserLogin);
@@ -64,7 +51,7 @@ namespace MonopolyEntity.Windows.UserControls.InventoryControls
 
             BlurEffect blurEffect = new BlurEffect
             {
-                Radius = fullBlur 
+                Radius = fullBlur
             };
             obj.VisiableItems.Effect = blurEffect;
 

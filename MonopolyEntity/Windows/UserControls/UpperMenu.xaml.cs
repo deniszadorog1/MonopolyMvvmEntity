@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MonopolyDLL.Monopoly;
+using MonopolyEntity.Interfaces;
+using MonopolyEntity.VisualHelper;
+using MonopolyEntity.Windows.Pages;
+using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Serialization;
-using MonopolyEntity.Interfaces;
-using MonopolyEntity.VisualHelper;
+
 using MonopolyEntity.Windows.Pages;
 
 namespace MonopolyEntity.Windows.UserControls
@@ -30,9 +23,16 @@ namespace MonopolyEntity.Windows.UserControls
         public UpperMenu()
         {
             InitializeComponent();
-
         }
 
+        MonopolySystem _system;
+        Frame _frame;
+        public void SetMonSystemAndFrame(Frame frame, MonopolySystem system)
+        {
+            _frame = frame;
+            _system = system;
+        }
+       
         private void UserIcon_MouseLeave(object sender, MouseEventArgs e)
         {
             const int animationDistance = 150;
@@ -58,68 +58,86 @@ namespace MonopolyEntity.Windows.UserControls
 
         private void InventoryBut_Click(object sender, RoutedEventArgs e)
         {
-            _page = Helper.FindParent<Page>(this);
-            if (_page is null) return;
+/*            _page = Helper.FindParent<Page>(this);
+            if (_page is null) return;*/
 
-            if (_page is Pages.MainPage mainPage)
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new InventoryPage(_frame, _system));
+
+           /* if (_page is Pages.MainPage mainPage)
             {
                 mainPage.OpenInventoryPage();
             }
             else if (_page is Pages.ProfileSettings settings)
             {
                 settings.OpenInventoryPage();
-            }
+            }*/
+
         }
 
         private void MainLogoBut_Click(object sender, RoutedEventArgs e)
         {
-            //!!!!!!!!!!!!!!!!  Гениально использовал интерфейсы  !!!!!!!!!!!!!!!!!!!            
-            _page = _page = Helper.FindParent<Page>(this);
-            if (_page is null) return;
-
-            if(_page is IPagesOpener inter)
-            {
-                inter.OpenMainPage();
-            }
-
-/*
-            if (_page is Pages.MainPage mainPage)
-            {
-                mainPage.OpenMainPage();
-            }
-            else if (_page is InventoryPage invPage)
-            {
-                invPage.OpenMainPage();
-            }
-            else if (_page is ProfileSettings settings)
-            {
-                settings.OpenMainPage();
-            }*/
-        }
-
-        private void StartGameBut_Click(object sender, RoutedEventArgs e)
-        {
-            //!!!!!!!!!!!!!!!!  Гениально использовал интерфейсы  !!!!!!!!!!!!!!!!!!!            
-            _page = _page = Helper.FindParent<Page>(this);
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new Pages.MainPage(_frame, _system));
+/*            _page = _page = Helper.FindParent<Page>(this);
             if (_page is null) return;
 
             if (_page is IPagesOpener inter)
             {
-                inter.OpenGameField();
-            }
-
-/*            if (_page is Pages.MainPage mainPage)
-            {
-                mainPage.OpenGameField();
-            }
-            else if (_page is InventoryPage invPage)
-            {
-                invPage.OpenGameField();
-            }
-            else if (_page is ProfileSettings settings)
-            {
-                settings.OpenGameField();
+                inter.OpenMainPage();
             }*/
+
+            /*
+                        if (_page is Pages.MainPage mainPage)
+                        {
+                            mainPage.OpenMainPage();
+                        }
+                        else if (_page is InventoryPage invPage)
+                        {
+                            invPage.OpenMainPage();
+                        }
+                        else if (_page is ProfileSettings settings)
+                        {
+                            settings.OpenMainPage();
+                        }*/
+        }
+
+/*        public void PageOpener(bool ifGamePage)
+        {
+            _page = _page = Helper.FindParent<Page>(this);
+            if (_page is null) return;
+
+
+
+            if (_page is IPagesOpener inter)
+            {
+                if (ifGamePage) inter.OpenGameField();
+                else inter.OpenMainPage();
+            }
+        }*/
+
+        private void StartGameBut_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Window.GetWindow(_frame)).SetFrameContent(new Pages.SetPlayersInGame(_system, _frame));
+
+            /*          _page = _page = Helper.FindParent<Page>(this);
+                        if (_page is null) return;
+
+                        if (_page is IPagesOpener inter)
+                        {
+                            inter.OpenGameField();
+                        }*/
+
+            /*            if (_page is Pages.MainPage mainPage)
+                        {
+                            mainPage.OpenGameField();
+                        }
+                        else if (_page is InventoryPage invPage)
+                        {
+                            invPage.OpenGameField();
+                        }
+                        else if (_page is ProfileSettings settings)
+                        {
+                            settings.OpenGameField();
+                        }*/
         }
     }
 }
